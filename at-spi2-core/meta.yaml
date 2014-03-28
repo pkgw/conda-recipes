@@ -1,0 +1,29 @@
+package:
+  name: at-spi2-core
+  version: 2.12.0
+
+source:
+  fn: at-spi2-core-2.12.0.tar.xz
+  url: http://ftp.gnome.org/pub/gnome/sources/at-spi2-core/2.12/at-spi2-core-2.12.0.tar.xz
+  md5: b12ad0e0924706f5e7f51216241068ef
+
+build:
+  number: 0
+
+# TODO: "intltool" is needed to build and is a bit of an esoteric tool. I
+# totally don't want to package it up just for this, though.
+
+requirements:
+  build:
+    - dbus-client
+    - glib
+    - gobject-introspection
+    - python
+  run:
+    - dbus-client
+    - glib
+    - gobject-introspection
+
+about:
+  home: http://www.gtk.org/
+  license: LGPL

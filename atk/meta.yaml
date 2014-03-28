@@ -1,0 +1,24 @@
+package:
+  name: atk
+  version: 2.12.0
+
+source:
+  fn: atk-2.12.0.tar.xz
+  url: http://ftp.gnome.org/pub/gnome/sources/atk/2.12/atk-2.12.0.tar.xz
+  md5: 930238dec55fdbf8eda9975b44f07b76
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - glib
+    - gobject-introspection
+    - python
+  run:
+    - glib
+    - gobject-introspection
+
+about:
+  home: http://www.gtk.org/
+  license: LGPL

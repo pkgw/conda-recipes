@@ -1,0 +1,30 @@
+package:
+  name: at-spi2-atk
+  version: 2.12.0
+
+source:
+  fn: at-spi2-atk-2.12.0.tar.xz
+  url: http://ftp.gnome.org/pub/gnome/sources/at-spi2-atk/2.12/at-spi2-atk-2.12.0.tar.xz
+  md5: aafc5e1bb17cd3ad440f6350e7a021c1
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - at-spi2-core
+    - atk
+    - dbus
+    - glib
+    - gobject-introspection
+    - python
+  run:
+    - at-spi2-core
+    - atk
+    - dbus
+    - glib
+    - gobject-introspection
+
+about:
+  home: http://www.gtk.org/
+  license: LGPL

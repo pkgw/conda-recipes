@@ -1,0 +1,19 @@
+package:
+  name: dbus-client
+  version: 1.8.0
+
+source:
+  fn: dbus-1.8.0.tar.gz
+  url: http://dbus.freedesktop.org/releases/dbus/dbus-1.8.0.tar.gz
+  md5: 059fbe84e39fc99c67a14f15b1f39dff
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - python
+
+about:
+  home: http://dbus.freedesktop.org/
+  license: LGPL

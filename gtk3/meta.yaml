@@ -1,0 +1,32 @@
+package:
+  name: gtk3
+  version: 3.12.0
+
+source:
+  fn: gtk+-3.12.0.tar.xz
+  url: http://ftp.gnome.org/pub/gnome/sources/gtk+/3.12/gtk+-3.12.0.tar.xz
+  md5: 4e493fb68cded7420a7d8bcebdf13811
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - at-spi2-atk
+    - atk
+    - gdk-pixbuf
+    - glib
+    - gobject-introspection
+    - pango
+    - python
+  run:
+    - at-spi2-atk
+    - atk
+    - gdk-pixbuf
+    - glib
+    - gobject-introspection
+    - pango
+
+about:
+  home: http://www.gtk.org/
+  license: LGPL

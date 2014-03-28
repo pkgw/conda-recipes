@@ -1,0 +1,27 @@
+package:
+  name: gdk-pixbuf
+  version: 2.30.7
+
+source:
+  fn: gdk-pixbuf-2.30.7.tar.xz
+  url: http://ftp.gnome.org/pub/gnome/sources/gdk-pixbuf/2.30/gdk-pixbuf-2.30.7.tar.xz
+  md5: 1195d26f14adfe99ff0878d37678a70a
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - jpeg
+    - libpng
+    - libtiff
+    - zlib
+  run:
+    - jpeg
+    - libpng
+    - libtiff
+    - zlib
+
+about:
+  home: http://www.gtk.org/
+  license: LGPL

@@ -1,0 +1,28 @@
+package:
+  name: pango
+  version: 1.36.3
+
+source:
+  fn: pango-1.36.3.tar.xz
+  url: http://ftp.gnome.org/pub/gnome/sources/pango/1.36/pango-1.36.3.tar.xz
+  md5: d9532826e95bdb374355deebc42441bb
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - cairo
+    - freetype
+    - glib
+    - gobject-introspection
+    - python
+  run:
+    - cairo
+    - freetype
+    - glib
+    - gobject-introspection
+
+about:
+  home: http://www.gtk.org/
+  license: LGPL

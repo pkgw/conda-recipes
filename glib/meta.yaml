@@ -1,0 +1,22 @@
+package:
+  name: glib
+  version: 2.40.0
+
+source:
+  fn: glib-2.40.0.tar.xz
+  url: http://ftp.gnome.org/pub/gnome/sources/glib/2.40/glib-2.40.0.tar.xz
+  md5: 05fb7cb17eacbc718e90366a1eae60d9
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - python
+    - zlib
+  run:
+    - zlib
+
+about:
+  home: http://www.gtk.org/
+  license: LGPL

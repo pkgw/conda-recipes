@@ -1,0 +1,17 @@
+--- gi/__init__.py.orig	2014-03-28 17:21:42.560782466 -0400
++++ gi/__init__.py	2014-03-28 17:26:14.253996669 -0400
+@@ -27,6 +27,14 @@
+ import sys
+ import os
+ 
++# (ana)conda hack -- set GI_TYPELIB_PATH since gobject-introspection basically
++# isn't relocatable. It gets built with an embedded typelib search path that
++# remembers the build directory, while we could be installed anywhere. The
++# correct solution is to modify gobject-introspection to be relocatable, but
++# that's a lot of work. The quick solution is to do this.
++import os.path
++os.environ['GI_TYPELIB_PATH'] = os.path.join (sys.prefix, 'lib', 'girepository-1.0')
++
+ # we can't have pygobject 2 loaded at the same time we load the internal _gobject
+ if 'gobject' in sys.modules:
+     raise ImportError('When using gi.repository you must not import static '

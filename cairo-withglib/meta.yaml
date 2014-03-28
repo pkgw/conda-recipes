@@ -1,0 +1,29 @@
+package:
+  name: cairo
+  version: 1.12.16
+
+source:
+  fn: cairo-1.12.16.tar.xz
+  url: http://cairographics.org/releases/cairo-1.12.16.tar.xz
+  md5: a1304edcdc99282f478b995ee5f8f854
+
+build:
+  number: 3
+
+requirements:
+  build:
+    - freetype
+    - glib
+    - libpng
+    - pixman
+    - zlib
+  run:
+    - freetype
+    - glib
+    - libpng
+    - pixman
+    - zlib
+
+about:
+  home: http://cairographics.org/
+  license: LGPL 2.1 and MPL 1.1
