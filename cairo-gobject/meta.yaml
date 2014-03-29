@@ -1,0 +1,25 @@
+package:
+  name: cairo-gobject
+  version: 1.12.2
+
+source:
+  fn: cairo-1.12.2.tar.xz
+  url: http://cairographics.org/releases/cairo-1.12.2.tar.xz
+  sha1: bc2ee50690575f16dab33af42a2e6cdc6451e3f9
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - freetype
+    - glib
+    - libpng
+    - pixman
+    - zlib
+  run:
+    - cairo
+
+about:
+  home: http://cairographics.org/
+  license: LGPL 2.1 and MPL 1.1

@@ -14,13 +14,13 @@ build:
 
 requirements:
   build:
-    - cairo
+    - cairo-gobject
     - glib
     - gobject-introspection
     - py2cairo
     - python
   run:
-    - cairo
+    - cairo-gobject
     - glib
     - gobject-introspection
     - py2cairo

@@ -12,13 +12,13 @@ build:
 
 requirements:
   build:
-    - cairo
+    - cairo-gobject
     - freetype
     - glib
     - gobject-introspection
     - python
   run:
-    - cairo
+    - cairo-gobject
     - freetype
     - glib
     - gobject-introspection

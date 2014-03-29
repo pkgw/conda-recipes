@@ -18,7 +18,8 @@ build:
 
 requirements:
   build:
-    - cairo
+    - cairo-gobject
+    - glib
     - python
   run:
     - glib
