@@ -1,0 +1,25 @@
+package:
+  name: omegaplot
+  version: 0.2
+
+source:
+  fn: omegaplot-0.2.tar.bz2
+  url: http://newton.cx/~peter/files/omegaplot-0.2.tar.bz2
+  sha1: 5e07271a5e9377b7d3f4340223dc2ce3d5a8a3a3
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - numpy
+    - py2cairo
+    - python
+  run:
+    - numpy
+    - py2cairo
+    - python
+
+about:
+  home: http://newton.cx/~peter/
+  license: GPL
