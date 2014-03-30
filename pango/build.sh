@@ -1,7 +1,7 @@
 #! /bin/bash
 
 set -e
-./configure --prefix=$PREFIX || { cat config.log ; exit 1 ; }
+./configure --prefix=$PREFIX --with-included-modules=yes || { cat config.log ; exit 1 ; }
 make
 make install
 
