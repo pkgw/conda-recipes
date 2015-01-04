@@ -1,0 +1,13 @@
+--- util/cairo-gobject/cairo-gobject.h.orig	2015-01-04 17:40:21.524238778 -0500
++++ util/cairo-gobject/cairo-gobject.h	2015-01-04 17:41:51.118366661 -0500
+@@ -39,6 +39,10 @@
+ 
+ #include <cairo.h>
+ 
++/* (ana)conda hack -- the main Cairo package is built without gobject, so the
++ * GOBJECT_FUNCTIONS feature macro isn't defined by default. */
++#define CAIRO_HAS_GOBJECT_FUNCTIONS 1
++
+ #if CAIRO_HAS_GOBJECT_FUNCTIONS
+ 
+ #include <glib-object.h>

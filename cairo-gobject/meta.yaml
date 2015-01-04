@@ -1,14 +1,16 @@
 package:
   name: cairo-gobject
-  version: 1.12.2
+  version: 1.12.18
 
 source:
-  fn: cairo-1.12.2.tar.xz
-  url: http://cairographics.org/releases/cairo-1.12.2.tar.xz
-  sha1: bc2ee50690575f16dab33af42a2e6cdc6451e3f9
+  fn: cairo-1.12.18.tar.xz
+  url: http://cairographics.org/releases/cairo-1.12.18.tar.xz
+  sha1: a76940b58da9c83b8934264617135326c0918f9d
+  patches:
+    - hack-features.patch
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:

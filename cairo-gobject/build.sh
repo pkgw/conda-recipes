@@ -15,7 +15,16 @@ make
 make install
 
 cd $PREFIX
-rm -rf bin include lib/cairo share
+rm -rf bin lib/cairo share
+
+(cd include/cairo
+ for f in * ; do
+     case $f in
+	 cairo-gobject.h) ;;
+	 *) rm -f $f ;;
+     esac
+ done
+)
 
 cd lib
 for f in libcairo* ; do
