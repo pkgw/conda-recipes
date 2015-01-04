@@ -1,20 +1,24 @@
 package:
   name: omegaplot
-  version: 0.2
+  version: !!str 0.3
 
 source:
-  fn: omegaplot-0.2.tar.bz2
-  url: http://newton.cx/~peter/files/omegaplot-0.2.tar.bz2
-  sha1: 5e07271a5e9377b7d3f4340223dc2ce3d5a8a3a3
+  fn: omegaplot-0.3.tar.bz2
+  url: https://pypi.python.org/packages/source/o/omegaplot/omegaplot-0.3.tar.gz
+  md5: d936922773ddccc3134fef3f73e10a68
 
 build:
   number: 0
+  entry_points:
+    - omegafig = oputil.omegafig:cmdline
+    - omegamap = oputil.omegamap:cmdline
 
 requirements:
   build:
     - numpy
     - py2cairo
     - python
+    - setuptools
   run:
     - numpy
     - py2cairo
