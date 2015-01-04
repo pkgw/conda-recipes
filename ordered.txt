@@ -1,0 +1,13 @@
+glib
+cairo-gobject
+gobject-introspection
+atk
+dbus-client
+at-spi2-core
+at-spi2-atk
+gdk-pixbuf
+pango
+gtk3
+omegaplot
+pwkit
+pygobject3
