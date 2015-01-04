@@ -2,7 +2,6 @@
 
 set -e
 ./configure --prefix=$PREFIX --disable-gtk-doc || { cat config.log ; exit 1 ; }
-exit 1
 make
 make install
 
