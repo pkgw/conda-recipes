@@ -27,10 +27,12 @@ pip
 setuptools
 ```
 
-Then set up my personal [Binstar] channel as a source of additional packages:
+Then set up my personal [Binstar] channel as a source of additional packages, and
+make it so the (unused) named environments directory is out of the way:
 
 ```
 conda config --add channels http://conda.binstar.org/pkgw/channel/main
+conda config --add envs_dirs {path-to-anaconda}/envs
 ```
 
 
@@ -39,7 +41,7 @@ conda config --add channels http://conda.binstar.org/pkgw/channel/main
 Create a new blank environment in some sensible working directory.
 
 ```
-conda create -p {path-to-env-dir} python=2.7
+conda create -p {path-to-env-dir} -y python=2.7
 ```
 
 Fortunately, wrappers are mostly set up properly such that “using the
@@ -71,7 +73,7 @@ conda list -p {path-to-env-dir} -e |tee environment.txt
 You can then recreate it programmatically with:
 
 ```
-conda create -p {path-to-new-env-dir} -q -y --file environment.txt
+conda create -p {path-to-new-env-dir} -y --file environment.txt
 ```
 
 I need to think about what to do with the fact that, e.g., I’ll want to have
@@ -108,6 +110,10 @@ upon which other installed packages depend.) But in an ideal world
 ```
 conda update -p {path-to-env-dir} --all
 ```
+
+### TODO:
+
+- Investigate `conda develop`
 
 ### Regenerating the local channel
 
