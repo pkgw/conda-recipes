@@ -1,11 +1,11 @@
 package:
   name: omegaplot
-  version: !!str 0.3
+  version: !!str 0.5
 
 source:
-  fn: omegaplot-0.3.tar.bz2
-  url: https://pypi.python.org/packages/source/o/omegaplot/omegaplot-0.3.tar.gz
-  md5: d936922773ddccc3134fef3f73e10a68
+  fn: omegaplot-0.5.tar.bz2
+  url: https://pypi.python.org/packages/source/o/omegaplot/omegaplot-0.5.tar.gz
+  md5: bd929ba46f24849dceb635bd5f44c3c6
 
 build:
   number: 0
