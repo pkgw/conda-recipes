@@ -1,0 +1,19 @@
+package:
+  name: ninja
+  version: 1.5.3
+
+source:
+  fn: v1.5.3.tar.gz
+  url: https://github.com/martine/ninja/archive/v1.5.3.tar.gz
+  sha1: b3ff794461ff5e4e1e73fe6bd11e653bbe509e63
+
+build:
+  number: 0
+
+requirements:
+  build:
+  run:
+
+about:
+  home: http://martine.github.io/ninja/
+  license: Apache 2.0
