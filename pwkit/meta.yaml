@@ -1,11 +1,11 @@
 package:
   name: pwkit
-  version: !!str 0.4.0
+  version: !!str 0.4.1
 
 source:
-  fn: pwkit-0.4.0.tar.gz
-  url: https://pypi.python.org/packages/source/p/pwkit/pwkit-0.4.0.tar.gz
-  md5: 97ab811550bf4eab9465ac7362eb0a12
+  fn: pwkit-0.4.1.tar.gz
+  url: https://pypi.python.org/packages/source/p/pwkit/pwkit-0.4.1.tar.gz
+  md5: 500dbcc259170d27e10cb1199cf9a929
 
 build:
   entry_points:
