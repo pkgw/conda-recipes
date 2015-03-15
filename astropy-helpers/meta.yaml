@@ -1,0 +1,25 @@
+package:
+  name: astropy-helpers
+  version: !!str 1.0.1
+
+source:
+  fn: astropy-helpers-1.0.1.tar.gz
+  url: https://pypi.python.org/packages/source/a/astropy-helpers/astropy-helpers-1.0.1.tar.gz
+  md5: b031047f14b24d38db2cc4250f0a3c23
+
+requirements:
+  build:
+    - python
+    - setuptools
+
+  run:
+    - python
+    
+test:
+  imports:
+    - astropy_helpers
+
+about:
+  home: http://www.astropy.org/
+  license: BSD
+  summary: Utilities for building and installing Astropy and Astropy affiliated packages.

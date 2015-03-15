@@ -1,0 +1,41 @@
+package:
+  name: astroquery
+  version: !!str 0.2.3
+
+source:
+  fn: astroquery-0.2.3.tar.gz
+  url: https://pypi.python.org/packages/source/a/astroquery/astroquery-0.2.3.tar.gz
+  md5: 96091fa13e55090b40f7500be32cac11
+  patches:
+    - no-auto-upgrade.patch
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - astropy
+    - astropy-helpers
+    - beautiful-soup
+    - html5lib
+    - keyring
+    - python
+    - requests
+    - setuptools
+
+  run:
+    - astropy
+    - beautiful-soup
+    - html5lib
+    - keyring
+    - python
+    - requests
+    
+test:
+  imports:
+    - astroquery
+
+about:
+  home: http://www.astropy.org/astroquery/
+  license: BSD
+  summary: Functions and classes to access online astronomical data resources
