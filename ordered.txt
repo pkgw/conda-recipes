@@ -9,6 +9,4 @@ at-spi2-atk
 gdk-pixbuf
 pango
 gtk3
-omegaplot
-pwkit
 pygobject3
