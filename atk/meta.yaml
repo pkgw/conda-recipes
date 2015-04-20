@@ -11,7 +11,7 @@ source:
   md5: 930238dec55fdbf8eda9975b44f07b76
 
 build:
-  number: 2
+  number: 3
 
 requirements:
   build:

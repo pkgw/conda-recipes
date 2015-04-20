@@ -11,17 +11,20 @@ source:
   md5: 1195d26f14adfe99ff0878d37678a70a
 
 build:
-  number: 2
+  number: 3
 
 requirements:
   build:
     - glib
+    - gobject-introspection
     - jpeg
     - libpng
     - libtiff
+    - python # needed for g-ir-scanner
     - zlib
   run:
     - glib
+    - gobject-introspection
     - jpeg
     - libpng
     - libtiff

@@ -11,7 +11,7 @@ source:
   md5: b12ad0e0924706f5e7f51216241068ef
 
 build:
-  number: 1
+  number: 2
 
 # TODO: "intltool" is needed to build and is a bit of an esoteric tool. I
 # totally don't want to package it up just for this, though.
