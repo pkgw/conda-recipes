@@ -11,7 +11,7 @@ source:
   md5: d9532826e95bdb374355deebc42441bb
 
 build:
-  number: 2
+  number: 3
 
 requirements:
   build:
@@ -19,12 +19,14 @@ requirements:
     - freetype
     - glib
     - gobject-introspection
+    - harfbuzz
     - python
   run:
     - cairo-gobject
     - freetype
     - glib
     - gobject-introspection
+    - harfbuzz
 
 about:
   home: http://www.gtk.org/

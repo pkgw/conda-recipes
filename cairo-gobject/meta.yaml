@@ -13,17 +13,19 @@ source:
     - hack-features.patch
 
 build:
-  number: 1
+  number: 2
 
 requirements:
   build:
     - freetype
     - glib
+    - libffi
     - libpng
     - pixman
     - zlib
   run:
     - cairo
+    - libffi
 
 about:
   home: http://cairographics.org/

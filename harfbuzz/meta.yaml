@@ -1,0 +1,25 @@
+package:
+  name: harfbuzz
+  version: 0.9.40
+
+source:
+  fn: harfbuzz-0.9.40.tar.bz2
+  url: http://www.freedesktop.org/software/harfbuzz/release/harfbuzz-0.9.40.tar.bz2
+  md5: 0e27e531f4c4acff601ebff0957755c2
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - freetype
+    - glib
+    - gobject-introspection
+  run:
+    - freetype
+    - glib
+    - gobject-introspection
+
+about:
+  home: http://www.freedesktop.org/wiki/Software/HarfBuzz/
+  license: MIT

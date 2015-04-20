@@ -13,7 +13,7 @@ export CPPFLAGS=-I$PREFIX/include LDFLAGS=-L$PREFIX/lib
     --enable-pdf            \
     --enable-svg            \
     --disable-gtk-doc
-make
+make -j$(nproc --ignore=4)
 make install
 
 cd $PREFIX
@@ -35,6 +35,9 @@ for f in libcairo* ; do
 	*) rm -f $f ;;
     esac
 done
+
+# workaround for libffi .la file path issues
+sed -i -e 's|lib/\.\./lib64|lib|g' *.la
 
 cd pkgconfig
 for f in cairo*.pc ; do

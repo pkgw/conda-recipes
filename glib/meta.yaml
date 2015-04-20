@@ -11,13 +11,15 @@ source:
   md5: 05fb7cb17eacbc718e90366a1eae60d9
 
 build:
-  number: 1
+  number: 3
 
 requirements:
   build:
+    - libffi
     - python
     - zlib
   run:
+    - libffi
     - zlib
 
 about:

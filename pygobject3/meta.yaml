@@ -13,19 +13,21 @@ source:
     - typelib-path.patch
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
     - cairo-gobject
     - glib
     - gobject-introspection
+    - libffi
     - py2cairo
     - python
   run:
     - cairo-gobject
     - glib
     - gobject-introspection
+    - libffi
     - py2cairo
     - python
 

@@ -15,6 +15,8 @@ source:
   fn: gobject-introspection-1.40.0.tar.xz
   url: http://ftp.gnome.org/pub/gnome/sources/gobject-introspection/1.40/gobject-introspection-1.40.0.tar.xz
   md5: bbb103b5d88dbf2a257b7a26ae9bc666
+  patches:
+    - ffi-config.patch
 
 build:
   number: 2

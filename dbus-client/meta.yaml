@@ -9,9 +9,11 @@ source:
   fn: dbus-1.8.0.tar.gz
   url: http://dbus.freedesktop.org/releases/dbus/dbus-1.8.0.tar.gz
   md5: 059fbe84e39fc99c67a14f15b1f39dff
+  patches:
+    - skip-extras.patch
 
 build:
-  number: 1
+  number: 2
 
 requirements:
   build:
