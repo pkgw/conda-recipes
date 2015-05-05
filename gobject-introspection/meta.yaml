@@ -14,15 +14,17 @@ source:
   md5: bbb103b5d88dbf2a257b7a26ae9bc666
 
 build:
-  number: 1
+  number: 2
 
 requirements:
   build:
     - cairo-gobject
     - glib
+    - libffi
     - python
   run:
     - glib
+    - libffi
 
 about:
   home: https://wiki.gnome.org/action/show/Projects/GObjectIntrospection
