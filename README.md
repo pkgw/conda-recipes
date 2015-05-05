@@ -18,6 +18,16 @@ conda config --add channels http://conda.binstar.org/pkgw/channel/main
 [my personal Binstar channel]: https://binstar.org/pkgw/
 
 
+License
+=======
+
+These files are licensed under a 3-clause BSD license, for compatibility with
+the main [conda-recipes] repository. See the file [LICENSE.txt](LICENSE.txt)
+for the details.
+
+[conda-recipes]: https://github.com/conda/conda-recipes
+
+
 Copyright Notice
 ================
 
