@@ -9,17 +9,18 @@
 
 package:
   name: gobject-introspection
-  version: 1.40.0
+  version: 1.44.0
 
 source:
-  fn: gobject-introspection-1.40.0.tar.xz
-  url: http://ftp.gnome.org/pub/gnome/sources/gobject-introspection/1.40/gobject-introspection-1.40.0.tar.xz
-  md5: bbb103b5d88dbf2a257b7a26ae9bc666
+  fn: gobject-introspection-1.44.0.tar.xz
+  url: http://ftp.gnome.org/pub/gnome/sources/gobject-introspection/1.44/gobject-introspection-1.44.0.tar.xz
+  md5: 7ef8a1db7f74f4193a2397b1587eb913
   patches:
     - ffi-config.patch
 
 build:
-  number: 2
+  number: 0
+  detect_binary_files_with_prefix: true
 
 requirements:
   build:

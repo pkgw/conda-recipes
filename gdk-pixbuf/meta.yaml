@@ -11,7 +11,8 @@ source:
   md5: 1195d26f14adfe99ff0878d37678a70a
 
 build:
-  number: 3
+  number: 4
+  detect_binary_files_with_prefix: true
 
 requirements:
   build:
@@ -33,3 +34,4 @@ requirements:
 about:
   home: http://www.gtk.org/
   license: LGPL
+  summary: a low-level library for manipulating image data

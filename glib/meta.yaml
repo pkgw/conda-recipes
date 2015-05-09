@@ -3,15 +3,16 @@
 
 package:
   name: glib
-  version: 2.40.0
+  version: 2.45.1
 
 source:
-  fn: glib-2.40.0.tar.xz
-  url: http://ftp.gnome.org/pub/gnome/sources/glib/2.40/glib-2.40.0.tar.xz
-  md5: 05fb7cb17eacbc718e90366a1eae60d9
+  fn: glib-2.45.1.tar.xz
+  url: http://ftp.gnome.org/pub/gnome/sources/glib/2.45/glib-2.45.1.tar.xz
+  md5: b2167d648db8e586758f99db5392f119
 
 build:
-  number: 3
+  number: 0
+  detect_binary_files_with_prefix: true
 
 requirements:
   build:
@@ -25,3 +26,4 @@ requirements:
 about:
   home: http://www.gtk.org/
   license: LGPL
+  summary: a low-level portability and utility library
