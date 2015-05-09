@@ -1,0 +1,32 @@
+# Copyright 2015 Peter Williams and collaborators.
+# This file is licensed under a 3-clause BSD license; see LICENSE.txt.
+
+# NOTE! This package must be built on a modern machine that supports
+# "-std=c++11" as an option to g++. This is in contrast to most Conda
+# packages, where I build on CentOS 5 for broad binary compatibility.
+# Joy.
+
+package:
+  name: libsakura
+  version: "0.1.1"
+
+source:
+  fn: libsakura-0.1.1.tar.gz
+  url: https://svn.cv.nrao.edu/casa/devel/libsakura-0.1.1.tar.gz
+  md5: ac0c72c5195e5e31e0145385c29f39a2
+  patches:
+    - no-docs.patch
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - cmake
+    - eigen
+    - fftw
+
+about:
+  home: http://alma.mtk.nao.ac.jp/j/
+  license: GPL version 3
+  summary: C++ library for fast image manipulations

@@ -1,0 +1,59 @@
+# Copyright 2015 Peter Williams and collaborators.
+# This file is licensed under a 3-clause BSD license; see LICENSE.txt.
+
+package:
+  name: casa-tools
+  version: "4.4"
+
+source:
+  svn_url: https://svn.cv.nrao.edu/svn/casa/branches/release-4_4/
+  svn_rev: 33237
+  svn_ignore_externals: yes
+  patches:
+    - so-versioning.patch
+
+build:
+  number: 2
+  detect_binary_files_with_prefix: true
+
+requirements:
+  build:
+    - atlas
+    - boost
+    - casa-nrao-casacore
+    - cmake
+    - dbus-cxx
+    - dbus-client
+    - fftw
+    - gsl
+    - libsakura
+    - libxml2
+    - libxslt
+    - pgplot
+    - readline
+    - rpfits
+    - qt
+    - qwt5
+    - xerces-c28
+  run:
+    - atlas
+    - boost
+    - casa-nrao-casacore
+    - dbus-cxx
+    - dbus-client
+    - fftw
+    - gsl
+    - libsakura
+    - libxml2
+    - libxslt
+    - pgplot
+    - readline
+    - rpfits
+    - qt
+    - qwt5
+    - xerces-c28
+
+about:
+  home: http://casa.nrao.edu/
+  license: GPLv2
+  summary: scientific tool implementations for CASA

@@ -1,0 +1,33 @@
+# Copyright 2015 Peter Williams and collaborators.
+# This file is licensed under a 3-clause BSD license; see LICENSE.txt.
+
+# Note that while Conda accepts a package name of "dbus-c++", Binstar rejects
+# it.
+
+package:
+  name: dbus-cxx
+  version: "0.9.0"
+
+source:
+  fn: libdbus-c++-0.9.0.tar.gz
+  url: http://sourceforge.net/projects/dbus-cplusplus/files/dbus-c%2B%2B/0.9.0/libdbus-c%2B%2B-0.9.0.tar.gz/download
+  md5: e752116f523fa88ef041e63d3dee4de2
+
+build:
+  number: 0
+  detect_binary_files_with_prefix: true
+
+requirements:
+  build:
+    - dbus-client
+    - expat
+    - glib
+  run:
+    - dbus-client
+    - expat
+    - glib
+
+about:
+  home: http://dbus-cplusplus.sourceforge.net/
+  license: LGPLv2+
+  summary: C++ bindings for the DBus system

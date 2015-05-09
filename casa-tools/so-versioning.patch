@@ -1,0 +1,22 @@
+--- code/CMakeLists.txt.orig	2015-05-09 18:35:55.027006144 +0000
++++ code/CMakeLists.txt	2015-05-09 18:36:12.277018827 +0000
+@@ -393,18 +393,7 @@
+ 
+ SET(NO_SOVERSION FALSE CACHE BOOL "do not add version information to shared libraries")
+ if( NOT NO_SOVERSION )
+-    set( epochdelta 1385614800 )
+-    if ( EXISTS ${CMAKE_INSTALL_PREFIX}/${arch}/casa_sover.txt )
+-        execute_process( COMMAND perl -e "while (<>) { chomp and print if (! m/^\#/ ) }" ${CMAKE_INSTALL_PREFIX}/${arch}/casa_sover.txt
+-                         OUTPUT_VARIABLE __casa_soversion )
+-    elseif( EXISTS ${CMAKE_INSTALL_PREFIX}/casa_sover.txt )
+-        execute_process( COMMAND perl -e "while (<>) { chomp and print if (! m/^#/ ) }" ${CMAKE_INSTALL_PREFIX}/casa_sover.txt
+-                         OUTPUT_VARIABLE __casa_soversion )
+-    else( )
+-        execute_process( COMMAND perl -e "$t=time( )-${epochdelta};$z=$t & 0xff; $y=($t>>8)&0xff; $x=($t>>16)&0xffff; print \"$x.$y.$z\""
+-                         OUTPUT_VARIABLE __casa_soversion )
+-    endif( )
+-    set(casa_soversion ${__casa_soversion} CACHE STRING "version for shared objects")
++    set(casa_soversion "44.0.0" CACHE STRING "version for shared objects")
+     message( STATUS "Shared object version number ${casa_soversion}" )
+ else( )
+     message( STATUS "User disabled shared library versioning" )

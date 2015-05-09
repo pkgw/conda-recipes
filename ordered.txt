@@ -11,3 +11,22 @@ harfbuzz
 pango
 gtk3
 pygobject3
+
+# the CASA stack; requires glib and dbus-client
+expat
+xerces-c28
+dbus-c++
+fftw
+eigen
+cfitsio
+pgplot
+wcslib
+rpfits
+gsl
+qwt
+libsakura
+casa-data
+casa-nrao-casacore
+casa-tools
+casa-asap
+casa-python

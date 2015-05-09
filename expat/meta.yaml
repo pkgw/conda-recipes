@@ -1,0 +1,22 @@
+# Copyright 2015 Peter Williams and collaborators.
+# This file is licensed under a 3-clause BSD license; see LICENSE.txt.
+
+package:
+  name: expat
+  version: "2.1.0"
+
+source:
+  fn: expat-2.1.0.tar.gz
+  url: http://sourceforge.net/projects/expat/files/expat/2.1.0/expat-2.1.0.tar.gz/download
+  md5: dd7dab7a5fea97d2a6a43f511449b7cd
+
+build:
+  number: 0
+
+requirements:
+  build:
+
+about:
+  home: http://expat.sourceforge.net/
+  license: MIT
+  summary: yet another XML parser

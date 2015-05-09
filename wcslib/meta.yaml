@@ -1,0 +1,27 @@
+# Copyright 2015 Peter Williams and collaborators.
+# This file is licensed under a 3-clause BSD license; see LICENSE.txt.
+
+package:
+  name: wcslib
+  version: "5.5"
+
+source:
+  fn: wcslib.tar.bz2
+  url: http://www.atnf.csiro.au/pub/software/wcslib/wcslib.tar.bz2
+  md5: 79554fe847614229a60dee7de5f13156
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - cfitsio
+    - pgplot
+  run:
+    - cfitsio
+    - pgplot
+
+about:
+  home: http://www.atnf.csiro.au/people/mcalabre/WCS/wcslib/
+  license: GPL version 3
+  summary: library for World Coordinate System computations

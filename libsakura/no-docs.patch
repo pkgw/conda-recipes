@@ -1,0 +1,7 @@
+--- src/CMakeLists.txt.orig	2015-05-08 19:09:42.155335657 -0400
++++ src/CMakeLists.txt	2015-05-08 19:09:59.173363241 -0400
+@@ -175,4 +175,3 @@
+ 	LIBRARY DESTINATION lib
+ 	PUBLIC_HEADER DESTINATION include/libsakura)
+ 
+-install(DIRECTORY "${PROJECT_BINARY_DIR}/docs/api" DESTINATION share/doc/libsakura)

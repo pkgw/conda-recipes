@@ -1,0 +1,32 @@
+# Copyright 2015 Peter Williams and collaborators.
+# This file is licensed under a 3-clause BSD license; see LICENSE.txt.
+
+package:
+  name: casa-python
+  version: "4.4"
+
+source:
+  svn_url: https://svn.cv.nrao.edu/svn/casa/branches/release-4_4/
+  svn_rev: 33237
+  svn_ignore_externals: yes
+  patches:
+    - so-versioning.patch
+
+build:
+  number: 2
+  detect_binary_files_with_prefix: true
+
+requirements:
+  build:
+    - casa-tools
+    - cmake
+    - python
+    - swig
+  run:
+    - casa-tools
+    - python
+
+about:
+  home: http://casa.nrao.edu/
+  license: GPL version 2
+  summary: Python interfaces to the CASA tools

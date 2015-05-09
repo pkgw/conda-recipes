@@ -1,0 +1,22 @@
+# Copyright 2015 Peter Williams and collaborators.
+# This file is licensed under a 3-clause BSD license; see LICENSE.txt.
+
+package:
+  name: rpfits
+  version: "2.23"
+
+source:
+  fn: rpfits-2.23.tar.gz
+  url: http://www.atnf.csiro.au/pub/software/rpfits/rpfits-2.23.tar.gz
+  md5: 197407a6b463e8d8f40040075a3983a3
+
+build:
+  number: 1
+
+requirements:
+  build:
+
+about:
+  home: http://www.atnf.csiro.au/computing/software/rpfits.html
+  license: unspecified
+  summary: library for reading and writing a FITS-like data format

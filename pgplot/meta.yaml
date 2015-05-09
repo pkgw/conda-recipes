@@ -1,0 +1,35 @@
+# Copyright 2015 Peter Williams and collaborators.
+# This file is licensed under a 3-clause BSD license; see LICENSE.txt.
+
+package:
+  name: pgplot
+  version: "5.2.2"
+
+source:
+  # Conda's FTP downloader doesn't do anonymous authentication right,
+  # apparently.
+  fn: pgplot5.2.tar.gz
+  url: ftp://anonymous:condabuilder%40@gmail.com@ftp.astro.caltech.edu/pub/pgplot/pgplot5.2.tar.gz
+  md5: e8a6e8d0d5ef9d1709dfb567724525ae
+  patches:
+    - drivers.patch
+    - gfortran.patch
+    - png-setjmp.patch
+
+build:
+  number: 1
+
+requirements:
+  build:
+    - libpng
+    - tk
+    - zlib
+  run:
+    - libpng
+    - tk
+    - zlib
+
+about:
+  home: http://www.astro.caltech.edu/~tjp/pgplot/
+  license: non-commercial use only
+  summary: a FORTRAN plotting library
