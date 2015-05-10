@@ -1,0 +1,42 @@
+# Copyright 2015 Peter Williams and collaborators.
+# This file is licensed under a 3-clause BSD license; see LICENSE.txt.
+
+# We don't provide the rfigui right now. It needs Gtk-- > 3.0, so it wouldn't
+# be a huge amount of work to make that work since we have the Gtk+ 3 stack.
+
+package:
+  name: aoflagger
+  version: "2.6.0"
+
+source:
+  fn: aoflagger-2.6.0.tar.bz2
+  url: http://downloads.sourceforge.net/project/aoflagger/aoflagger-2.6.0/aoflagger-2.6.0.tar.bz2
+  md5: 28eefe0c2c7cfff7bab08281d13a41ba
+
+build:
+  number: 0
+  detect_binary_files_with_prefix: true
+
+requirements:
+  build:
+    - atlas
+    - boost
+    - casa-nrao-casacore
+    - cfitsio
+    - cmake
+    - fftw
+    - gsl
+    - libxml2
+  run:
+    - atlas
+    - boost
+    - casa-nrao-casacore
+    - cfitsio
+    - fftw
+    - gsl
+    - libxml2
+
+about:
+  home: http://aoflagger.sourceforge.net/
+  license: GPLv3
+  summary: automatic flagging of interference in radio astronomical data sets
