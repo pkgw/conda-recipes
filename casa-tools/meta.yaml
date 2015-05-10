@@ -13,7 +13,7 @@ source:
     - so-versioning.patch
 
 build:
-  number: 2
+  number: 3
   detect_binary_files_with_prefix: true
 
 requirements:
@@ -36,7 +36,6 @@ requirements:
     - qwt5
     - xerces-c28
   run:
-    - atlas
     - boost
     - casa-nrao-casacore
     - dbus-cxx
@@ -48,7 +47,6 @@ requirements:
     - libxslt
     - pgplot
     - readline
-    - rpfits
     - qt
     - qwt5
     - xerces-c28

@@ -15,7 +15,7 @@ source:
     - cmake-fixes.patch
 
 build:
-  number: 1
+  number: 2
   detect_binary_files_with_prefix: true
 
 requirements:
@@ -31,14 +31,12 @@ requirements:
     - rpfits
     - wcslib
   run:
-    - atlas
     - boost
     - casa-nrao-casacore
     - casa-tools
     - cfitsio
     - libxml2
     - pgplot
-    - rpfits
     - wcslib
 
 about:
