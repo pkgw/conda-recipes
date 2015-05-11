@@ -45,8 +45,8 @@ rm -rf xml
 rm bin/{buildmytasks,casa,casapy,xmlgenpy} lib/saxon*.jar
 
 mkdir -p $SP_DIR
-for f in __casac__ casadef.py casac.py ; do
-    mv python/2.*/$f $SP_DIR
-done
-
+casapydir=$(echo python/2.*)
+mv $casapydir/__casac__ $SP_DIR/
+mv $casapydir/casac.py $SP_DIR/
+sed -e "s|$casapydir|lib/casa/tasks|g" $casapydir/casadef.py >$SP_DIR/casadef.py
 rm -rf python # note! not lib/python ...
