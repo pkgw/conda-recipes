@@ -1,0 +1,62 @@
+--- CMakeLists.txt.orig	2015-05-12 02:35:22.286561235 +0000
++++ CMakeLists.txt	2015-05-12 02:35:57.101519807 +0000
+@@ -36,7 +36,7 @@
+        "set ON to use libc++ for standard C++ library (only effective for clang)"
+        ON)
+ 
+-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
++set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x -DDISABLE_ALIGNAS")
+ if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+     if(USE_LIBCXX)
+     	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++")
+--- src/libsakura/localdef.h.orig	2015-05-12 02:31:17.774852194 +0000
++++ src/libsakura/localdef.h	2015-05-12 02:33:32.852691457 +0000
+@@ -166,7 +166,7 @@
+   #define __has_builtin(x) 0  // Compatibility with non-clang compilers.
+ #endif
+ 
+-#if defined(__GNUG__) && (!defined(__clang__) || __has_builtin(__builtin_assume_aligned))
++#if defined(__GNUG__) && !defined(__clang__) && __has_builtin(__builtin_assume_aligned)
+ /**
+  * @~japanese
+  * @brief @a ptr がsakuraのアライメント要件を満たしていると見なし、そのアドレスを返す。
+--- src/baseline.cc.orig	2015-05-12 02:21:48.614478449 +0000
++++ src/baseline.cc	2015-05-12 02:21:59.286468660 +0000
+@@ -36,6 +36,7 @@
+ #include <iomanip>
+ #include <memory>
+ #include <sstream>
++#include <stdexcept>
+ 
+ #if defined(__AVX__) && !defined(ARCH_SCALAR)
+ #	include <immintrin.h>
+--- src/convolution.cc.orig	2015-05-12 02:23:28.127387172 +0000
++++ src/convolution.cc	2015-05-12 02:23:41.434374966 +0000
+@@ -35,6 +35,7 @@
+ #include <fftw3.h>
+ #include <memory>
+ #include <climits>
++#include <stdexcept>
+ 
+ #include <libsakura/sakura.h>
+ #include <libsakura/localdef.h>
+--- src/gridding.cc.orig	2015-05-12 02:38:13.036358050 +0000
++++ src/gridding.cc	2015-05-12 02:38:24.548344351 +0000
+@@ -27,6 +27,7 @@
+ #include <cassert>
+ #include <cmath>
+ #include <climits>
++#include <cstdint>
+ 
+ #include "libsakura/sakura.h"
+ #include "libsakura/localdef.h"
+--- src/numeric_operation.cc.orig	2015-05-12 02:39:06.614294294 +0000
++++ src/numeric_operation.cc	2015-05-12 02:39:16.912282040 +0000
+@@ -26,6 +26,7 @@
+ #include <cstddef>
+ #include <iostream>
+ #include <memory>
++#include <stdexcept>
+ 
+ #if defined(__AVX__) && !defined(ARCH_SCALAR)
+ #	include <immintrin.h>

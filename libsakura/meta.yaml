@@ -1,10 +1,35 @@
 # Copyright 2015 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
-# NOTE! This package must be built on a modern machine that supports
-# "-std=c++11" as an option to g++. This is in contrast to most Conda
-# packages, where I build on CentOS 5 for broad binary compatibility.
-# Joy.
+# AGHGHGHG! This package requires G++ >~ 4.7 because it uses C++11 constructs.
+# However, building on a relatively recent OS injects dependencies on new
+# symbol versions in libstdc++ and a fancy new ELF ABI version ("Linux" rather
+# than "SYSV"/"none"), so you can't build on too new of a machine. I've found
+# that I can generate a portable binary if I build on CentOS 6 using the Red
+# Hat devtools version 1.1. Method inspired by
+# http://superuser.com/a/542091/447180.
+#
+# There's a CentOS package of the devtools here:
+#
+#   http://people.centos.org/tru/devtools-1.1/
+#
+# So:
+#
+# $ cd /etc/yum.repos.d
+# $ wget http://people.centos.org/tru/devtools-1.1/devtools-1.1.repo
+# $ yum --enablerepo=testing-1.1-devtools-6 install devtoolset-1.1-gcc \
+#    devtoolset-1.1-gcc-c++ devtoolset-1.1-binutils devtoolset-1.1-elfutils
+#
+# Then
+#
+# $ PATH="/opt/centos/devtoolset-1.1/root/usr/bin:$PATH" conda \
+#    build /work/recipes/libsakura
+#
+# "readelf -h libsakura*.so" lets you check the ABI version and
+# "readelv -V libsakura*.so" lets you check the symbol version dependencies.
+#
+# While this package compiles out of the box on Fedora 21, this compilation
+# environment results in scattered compile errors that we need to patch.
 
 package:
   name: libsakura
@@ -15,10 +40,11 @@ source:
   url: https://svn.cv.nrao.edu/casa/devel/libsakura-0.1.1.tar.gz
   md5: ac0c72c5195e5e31e0145385c29f39a2
   patches:
+    - compile-fixes.patch
     - no-docs.patch
 
 build:
-  number: 1
+  number: 2
 
 requirements:
   build:
