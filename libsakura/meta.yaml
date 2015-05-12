@@ -17,7 +17,7 @@
 #
 # $ cd /etc/yum.repos.d
 # $ wget http://people.centos.org/tru/devtools-1.1/devtools-1.1.repo
-# $ yum --enablerepo=testing-1.1-devtools-6 install devtoolset-1.1-gcc \
+# $ yum --enablerepo=testing-1.1-devtools-5 install devtoolset-1.1-gcc \
 #    devtoolset-1.1-gcc-c++ devtoolset-1.1-binutils devtoolset-1.1-elfutils
 #
 # Then
