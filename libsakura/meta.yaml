@@ -5,7 +5,7 @@
 # However, building on a relatively recent OS injects dependencies on new
 # symbol versions in libstdc++ and a fancy new ELF ABI version ("Linux" rather
 # than "SYSV"/"none"), so you can't build on too new of a machine. I've found
-# that I can generate a portable binary if I build on CentOS 6 using the Red
+# that I can generate a portable binary if I build on CentOS 5 using the Red
 # Hat devtools version 1.1. Method inspired by
 # http://superuser.com/a/542091/447180.
 #
