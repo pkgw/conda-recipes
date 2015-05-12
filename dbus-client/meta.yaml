@@ -3,17 +3,18 @@
 
 package:
   name: dbus-client
-  version: 1.8.0
+  version: "1.8.16"
 
 source:
-  fn: dbus-1.8.0.tar.gz
-  url: http://dbus.freedesktop.org/releases/dbus/dbus-1.8.0.tar.gz
-  md5: 059fbe84e39fc99c67a14f15b1f39dff
+  fn: dbus-1.8.16.tar.gz
+  url: http://dbus.freedesktop.org/releases/dbus/dbus-1.8.16.tar.gz
+  md5: 020824a38850501e7d6ba8307a7c5ac3
   patches:
     - skip-extras.patch
 
 build:
-  number: 2
+  number: 0
+  detect_binary_files_with_prefix: true
 
 requirements:
   build:
