@@ -3,7 +3,7 @@
 
 package:
   name: at-spi2-core
-  version: 2.12.0
+  version: "2.12.0"
 
 source:
   fn: at-spi2-core-2.12.0.tar.xz
@@ -11,7 +11,8 @@ source:
   md5: b12ad0e0924706f5e7f51216241068ef
 
 build:
-  number: 2
+  number: 3
+  detect_binary_files_with_prefix: true
 
 # TODO: "intltool" is needed to build and is a bit of an esoteric tool. I
 # totally don't want to package it up just for this, though.
@@ -30,3 +31,4 @@ requirements:
 about:
   home: http://www.gtk.org/
   license: LGPL
+  summary: D-Bus-based implementation of AT-SPI accessibility framework
