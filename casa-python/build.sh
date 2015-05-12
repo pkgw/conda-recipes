@@ -38,7 +38,11 @@ cd build
 cmake $cmake_args ..
 make -j3 VERBOSE=1
 
-# Blow away a lot of files ...
+# Blow away a lot of files ... We need to keep TablePlotTkAgg.py since CASA's
+# bizarre plotting code automatically imports it (from C++!) even without the
+# casapy frontend. Fortunately things still seem to work even though much of
+# the plotting stuff doesn't get hooked up and our matplotlib version is
+# different (I think).
 
 cd $PREFIX
 rm -rf xml
@@ -46,7 +50,8 @@ rm bin/{buildmytasks,casa,casapy,xmlgenpy} lib/saxon*.jar
 
 mkdir -p $SP_DIR
 casapydir=$(echo python/2.*)
-mv $casapydir/__casac__ $SP_DIR/
-mv $casapydir/casac.py $SP_DIR/
+for stem in __casac__ casac.py TablePlotTkAgg.py ; do
+    mv $casapydir/$stem $SP_DIR/
+done
 sed -e "s|$casapydir|lib/casa/tasks|g" $casapydir/casadef.py >$SP_DIR/casadef.py
 rm -rf python # note! not lib/python ...
