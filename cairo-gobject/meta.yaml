@@ -3,7 +3,7 @@
 
 package:
   name: cairo-gobject
-  version: 1.12.18
+  version: "1.12.18"
 
 source:
   fn: cairo-1.12.18.tar.xz
@@ -13,7 +13,7 @@ source:
     - hack-features.patch
 
 build:
-  number: 3
+  number: 4
   detect_binary_files_with_prefix: true
 
 requirements:
@@ -31,3 +31,4 @@ requirements:
 about:
   home: http://cairographics.org/
   license: LGPL 2.1 and MPL 1.1
+  summary: GLib GObject bindings for the Cairo graphics library

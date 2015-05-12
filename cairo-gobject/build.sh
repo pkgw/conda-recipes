@@ -12,6 +12,9 @@ export CPPFLAGS=-I$PREFIX/include LDFLAGS=-L$PREFIX/lib
     --enable-ps             \
     --enable-pdf            \
     --enable-svg            \
+    --disable-xcb           \
+    --disable-xlib-xcb      \
+    --disable-xcb-shm       \
     --disable-gtk-doc
 make -j$(nproc --ignore=4)
 make install
