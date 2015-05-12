@@ -1,9 +1,16 @@
 # Copyright 2014-2015 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
+# Gtk+ 3 needs to be built on at least CentOS 6, since it requires XInput
+# version 2 and CentOS 5 only has version 1. However, one must be careful to
+# build it against dependent packages that were built on CentOS 5 -- in
+# particular, when building cairo-gobject on CentOS 6, the resulting shared
+# library gets a dependency on xcb, which propagates its way into the Gtk+
+# shared libraries.
+
 package:
   name: gtk3
-  version: 3.12.0
+  version: "3.12.0"
 
 source:
   fn: gtk+-3.12.0.tar.xz
@@ -13,7 +20,8 @@ source:
     - m_pi.patch
 
 build:
-  number: 3
+  number: 4
+  detect_binary_files_with_prefix: true
 
 requirements:
   build:
@@ -36,3 +44,4 @@ requirements:
 about:
   home: http://www.gtk.org/
   license: LGPL
+  summary: version 3 of the Gtk+ graphical toolkit
