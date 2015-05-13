@@ -1,0 +1,27 @@
+--- casacore/CMakeLists.txt.orig	2015-05-13 20:23:33.020772229 +0000
++++ casacore/CMakeLists.txt	2015-05-13 20:27:00.367197771 +0000
+@@ -314,6 +314,10 @@
+     add_definitions(-DUSE_STACKTRACE)
+ endif(USE_STACKTRACE)
+ 
++# conda-build hack
++add_definitions(-DCONDA_CASA_ROOT="${CONDA_CASA_ROOT}")
++# end conda-build hack
++
+ # Add the modules to be built.
+ add_subdirectory (build-tools)
+ foreach (module ${_modules})
+--- casacore/casa/System/Aipsrc.cc.orig	2015-05-13 20:23:25.424756643 +0000
++++ casacore/casa/System/Aipsrc.cc	2015-05-13 20:29:57.773561857 +0000
+@@ -215,9 +215,9 @@
+     } else { 
+       aipsPath = extAipsPath;
+     }
+-    // Set the path to home if not defined in any way.
++    // conda-build hack: default is known
+     if (aipsPath.empty()) {
+-      setAipsPath(uhome);
++      setAipsPath(String (CONDA_CASA_ROOT));
+       aipsPath = extAipsPath;
+     }
+     Int n = aipsPath.freq(' ') + aipsPath.freq('	') + 4;
