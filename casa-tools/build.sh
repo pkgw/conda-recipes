@@ -33,5 +33,11 @@ cmake $cmake_args ..
 make -j3 VERBOSE=1
 
 cd $PREFIX
-rm -f casainit.csh casainit.sh makedefs
-rm -f bin/t* # tests
+rm -f casainit.* lib/casa/casainit.* makedefs
+rm -f bin/t* bin/qwtplottertest # tests
+
+# casabrowser as installed is a broken + pointless wrapper script around
+# qcasabrowser. Shockingly, all other binaries appear to be usable as
+# installed.
+rm -f bin/casabrowser
+ln -s qcasabrowser bin/casabrowser

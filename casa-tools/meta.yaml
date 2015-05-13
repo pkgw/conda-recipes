@@ -11,9 +11,10 @@ source:
   svn_ignore_externals: yes
   patches:
     - so-versioning.patch
+    - casaroot.patch
 
 build:
-  number: 3
+  number: 4
   detect_binary_files_with_prefix: true
 
 requirements:
