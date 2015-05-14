@@ -3,6 +3,11 @@
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 set -e
+
+# Runtime patch: edit default search directory so we don't need magic
+# environment variables.
+sed -i -e "s|/usr/local/pgplot/|$PREFIX/share/pgplot/|g" src/grgfil.f
+
 ./makemake . linux gfortran_gcc
 for f in png.h pngconf.h pnglibconf.h zlib.h zconf.h ; do
     ln -s $PREFIX/include/$f $f
