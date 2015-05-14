@@ -15,9 +15,10 @@ source:
     - drivers.patch
     - gfortran.patch
     - png-setjmp.patch
+    - prefix.patch
 
 build:
-  number: 2
+  number: 3
   detect_binary_files_with_prefix: true
 
 requirements:

@@ -10,7 +10,7 @@
 +FFLAGC="-ffixed-form -ffixed-line-length-none -u -Wall -fPIC -O"
 +FFLAGD="-fno-backslash"
 +CCOMPL="gcc"
-+CFLAGC="-Wall -fPIC -DPG_PPU -O -I$PREFIX/include"
++CFLAGC="-Wall -fPIC -DPG_PPU -O -I$PREFIX/include -DCONDA_DATADIR=\\\"$PREFIX/share/pgplot/\\\""
 +CFLAGD="-Wall -O -I$PREFIX"
 +PGBIND_FLAGS="bsd"
 +LIBS="-L/usr/X11R6/lib -lX11"
