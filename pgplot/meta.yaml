@@ -18,7 +18,7 @@ source:
     - prefix.patch
 
 build:
-  number: 3
+  number: 4
   detect_binary_files_with_prefix: true
 
 requirements:
