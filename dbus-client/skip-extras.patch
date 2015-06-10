@@ -5,7 +5,7 @@
  top_builddir = @top_builddir@
  top_srcdir = @top_srcdir@
 -SUBDIRS = dbus bus tools test doc
-+SUBDIRS = dbus
++SUBDIRS = dbus tools
  pkgconfigdir = $(libdir)/pkgconfig
  pkgconfig_DATA = dbus-1.pc
  DISTCLEANFILES = \
