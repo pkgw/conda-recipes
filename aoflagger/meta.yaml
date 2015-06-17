@@ -3,18 +3,19 @@
 
 # We don't provide the rfigui right now. It needs Gtk-- > 3.0, so it wouldn't
 # be a huge amount of work to make that work since we have the Gtk+ 3 stack.
+# We'd need libsigc++, glibmm, and gtkmm.
 
 package:
   name: aoflagger
-  version: "2.6.0"
+  version: "2.7.0"
 
 source:
-  fn: aoflagger-2.6.0.tar.bz2
-  url: http://downloads.sourceforge.net/project/aoflagger/aoflagger-2.6.0/aoflagger-2.6.0.tar.bz2
-  md5: 28eefe0c2c7cfff7bab08281d13a41ba
+  fn: aoflagger-2.7.0.tar.bz2
+  url: http://downloads.sourceforge.net/project/aoflagger/aoflagger-2.7.0/aoflagger-2.7.0.tar.bz2
+  md5: e273f697a888497e5db4639b8d582659
 
 build:
-  number: 2
+  number: 0
   detect_binary_files_with_prefix: true
 
 requirements:
@@ -26,12 +27,14 @@ requirements:
     - cmake
     - fftw
     - gsl
+    - hdf5
     - libxml2
   run:
     - boost
     - casa-nrao-casacore
     - fftw
     - gsl
+    - hdf5
     - libxml2
 
 about:
