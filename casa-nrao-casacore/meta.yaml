@@ -14,7 +14,7 @@ source:
     - default-root.patch
 
 build:
-  number: 5
+  number: 6
   detect_binary_files_with_prefix: true
 
 requirements:
@@ -24,7 +24,7 @@ requirements:
     - cfitsio
     - cmake
     - fftw
-    - hdf5
+    - hdf5 >=1.8.15.1
     - numpy
     - python >=2.7,<3
     - readline
@@ -33,7 +33,7 @@ requirements:
     - boost
     - cfitsio
     - fftw
-    - hdf5
+    - hdf5 >=1.8.15.1
     - numpy
     - python >=2.7,<3
     - readline
