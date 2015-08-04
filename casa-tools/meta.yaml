@@ -7,14 +7,14 @@ package:
 
 source:
   svn_url: https://svn.cv.nrao.edu/svn/casa/branches/release-4_4/
-  svn_rev: 33237
+  svn_rev: 33623
   svn_ignore_externals: yes
   patches:
     - so-versioning.patch
     - casaroot.patch
 
 build:
-  number: 4
+  number: 5
   detect_binary_files_with_prefix: true
 
 requirements:
