@@ -9,13 +9,13 @@ source:
   # Due to ASAP's dumb build system, we have to check out the whole release
   # tree.
   svn_url: https://svn.cv.nrao.edu/svn/casa/branches/release-4_4/
-  svn_rev: 33237
+  svn_rev: 33623
   svn_ignore_externals: yes
   patches:
     - cmake-fixes.patch
 
 build:
-  number: 2
+  number: 3
   detect_binary_files_with_prefix: true
 
 requirements:
