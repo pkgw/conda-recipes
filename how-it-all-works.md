@@ -35,7 +35,8 @@ echo 'exclude=*.i386 *.i586 *.i686' >>/etc/yum.conf # Centos 5 yum silliness
 yum update -y
 ```
 
-Install a bunch of base development packages:
+Install a bunch of base development packages (using some shell trickiness so I
+can linewrap and alphabetize the list of packages):
 
 ```
 yum install $(echo "
@@ -47,13 +48,18 @@ file
 flex
 gcc
 gcc-c++
-gcc-g++
 gcc-gfortran
 gettext-devel
 java
 libICE-devel
 libSM-devel
-libX{i,11,au,dcmp,tst,ext,render}-devel
+libXi-devel
+libX11-devel
+libXau-devel
+libXdmcp-devel
+libXtst-devel
+libXext-devel
+libXrender-devel
 libstdc++-devel
 make
 man
@@ -90,9 +96,16 @@ rm miniconda.sh
 conda update --all
 conda install python=3.5
 conda update --all
+```
+
+Our environment has its own set of standard packages that need to be installed for
+development:
+
+```
 conda install $(echo "
 anaconda-client
 conda-build
+jinja2
 pip
 setuptools
 ")
@@ -104,6 +117,8 @@ make it so the (unused) named environments directory is out of the way:
 ```
 conda config --add envs_dirs /conda/envs
 conda config --add channels http://conda.anaconda.org/pkgw/channel/main
+mkdir /conda/conda-bld
+(cd /conda/conda-bld && ln -s /work/linux-64)
 ```
 
 
