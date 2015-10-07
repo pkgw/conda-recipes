@@ -20,14 +20,16 @@ requirements:
     - glib
     - gobject-introspection
     - libffi
-    - py2cairo
+    - py2cairo # [py2k]
+    - py3cairo # [py3k]
     - python
   run:
     - cairo-gobject
     - glib
     - gobject-introspection
     - libffi
-    - py2cairo
+    - py2cairo # [py2k]
+    - py3cairo # [py3k]
     - python
 
 about:
