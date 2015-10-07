@@ -18,6 +18,13 @@ configure your [Anaconda] installation to fetch packages from it with:
 conda config --add channels http://conda.anaconda.org/pkgw/channel/main
 ```
 
+To directly install the package `pwkit` (for example) without altering your
+configuration, use:
+
+```
+conda install -c pkgw pwkit
+```
+
 [my personal anaconda.org channel]: https://anaconda.org/pkgw/
 
 
