@@ -20,6 +20,7 @@ conda config --add channels http://conda.anaconda.org/pkgw/channel/main
 
 [my personal anaconda.org channel]: https://anaconda.org/pkgw/
 
+
 Docs for Packagers and Builders
 ===============================
 
@@ -27,6 +28,7 @@ This repository also includes some notes on packaging software for the [Conda]
 system and how to build those packages.
 
 * [Reliably building Anaconda packages](how-it-all-works.md)
+* [The order in which everything needs to be built](ordered.txt)
 
 
 License
