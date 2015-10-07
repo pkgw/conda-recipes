@@ -1,7 +1,9 @@
-# Reproducible Python Stacks with Conda and Anaconda.org
+# Reliably building Anaconda packages
 
-This system has so freakin’ many issues, but it’s still the best I’ve been
-able to cook up.
+This repository collects my recipes for building packages for the Anaconda
+Python distribution. Many of them involve compiled code, and a big challenge
+is building such packages in a way that’s as platform-independent as possible.
+This file documents my system for doing so.
 
 
 ## Initial setup
@@ -121,18 +123,45 @@ mkdir /conda/conda-bld
 (cd /conda/conda-bld && ln -s /work/linux-64)
 ```
 
+Once all that work has been done, packages should be able to be built simply
+by running
 
-## Building and publishing packages
+```
+conda build $PACKAGE_NAME
+```
+
+in `/work/recipes` inside the Docker container.
+
+
+## Packaging and releasing personal projects
+
+The basic recipe for packaging a personal Python module using my system. When
+you control the code, I think it makes more sense to store the [conda] recipe
+files in the package’s source tree, rather than in this grab-bag repository.
 
 1. Break down and use `setup.py` as a build tool.
-2. When there’s new code you want to release, update the version in `setup.py`.
-3. Build, register, upload: `python setup.py sdist bdist register upload`. You
-   have to do it all in one go so that cached authentication information can
-   be used.
-4. Update `meta.yaml` in [conda] recipe. Take the MD5 sum from what [PyPI]
-   reports, since it’s not the same as the MD5 of the tarball you upload.
-5. Build for [conda]: `conda build {path-to-recipe-dir}`.
-6. Upload to [anaconda.org]: execute line at end of the `conda build` output.
+2. Develop [conda] build files, potentially using the ones in this repository
+   as a template.
+3. When there’s new code you want to release, update the version in `setup.py`.
+4. Build, register, upload to PyPI:
+
+   ```python setup.py sdist bdist register upload```
+
+   You have to do it all in one go so that cached authentication information
+   can be used.
+5. Update `meta.yaml` in the [conda] recipe. The MD5 of the package on PyPI
+   is not the same as the file you upload; get it with something like:
+
+   ```
+   curl -s https://pypi.python.org/pypi/pwkit/ |grep md5= |grep -v linux |sed -e 's/.*md5=//'
+   ```
+
+   where you replace `pwkit` with the appropriate package name.
+
+6. Build for [conda]: `conda build {path-to-recipe-dir}`.
+7. Verify that package looks good. No extraneous files included, any binary
+   files have been properly made relocatable, etc.
+8. Upload to [anaconda.org]: execute line at end of the `conda build` output.
 
 [conda]: http://conda.pydata.org/docs/
 
@@ -146,77 +175,26 @@ Have to be careful with this since their update practices are amateurish and
 upon which other installed packages depend.) But in an ideal world
 
 ```
-conda update -p {path-to-env-dir} --all
+conda update --all
 ```
 
-### TODO:
+### Correcting SELinux permissions
 
-- Investigate `conda develop`
+If you’re running the docker container on an SELinux-enabled system, files
+created outside of the container may not be given permissions to be read from
+inside it. You can give the permissions by running:
+
+```
+sudo chcon -Rt svirt_sandbox_file_t /b/conda-build
+```
+
+on the container host.
 
 ### Regenerating the local channel
 
-Run `conda index` in `$ANACONDA/conda-bld/linux-64/`.
+On the container host, run `conda index` in `/b/conda-build/linux-64/`.
 
 ### Viewing this document locally
 
-Run `grip --wide how-it-all-works.md`. The [grip](https://github.com/joeyespo/grip)
-package is on [PyPI] and seems to do the job. Installing `grip` locally with the
-Anaconda Python stack was a total pain in the ass for unclear reasons. I ended
-up getting it to work with
-
-```
-pip install -i https://pypi.anaconda.org/pypi/simple grip
-```
-
-which seems to be the recommended method for any [PyPI] package that doesn’t
-have its own Conda incarnation.
-
-
-## Older stuff on reproducible software environments
-
-### Setting up a new environment
-
-Create a new blank environment in some sensible working directory.
-
-```
-conda create -p {path-to-env-dir} -y python=2.7
-```
-
-Fortunately, wrappers are mostly set up properly such that “using the
-environment” is just a matter of putting its `bin` directory in `$PATH`.
-However, the `conda` tool does *not* do this because these people are freaking
-amateurs, so various of the [conda] commands need to have the environment
-location re-specified, usually with that `-p` argument. So, to set up new
-packages:
-
-```
-conda install -p {path-to-env-dir} numpy scipy ipython pwkit
-```
-
-Other packages of potential interest:
-
-- astropy
-- omegaplot
-- pandas
-
-
-### Making the environment reproducible
-
-You can export the current setup for an environment with:
-
-```
-conda list -p {path-to-env-dir} -e |tee environment.txt
-```
-
-You can then recreate it programmatically with:
-
-```
-conda create -p {path-to-new-env-dir} -y --file environment.txt
-```
-
-I need to think about what to do with the fact that, e.g., I’ll want to have
-[IPython] available for testing and such, but it’s something that would be
-nice to keep out of the environment dep list since it pulls in so many
-sup-dependencies. Hmmm.
-
-[IPython]: http://ipython.org/
+Run `grip --wide how-it-all-works.md`. Installing `grip` from PyPI was a
+hassle for unclear reasons, so this repository now includes a recipe for it!
