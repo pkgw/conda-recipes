@@ -1,0 +1,36 @@
+# Copyright 2015 Peter Williams and collaborators.
+# This file is licensed under a 3-clause BSD license; see LICENSE.txt.
+#
+# Here we steal a bunch of patches from Debian to fix the busted waf build system.
+
+package:
+  name: py3cairo
+  version: 1.10.0
+
+source:
+  fn: pycairo-1.10.0.tar.bz2
+  url: http://cairographics.org/releases/pycairo-1.10.0.tar.bz2
+  md5: e6fd3f2f1e6a72e0db0868c4985669c5
+  patches:
+    # Note that there are other patches that are applied through build.sh
+    # since the waf-based build system is SUPER ANNOYING.
+    #
+    # This patch does not actually work! I'm having trouble figuring out
+    # why and there's only so much time I want to spend on this right now.
+    - 101_pycairo-region.patch
+
+build:
+  number: 0
+  detect_binary_files_with_prefix: true
+
+requirements:
+  build:
+    - cairo-gobject
+    - python
+  run:
+    - cairo-gobject
+    - python
+
+about:
+  home: http://cairographics.org/pycairo/
+  license: LGPLv3
