@@ -1,9 +1,11 @@
 # Reliably building Anaconda packages
 
-This repository collects my recipes for building packages for the Anaconda
+This repository collects my recipes for building packages for the [Anaconda]
 Python distribution. Many of them involve compiled code, and a big challenge
 is building such packages in a way that’s as platform-independent as possible.
 This file documents my system for doing so.
+
+[Anaconda]: http://docs.continuum.io/anaconda/index
 
 
 ## Initial setup

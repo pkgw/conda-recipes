@@ -2,11 +2,14 @@ conda-recipes
 =============
 
 This repository contains recipes for building various packages in the [Conda]
-package manager. Most of them build up to providing support for the [Gtk+ 3]
-graphical toolkit. Builds are only tested on Linux.
+package manager used by the [Anaconda] Python distribution. Most of them build
+up to providing support for the [Gtk+ 3] graphical toolkit and the [CASA]
+radio interferometry package. Builds are only tested on Linux.
 
 [Conda]: http://conda.pydata.org/
+[Anaconda]: http://docs.continuum.io/anaconda/index
 [Gtk+ 3]: http://www.gtk.org/
+[CASA]: http://casa.nrao.edu/
 
 I upload built packages to [my personal anaconda.org channel]. You can
 configure your [Anaconda] installation to fetch packages from it with:
@@ -16,7 +19,6 @@ conda config --add channels http://conda.anaconda.org/pkgw/channel/main
 ```
 
 [my personal anaconda.org channel]: https://anaconda.org/pkgw/
-
 
 Docs for Packagers and Builders
 ===============================
