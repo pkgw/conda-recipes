@@ -1,0 +1,29 @@
+package:
+  name: path-and-address
+  version: "1.0.0"
+
+source:
+  fn: path-and-address-1.0.0.zip
+  url: https://pypi.python.org/packages/source/p/path-and-address/path-and-address-1.0.0.zip
+  md5: b75fbf0118e27e870cfebfd4dd4b77bb
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - python
+    - setuptools
+
+  run:
+    - python
+
+test:
+  imports:
+    - path_and_address
+    - path_and_address.tests
+
+about:
+  home: http://github.com/joeyespo/path-and-address
+  license: MIT
+  summary: 'Functions for server command-line arguments used by humans.'

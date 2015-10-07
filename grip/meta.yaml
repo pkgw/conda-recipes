@@ -1,0 +1,53 @@
+package:
+  name: grip
+  version: "3.3.0"
+
+source:
+  fn: grip-3.3.0.zip
+  url: https://pypi.python.org/packages/source/g/grip/grip-3.3.0.zip
+  md5: a7e7b3af6879aa4641e4f294c546addc
+
+build:
+  entry_points:
+    - grip = grip.command:main
+  number: 0
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - docopt >=0.6.2
+    - flask >=0.10.1
+    - itsdangerous >=0.24
+    - jinja2 >=2.7.3
+    - markdown >=2.5.1
+    - markupsafe >=0.23
+    - path-and-address >=1.0.0
+    - pygments >=1.6
+    - requests >=2.4.1
+    - werkzeug >=0.9.6
+
+  run:
+    - python
+    - docopt >=0.6.2
+    - flask >=0.10.1
+    - itsdangerous >=0.24
+    - jinja2 >=2.7.3
+    - markdown >=2.5.1
+    - markupsafe >=0.23
+    - path-and-address >=1.0.0
+    - pygments >=1.6
+    - requests >=2.4.1
+    - werkzeug >=0.9.6
+
+test:
+  imports:
+    - grip
+
+  commands:
+    - grip --help
+
+about:
+  home: http://github.com/joeyespo/grip
+  license: MIT
+  summary: 'Render local readme files before sending off to GitHub.'
