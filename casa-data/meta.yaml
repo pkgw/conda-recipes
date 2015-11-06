@@ -3,15 +3,15 @@
 
 package:
   name: casa-data
-  version: r10516
+  version: r10625
 
 source:
   svn_url: https://svn.cv.nrao.edu/svn/casa-data/distro/
-  svn_rev: 10516
+  svn_rev: 10625
   svn_ignore_externals: yes
 
 build:
-  number: 1
+  number: 0
 
 requirements:
   build:
