@@ -18,10 +18,10 @@ To do everything you need accounts on both [PyPI] and [anaconda.org].
 The Conda framework doesn’t specify the binary ABI that Linux-targeting
 packages should follow. Basic Python packages can be built on just about any
 distribution, but the safest approach seems to be to build everything on
-CentOS 5 if at all possible. (Some C++ packages require newer compiler
-features, although the Red Hat ``devtools`` package looks like it will allow
-access to an updated compiler on an otherwise-stock CentOS 5 stack.) In practice
-I use [docker] to get a consistent build environment.
+CentOS 5 if at all possible. Some C++ packages require newer compiler
+features; I use the Red Hat ``devtools`` package, which gives access to an
+updated compiler on an otherwise-stock CentOS 5 stack.) In practice I use
+[docker] to get a consistent build environment.
 
 [docker]: https://www.docker.com/
 
@@ -77,6 +77,19 @@ tar
 wget
 which
 xz
+")
+```
+
+**TODO**: we should add instructions for installing the Red Hat “devtools”
+since they’re essentially required now. Packages:
+
+```
+yum install $(echo "
+devtoolset-2-binutils
+devtoolset-2-elfutils
+devtoolset-2-gcc
+devtoolset-2-gcc-c++
+devtoolset-2-gcc-gfortran
 ")
 ```
 
@@ -195,6 +208,31 @@ on the container host.
 ### Regenerating the local channel
 
 On the container host, run `conda index` in `/b/conda-build/linux-64/`.
+
+## C++11 and checking binary compatibility
+
+CASA now uses C++11 constructs and as such requires G++ version >~ 4.7 to
+build. However, building on a relatively recent OS injects dependencies on new
+symbol versions in libstdc++ and a fancy new ELF ABI version ("Linux" rather
+than "SYSV"/"none"), so you can't build on too new of a machine.
+
+Inspired by [StackExchange], I've found that I can generate a portable binary
+if I build on CentOS 5 using the Red Hat `devtools` package, or more
+specifically [a CentOS build of devtools 2]. Some of the build files are
+modified to point to the devtools version of `g++` to build the C++ code
+appropriately. However, we need to point them to the stock version of
+`gfortran` (when there’s FORTRAN code too) to maintain binary compatibility
+with the rest of the Conda distribution.
+
+[StackExchange]: http://superuser.com/a/542091/447180
+[a CentOS build of devtools 2]: http://people.centos.org/tru/devtools-2/readme
+
+To check the versions of various built binaries, use commands like:
+
+```
+readelf -h libsakura*.so # to check the ABI version
+readelf -V libsakura*.so # to check the symbol versions
+```
 
 ### Viewing this document locally
 
