@@ -1,10 +1,12 @@
+<!--- To render this locally, use `grip --wide` on this file. -->
+
 conda-recipes
 =============
 
-This repository contains recipes for building various packages in the [Conda]
-package manager used by the [Anaconda] Python distribution. Most of them build
-up to providing support for the [Gtk+ 3] graphical toolkit and the [CASA]
-radio interferometry package. Builds are only tested on Linux.
+This repository contains the tools I use to build various packages in the
+[Conda] package manager used by the [Anaconda] Python distribution. Most of
+them build up to providing support for the [Gtk+ 3] graphical toolkit and the
+[CASA] radio interferometry package. Builds are only tested on 64-bit Linux.
 
 [Conda]: http://conda.pydata.org/
 [Anaconda]: http://docs.continuum.io/anaconda/index
@@ -28,23 +30,36 @@ conda install -c pkgw pwkit
 [my personal anaconda.org channel]: https://anaconda.org/pkgw/
 
 
-Docs for Packagers and Builders
+How it All Works
 ===============================
 
-This repository also includes some notes on packaging software for the [Conda]
-system and how to build those packages.
+Many of my Conda packages involve compiled code, and a big challenge is
+building such packages in a way that’s as platform-independent as possible.
+The Conda framework doesn’t specify the binary ABI that Linux-targeting
+packages should follow, but things built on CentOS 5 are generally highly
+portable. However, no one wants to run CentOS 5 as their primary OS since it’s
+ancient!
 
-* [Reliably building packages inside Docker](docker.md)
-* [Old docs, ignore us!](how-it-all-works.md)
+So there are two main components to how I build my [Conda] packages. First, I
+have set up a [Docker] environment that allows me to build packages repeatably
+inside a stable, containerized Centos 5 environment. Then, I’ve written the
+[Conda recipes](recipes) that actually define the packages that I build. I’ve
+written up notes on how the system works if you might be interested in doing
+similar things.
+
+[Docker]: https://www.docker.com/
+
+* [Notes for developers](dev.md)
 * [The order in which everything needs to be built](ordered.txt)
 
 
 License
 =======
 
-These files are licensed under a 3-clause BSD license, for compatibility with
-the main [conda-recipes] repository. See the file [LICENSE.txt](LICENSE.txt)
-for the details.
+The Conda recipes are licensed under a 3-clause BSD license, for compatibility
+with the main [conda-recipes] repository. See the file
+[LICENSE.txt](LICENSE.txt) for the details. Other files are licensed under the
+MIT License.
 
 [conda-recipes]: https://github.com/conda/conda-recipes
 

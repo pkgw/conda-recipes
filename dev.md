@@ -9,7 +9,20 @@ environment that produces packages with maximal binary compatibility.
 [Docker]: https://www.docker.com/
 
 
-## Building the docker image
+## Local configuration
+
+Built packages will land in the `linux-64` subdirectory of the directory
+containing this file. To set up your local Anaconda installation to look there
+for packages, run
+
+```
+conda config --add channels file://$(pwd)
+```
+
+in this directory.
+
+
+## Building the Docker image
 
 The Conda builds occur inside a “Docker container”. The Docker container is an
 instance of a “Docker image”, which must itself be built! The process of
@@ -17,10 +30,9 @@ building the Docker image involves collecting all of the development packages
 and Conda infrastructure required to run the `conda build` command.
 
 I’ve uploaded the builder image to the [Docker Hub] as
-`pkgw/conda-py2-builder`, so you ought to be able to build your own Conda
-packages without having to go through this step — assuming my development
-environment contains everything needed to build whatever package you want to
-build.
+`pkgw/conda-py2-builder`, so you ought to be able to **skip this step** —
+assuming my development environment contains everything needed to build
+whatever package you want to build.
 
 [Docker Hub]: https://hub.docker.com/
 
@@ -131,4 +143,74 @@ If you want to explicitly shut down a container, unsurprisingly the command is:
 
 ```
 sudo docker stop py2builder
+```
+
+
+# Miscellaneous Notes
+
+## Packaging and releasing personal projects
+
+Here’s the basic recipe for packaging a personal Python module. When you
+control the code, I think it makes more sense to store the [conda] recipe
+files in the package’s source tree, rather than in this grab-bag repository.
+
+1. Break down and use `setup.py` as a build tool.
+2. Develop [conda] build files, potentially using the ones in this repository
+   as a template.
+3. When there’s new code you want to release, update the version in `setup.py`.
+4. Build, register, upload to PyPI:
+
+   ```python setup.py sdist bdist register upload```
+
+   You have to do it all in one go so that cached authentication information
+   can be used.
+5. Update `meta.yaml` in the [conda] recipe. The MD5 of the package on PyPI
+   is not the same as the file you upload; get it with something like:
+
+   ```
+   curl -s https://pypi.python.org/pypi/pwkit/ |grep md5= |grep -v linux |sed -e 's/.*md5=//'
+   ```
+
+   where you replace `pwkit` with the appropriate package name.
+
+6. Build for [conda]: `conda build {path-to-recipe-dir}`. **TODO/FIXME**: this
+   assumes that you have a pure Python package where it’s OK to not use the
+   Docker environment! If we want to use the Docker environment consistently,
+   it is in fact better to keep *all* Conda recipes in the repo and not with
+   their packages.
+7. Verify that package looks good. No extraneous files included, any binary
+   files have been properly made relocatable, etc.
+8. Upload to [anaconda.org]: execute line at end of the `conda build` output.
+
+[conda]: http://conda.pydata.org/docs/
+[anaconda.org]: https://anaconda.org/dashboard
+
+### Regenerating the local channel
+
+On the container host, run `conda index` in the `linux-64` subdirectory.
+
+
+### C++11 and checking binary compatibility
+
+CASA now uses C++11 constructs and as such requires G++ version >~ 4.7 to
+build. However, building on a relatively recent OS injects dependencies on new
+symbol versions in libstdc++ and a fancy new ELF ABI version ("Linux" rather
+than "SYSV"/"none"), so you can't build on too new of a machine.
+
+Inspired by [StackExchange], I've found that I can generate a portable binary
+if I build on CentOS 5 using the Red Hat `devtools` package, or more
+specifically [a CentOS build of devtools 2]. Some of the build files are
+modified to point to the devtools version of `g++` to build the C++ code
+appropriately. However, we need to point them to the stock version of
+`gfortran` (when there’s FORTRAN code too) to maintain binary compatibility
+with the rest of the Conda distribution.
+
+[StackExchange]: http://superuser.com/a/542091/447180
+[a CentOS build of devtools 2]: http://people.centos.org/tru/devtools-2/readme
+
+To check the versions of various built binaries, use commands like:
+
+```
+readelf -h libsakura*.so # to check the ABI version
+readelf -V libsakura*.so # to check the symbol versions
 ```
