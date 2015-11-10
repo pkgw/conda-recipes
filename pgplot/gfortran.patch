@@ -13,15 +13,15 @@
 +CFLAGC="-Wall -fPIC -DPG_PPU -O -I$PREFIX/include -DCONDA_DATADIR=\\\"$PREFIX/share/pgplot/\\\""
 +CFLAGD="-Wall -O -I$PREFIX"
 +PGBIND_FLAGS="bsd"
-+LIBS="-L/usr/X11R6/lib -lX11"
++LIBS="-L$PREFIX/lib -L/usr/X11R6/lib -lX11"
 +MOTIF_LIBS="-lXm -lXt $LIBS"
 +ATHENA_LIBS="-lXaw -lXt -lXmu -lXext $LIBS"
 +TK_INCL=$(pkg-config --cflags tk)
-+TK_LIBS=$(pkg-config --libs tk)
++TK_LIBS="$(pkg-config --libs tk) -lX11"
 +RANLIB="ranlib"
 +SHARED_LIB="libpgplot.so"
 +SHARED_LD="gcc -shared -o $SHARED_LIB"
-+SHARED_LIB_LIBS="-lpng"
++SHARED_LIB_LIBS="-L$PREFIX/lib -lpng"
 +MCOMPL=""
 +MFLAGC=""
 +SYSDIR="$SYSDIR"
