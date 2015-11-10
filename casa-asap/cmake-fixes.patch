@@ -21,7 +21,7 @@
 -                         OUTPUT_VARIABLE __asap_soversion )
 -    endif( )
 -    set(asap_soversion ${__asap_soversion} CACHE STRING "version for shared objects")
-+    set(asap_soversion "44.0.0" CACHE STRING "version for shared objects")
++    set(asap_soversion "45.0.0" CACHE STRING "version for shared objects")
      message( STATUS "Shared object version number ${asap_soversion}" )
  else( )
      message( STATUS "User disabled shared library versioning" )

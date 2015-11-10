@@ -4,18 +4,14 @@
 
 set -e
 
-# the CMAKE_CXX_FLAGS assignment is to avoid a default -pedantic flag that
-# CASA applies which causes problems with the Numpy header files.
-#
-# The RelWithDebInfo build type generates shared libraries that are hundreds
-# of megs!
-
 cmake_args="
 -DBLAS_LIBRARIES=$PREFIX/lib/libcblas.a;$PREFIX/lib/libatlas.a
 -DCMAKE_BUILD_TYPE=Release
+-DCMAKE_C_COMPILER=/usr/bin/gcc
 -DCMAKE_COLOR_MAKEFILE=OFF
--DCMAKE_CXX_FLAGS=-Wall
+-DCMAKE_CXX_COMPILER=/opt/rh/devtoolset-2/root/usr/bin/g++
 -DCMAKE_EXE_LINKER_FLAGS=-Wl,-rpath-link,$PREFIX/lib
+-DCMAKE_Fortran_COMPILER=/usr/bin/gfortran
 -DCMAKE_INSTALL_PREFIX=$PREFIX
 -DCMAKE_MODULE_LINKER_FLAGS=-Wl,-rpath-link,$PREFIX/lib
 -DCMAKE_SHARED_LINKER_FLAGS=-Wl,-rpath-link,$PREFIX/lib
@@ -25,12 +21,13 @@ cmake_args="
 -DQWT_INCLUDE_DIRS=$PREFIX/include/qwt5
 "
 #cmake_args="$cmake_args --debug-trycompile --debug-output"
+jflag=-j4
 
 cd code
 mkdir build
 cd build
 cmake $cmake_args ..
-make -j3 VERBOSE=1
+make $jflag VERBOSE=1
 
 cd $PREFIX
 rm -f casainit.* lib/casa/casainit.* makedefs

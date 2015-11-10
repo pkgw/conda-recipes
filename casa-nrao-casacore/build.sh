@@ -4,29 +4,36 @@
 
 set -e
 
-# the CMAKE_CXX_FLAGS assignment is to avoid a default -pedantic flag that
-# CASA applies which causes problems with the Numpy header files.
+# Downstream elements of the C++ code require C++11 to compile, and for binary
+# compatibility we need to compile casacore with C++11 as well. We can do this
+# even on a CentOS 5 machine thanks to the Red Hat "devtoolset" package.
+# However, we still need to compile with stock gfortran, to maintain binary
+# compatibility with the Conda FORTRAN stack. Fun times.
 
 cmake_args="
 -DBLAS_atlas_LIBRARY=$PREFIX/lib/libcblas.a;$PREFIX/lib/libatlas.a
 -DBUILD_PYTHON=ON
 -DBUILD_TESTING=OFF
 -DCMAKE_BUILD_TYPE=Release
+-DCMAKE_C_COMPILER=/usr/bin/gcc
 -DCMAKE_COLOR_MAKEFILE=OFF
--DCMAKE_CXX_FLAGS=-Wall
+-DCMAKE_CXX_COMPILER=/opt/rh/devtoolset-2/root/usr/bin/g++
+-DCMAKE_Fortran_COMPILER=/usr/bin/gfortran
 -DCMAKE_INSTALL_PREFIX=$PREFIX
 -DDATA_DIR=$PREFIX/lib/casa/data
 -DUSE_FFTW3=ON
 -DUSE_HDF5=ON
 -DUSE_THREADS=ON
+-DCXX11=ON
 -DCONDA_CASA_ROOT=$PREFIX/lib/casa
 "
+jflag=-j4
 
 cd casacore
 mkdir build
 cd build
 cmake $cmake_args ..
-make -j3 VERBOSE=1
+make $jflag VERBOSE=1
 make install
 
 cd $PREFIX

@@ -11,8 +11,11 @@ cmake_args="
 -DCASACORE_INCLUDE_DIR=$PREFIX/include/casacore
 -DCASACORE_PATHS=$PREFIX
 -DCMAKE_BUILD_TYPE=Release
+-DCMAKE_C_COMPILER=/usr/bin/gcc
 -DCMAKE_COLOR_MAKEFILE=OFF
+-DCMAKE_CXX_COMPILER=/opt/rh/devtoolset-2/root/usr/bin/g++
 -DCMAKE_EXE_LINKER_FLAGS=-Wl,-rpath-link,$PREFIX/lib
+-DCMAKE_Fortran_COMPILER=/usr/bin/gfortran
 -DCMAKE_INSTALL_PREFIX=$PREFIX
 -DCMAKE_MODULE_LINKER_FLAGS=-Wl,-rpath-link,$PREFIX/lib
 -DCMAKE_SHARED_LINKER_FLAGS=-Wl,-rpath-link,$PREFIX/lib
@@ -20,12 +23,13 @@ cmake_args="
 -DPGPLOT_INCLUDE_DIRS=$PREFIX/include/pgplot
 -DPGPLOT_LIBRARIES=$PREFIX/lib/libpgplot.so;$PREFIX/lib/libcpgplot.a
 "
+jflag=-j4
 
 cd asap
 mkdir build
 cd build
 cmake $cmake_args ..
-make -j3 VERBOSE=1
+make $jflag VERBOSE=1
 make install
 
 cd $PREFIX

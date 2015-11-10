@@ -16,7 +16,7 @@
 -                         OUTPUT_VARIABLE __casa_soversion )
 -    endif( )
 -    set(casa_soversion ${__casa_soversion} CACHE STRING "version for shared objects")
-+    set(casa_soversion "44.0.0" CACHE STRING "version for shared objects")
++    set(casa_soversion "45.0.0" CACHE STRING "version for shared objects")
      message( STATUS "Shared object version number ${casa_soversion}" )
  else( )
      message( STATUS "User disabled shared library versioning" )

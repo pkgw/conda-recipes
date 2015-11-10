@@ -2,26 +2,16 @@
 # Copyright 2015 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
-# This package provides the Python bindings to the casa "code"/"tools"
-# codebase. The "casa-frontend" package also builds gcwrap, but provides the
-# casapy user interface. We separate them since the casapy frontend needs a
-# bunch of old versions of libraries that are annoying to have to deal with.
-# Keep build instructions for these two packages in sync!
-
 set -e
-
-# the CMAKE_CXX_FLAGS assignment is to avoid a default -pedantic flag that
-# CASA applies which causes problems with the Numpy header files.
-#
-# The RelWithDebInfo build type generates shared libraries that are hundreds
-# of megs!
 
 cmake_args="
 -DBLAS_LIBRARIES=$PREFIX/lib/libcblas.a;$PREFIX/lib/libatlas.a
 -DCMAKE_BUILD_TYPE=Release
+-DCMAKE_C_COMPILER=/usr/bin/gcc
 -DCMAKE_COLOR_MAKEFILE=OFF
--DCMAKE_CXX_FLAGS=-Wall
+-DCMAKE_CXX_COMPILER=/opt/rh/devtoolset-2/root/usr/bin/g++
 -DCMAKE_EXE_LINKER_FLAGS=-Wl,-rpath-link,$PREFIX/lib
+-DCMAKE_Fortran_COMPILER=/usr/bin/gfortran
 -DCMAKE_INSTALL_PREFIX=$PREFIX
 -DCMAKE_MODULE_LINKER_FLAGS=-Wl,-rpath-link,$PREFIX/lib
 -DCMAKE_SHARED_LINKER_FLAGS=-Wl,-rpath-link,$PREFIX/lib
@@ -31,12 +21,13 @@ cmake_args="
 -DQWT_INCLUDE_DIRS=$PREFIX/include/qwt5
 "
 #cmake_args="$cmake_args --debug-trycompile --debug-output"
+jflag=-j4
 
 cd gcwrap
 mkdir build
 cd build
 cmake $cmake_args ..
-make -j3 VERBOSE=1
+make $jflag VERBOSE=1
 
 # Blow away a lot of files ... We need to keep TablePlotTkAgg.py since CASA's
 # bizarre plotting code automatically imports it (from C++!) even without the
