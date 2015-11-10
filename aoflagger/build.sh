@@ -14,11 +14,12 @@ cmake_args="
 -DCMAKE_MODULE_LINKER_FLAGS=-Wl,-rpath-link,$PREFIX/lib
 -DCMAKE_SHARED_LINKER_FLAGS=-Wl,-rpath-link,$PREFIX/lib
 "
+jflag=-j4
 
 mkdir build
 cd build
 cmake $cmake_args ..
-make -j3 VERBOSE=1
+make $jflag VERBOSE=1
 make install
 
 cd $PREFIX

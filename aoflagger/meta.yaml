@@ -7,12 +7,12 @@
 
 package:
   name: aoflagger
-  version: "2.7.0"
+  version: "2.7.1"
 
 source:
-  fn: aoflagger-2.7.0.tar.bz2
-  url: http://downloads.sourceforge.net/project/aoflagger/aoflagger-2.7.0/aoflagger-2.7.0.tar.bz2
-  md5: e273f697a888497e5db4639b8d582659
+  fn: aoflagger-2.7.1.tar.bz2
+  url: http://downloads.sourceforge.net/project/aoflagger/aoflagger-2.7.0/aoflagger-2.7.1.tar.bz2
+  md5: a2f3f07ff89a3916a7eeaf3c9462a529
 
 build:
   number: 0
