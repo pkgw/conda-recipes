@@ -34,7 +34,8 @@ Docs for Packagers and Builders
 This repository also includes some notes on packaging software for the [Conda]
 system and how to build those packages.
 
-* [Reliably building Anaconda packages](how-it-all-works.md)
+* [Reliably building packages inside Docker](docker.md)
+* [Old docs, ignore us!](how-it-all-works.md)
 * [The order in which everything needs to be built](ordered.txt)
 
 
