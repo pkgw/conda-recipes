@@ -75,13 +75,14 @@ the build succeeds, a new Conda package should have landed inside the
 out of the directory containing this file, this can be done with:
 
 ```
-sudo docker run -v $(pwd):/work pkgw/conda-py2-builder build <package>
+sudo docker run -v $(pwd):/work --rm pkgw/conda-py2-builder build <package>
 ```
 
 Of course `<package>` should be replaced with the name of a recipe inside the
 `recipes` subdirectory. The `-v` argument is needed to expose the local
 directory inside the container so that it can access the build recipes and
-package destination directory.
+package destination directory. The `--rm` flag causes the image to be removed
+after it’s done.
 
 What’s happening under the hood here is that the
 [entrypoint.sh](dockerfiles/conda-py2-builder/entrypoint.sh) script inside the
