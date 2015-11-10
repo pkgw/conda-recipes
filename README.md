@@ -27,7 +27,11 @@ configuration, use:
 conda install -c pkgw pwkit
 ```
 
+As part of this work I’ve also developed a [prebuilt Docker image] that can be
+used to repeatably build binary `linux-64` packages.
+
 [my personal anaconda.org channel]: https://anaconda.org/pkgw/
+[prebuilt Docker image]: https://hub.docker.com/r/pkgw/conda-py2-builder/
 
 
 How it All Works
