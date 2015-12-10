@@ -15,14 +15,14 @@ for testing and learning the technology. To build the image, you’d run
 something like the following in the directory containing this file:
 
 ```
-$ HUBUSER=pkgw # username on Docker Hub
-$ sudo docker build --rm -t $HUBUSER/jupyter-py2-astrostack .
+$ TAG=$(date +%Y%m%d)
+$ sudo docker build --rm -t jupyter-py2-astrostack:$TAG .
 ```
 
 Then to start a trial instance:
 
 ```
-$ sudo docker run --rm -p 8888:80 $HUBUSER/jupyter-py2-astrostack
+$ sudo docker run --rm -p 8888:80 jupyter-py2-astrostack:$TAG
 ```
 
 You should then have access to a containerized Jupyter Notebook running on
@@ -33,7 +33,7 @@ can shut down the server by Control-C’ing it.
 To run a persistant instance that runs in the background, do:
 
 ```
-$ CONTAINERID=$(sudo docker create -p 8888:80 $HUBUSER/jupyter-py2-astrostack)
+$ CONTAINERID=$(sudo docker create -p 8888:80 jupyter-py2-astrostack:$TAG)
 $ sudo docker start $CONTAINERID
 ```
 
@@ -78,7 +78,9 @@ $ gcloud config set compute/zone us-central1-a
 
 You also need to make sure that the `beta` and `kubectl` components of the
 `gcloud` command-line helper are installed (using `gcloud components install`
-if needed). Then you build and upload the image:
+if needed). Then you build and upload the image. If you already have a built
+image, you can use `docker tag` to mark it for upload into the Google Cloud
+Repository.
 
 ```
 $ export IMAGENAME=jupyter-py2-astrostack

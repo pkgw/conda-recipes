@@ -42,27 +42,26 @@ from the directory containing this file, the recommended command to build a
 new version of the image is:
 
 ```
-sudo docker build -t pkgw/conda-py2-builder:$(date +%Y%m%d) dockerfiles/conda-py2-builder
+sudo docker build -t conda-py2-builder:$(date +%Y%m%d) dockerfiles/conda-py2-builder
 ```
 
 The meat of the action is the
 [setup.sh](dockerfiles/conda-py2-builder/setup.sh) script contained in that
-subdirectory. The image can then be published to the Docker Hub with:
+subdirectory.
+
+If you have an account on the [Docker Hub], you can also publish your image
+there. Their framework is very unclear to me, and it looks like it may be
+evolving very quickly, but you do something like this:
 
 ```
-sudo docker push pkgw/conda-py2-builder:$(date +%Y%m%d)
+sudo docker tag conda-py2-builder:$(date +%Y%m%d) docker.io/pkgw/conda-py2-builder:$(date +%Y%m%d)
+sudo docker tag -f conda-py2-builder:$(date +%Y%m%d) docker.io/pkgw/conda-py2-builder:latest
+sudo docker push docker.io/pkgw/conda-py2-builder:$(date +%Y%m%d)
+sudo docker push docker.io/pkgw/conda-py2-builder:latest
 ```
 
-It should then appear [here](https://hub.docker.com/r/pkgw/conda-py2-builder/).
-The magic `latest` tag does not update automatically, so you need to run
-commands like:
-
-```
-sudo docker tag pkgw/conda-py2-builder:$(date +%Y%m%d) pkgw/conda-py2-builder:latest
-sudo docker push pkgw/conda-py2-builder:latest
-```
-
-to update that.
+It would then appear [here](https://hub.docker.com/r/pkgw/conda-py2-builder/).
+Note that magic `latest` tag does not update automatically.
 
 
 ## Setting up SELinux
