@@ -3,30 +3,31 @@
 
 package:
   name: at-spi2-core
-  version: "2.12.0"
+  version: "2.18.3"
 
 source:
-  fn: at-spi2-core-2.12.0.tar.xz
-  url: http://ftp.gnome.org/pub/gnome/sources/at-spi2-core/2.12/at-spi2-core-2.12.0.tar.xz
-  md5: b12ad0e0924706f5e7f51216241068ef
+  fn: at-spi2-core-2.18.3.tar.xz
+  url: http://ftp.gnome.org/pub/gnome/sources/at-spi2-core/2.18/at-spi2-core-2.18.3.tar.xz
+  sha256: ada26add94155f97d0f601a20cb7a0e3fd3ba1588c3520b7288316494027d629
+  patches:
+    - no-intltool.patch
 
 build:
-  number: 3
+  number: 0
   detect_binary_files_with_prefix: true
-
-# TODO: "intltool" is needed to build and is a bit of an esoteric tool. I
-# totally don't want to package it up just for this, though.
 
 requirements:
   build:
     - dbus-client
     - glib
     - gobject-introspection
+    - modern-xorg-stack
     - python
   run:
     - dbus-client
     - glib
     - gobject-introspection
+    - modern-xorg-stack
 
 about:
   home: http://www.gtk.org/
