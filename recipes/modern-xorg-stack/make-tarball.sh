@@ -39,10 +39,12 @@ d9512d6869e022d4e9c9d33f6d6199eda4ad096b  lib/libXau-1.0.8.tar.bz2
 e14fa072bd70b30eef47391cac637bdb4de9e8a3  lib/libXfixes-5.0.1.tar.bz2
 00fa8883c5297b9bf1a87f37cba9a15f6f026d9d  lib/libXi-1.7.5.tar.bz2
 31bf63dfb4fcb82a6db73abe98df87cb50c17176  lib/libXrender-0.9.9.tar.bz2
+7fd92a3c865c3c5e1cc724646babc3e1cdc799bc  lib/libXtst-1.2.2.tar.bz2
 2d3ae1839d841f568bc481c6116af7d2a9f9ba59  lib/xtrans-1.3.5.tar.bz2
 ab605af5da8c98c0c2f8b2c578fed7c864ee996a  proto/fixesproto-5.0.tar.bz2
 4eacc1883593d3f0040e410be3afc8483c7d2409  proto/inputproto-2.3.tar.bz2
 bc9c0fa7d39edf4ac043e6eeaa771d3e245ac5b2  proto/kbproto-1.0.7.tar.bz2
+1f48c4b0004d8b133efd0498e8d88d68d3b9199c  proto/recordproto-1.14.2.tar.bz2
 7ae9868a358859fe539482b02414aa15c2d8b1e4  proto/renderproto-0.11.1.tar.bz2
 b8d736342dcb73b71584d99a1cb9806d93c25ff8  proto/xextproto-7.3.0.tar.bz2
 d62c43e1b3619ab85732e0113eaa2104920730ac  proto/xproto-7.0.28.tar.bz2

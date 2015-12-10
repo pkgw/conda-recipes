@@ -13,7 +13,7 @@ package:
 source:
   fn: modern-xorg-stack-2015.12.tar.bz2
   url: http://newton.cx/~peter/files/modern-xorg-stack-2015.12.tar.bz2
-  sha1: 6841e523ee2d203ac6dacef25ef0fafbcd9af06c
+  sha1: 02043012590815ad92f8a698c70abe2b42e6f3ee
 
 build:
   number: 0

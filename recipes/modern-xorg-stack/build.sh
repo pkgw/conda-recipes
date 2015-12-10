@@ -19,6 +19,7 @@ export PKG_CONFIG_LIBDIR=$PREFIX/lib/pkgconfig:$PREFIX/share/pkgconfig
 (cd fixesproto-* && ./configure --prefix=$PREFIX && make $jflag install) || exit $?
 (cd kbproto-* && ./configure --prefix=$PREFIX && make $jflag install) || exit $?
 (cd inputproto-* && ./configure --prefix=$PREFIX && make $jflag install) || exit $?
+(cd recordproto-* && ./configure --prefix=$PREFIX && make $jflag install) || exit $?
 (cd renderproto-* && ./configure --prefix=$PREFIX && make $jflag install) || exit $?
 (cd xtrans-* && ./configure --prefix=$PREFIX && make $jflag install) || exit $?
 (cd libpthread-stubs-* && ./configure --prefix=$PREFIX && make $jflag && make install) || exit $?
@@ -31,6 +32,7 @@ export PKG_CONFIG_LIBDIR=$PREFIX/lib/pkgconfig:$PREFIX/share/pkgconfig
 (cd libXext-* && ./configure --prefix=$PREFIX && make $jflag && make install) || exit $?
 (cd libXfixes-* && ./configure --prefix=$PREFIX && make $jflag && make install) || exit $?
 (cd libXi-* && ./configure --prefix=$PREFIX && make $jflag && make install) || exit $?
+(cd libXtst-* && ./configure --prefix=$PREFIX && make $jflag && make install) || exit $?
 (cd libXrender-* && ./configure --prefix=$PREFIX && make $jflag && make install) || exit $?
 
 cd $PREFIX
