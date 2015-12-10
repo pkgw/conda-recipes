@@ -1,19 +1,23 @@
 # Copyright 2014-2015 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
+# This package will not build correctly in standalone mode in the
+# conda-py2-builder images dated on or before 20151209, since those had
+# entrypoint scripts that did not propagate the post-link.sh scripts.
+
 package:
   name: dbus-client
-  version: "1.8.16"
+  version: "1.10.6"
 
 source:
-  fn: dbus-1.8.16.tar.gz
-  url: http://dbus.freedesktop.org/releases/dbus/dbus-1.8.16.tar.gz
-  md5: 020824a38850501e7d6ba8307a7c5ac3
+  fn: dbus-1.10.6.tar.gz
+  url: http://dbus.freedesktop.org/releases/dbus/dbus-1.10.6.tar.gz
+  sha256: b5fefa08a77edd76cd64d872db949eebc02cf6f3f8be82e4bbc641742af5d35f
   patches:
     - skip-extras.patch
 
 build:
-  number: 2
+  number: 0
   detect_binary_files_with_prefix: true
 
 requirements:

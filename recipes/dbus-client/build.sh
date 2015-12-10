@@ -12,6 +12,13 @@ make install
 
 cd $PREFIX
 rm -rf etc libexec share
-rm bin/dbus-cleanup-sockets bin/dbus-launch bin/dbus-monitor bin/dbus-run-session bin/dbus-send
+rm $(echo "
+bin/dbus-cleanup-sockets
+bin/dbus-launch
+bin/dbus-monitor
+bin/dbus-run-session
+bin/dbus-send
+bin/dbus-test-tool
+")
 mkdir -p var/lib/dbus
 echo placeholder >var/lib/dbus/machine-id # filled in by post-link.sh
