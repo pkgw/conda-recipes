@@ -3,15 +3,16 @@
 
 package:
   name: pango
-  version: 1.36.3
+  version: 1.38.1
 
 source:
-  fn: pango-1.36.3.tar.xz
-  url: http://ftp.gnome.org/pub/gnome/sources/pango/1.36/pango-1.36.3.tar.xz
-  md5: d9532826e95bdb374355deebc42441bb
+  fn: pango-1.38.1.tar.xz
+  url: http://ftp.gnome.org/pub/gnome/sources/pango/1.38/pango-1.38.1.tar.xz
+  sha256: 1320569f6c6d75d6b66172b2d28e59c56ee864ee9df202b76799c4506a214eb7
 
 build:
-  number: 5
+  number: 0
+  detect_binary_files_with_prefix: true
 
 requirements:
   build:
@@ -31,3 +32,4 @@ requirements:
 about:
   home: http://www.gtk.org/
   license: LGPL
+  summary: a library for laying out and rendering of text, with an emphasis on internationalization.
