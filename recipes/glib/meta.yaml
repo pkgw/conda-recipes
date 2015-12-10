@@ -3,12 +3,12 @@
 
 package:
   name: glib
-  version: 2.45.1
+  version: 2.46.2
 
 source:
-  fn: glib-2.45.1.tar.xz
-  url: http://ftp.gnome.org/pub/gnome/sources/glib/2.45/glib-2.45.1.tar.xz
-  md5: b2167d648db8e586758f99db5392f119
+  fn: glib-2.46.2.tar.xz
+  url: http://ftp.gnome.org/pub/gnome/sources/glib/2.46/glib-2.46.2.tar.xz
+  sha256: 5031722e37036719c1a09163cc6cf7c326e4c4f1f1e074b433c156862bd733db
 
 build:
   number: 0
