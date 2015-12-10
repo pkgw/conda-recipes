@@ -3,15 +3,15 @@
 
 package:
   name: at-spi2-atk
-  version: "2.12.0"
+  version: "2.18.1"
 
 source:
-  fn: at-spi2-atk-2.12.0.tar.xz
-  url: http://ftp.gnome.org/pub/gnome/sources/at-spi2-atk/2.12/at-spi2-atk-2.12.0.tar.xz
-  md5: aafc5e1bb17cd3ad440f6350e7a021c1
+  fn: at-spi2-atk-2.18.1.tar.xz
+  url: http://ftp.gnome.org/pub/gnome/sources/at-spi2-atk/2.18/at-spi2-atk-2.18.1.tar.xz
+  sha256: c4b15f9386d34d464ddad5f6cc85669742c016df87141ceee93513245979c12d
 
 build:
-  number: 4
+  number: 0
   detect_binary_files_with_prefix: true
 
 requirements:
