@@ -3,15 +3,15 @@
 
 package:
   name: pygobject3
-  version: "3.12.0"
+  version: "3.18.2"
 
 source:
-  fn: pygobject-3.12.0.tar.xz
-  url: http://ftp.gnome.org/pub/GNOME/sources/pygobject/3.12/pygobject-3.12.0.tar.xz
-  md5: f62700cdd7919b5afbc1de54569df648
+  fn: pygobject-3.18.2.tar.xz
+  url: http://ftp.gnome.org/pub/GNOME/sources/pygobject/3.18/pygobject-3.18.2.tar.xz
+  sha256: 2a3cad1517916b74e131e6002c3824361aee0671ffb0d55ded119477fc1c2c5f
 
 build:
-  number: 2
+  number: 0
   detect_binary_files_with_prefix: true
 
 requirements:
