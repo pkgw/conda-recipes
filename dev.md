@@ -42,7 +42,7 @@ from the directory containing this file, the recommended command to build a
 new version of the image is:
 
 ```
-sudo docker build -t pkgw/conda-py2-builder:$(date +%Y%M%d) dockerfiles/conda-py2-builder
+sudo docker build -t pkgw/conda-py2-builder:$(date +%Y%m%d) dockerfiles/conda-py2-builder
 ```
 
 The meat of the action is the
@@ -50,7 +50,7 @@ The meat of the action is the
 subdirectory. The image can then be published to the Docker Hub with:
 
 ```
-sudo docker push pkgw/conda-py2-builder:$(date +%Y%M%d)
+sudo docker push pkgw/conda-py2-builder:$(date +%Y%m%d)
 ```
 
 It should then appear [here](https://hub.docker.com/r/pkgw/conda-py2-builder/).
@@ -58,7 +58,7 @@ The magic `latest` tag does not update automatically, so you need to run
 commands like:
 
 ```
-sudo docker tag pkgw/conda-py2-builder:$(date +%Y%M%d) pkgw/conda-py2-builder:latest
+sudo docker tag pkgw/conda-py2-builder:$(date +%Y%m%d) pkgw/conda-py2-builder:latest
 sudo docker push pkgw/conda-py2-builder:latest
 ```
 
