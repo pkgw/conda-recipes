@@ -42,7 +42,7 @@ if [ "$1" = build ] ; then
     cd /work/recipes/$2
     work=$(mktemp -d)
     shopt -s nullglob
-    cp meta.yaml build.sh *.bat *.patch "$work"
+    cp meta.yaml build.sh post-link*.sh *.bat *.patch "$work"
 
     # Looks like we're all set; let's do this.
     conda update --all
