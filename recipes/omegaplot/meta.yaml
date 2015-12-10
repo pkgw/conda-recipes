@@ -1,0 +1,34 @@
+package:
+  name: omegaplot
+  version: "0.6.0"
+
+source:
+  fn: omegaplot-0.6.0.tar.gz
+  url: https://pypi.python.org/packages/source/o/omegaplot/omegaplot-0.6.0.tar.gz
+  md5: 35c77a252ce90aaaed688cf833890b99
+
+build:
+  number: 0
+  entry_points:
+    - omegafig = oputil.omegafig:cmdline
+    - omegamap = oputil.omegamap:cmdline
+
+requirements:
+  build:
+    - numpy
+    - py2cairo # [py2k]
+    - py3cairo # [py3k]
+    - python
+    - setuptools
+    - six
+  run:
+    - numpy
+    - py2cairo # [py2k]
+    - py3cairo # [py3k]
+    - python
+    - six
+
+about:
+  home: http://newton.cx/~peter/
+  license: GPL
+  summary: A better-than-publication-quality plotting library based on Cairo.
