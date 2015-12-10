@@ -3,11 +3,11 @@
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 set -e
+# conda provides libffi, but it has a busted .la file:
+rm -f $PREFIX/lib/libffi.la
+# need this to link everything:
 export CPPFLAGS=-I$PREFIX/include LDFLAGS=-L$PREFIX/lib
-./configure --prefix=$PREFIX || { cat config.log ; exit 1 ; }
+
+./configure --prefix=$PREFIX --with-x11 || { cat config.log ; exit 1 ; }
 make -j$(nproc --ignore=4)
 make install
-
-cd $PREFIX
-# workaround for libffi .la file path issues
-sed -i -e 's|lib/\.\./lib64|lib|g' lib/*.la lib/gdk-pixbuf-2.0/*/loaders/*.la
