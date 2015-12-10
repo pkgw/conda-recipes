@@ -1,14 +1,15 @@
 package:
   name: harfbuzz
-  version: 0.9.40
+  version: 1.0.6
 
 source:
-  fn: harfbuzz-0.9.40.tar.bz2
-  url: http://www.freedesktop.org/software/harfbuzz/release/harfbuzz-0.9.40.tar.bz2
-  md5: 0e27e531f4c4acff601ebff0957755c2
+  fn: harfbuzz-1.0.6.tar.bz2
+  url: http://www.freedesktop.org/software/harfbuzz/release/harfbuzz-1.0.6.tar.bz2
+  sha256: f616a7fbdc78a627043f9029000bf08c0c71df59cde4143fc92a014f6a993b26
 
 build:
-  number: 1
+  number: 0
+  detect_binary_files_with_prefix: true
 
 requirements:
   build:
