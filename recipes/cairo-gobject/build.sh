@@ -3,6 +3,10 @@
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 set -e
+
+# conda provides libffi, but it has a busted .la file:
+rm -f $PREFIX/lib/libffi.la
+
 export CPPFLAGS=-I$PREFIX/include LDFLAGS=-L$PREFIX/lib
 
 ./configure                 \
@@ -12,8 +16,8 @@ export CPPFLAGS=-I$PREFIX/include LDFLAGS=-L$PREFIX/lib
     --enable-ps             \
     --enable-pdf            \
     --enable-svg            \
-    --disable-xcb           \
-    --disable-xlib-xcb      \
+    --enable-xcb            \
+    --enable-xlib-xcb       \
     --disable-xcb-shm       \
     --disable-gtk-doc
 make -j$(nproc --ignore=4)
@@ -38,9 +42,6 @@ for f in libcairo* ; do
 	*) rm -f $f ;;
     esac
 done
-
-# workaround for libffi .la file path issues
-sed -i -e 's|lib/\.\./lib64|lib|g' *.la
 
 cd pkgconfig
 for f in cairo*.pc ; do

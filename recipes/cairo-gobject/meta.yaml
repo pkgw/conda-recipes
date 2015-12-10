@@ -1,6 +1,9 @@
 # Copyright 2014-2015 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
+# Note that this package should stay in sync with the 'cairo' package provided
+# by the official Conda distribution. So far that's worked OK ...
+
 package:
   name: cairo-gobject
   version: "1.12.18"
@@ -13,7 +16,7 @@ source:
     - hack-features.patch
 
 build:
-  number: 5
+  number: 6
   detect_binary_files_with_prefix: true
 
 requirements:
@@ -22,11 +25,13 @@ requirements:
     - glib
     - libffi
     - libpng
+    - modern-xorg-stack
     - pixman
     - zlib
   run:
     - cairo
     - libffi
+    - modern-xorg-stack
 
 about:
   home: http://cairographics.org/

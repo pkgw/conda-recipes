@@ -1,5 +1,6 @@
 # the GTK+ 3 stack
 glib
+modern-xorg-stack
 cairo-gobject
 gobject-introspection
 atk
