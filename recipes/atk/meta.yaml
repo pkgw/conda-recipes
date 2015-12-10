@@ -3,15 +3,15 @@
 
 package:
   name: atk
-  version: 2.12.0
+  version: 2.18.0
 
 source:
-  fn: atk-2.12.0.tar.xz
-  url: http://ftp.gnome.org/pub/gnome/sources/atk/2.12/atk-2.12.0.tar.xz
-  md5: 930238dec55fdbf8eda9975b44f07b76
+  fn: atk-2.18.0.tar.xz
+  url: http://ftp.gnome.org/pub/gnome/sources/atk/2.18/atk-2.18.0.tar.xz
+  sha256: ce6c48d77bf951083029d5a396dd552d836fff3c1715d3a7022e917e46d0c92b
 
 build:
-  number: 3
+  number: 0
 
 requirements:
   build:
