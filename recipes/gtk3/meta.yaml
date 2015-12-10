@@ -1,26 +1,23 @@
 # Copyright 2014-2015 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
-# Gtk+ 3 needs to be built on at least CentOS 6, since it requires XInput
-# version 2 and CentOS 5 only has version 1. However, one must be careful to
-# build it against dependent packages that were built on CentOS 5 -- in
-# particular, when building cairo-gobject on CentOS 6, the resulting shared
-# library gets a dependency on xcb, which propagates its way into the Gtk+
-# shared libraries.
+# Unfortunately, we are limited in which Gtk+ versions we can support because
+# we use Conda's version of Cairo. This is currently 1.12.18, while Gtk+
+# versions >= 3.16 require Cairo >= 1.14.
 
 package:
   name: gtk3
-  version: "3.12.0"
+  version: "3.14.15"
 
 source:
-  fn: gtk+-3.12.0.tar.xz
-  url: http://ftp.gnome.org/pub/gnome/sources/gtk+/3.12/gtk+-3.12.0.tar.xz
-  md5: 4e493fb68cded7420a7d8bcebdf13811
+  fn: gtk+-3.14.15.tar.xz
+  url: http://ftp.gnome.org/pub/gnome/sources/gtk+/3.14/gtk+-3.14.15.tar.xz
+  sha256: 3ac87659112ced9e5ee5bd55d055faa881aafd040f26ca40b0d8ba0fa6509c83
   patches:
     - m_pi.patch
 
 build:
-  number: 5
+  number: 0
   detect_binary_files_with_prefix: true
 
 requirements:
@@ -31,6 +28,7 @@ requirements:
     - gdk-pixbuf
     - glib
     - gobject-introspection
+    - modern-xorg-stack
     - pango
     - python
   run:
@@ -39,6 +37,7 @@ requirements:
     - gdk-pixbuf
     - glib
     - gobject-introspection
+    - modern-xorg-stack
     - pango
 
 about:
