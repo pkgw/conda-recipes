@@ -24,16 +24,6 @@ gcc
 gcc-c++
 gcc-gfortran
 gettext-devel
-java
-libICE-devel
-libSM-devel
-libXi-devel
-libX11-devel
-libXau-devel
-libXdmcp-devel
-libXtst-devel
-libXext-devel
-libXrender-devel
 libstdc++-devel
 make
 man
