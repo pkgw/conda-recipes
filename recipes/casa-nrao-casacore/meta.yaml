@@ -2,13 +2,14 @@
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 #
 # NOTE: if updating major or minor version, update `so-versioning.patch`.
-# Build on CentOS 5.
 
 package:
   name: casa-nrao-casacore
   version: "4.5"
 
 source:
+  # FIXME: this server currently (2015/12) has a bad SSL certificate, breaking
+  # the checkout! It can be worked around if you manually approve the cert.
   svn_url: https://svn.cv.nrao.edu/svn/casa/branches/release-4_5/
   svn_rev: 35147
   svn_ignore_externals: yes
@@ -19,16 +20,18 @@ source:
 build:
   number: 0
   detect_binary_files_with_prefix: true
+  script_env:
+    - NJOBS
 
 requirements:
   build:
-    - atlas
     - boost
     - cfitsio
     - cmake
     - fftw
     - hdf5 >=1.8.15.1
     - numpy
+    - openblas
     - python >=2.7,<3
     - readline
     - wcslib
@@ -38,6 +41,7 @@ requirements:
     - fftw
     - hdf5 >=1.8.15.1
     - numpy
+    - openblas
     - python >=2.7,<3
     - readline
     - wcslib
