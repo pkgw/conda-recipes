@@ -3,15 +3,18 @@
 
 package:
   name: wcslib
-  version: "5.5"
+  version: "5.12"
 
 source:
-  fn: wcslib.tar.bz2
-  url: http://www.atnf.csiro.au/pub/software/wcslib/wcslib.tar.bz2
-  md5: 79554fe847614229a60dee7de5f13156
+  fn: wcslib-5.12.tar.bz2
+  url: http://www.atnf.csiro.au/pub/software/wcslib/wcslib-5.12.tar.bz2
+  sha256: 50ff182920541bea156e7f53588cdfba1754b1bdcd0bc64a136a5d124af98de4
 
 build:
-  number: 1
+  number: 0
+  detect_binary_files_with_prefix: true
+  script_env:
+    - NJOBS
 
 requirements:
   build:

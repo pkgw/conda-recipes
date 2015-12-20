@@ -11,7 +11,13 @@ configure_args="
 --with-pgplotinc=$PREFIX/include/pgplot
 "
 
+[ "$NJOBS" = '<UNDEFINED>' ] && NJOBS=1
 set -e
+
+if [ -n "$OSX_ARCH" ] ; then
+    configure_args="$configure_args --enable-fortran=gfortran-4.2"
+fi
+
 ./configure $configure_args || { cat config.log ; exit 1 ; }
 make # note: Makefile is not parallel-safe
 make install
