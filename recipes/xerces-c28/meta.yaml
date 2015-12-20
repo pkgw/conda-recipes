@@ -11,9 +11,15 @@ source:
   fn: openlogic-xerces-c-2.8.0-all-src-1.zip
   url: https://olex-secure.openlogic.com/content/openlogic/xerces-c/2.8.0/openlogic-xerces-c-2.8.0-all-src-1.zip
   md5: 6eebe4fda688e78eaeb513cb964cda8c
+  # OS X patch from: https://issues.apache.org/jira/secure/attachment/12372362/macsvn.diff
+  patches:
+    - macsvn.diff #[osx]
 
 build:
   number: 0
+  detect_binary_files_with_prefix: true
+  script_env:
+    - NJOBS
 
 requirements:
   build:
