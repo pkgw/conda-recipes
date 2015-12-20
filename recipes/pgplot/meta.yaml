@@ -16,18 +16,23 @@ source:
     - gfortran.patch
     - png-setjmp.patch
     - prefix.patch
+    - osx.patch #[osx]
 
 build:
   number: 4
   detect_binary_files_with_prefix: true
+  script_env:
+    - NJOBS
 
 requirements:
   build:
     - libpng
+    - modern-xorg-stack
     - tk
     - zlib
   run:
     - libpng
+    - modern-xorg-stack
     - tk
     - zlib
 
