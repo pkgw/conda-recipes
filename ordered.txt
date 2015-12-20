@@ -22,7 +22,7 @@ grip
 astropy-helpers
 astroquery # only builds on Python 2 I think?
 
-# the CASA stack; requires glib and dbus-client
+# the CASA stack; requires glib, dbus-client, and modern-xorg-stack
 expat
 xerces-c28
 dbus-cxx
