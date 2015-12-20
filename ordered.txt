@@ -1,4 +1,5 @@
 # the GTK+ 3 stack
+gettext # OS X only
 glib
 modern-xorg-stack
 cairo-gobject

@@ -9,6 +9,8 @@ source:
   fn: glib-2.46.2.tar.xz
   url: http://ftp.gnome.org/pub/gnome/sources/glib/2.46/glib-2.46.2.tar.xz
   sha256: 5031722e37036719c1a09163cc6cf7c326e4c4f1f1e074b433c156862bd733db
+  patches:
+    - no-cocoa-notification.patch #[osx]
 
 build:
   number: 0
@@ -18,10 +20,12 @@ build:
 
 requirements:
   build:
+    - gettext #[osx]
     - libffi #[not osx]
     - python
     - zlib
   run:
+    - gettext #[osx]
     - libffi #[not osx]
     - zlib
 
