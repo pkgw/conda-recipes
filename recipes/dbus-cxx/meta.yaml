@@ -4,18 +4,27 @@
 # Note that while Conda accepts a package name of "dbus-c++", Binstar rejects
 # it.
 
+# The original package is essentially unmaintained, buggy, and contains many
+# dubious constructs. I needed to patch it a whole bunch to get it to build on
+# Mac OS X, including needing to re-initialize the Autotools scripts to get
+# everything to link correctly. So in the end I gave up and decided to not
+# just patch up the package, but to actually fork the repository and roll my
+# own little release.
+
 package:
   name: dbus-cxx
-  version: "0.9.0"
+  version: "0.9.1"
 
 source:
-  fn: libdbus-c++-0.9.0.tar.gz
-  url: http://sourceforge.net/projects/dbus-cplusplus/files/dbus-c%2B%2B/0.9.0/libdbus-c%2B%2B-0.9.0.tar.gz/download
-  md5: e752116f523fa88ef041e63d3dee4de2
+  fn: libdbus-c---0.9.1pw.tar.gz
+  url: https://github.com/pkgw/dbus-cplusplus/releases/download/v0.9.1pw/libdbus-c---0.9.1pw.tar.gz
+  sha256: a762af8fbee01434f925ce8c3140cb43088390d5cab492e802fe6873d809cc6c
 
 build:
   number: 0
   detect_binary_files_with_prefix: true
+  script_env:
+    - NJOBS
 
 requirements:
   build:
