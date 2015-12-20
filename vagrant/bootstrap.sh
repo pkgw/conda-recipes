@@ -12,6 +12,7 @@ vrun="sudo -iu vagrant"
 
 $vrun brew install $(echo "
 gettext
+homebrew/dupes/apple-gcc42
 pkg-config
 wget
 xz
