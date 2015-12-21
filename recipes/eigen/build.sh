@@ -5,15 +5,21 @@
 [ "$NJOBS" = '<UNDEFINED>' ] && NJOBS=1
 set -e
 
-cmake_args="
--DCMAKE_INSTALL_PREFIX=$PREFIX
-"
+cmake_args=(
+    -DCMAKE_INSTALL_PREFIX=$PREFIX
+)
 
 if [ -n "$OSX_ARCH" ] ; then
-    cmake_args="$cmake_args -DCMAKE_OSX_DEPLOYMENT_TARGET="
+    export MACOSX_DEPLOYMENT_TARGET=10.7 # C++ libc++ needs this
+    sdk=/SDKs/MacOSX${MACOSX_DEPLOYMENT_TARGET}.sdk
+    cmake_args+=(
+	-DCMAKE_CXX_FLAGS="-arch $OSX_ARCH -stdlib=libc++"
+	-DCMAKE_OSX_DEPLOYMENT_TARGET=$MACOSX_DEPLOYMENT_TARGET
+	-DCMAKE_OSX_SYSROOT=$sdk
+    )
 fi
 
 mkdir build
 cd build
-cmake $cmake_args ..
+cmake "${cmake_args[@]}" ..
 make install

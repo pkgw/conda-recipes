@@ -8,6 +8,13 @@ set -e
 
 CONFIGURE="./configure --prefix=$PREFIX --enable-shared --enable-threads --disable-fortran"
 
+if [ -n "$OSX_ARCH" ] ; then
+    export MACOSX_DEPLOYMENT_TARGET=10.6
+    sdk=/SDKs/MacOSX${MACOSX_DEPLOYMENT_TARGET}.sdk
+    export CFLAGS="$CFLAGS -isysroot $sdk"
+    export LDFLAGS="$LDFLAGS -Wl,-syslibroot,$sdk"
+fi
+
 # Single precision (fftw libraries have "f" suffix)
 $CONFIGURE --enable-float --enable-sse
 make -j$NJOBS

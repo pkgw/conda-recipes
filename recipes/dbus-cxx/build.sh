@@ -5,6 +5,14 @@
 [ "$NJOBS" = '<UNDEFINED>' ] && NJOBS=1
 set -e
 
+if [ -n "$OSX_ARCH" ] ; then
+    export MACOSX_DEPLOYMENT_TARGET=10.7 # C++ libc++ needs this
+    sdk=/SDKs/MacOSX${MACOSX_DEPLOYMENT_TARGET}.sdk
+    export CFLAGS="$CFLAGS -isysroot $sdk"
+    export CXXFLAGS="$CXXFLAGS -isysroot $sdk -stdlib=libc++"
+    export LDFLAGS="$LDFLAGS -Wl,-syslibroot,$sdk"
+fi
+
 ./configure --prefix=$PREFIX --disable-ecore --disable-tests --disable-examples || { cat config.log ; exit 1 ; }
 make -j$NJOBS
 make install

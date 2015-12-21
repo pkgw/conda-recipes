@@ -10,6 +10,13 @@ set -e -x
 
 export PKG_CONFIG_LIBDIR=$PREFIX/lib/pkgconfig:$PREFIX/share/pkgconfig
 
+if [ -n "$OSX_ARCH" ] ; then
+    export MACOSX_DEPLOYMENT_TARGET=10.6
+    sdk=/SDKs/MacOSX${MACOSX_DEPLOYMENT_TARGET}.sdk
+    export CFLAGS="$CFLAGS -isysroot $sdk"
+    export LDFLAGS="$LDFLAGS -Wl,-syslibroot,$sdk"
+fi
+
 # I'm not sure why, but `-e` mode doesn't cause us to exit when the inner
 # pipelines fail, even though they exit with error codes.
 (cd xproto-* && ./configure --prefix=$PREFIX && make -j$NJOBS install) || exit $?

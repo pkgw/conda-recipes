@@ -16,6 +16,12 @@ set -e
 
 if [ -n "$OSX_ARCH" ] ; then
     configure_args="$configure_args --enable-fortran=gfortran-4.2"
+
+    export MACOSX_DEPLOYMENT_TARGET=10.6
+    sdk=/SDKs/MacOSX${MACOSX_DEPLOYMENT_TARGET}.sdk
+    export CFLAGS="$CFLAGS -isysroot $sdk"
+    export FFLAGS="$FFLAGS -isysroot $sdk"
+    export LDFLAGS="$LDFLAGS -Wl,-syslibroot,$sdk"
 fi
 
 ./configure $configure_args || { cat config.log ; exit 1 ; }

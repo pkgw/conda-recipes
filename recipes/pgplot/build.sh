@@ -9,6 +9,7 @@ if [ -n "$OSX_ARCH" ] ; then
     subtype=actually_osx
     shlib=dylib
     export MACOSX_DEPLOYMENT_TARGET=10.6
+    export CONDA_SYSROOT=/SDKs/MacOSX${MACOSX_DEPLOYMENT_TARGET}.sdk
 else
     subtype=gfortran_gcc
     shlib=so
