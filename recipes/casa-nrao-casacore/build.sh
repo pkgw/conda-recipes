@@ -26,12 +26,13 @@ cmake_args=(
 if [ -n "$OSX_ARCH" ] ; then
     # Need to require 10.7 because of the C++11 features.
     export MACOSX_DEPLOYMENT_TARGET=10.7
-    sdk=/SDKs/MacOSX${MACOSX_DEPLOYMENT_TARGET}.sdk
     cmake_args+=(
-	-DCMAKE_CXX_FLAGS="-arch $OSX_ARCH -stdlib=libc++"
+	-DCMAKE_CXX_FLAGS="-arch $OSX_ARCH -stdlib=libc++ -std=c++11"
 	-DCMAKE_Fortran_COMPILER=/usr/local/bin/gfortran-4.2
 	-DCMAKE_OSX_DEPLOYMENT_TARGET=$MACOSX_DEPLOYMENT_TARGET
-	-DCMAKE_OSX_SYSROOT=$sdk
+	-DCMAKE_OSX_SYSROOT=/
+	-DREADLINE_INCLUDE_DIR=$PREFIX/include
+	-DREADLINE_LIBRARY=$PREFIX/lib/libreadline.dylib
     )
 else
     # Downstream elements of the C++ code require C++11 to compile, and for
