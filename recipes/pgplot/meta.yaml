@@ -16,6 +16,7 @@ source:
     - gfortran.patch
     - png-setjmp.patch
     - prefix.patch
+    - late-binding-drivers.patch
     - osx.patch #[osx]
 
 build:
