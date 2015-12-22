@@ -14,21 +14,26 @@ source:
   svn_ignore_externals: yes
   patches:
     - cmake-fixes.patch
+    - wcslib-version.patch
 
 build:
   number: 0
   detect_binary_files_with_prefix: true
+  script_env:
+    - NJOBS
 
 requirements:
   build:
-    - atlas
+    - atlas #[not osx]
     - boost
     - casa-nrao-casacore
     - casa-tools
     - cfitsio
     - cmake
     - libxml2
+    - numpy
     - pgplot
+    - python
     - rpfits
     - wcslib
   run:
@@ -37,7 +42,9 @@ requirements:
     - casa-tools
     - cfitsio
     - libxml2
+    - numpy
     - pgplot
+    - python
     - wcslib
 
 about:
