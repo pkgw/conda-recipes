@@ -34,6 +34,7 @@ pgplot
 wcslib
 rpfits
 gsl
+qt-dbus-component # OSX only
 qwt5
 libsakura
 casa-data

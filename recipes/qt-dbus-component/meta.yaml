@@ -1,0 +1,43 @@
+# Copyright 2015 Peter Williams and collaborators.
+# This file is licensed under a 3-clause BSD license; see LICENSE.txt.
+
+# Ugh. This package is necessary because the OS X version of the "qt" package
+# doesn't include the DBus subsystem, which is likely because dbus-c++ is
+# highly horked and does not build cleanly on OS X. See build.sh for an
+# explanation of how we go about this.
+
+package:
+  name: qt-dbus-component
+  version: 4.8.7
+
+source:
+  fn: qt-everywhere-opensource-src-4.8.7.tar.gz
+  url: http://download.qt-project.org/official_releases/qt/4.8/4.8.7/qt-everywhere-opensource-src-4.8.7.tar.gz
+  md5: d990ee66bf7ab0c785589776f35ba6ad
+  patches:
+    - acceptance.patch
+    - qmake-arch.patch #[osx]
+
+build:
+  number: 1
+  detect_binary_files_with_prefix: true
+  script_env:
+    - NJOBS
+
+requirements:
+  build:
+    - dbus-cxx
+    - openssl
+    - libpng      1.6*
+    - qt
+
+  run:
+    - dbus-cxx
+    - openssl
+    - libpng      1.6*
+    - qt
+
+about:
+    home: http://qt-project.org
+    license: LGPL
+    summary: the DBus component of the Qt4 framework
