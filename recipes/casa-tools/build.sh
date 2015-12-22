@@ -20,13 +20,15 @@ if [ -n "$OSX_ARCH" ] ; then
     # Need to require 10.7 because of the C++11 features.
     export MACOSX_DEPLOYMENT_TARGET=10.7
 
-    # Ugh. install_name fixup. hardlinking!!!
+    # Ugh. install_name fixup currently needed; have to copy since
+    # install_name_tool patches in place and the files are hardlinked out of
+    # the pkgs tree!
     for lib in xml2 xslt readline ; do
 	lpath=$PREFIX/lib/lib${lib}.dylib
 	mv $lpath $lpath.tmp
 	cp $lpath.tmp $lpath
 	rm -f $lpath.tmp
-	iname=$(otool -L $lpath |sed -e '2!d' |awk '{print $1}')
+	iname=$(otool -D $lpath |sed -e '2!d')
 	install_name_tool -id @rpath/$iname $lpath
     done
 
@@ -71,3 +73,7 @@ rm -f bin/t* bin/qwtplottertest # tests
 # installed.
 rm -f bin/casabrowser
 ln -s qcasabrowser bin/casabrowser
+
+if [ -n "$OSX_ARCH" ] ; then
+    rm -rf apps
+fi
