@@ -15,14 +15,18 @@ source:
   patches:
     - so-versioning.patch
     - casaroot.patch
+    - no-java.patch
+    - mydbus.patch #[osx]
 
 build:
   number: 0
   detect_binary_files_with_prefix: true
+  script_env:
+    - NJOBS
 
 requirements:
   build:
-    - atlas
+    - atlas #[not osx]
     - boost
     - casa-nrao-casacore
     - cmake
@@ -37,6 +41,7 @@ requirements:
     - readline
     - rpfits
     - qt
+    - qt-dbus-component #[osx]
     - qwt5
     - xerces-c28
   run:
@@ -52,6 +57,7 @@ requirements:
     - pgplot
     - readline
     - qt
+    - qt-dbus-component #[osx]
     - qwt5
     - xerces-c28
 
