@@ -6,7 +6,7 @@
 
 set -e
 cd $PREFIX
-sed -i .pre-dbus -e 's|#define QT_NO_DBUS|//QTDBC:#define QT_NO_DBUS|' \
+sed -i .pre-dbus -Ee 's@#define QT_NO_DBUS@//QTDBC:#define QT_NO_DBUS@' \
      include/Qt/qfeatures.h include/QtCore/qfeatures.h
-sed -i .pre-dbus -e 's|# \(undef|define\) QT_NO_DBUS|//QTDBC:# \1 QT_NO_DBUS|' \
+sed -i .pre-dbus -Ee 's@# (undef|define) QT_NO_DBUS@//QTDBC:# \1 QT_NO_DBUS@' \
      include/Qt/qconfig.h include/QtCore/qconfig.h
