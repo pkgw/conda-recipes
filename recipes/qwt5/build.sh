@@ -15,7 +15,7 @@ if [ -n "$OSX_ARCH" ] ; then
     spec=macx-g++
 
     export MACOSX_DEPLOYMENT_TARGET=10.7
-    sdk=/SDKs/MacOSX${MACOSX_DEPLOYMENT_TARGET}.sdk
+    sdk=/
     cat <<EOF >tmp1
 QMAKE_MACOSX_DEPLOYMENT_TARGET=$MACOSX_DEPLOYMENT_TARGET
 QMAKE_MAC_SDK = $sdk
