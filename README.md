@@ -6,7 +6,8 @@ conda-recipes
 This repository contains the tools I use to build various packages in the
 [Conda] package manager used by the [Anaconda] Python distribution. Most of
 them build up to providing support for the [Gtk+ 3] graphical toolkit and the
-[CASA] radio interferometry package. Builds are only tested on 64-bit Linux.
+[CASA] radio interferometry package. Builds are provided on 64-bit Linux and
+OS X.
 
 [Conda]: http://conda.pydata.org/
 [Anaconda]: http://docs.continuum.io/anaconda/index
@@ -28,10 +29,12 @@ conda install -c pkgw pwkit
 ```
 
 As part of this work I’ve also developed a [prebuilt Docker image] that can be
-used to repeatably build binary `linux-64` packages.
+used to repeatably build binary `linux-64` packages. For OS X, I use [Vagrant]
+to do likewise.
 
 [my personal anaconda.org channel]: https://anaconda.org/pkgw/
 [prebuilt Docker image]: https://hub.docker.com/r/pkgw/conda-py2-builder/
+[Vagrant]: https://www.vagrantup.com/
 
 
 How it All Works
@@ -39,10 +42,10 @@ How it All Works
 
 Many of my Conda packages involve compiled code, and a big challenge is
 building such packages in a way that’s as platform-independent as possible.
-The Conda framework doesn’t specify the binary ABI that Linux-targeting
-packages should follow, but things built on CentOS 5 are generally highly
-portable. However, no one wants to run CentOS 5 as their primary OS since it’s
-ancient!
+The OS X developer tools make this fairly manageable. But Linux is harder,
+especially since Conda doesn't explicitly specify the ABIs that they target.
+However, things built on CentOS 5 are generally highly portable — but no one
+wants to run CentOS 5 as their primary OS since it’s ancient!
 
 So there are two main components to how I build my [Conda] packages. First, I
 have set up a [Docker] environment that allows me to build packages repeatably
@@ -50,6 +53,9 @@ inside a stable, containerized Centos 5 environment. Then, I’ve written the
 [Conda recipes](recipes) that actually define the packages that I build. I’ve
 written up notes on how the system works if you might be interested in doing
 similar things.
+
+OK, there are three components — I use [Vagrant] to generate and drive a
+repeatable, headless build environment for the OS X package builds.
 
 [Docker]: https://www.docker.com/
 
@@ -68,8 +74,8 @@ MIT License.
 [conda-recipes]: https://github.com/conda/conda-recipes
 
 
-Copyright Notice
-================
+Copyright Notice For This File
+==============================
 
 Copyright 2014–2015 Peter Williams
 
