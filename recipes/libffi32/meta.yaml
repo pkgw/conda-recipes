@@ -1,0 +1,30 @@
+# Copyright 2015 Peter Williams and collaborators.
+# This file is licensed under a 3-clause BSD license; see LICENSE.txt.
+
+# This is an updated version of libffi; Conda includes 3.0.13, whereas we're
+# 3.2.x. On Linux, we remove a busted .la file and provide pkg-config info. On
+# OS X, we provide a significant version upgrade that includes new features
+# needed by recent GNOME-stack programs.
+
+package:
+  name: libffi32
+  version: "3.2.1"
+
+source:
+  fn: libffi-3.2.1.tar.gz
+  url: ftp://sourceware.org/pub/libffi/libffi-3.2.1.tar.gz
+  sha1: 280c265b789e041c02e5c97815793dfc283fb1e6
+
+build:
+  number: 0
+  detect_binary_files_with_prefix: true
+  script_env:
+    - NJOBS
+
+requirements:
+  build:
+
+about:
+  home: https://sourceware.org/libffi/
+  license: MIT
+  summary: A portable foreign function interface library
