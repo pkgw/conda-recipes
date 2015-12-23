@@ -9,22 +9,23 @@ source:
   fn: gobject-introspection-1.46.0.tar.xz
   url: http://ftp.gnome.org/pub/gnome/sources/gobject-introspection/1.46/gobject-introspection-1.46.0.tar.xz
   sha256: 6658bd3c2b8813eb3e2511ee153238d09ace9d309e4574af27443d87423e4233
-  patches:
-    - ffi-config.patch
 
 build:
   number: 0
   detect_binary_files_with_prefix: true
+  script_env:
+    - NJOBS
 
 requirements:
   build:
     - cairo-gobject
+    - gettext #[osx]
     - glib
-    - libffi
+    - libffi32
     - python
   run:
     - glib
-    - libffi
+    - libffi32
 
 about:
   home: https://wiki.gnome.org/action/show/Projects/GObjectIntrospection
