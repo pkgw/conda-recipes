@@ -5,6 +5,9 @@
 [ "$NJOBS" = '<UNDEFINED>' ] && NJOBS=1
 set -e
 
+# don't get locally installed pkg-config entries:
+export PKG_CONFIG_LIBDIR="$PREFIX/lib/pkgconfig:$PREFIX/share/pkgconfig"
+
 if [ -n "$OSX_ARCH" ] ; then
     # Cf. the discussion in meta.yaml -- we require 10.7.
     export MACOSX_DEPLOYMENT_TARGET=10.7
