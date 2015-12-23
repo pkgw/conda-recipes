@@ -2,7 +2,6 @@
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 #
 # NOTE: if updating major or minor version, update `so-versioning.patch`.
-# Build on CentOS 5.
 
 package:
   name: casa-python
@@ -16,7 +15,7 @@ source:
     - so-versioning.patch
 
 build:
-  number: 0
+  number: 1
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
