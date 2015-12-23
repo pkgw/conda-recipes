@@ -161,7 +161,7 @@ sudo docker stop py2builder
 
 I build my OS X packages using [Vagrant], which is nice because it takes steps
 towards reproducibility (though not as far as Docker) and also allows you to
-run builds in a automatable “headless” fashion.
+run builds in an automatable “headless” fashion.
 
 [Vagrant]: https://www.vagrantup.com/
 
