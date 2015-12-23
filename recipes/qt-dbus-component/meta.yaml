@@ -4,7 +4,8 @@
 # Ugh. This package is necessary because the OS X version of the "qt" package
 # doesn't include the DBus subsystem, which is likely because dbus-c++ is
 # highly horked and does not build cleanly on OS X. See build.sh for an
-# explanation of how we go about this.
+# explanation of how we go about this. The code here is derived from the "qt"
+# recipe in conda/conda-recipes on GitHub.
 
 package:
   name: qt-dbus-component
