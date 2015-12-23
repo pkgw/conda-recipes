@@ -19,6 +19,8 @@ source:
 build:
   number: 0
   detect_binary_files_with_prefix: true
+  script_env:
+    - NJOBS
 
 requirements:
   build:
@@ -28,7 +30,7 @@ requirements:
     - gdk-pixbuf
     - glib
     - gobject-introspection
-    - modern-xorg-stack
+    - modern-xorg-stack #[not osx]
     - pango
     - python
   run:
@@ -37,7 +39,7 @@ requirements:
     - gdk-pixbuf
     - glib
     - gobject-introspection
-    - modern-xorg-stack
+    - modern-xorg-stack #[not osx]
     - pango
 
 about:
