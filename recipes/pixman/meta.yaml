@@ -1,0 +1,29 @@
+# Copyright 2014-2015 Peter Williams and collaborators.
+# This file is licensed under a 3-clause BSD license; see LICENSE.txt.
+
+# This is a clone of https://github.com/conda/conda-recipes/tree/master/pixman
+# so that I can build pixman on OS X. The version should be kept in sync with
+# the official Anaconda version on Linux.
+
+package:
+  name: pixman
+  version: "0.32.6"
+
+source:
+  fn: pixman-0.32.6.tar.gz
+  url: http://cairographics.org/releases/pixman-0.32.6.tar.gz
+  sha1: 8791343cbf6d99451f4d08e8209d6ac11bf96df2
+
+build:
+  number: 0
+  detect_binary_files_with_prefix: true
+  script_env:
+    - NJOBS
+
+requirements:
+  build:
+
+about:
+  home: http://www.pixman.org/
+  license: MIT
+  summary: A low-level software library for pixel manipulation
