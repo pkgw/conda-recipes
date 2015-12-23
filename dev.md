@@ -1,9 +1,9 @@
 <!--- To render this locally, use `grip --wide` on this file. -->
 
-# Using the Docker images
+# Linux: Using the Docker images
 
-I build my [Conda] packages using [Docker], to ensure a reproducible build
-environment that produces packages with maximal binary compatibility.
+I build my Linux [Conda] packages using [Docker], to ensure a reproducible
+build environment that produces packages with maximal binary compatibility.
 
 [Conda]: http://conda.pydata.org/docs/
 [Docker]: https://www.docker.com/
@@ -155,6 +155,63 @@ If you want to explicitly shut down a container, unsurprisingly the command is:
 ```
 sudo docker stop py2builder
 ```
+
+
+# OS X: Using Vagrant
+
+I build my OS X packages using [Vagrant], which is nice because it takes steps
+towards reproducibility (though not as far as Docker) and also allows you to
+run builds in a automatable “headless” fashion.
+
+[Vagrant]: https://www.vagrantup.com/
+
+[Vagrant] works by setting up a headless virtual machine (VM) and automating
+the “provisioning” steps that fill out its software quite. This is much more
+heavyweight to do than Docker, so it’s not preferable in the Linux case. But
+Docker requires the Linux kernel so it just can’t run on OS X natively.
+
+Unfortunately, OS X is proprietary so, unlike my Docker images, I can’t share
+them. But the base image I use is very straightforward: it is a basically
+pristine install of [OS X Yosemite] (10.10), with the [Xcode command line
+tools] installed. The user account and remote access are configured as
+described in the [Vagrant “base box” page] so that Vagrant can automatically
+SSH into the virtual machine to run commands on it. This VM is packaged into a
+Vagrant “box” named `pkgw-yosemite-dev`. Instructions for doing so are out of
+the scope of this document, but if you can create a Vagrant “box” with that
+name that has Xcode installed and the appropriate “base box” configuration,
+then you’re good to go.
+
+[OS X Yosemite]: https://en.wikipedia.org/wiki/History_of_OS_X#Version_10.10:_.22Yosemite.22
+[Xcode command line tools]: https://developer.apple.com/library/ios/technotes/tn2339/_index.html
+[Vagrant “base box” page]: https://docs.vagrantup.com/v2/boxes/base.html
+
+Assuming that you have such a box, building packages in this machine is
+straightforward. If you run
+
+```
+vagrant up
+```
+
+in the directory containing this file, Vagrant will instantiate a VM and start
+it running; on the first startup, it will “provision” the machine by
+installing [Homebrew] and Miniconda and the essential tools for compiling
+software. The current directory is shared into the machine as the path
+`/vagrant/` so that the VM can access the recipes. Building a package for a
+given recipe is then a matter of running a command of the form:
+
+```
+vagrant ssh -c "conda build /vagrant/recipes/pwkit"
+```
+
+When the command completes, the new OS X package should be sitting in the
+`osx-64` subdirectory.
+
+[Homebrew]: http://brew.sh/
+
+To shut down your builder, use `vagrant suspend`, and `vagrant resume` to
+bring it back up. Running `vagrant destroy` completely erases the VM, but not
+the box; if you `vagrant up` again later, it will recreate and reprovision the
+VM image, hopefully leading to identical builds.
 
 
 # Miscellaneous Notes
