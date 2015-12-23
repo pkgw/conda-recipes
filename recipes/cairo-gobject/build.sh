@@ -12,9 +12,6 @@ if [ -n "$OSX_ARCH" ] ; then
     sdk=/
     export CFLAGS="$CFLAGS -isysroot $sdk"
     export LDFLAGS="$LDFLAGS -Wl,-syslibroot,$sdk"
-else
-    # conda provides libffi, but it has a busted .la file:
-    rm -f $PREFIX/lib/libffi.la
 fi
 
 export CPPFLAGS=-I$PREFIX/include LDFLAGS=-L$PREFIX/lib

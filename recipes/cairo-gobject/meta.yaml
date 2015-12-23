@@ -28,15 +28,18 @@ requirements:
   build:
     - freetype
     - glib
-    - libffi #[not osx]
     - libpng
     - modern-xorg-stack
     - pixman
     - zlib
   run:
     - cairo #[not osx]
-    - libffi #[not osx]
+    - freetype
+    - glib
+    - libpng
     - modern-xorg-stack
+    - pixman
+    - zlib
 
 about:
   home: http://cairographics.org/
