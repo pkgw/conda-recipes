@@ -48,3 +48,12 @@ cp xcb-proto-*/missing xextproto-*/
 cd $PREFIX
 rm -rf share/aclocal share/doc share/man share/pkgconfig lib/python2.7
 rm -f lib/*.a lib/*.la
+
+# OS X hack -- see https://github.com/ContinuumIO/anaconda-issues/issues/600 and post-link.sh.
+
+if [ -n "$OSX_ARCH" ] ; then
+    cd include/X11
+    for h in X Xatom Xfuncproto Xlib Xutil cursorfont keysym keysymdef xbytes ; do
+	cp $h.h $h.h.mxs
+    done
+fi
