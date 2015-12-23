@@ -2,17 +2,33 @@
 # Copyright 2014-2015 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
+[ "$NJOBS" = '<UNDEFINED>' ] && NJOBS=1
 set -e
-# conda provides libffi, but it has a busted .la file:
-rm -f $PREFIX/lib/libffi.la
-# need this for dbus:
-export PKG_CONFIG_LIBDIR="$PREFIX/lib/pkgconfig"
-# need this to detect X11:
+
+# Ugh, gross. Here tk gets installed after modern-xorg-stack and so overwrites
+# our non-broken X11 headers. So we manually rerun the header fixup script:
+$PREFIX/bin/.modern-xorg-stack-post-link.sh
+
+# don't get locally installed pkg-config entries:
+export PKG_CONFIG_LIBDIR="$PREFIX/lib/pkgconfig:$PREFIX/share/pkgconfig"
+
+# needed to detect X11:
 export CPPFLAGS="-I$PREFIX/include"
-export LDFLAGS="-L$PREFIX/lib -Wl,-rpath-link,$PREFIX/lib"
+export LDFLAGS="-L$PREFIX/lib"
+
+if [ -n "$OSX_ARCH" ] ; then
+    # rpath setting is often needed to run compiled autoconf test programs:
+    export MACOSX_DEPLOYMENT_TARGET=10.6
+    sdk=/
+    export CFLAGS="$CFLAGS -isysroot $sdk"
+    export LDFLAGS="$LDFLAGS -Wl,-syslibroot,$sdk -Wl,-rpath,$PREFIX/lib"
+else
+    # also for X11:
+    export LDFLAGS="-Wl,-rpath-link,$PREFIX/lib"
+fi
 
 ./configure --prefix=$PREFIX --disable-gtk-doc || { cat config.log ; exit 1 ; }
-make -j$(nproc --ignore=4)
+make -j$NJOBS
 make install
 
 cd $PREFIX
