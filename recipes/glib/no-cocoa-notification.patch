@@ -46,3 +46,15 @@
  
  libgio_2_0_la-gnetworkmonitornetlink.lo: gnetworkmonitornetlink.c
  @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgio_2_0_la_CPPFLAGS) $(CPPFLAGS) $(libgio_2_0_la_CFLAGS) $(CFLAGS) -MT libgio_2_0_la-gnetworkmonitornetlink.lo -MD -MP -MF $(DEPDIR)/libgio_2_0_la-gnetworkmonitornetlink.Tpo -c -o libgio_2_0_la-gnetworkmonitornetlink.lo `test -f 'gnetworkmonitornetlink.c' || echo '$(srcdir)/'`gnetworkmonitornetlink.c
+--- gio/giomodule.c.orig	2015-12-23 13:44:09.000000000 -0800
++++ gio/giomodule.c	2015-12-23 13:44:42.000000000 -0800
+@@ -47,6 +47,9 @@
+ #include "gdesktopappinfo.h"
+ #endif
+ 
++/* do not reference hacked-out, undefined symbol name */
++#undef HAVE_COCOA
++
+ /**
+  * SECTION:giomodule
+  * @short_description: Loadable GIO Modules

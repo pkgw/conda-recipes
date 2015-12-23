@@ -15,14 +15,6 @@ if [ -n "$OSX_ARCH" ] ; then
     # Pick up the Conda version of gettext/libintl:
     export CPPFLAGS="$CPPFLAGS -I$PREFIX/include"
     export LDFLAGS="$LDFLAGS -L$PREFIX/lib -Wl,-rpath,$PREFIX/lib"
-
-    # OS X: we assume there's a pkg-config from Brew; libffi is provided by
-    # the system.
-    export LIBFFI_CFLAGS="-I/usr/include/ffi" LIBFFI_LIBS="-lffi"
-else
-    # Linux: conda provides libffi with a busted .la file:
-    rm -f $PREFIX/lib/libffi.la
-    export LIBFFI_CFLAGS="-I$PREFIX/include" LIBFFI_LIBS="-L$PREFIX/lib -lffi"
 fi
 
 ./configure --prefix=$PREFIX || { cat config.log ; exit 1 ; }
