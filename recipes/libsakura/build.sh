@@ -14,7 +14,7 @@ cmake_args=(
 
 if [ -n "$OSX_ARCH" ] ; then
     export MACOSX_DEPLOYMENT_TARGET=10.7
-    sdk=/SDKs/MacOSX${MACOSX_DEPLOYMENT_TARGET}.sdk
+    sdk=/
     cmake_args+=(
 	-DCMAKE_CXX_FLAGS="-arch $OSX_ARCH -stdlib=libc++"
 	-DCMAKE_OSX_DEPLOYMENT_TARGET=$MACOSX_DEPLOYMENT_TARGET
