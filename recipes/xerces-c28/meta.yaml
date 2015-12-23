@@ -16,7 +16,7 @@ source:
     - macsvn.diff #[osx]
 
 build:
-  number: 0
+  number: 1
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
