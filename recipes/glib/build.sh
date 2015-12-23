@@ -6,17 +6,13 @@
 set -e
 
 if [ -n "$OSX_ARCH" ] ; then
-    # GLib has builtin Cocoa support that requires OS X version 10.9 or
-    # greater. I could patch it out, but I don't have a sense of how much of
-    # an issue this will be in practice. If there are complaints from users of
-    # <= 10.8 I'll revisit.
+    # Cf. the discussion in meta.yaml -- we require 10.7.
     export MACOSX_DEPLOYMENT_TARGET=10.7
-    sdk=/SDKs/MacOSX${MACOSX_DEPLOYMENT_TARGET}.sdk
+    sdk=/
     export CFLAGS="$CFLAGS -isysroot $sdk"
     export LDFLAGS="$LDFLAGS -Wl,-syslibroot,$sdk"
 
     # Pick up the Conda version of gettext/libintl:
-    export PATH="$PREFIX/bin:$PATH"
     export CPPFLAGS="$CPPFLAGS -I$PREFIX/include"
     export LDFLAGS="$LDFLAGS -L$PREFIX/lib -Wl,-rpath,$PREFIX/lib"
 
