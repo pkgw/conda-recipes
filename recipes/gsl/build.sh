@@ -7,7 +7,7 @@ set -e
 
 if [ -n "$OSX_ARCH" ] ; then
     export MACOSX_DEPLOYMENT_TARGET=10.6
-    sdk=/SDKs/MacOSX${MACOSX_DEPLOYMENT_TARGET}.sdk
+    sdk=/
     CFLAGS="$CFLAGS -isysroot $sdk"
     FFLAGS="$FFLAGS -isysroot $sdk"
     LDFLAGS="$LDFLAGS -Wl,-syslibroot,$sdk"
