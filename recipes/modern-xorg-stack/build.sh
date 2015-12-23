@@ -12,16 +12,20 @@ export PKG_CONFIG_LIBDIR=$PREFIX/lib/pkgconfig:$PREFIX/share/pkgconfig
 
 if [ -n "$OSX_ARCH" ] ; then
     export MACOSX_DEPLOYMENT_TARGET=10.6
-    sdk=/SDKs/MacOSX${MACOSX_DEPLOYMENT_TARGET}.sdk
+    sdk=/
     export CFLAGS="$CFLAGS -isysroot $sdk"
     export LDFLAGS="$LDFLAGS -Wl,-syslibroot,$sdk"
 fi
+
+# Work around weird packaging bug? (See also how we weirdly need to give
+# xextproto --disable-specs.)
+cp xcb-proto-*/missing xextproto-*/
 
 # I'm not sure why, but `-e` mode doesn't cause us to exit when the inner
 # pipelines fail, even though they exit with error codes.
 (cd xproto-* && ./configure --prefix=$PREFIX && make -j$NJOBS install) || exit $?
 (cd xcb-proto-* && ./configure --prefix=$PREFIX && make -j$NJOBS install) || exit $?
-(cd xextproto-* && ./configure --prefix=$PREFIX && make -j$NJOBS install) || exit $?
+(cd xextproto-* && ./configure --prefix=$PREFIX --disable-specs && make -j$NJOBS install) || exit $?
 (cd fixesproto-* && ./configure --prefix=$PREFIX && make -j$NJOBS install) || exit $?
 (cd kbproto-* && ./configure --prefix=$PREFIX && make -j$NJOBS install) || exit $?
 (cd inputproto-* && ./configure --prefix=$PREFIX && make -j$NJOBS install) || exit $?
