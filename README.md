@@ -30,7 +30,9 @@ conda install -c pkgw pwkit
 
 As part of this work I’ve also developed a [prebuilt Docker image] that can be
 used to repeatably build binary `linux-64` packages. For OS X, I use [Vagrant]
-to do likewise.
+to do likewise. My [Notes for developers] may be valuable if you’re
+interesting in making Conda packages containing compiled code for Linux and/or
+Mac OS X machines.
 
 [my personal anaconda.org channel]: https://anaconda.org/pkgw/
 [prebuilt Docker image]: https://hub.docker.com/r/pkgw/conda-py2-builder/
