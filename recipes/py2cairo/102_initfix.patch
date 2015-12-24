@@ -1,0 +1,15 @@
+--- src/cairomodule.c.orig	2015-12-23 16:43:59.000000000 -0800
++++ src/cairomodule.c	2015-12-23 16:44:14.000000000 -0800
+@@ -213,10 +213,10 @@
+     return;
+ 
+   if (PyType_Ready(&PycairoRectangleInt_Type) < 0)
+-    return NULL;
++    return;
+ 
+   if (PyType_Ready(&PycairoRegion_Type) < 0)
+-    return NULL;
++    return;
+ 
+   if (PyType_Ready(&PycairoScaledFont_Type) < 0)
+     return;
