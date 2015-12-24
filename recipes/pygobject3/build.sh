@@ -2,16 +2,22 @@
 # Copyright 2014-2015 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
+[ "$NJOBS" = '<UNDEFINED>' ] && NJOBS=1
 set -e
-# conda provides libffi, but it has a busted .la file:
-rm -f $PREFIX/lib/libffi.la
-# ... and no pkgconfig info:
-export FFI_CFLAGS="-I$PREFIX/include" FFI_LIBS="-L$PREFIX/lib -lffi"
-# Make sure we pick up local cairo, etc:
-export PKG_CONFIG_LIBDIR="$PREFIX/lib/pkgconfig"
+
+# don't get locally installed pkg-config entries:
+export PKG_CONFIG_LIBDIR="$PREFIX/lib/pkgconfig:$PREFIX/share/pkgconfig"
+
+if [ -n "$OSX_ARCH" ] ; then
+    # rpath setting is often needed to run compiled autoconf test programs:
+    export MACOSX_DEPLOYMENT_TARGET=10.6
+    sdk=/
+    export CFLAGS="$CFLAGS -isysroot $sdk"
+    export LDFLAGS="$LDFLAGS -Wl,-syslibroot,$sdk -Wl,-rpath,$PREFIX/lib"
+fi
 
 ./configure --prefix=$PREFIX || { cat config.log ; exit 1 ; }
-make -j$(nproc --ignore=4)
+make -j$NJOBS
 make install
 
 cd $PREFIX
