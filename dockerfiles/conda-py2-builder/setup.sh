@@ -1,5 +1,5 @@
 #! /bin/bash
-# Copyright 2015 Peter Williams <peter@newton.cx>
+# Copyright 2015-2016 Peter Williams <peter@newton.cx>
 # Licensed under the MIT License.
 #
 # Set up an image that's ready to build Conda packages repeatably.
@@ -34,6 +34,7 @@ pkgconfig
 strace
 subversion
 tar
+tcsh
 wget
 which
 xz
@@ -48,6 +49,17 @@ devtoolset-2-gcc
 devtoolset-2-gcc-c++
 devtoolset-2-gcc-gfortran
 ")
+
+# We use RPMForge to get git
+wget http://packages.sw.be/rpmforge-release/rpmforge-release-0.5.3-1.el5.rf.x86_64.rpm
+rpm --import http://apt.sw.be/RPM-GPG-KEY.dag.txt
+rpm -K rpmforge-release-0.5.3-1.el5.rf.x86_64.rpm
+rpm -i rpmforge-release-0.5.3-1.el5.rf.x86_64.rpm
+yum update -y # get miscellaneous overrides
+yum install -y $(echo "
+git
+")
+rm -f rpmforge-release-0.5.3-1.el5.rf.x86_64.rpm
 
 # Miniconda
 # XXX: a Python 3 version would be different!
