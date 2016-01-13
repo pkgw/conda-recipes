@@ -24,7 +24,13 @@ cd $iraf
 
 # Remove the symlink and actually install
 rm $iraf
-mkdir -p $iraf/bin.$platform $iraf/bin.noarch $iraf/extern $iraf/unix/hlib
+mkdir -p $iraf/bin.$platform $iraf/bin.noarch $iraf/unix/hlib
+
+# Hardcoded bits assume the existence of an "extern" directory. They also do a
+# globbed ls of it, so we have to stick something there.
+
+mkdir $iraf/extern
+touch $iraf/extern/placeholder
 
 # Copy only the files needed at runtime; this list of extensions based on
 # the contents of "local/lib/strip.local":
