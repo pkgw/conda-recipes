@@ -20,7 +20,8 @@ cd $iraf
 
 # build system is too crappy to disable features that should be optional, so
 # just ignore errors and hope that most stuff worked out.
-(bash build.sh $platform |tee -i LOG 2>&1) || true
+export EXTRA_LDFLAGS="-L$PREFIX/lib $(curl-config --libs) -Wl,-rpath,$PREFIX/lib"
+(bash build.sh $platform 2>&1 |tee -i LOG) || true
 
 # Remove the symlink and actually install
 rm $iraf
@@ -60,6 +61,12 @@ EOF
     cat unix/hlib/$s.csh >>$dest
     chmod +x $dest
 done
+
+mkdir -p $iraf/dev
+for f in termcap ; do
+    cp dev/$f $iraf/dev/$f
+done
+touch $iraf/dev/hosts # no hardcoded list of some random site's hosts!
 
 cd $PREFIX/bin
 ln -s ../lib/iraf/bin.noarch/cl.csh cl
