@@ -36,9 +36,17 @@ touch $iraf/extern/placeholder
 # Copy only the files needed at runtime; this list of extensions based on
 # the contents of "local/lib/strip.local":
 find lib local noao pkg unix/hlib vo \
-     -name '*.cl' -o -name '*.dat' -o -name '*.def' -o -name '*.hd' -o \
-     -name '*.hlp' -o -name '*.key' -o -name '*.men' -o -name '*.mip' -o \
-     -name '*.par' -o -name '*.pkg' \
+     -name '*.cl' -o \
+     -name '*.dat' -o \
+     -name '*.def' -o \
+     -name '*.e' -o \
+     -name '*.hd' -o \
+     -name '*.hlp' -o \
+     -name '*.key' -o \
+     -name '*.men' -o \
+     -name '*.mip' -o \
+     -name '*.par' -o \
+     -name '*.pkg' \
      |tar c --files-from - |tar x -C $iraf
 
 cp -a bin.$platform/* $iraf/bin.$platform/
