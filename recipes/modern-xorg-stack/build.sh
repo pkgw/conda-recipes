@@ -44,6 +44,8 @@ cp xcb-proto-*/missing xextproto-*/
 (cd libXi-* && ./configure --prefix=$PREFIX && make -j$NJOBS && make install) || exit $?
 (cd libXtst-* && ./configure --prefix=$PREFIX && make -j$NJOBS && make install) || exit $?
 (cd libXrender-* && ./configure --prefix=$PREFIX && make -j$NJOBS && make install) || exit $?
+(cd libXt-* && ./configure --prefix=$PREFIX && make -j$NJOBS && make install) || exit $?
+(cd imake-* && ./configure --prefix=$PREFIX && make -j$NJOBS && make install) || exit $?
 
 cd $PREFIX
 rm -rf share/aclocal share/doc share/man share/pkgconfig lib/python2.7

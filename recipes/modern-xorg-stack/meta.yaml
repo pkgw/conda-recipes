@@ -15,15 +15,15 @@
 
 package:
   name: modern-xorg-stack
-  version: "2015.12"
+  version: "2016.01"
 
 source:
-  fn: modern-xorg-stack-2015.12.tar.bz2
-  url: http://newton.cx/~peter/files/modern-xorg-stack-2015.12.tar.bz2
-  sha1: 02043012590815ad92f8a698c70abe2b42e6f3ee
+  fn: modern-xorg-stack-2016.01.tar.bz2
+  url: http://newton.cx/~peter/files/modern-xorg-stack-2016.01.tar.bz2
+  sha1: 6228c717bd59358bd090e647cf27fe6966130c0f
 
 build:
-  number: 2
+  number: 0
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
