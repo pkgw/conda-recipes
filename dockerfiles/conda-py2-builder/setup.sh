@@ -38,6 +38,7 @@ tcsh
 wget
 which
 xz
+zip
 ")
 
 # Devtools

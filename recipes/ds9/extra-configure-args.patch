@@ -1,0 +1,123 @@
+--- make.include.orig	2016-01-15 19:31:08.884933806 +0000
++++ make.include	2016-01-15 19:31:28.119977055 +0000
+@@ -62,7 +62,7 @@
+ 	$(WITHTK) \
+ 	--prefix $(ROOT) --exec-prefix $(ROOT) \
+ 	--enable-symbols \
+-	--config-cache --cache-file=../../config.cache
++	--config-cache --cache-file=../../config.cache $$EXTRA_CONFIGURE_ARGS
+ 
+ tclcheckdns : $(TCLCHECKDNSDIR)/Makefile
+ 	@echo ""
+@@ -77,7 +77,7 @@
+ 	$(WITHTCL) \
+ 	--prefix $(ROOT) --exec-prefix $(ROOT) \
+ 	--disable-shared --enable-symbols \
+-	--config-cache --cache-file=../config.cache
++	--config-cache --cache-file=../config.cache $$EXTRA_CONFIGURE_ARGS
+ 
+ tcliis	: $(TCLIISDIR)/Makefile
+ 	@echo ""
+@@ -92,7 +92,7 @@
+ 	$(WITHTCL) \
+ 	--prefix $(ROOT) --exec-prefix $(ROOT) \
+ 	--disable-shared --enable-symbols \
+-	--config-cache --cache-file=../config.cache
++	--config-cache --cache-file=../config.cache $$EXTRA_CONFIGURE_ARGS
+ 
+ tclsignal: $(TCLSIGNALDIR)/Makefile
+ 	@echo ""
+@@ -107,7 +107,7 @@
+ 	$(WITHTCL) \
+ 	--prefix $(ROOT) --exec-prefix $(ROOT) \
+ 	--disable-shared --enable-symbols \
+-	--config-cache --cache-file=../config.cache
++	--config-cache --cache-file=../config.cache $$EXTRA_CONFIGURE_ARGS
+ 
+ # no parallel
+ tclxml	: $(TCLXMLDIR)/Makefile
+@@ -123,7 +123,7 @@
+ 	$(WITHTCL) \
+ 	--prefix $(ROOT) --exec-prefix $(ROOT) \
+ 	--disable-shared --enable-symbols \
+-	--config-cache --cache-file=../config.cache
++	--config-cache --cache-file=../config.cache $$EXTRA_CONFIGURE_ARGS
+ 
+ tclzvfs	: $(TCLZVFSDIR)/Makefile
+ 	@echo ""
+@@ -138,7 +138,7 @@
+ 	$(WITHTCL) \
+ 	--prefix $(ROOT) --exec-prefix $(ROOT) \
+ 	--disable-shared --enable-symbols \
+-	--config-cache --cache-file=../config.cache
++	--config-cache --cache-file=../config.cache $$EXTRA_CONFIGURE_ARGS
+ 
+ tkblt	: $(TKBLTDIR)/Makefile
+ 	@echo ""
+@@ -153,7 +153,7 @@
+ 	$(WITHTK) \
+ 	--prefix $(ROOT) --exec-prefix $(ROOT) \
+ 	--disable-shared --enable-symbols \
+-	--config-cache --cache-file=../config.cache
++	--config-cache --cache-file=../config.cache $$EXTRA_CONFIGURE_ARGS
+ 
+ tkcon	:
+ 	@echo ""
+@@ -176,7 +176,7 @@
+ 	$(WITHTK) \
+ 	--prefix $(ROOT) --exec-prefix $(ROOT) \
+ 	--disable-shared --enable-symbols \
+-	--config-cache --cache-file=../config.cache
++	--config-cache --cache-file=../config.cache $$EXTRA_CONFIGURE_ARGS
+ 
+ tkimg	: libtiff $(TKIMGDIR)/Makefile
+ 	@echo ""
+@@ -188,10 +188,10 @@
+ 	@echo ""
+ 	@echo "*** Configure $(TKIMGDIR) ***"
+ 	cd $(TKIMGDIR); \
+-	./configure CFLAGS='-DPNG_NO_WRITE_gAMA' \
++	./configure CFLAGS="-DPNG_NO_WRITE_gAMA $$CFLAGS" \
+ 	$(WITHTK) $(TKIMGFLAGS) \
+ 	--prefix $(ROOT) --exec-prefix $(ROOT) \
+-	--disable-shared --enable-symbols
++	--disable-shared --enable-symbols $$EXTRA_CONFIGURE_ARGS
+ 
+ libtiff	: $(TKIMGDIR)/compat/libtiff/Makefile
+ 	@echo ""
+@@ -206,7 +206,7 @@
+ 	./configure \
+ 	$(WITHTK) \
+ 	--prefix $(ROOT) --exec-prefix $(ROOT) \
+-	--disable-shared
++	--disable-shared $$EXTRA_CONFIGURE_ARGS
+ 
+ tkmpeg	: $(TKMPEGDIR)/Makefile
+ 	@echo ""
+@@ -221,7 +221,7 @@
+ 	$(WITHTK) \
+ 	--prefix $(ROOT) --exec-prefix $(ROOT) \
+ 	--disable-shared --enable-symbols \
+-	--config-cache --cache-file=../config.cache
++	--config-cache --cache-file=../config.cache $$EXTRA_CONFIGURE_ARGS
+ 
+ tksao	: $(TKSAODIR)/Makefile
+ 	@echo ""
+@@ -237,7 +237,7 @@
+ 	--prefix $(ROOT) --exec-prefix $(ROOT) \
+ 	--disable-shared --enable-symbols \
+ 	--config-cache --cache-file=../config.cache \
+-	ASTDIR=$(ASTDIR) FUNTOOLSDIR=$(FUNTOOLSDIR)
++	ASTDIR=$(ASTDIR) FUNTOOLSDIR=$(FUNTOOLSDIR) $$EXTRA_CONFIGURE_ARGS
+ 
+ # no parallel
+ tktable	: $(TKTABLEDIR)/Makefile
+@@ -253,7 +253,7 @@
+ 	$(WITHTK) $(TKTABLEFLAGS) \
+ 	--prefix $(ROOT) --exec-prefix $(ROOT) \
+ 	--disable-shared --enable-symbols \
+-	--config-cache --cache-file=../config.cache
++	--config-cache --cache-file=../config.cache $$EXTRA_CONFIGURE_ARGS
+ 
+ xmlrpc	: 
+ 	@echo ""
