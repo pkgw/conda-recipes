@@ -20,10 +20,10 @@ package:
 source:
   fn: modern-xorg-stack-2016.01.tar.bz2
   url: http://newton.cx/~peter/files/modern-xorg-stack-2016.01.tar.bz2
-  sha1: 76c6502e3e2c75ca96dc3e9b762bd41a1d5a22cd
+  sha1: 425384d413928007aacfc09e2ef65e0e07a43a81
 
 build:
-  number: 1
+  number: 2
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS

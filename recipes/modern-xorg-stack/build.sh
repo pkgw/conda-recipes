@@ -45,8 +45,13 @@ cp xcb-proto-*/missing xextproto-*/
 (cd libXtst-* && ./configure --prefix=$PREFIX && make -j$NJOBS && make install) || exit $?
 (cd libXrender-* && ./configure --prefix=$PREFIX && make -j$NJOBS && make install) || exit $?
 (cd libXt-* && ./configure --prefix=$PREFIX && make -j$NJOBS && make install) || exit $?
+(cd libXmu-* && ./configure --prefix=$PREFIX && make -j$NJOBS && make install) || exit $?
+(cd libXpm-* && ./configure --prefix=$PREFIX && make -j$NJOBS && make install) || exit $?
+(cd libXaw-* && ./configure --prefix=$PREFIX && make -j$NJOBS && make install) || exit $?
+(cd libXaw3d-* && ./configure --prefix=$PREFIX && make -j$NJOBS && make install) || exit $?
 (cd imake-* && ./configure --prefix=$PREFIX && make -j$NJOBS && make install) || exit $?
 (cd xorg-cf-files-* && ./configure --prefix=$PREFIX && make -j$NJOBS && make install) || exit $?
+(cd gccmakedep-* && ./configure --prefix=$PREFIX && make -j$NJOBS && make install) || exit $?
 
 cd $PREFIX
 rm -rf share/aclocal share/doc share/man share/pkgconfig lib/python2.7
