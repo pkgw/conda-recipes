@@ -1,22 +1,26 @@
-# Copyright 2014-2015 Peter Williams and collaborators.
+# Copyright 2014-2016 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 package:
   name: ninja
-  version: 1.5.3
+  version: "1.6.0"
 
 source:
-  fn: v1.5.3.tar.gz
-  url: https://github.com/martine/ninja/archive/v1.5.3.tar.gz
-  sha1: b3ff794461ff5e4e1e73fe6bd11e653bbe509e63
+  fn: v1.6.0.tar.gz
+  url: https://github.com/martine/ninja/archive/v1.6.0.tar.gz
+  sha256: b43e88fb068fe4d92a3dfd9eb4d19755dae5c33415db2e9b7b61b4659009cde7
 
 build:
-  number: 1
+  number: 0
+  detect_binary_files_with_prefix: true
+  script_env:
+    - NJOBS
 
 requirements:
   build:
   run:
 
 about:
-  home: http://martine.github.io/ninja/
+  home: https://ninja-build.org/
   license: Apache 2.0
+  summary: A small build system with a focus on speed.

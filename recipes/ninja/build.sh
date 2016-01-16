@@ -1,8 +1,19 @@
 #! /bin/bash
-# Copyright 2014-2015 Peter Williams and collaborators.
+# Copyright 2014-2016 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
+[ "$NJOBS" = '<UNDEFINED>' ] && NJOBS=1
 set -e
+
+if [ -n "$OSX_ARCH" ] ; then
+    # Not actually sure if these even take effect, but for consistency let's
+    # do it anyway.
+    export MACOSX_DEPLOYMENT_TARGET=10.6
+    sdk=/
+    export CFLAGS="$CFLAGS -isysroot $sdk"
+    export LDFLAGS="$LDFLAGS -Wl,-syslibroot,$sdk"
+fi
+
 ./configure.py --bootstrap
 
 mkdir $PREFIX/bin
