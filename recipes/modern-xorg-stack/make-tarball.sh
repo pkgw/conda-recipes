@@ -50,6 +50,7 @@ bc9c0fa7d39edf4ac043e6eeaa771d3e245ac5b2  proto/kbproto-1.0.7.tar.bz2
 b8d736342dcb73b71584d99a1cb9806d93c25ff8  proto/xextproto-7.3.0.tar.bz2
 d62c43e1b3619ab85732e0113eaa2104920730ac  proto/xproto-7.0.28.tar.bz2
 52e236776133f217d438622034b8603d201a6ec5  util/imake-1.0.7.tar.bz2
+9b6ed71c74a83181a47eb180787e9ab9a5efdfa2  util/xorg-cf-files-1.0.6.tar.bz2
 7fc486ad0ec54938f8b781cc374218f50eac8b99  xcb/libpthread-stubs-0.3.tar.bz2
 28e47aa699d2c2cffed31d1aa2473a9fefe77f17  xcb/libxcb-1.11.1.tar.bz2
 608bd60663e223464d38acec0183ddb827776401  xcb/xcb-proto-1.11.tar.bz2
