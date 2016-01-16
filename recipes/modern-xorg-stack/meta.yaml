@@ -21,9 +21,11 @@ source:
   fn: modern-xorg-stack-2016.01.tar.bz2
   url: http://newton.cx/~peter/files/modern-xorg-stack-2016.01.tar.bz2
   sha1: 425384d413928007aacfc09e2ef65e0e07a43a81
+  patches:
+    - no-lib64.patch
 
 build:
-  number: 2
+  number: 3
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
