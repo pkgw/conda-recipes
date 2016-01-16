@@ -21,7 +21,7 @@ cd $iraf
 # build system is too crappy to disable features that should be optional, so
 # just ignore errors and hope that most stuff worked out.
 export EXTRA_LDFLAGS="-L$PREFIX/lib $(curl-config --libs) -Wl,-rpath,$PREFIX/lib"
-(bash build.sh $platform 2>&1 |tee -i LOG) || true
+(bash build.sh $platform $PREFIX/lib/iraf 2>&1 |tee -i LOG) || true
 
 # Remove the symlink and actually install
 rm $iraf
@@ -35,7 +35,7 @@ touch $iraf/extern/placeholder
 
 # Copy only the files needed at runtime; this list of extensions based on
 # the contents of "local/lib/strip.local":
-find lib local noao pkg unix/hlib vo \
+find lib local noao pkg unix/hlib vendor/x11iraf vo \
      -name '*.cl' -o \
      -name '*.dat' -o \
      -name '*.def' -o \
@@ -75,6 +75,10 @@ for f in termcap ; do
     cp dev/$f $iraf/dev/$f
 done
 touch $iraf/dev/hosts # no hardcoded list of some random site's hosts!
+
+for p in obmsh resize vximtool xgterm ximtool ; do
+    cp vendor/x11iraf/bin/$p $PREFIX/bin/
+done
 
 cd $PREFIX/bin
 ln -s ../lib/iraf/bin.noarch/cl.csh cl
