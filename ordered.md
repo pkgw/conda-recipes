@@ -47,6 +47,16 @@ The CASA Stack
 1. `casa-python`
 
 
+The PyRAF Stack
+===============
+
+1. `iraf`
+1. `d2to1`
+1. `stsci_distutils`
+1. `stsci_tools`
+1. `pyraf`
+
+
 Everything Else
 ===============
 
@@ -59,3 +69,4 @@ Everything Else
 1. `omegaplot`
 1. `pwkit`
 1. `aoflagger`
+1. `ds9`
