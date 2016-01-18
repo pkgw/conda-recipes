@@ -40,6 +40,7 @@ find lib local noao pkg unix/hlib vendor/x11iraf vo \
      -name '*.dat' -o \
      -name '*.def' -o \
      -name '*.e' -o \
+     -name '*.gui' -o \
      -name '*.hd' -o \
      -name '*.hlp' -o \
      -name '*.key' -o \
