@@ -1,0 +1,36 @@
+# Copyright 2016 Peter Williams and collaborators.
+# This file is licensed under a 3-clause BSD license; see LICENSE.txt.
+
+package:
+  name: stsci_tools
+  version: "3.4"
+
+source:
+  fn: stsci.tools-3.4.tar.gz
+  url: https://pypi.python.org/packages/source/s/stsci.tools/stsci.tools-3.4.tar.gz
+  md5: cb60fcccd847297d04f4eb1addaf8326
+
+build:
+  number: 0
+  detect_binary_files_with_prefix: true
+  script_env:
+    - NJOBS
+
+requirements:
+  build:
+    - astropy
+    - d2to1
+    - numpy
+    - python
+    - setuptools
+    - stsci_distutils
+  run:
+    - astropy
+    - numpy
+    - python
+    - stsci_distutils
+
+about:
+  home: http://www.stsci.edu/institute/software_hardware/pyraf/stsci_python
+  license: BSD
+  summary: Python utilities from the Space Telescope Science Institute.

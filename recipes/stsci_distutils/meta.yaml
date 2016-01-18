@@ -1,0 +1,31 @@
+# Copyright 2016 Peter Williams and collaborators.
+# This file is licensed under a 3-clause BSD license; see LICENSE.txt.
+
+package:
+  name: stsci_distutils
+  version: "0.3.7"
+
+source:
+  fn: stsci.distutils-0.3.7.tar.gz
+  url: https://pypi.python.org/packages/source/s/stsci.distutils/stsci.distutils-0.3.7.tar.gz
+  md5: 65c866c0444f6a8effe2d41688606a0c
+
+build:
+  number: 0
+  detect_binary_files_with_prefix: true
+  script_env:
+    - NJOBS
+
+requirements:
+  build:
+    - d2to1
+    - python
+    - setuptools
+  run:
+    - d2to1
+    - python
+
+about:
+  home:
+  license: BSD
+  summary: Python packaging utilities from the Space Telescope Science Institute.

@@ -1,0 +1,29 @@
+# Copyright 2016 Peter Williams and collaborators.
+# This file is licensed under a 3-clause BSD license; see LICENSE.txt.
+
+package:
+  name: d2to1
+  version: "0.2.12.post1"
+
+source:
+  fn: d2to1-0.2.12.post1.tar.gz
+  url: https://pypi.python.org/packages/source/d/d2to1/d2to1-0.2.12.post1.tar.gz
+  md5: 1ba7e64ead23cbf104993122f0871030
+
+build:
+  number: 0
+  detect_binary_files_with_prefix: true
+  script_env:
+    - NJOBS
+
+requirements:
+  build:
+    - python
+    - setuptools
+  run:
+    - python
+
+about:
+  home: https://pypi.python.org/pypi/d2to1
+  license: BSD
+  summary: Compatibility between Python distutils version 2 and 1.
