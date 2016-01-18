@@ -70,16 +70,20 @@ EOF
     chmod +x $dest
 done
 
+# Random support data files
 mkdir -p $iraf/dev
-for f in termcap ; do
+for f in graphcap termcap ; do
     cp dev/$f $iraf/dev/$f
 done
 touch $iraf/dev/hosts # no hardcoded list of some random site's hosts!
+touch $iraf/unix/hlib/utime
 
+# X11 binaries.
 for p in obmsh resize vximtool xgterm ximtool ; do
     cp vendor/x11iraf/bin/$p $PREFIX/bin/
 done
 
+# Globally-visible binaries.
 cd $PREFIX/bin
 ln -s ../lib/iraf/bin.noarch/cl.csh cl
 ln -s ../lib/iraf/bin.noarch/mkiraf.csh mkiraf
