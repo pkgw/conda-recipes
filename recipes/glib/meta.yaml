@@ -9,7 +9,7 @@
 
 package:
   name: glib
-  version: 2.46.2
+  version: "2.46.2"
 
 source:
   fn: glib-2.46.2.tar.xz
