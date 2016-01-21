@@ -85,6 +85,8 @@ make -j$NJOBS
 make install
 
 cd $PREFIX
+ln -s xetex bin/xelatex # helpful; XeTeX looks at argv[0]
+
 rm -f lib/*.a lib/*.la
 rm -rf share/texlive/info
 rm -rf share/man # clean this out so we can do the following mv:
