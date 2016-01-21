@@ -1,0 +1,28 @@
+# Copyright 2016 Peter Williams and collaborators.
+# This file is licensed under a 3-clause BSD license; see LICENSE.txt.
+
+package:
+  name: texlive-selected
+  version: "20160121"
+
+source:
+  fn: texlive-selected-20160121.tar.bz2
+  url: http://newton.cx/~peter/files/texlive-selected-20160121.tar.bz2
+  sha256: b3b54ec4d0019f3896334d73d667955aff0d4c4df57d002b995b047c6f3c83bb
+
+build:
+  number: 0
+  detect_binary_files_with_prefix: true
+  script_env:
+    - NJOBS
+
+requirements:
+  build:
+    - texlive-core
+  run:
+    - texlive-core
+
+about:
+  home: https://www.tug.org/texlive/
+  license: LPPL
+  summary: Selected TeXLive packages needed for compiling scientific documents.
