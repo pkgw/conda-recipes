@@ -5,6 +5,14 @@
 # This script builds a mega-tarball of TeX packages. This is necessary because
 # Conda doesn't let us define a package with multiple source tarballs, and I
 # don't want to ship a separate package for all of these stupid dependencies.
+#
+# If a certain file (say "expl3.sty") is needed, a convenient way to guess
+# which TeXLive package includes it is to consult the output of an rpmfind
+# query:
+#
+#  https://www.rpmfind.net/linux/rpm2html/search.php?query=tex%28expl3.sty%29
+#
+# (the percent escaped characters are parentheses)
 
 if [ -z "$1" ] ; then
     echo >&2 "usage: $0 <version>
@@ -35,15 +43,21 @@ while read pkg options ; do
 done <<EOF
 amsfonts none
 amsmath none
+caption none
 cm none
 cm-super none
+dblfloatfix none
 dehyph-exptl none
 ec none
 emulateapj none
+enumitem none
 epsf none
 etex none
 etex-pkg none
 etoolbox none
+euenc none
+fontspec none
+geometry none
 graphics none
 hyperref none
 hyph-utf8 none
@@ -54,6 +68,8 @@ hyphen-greek none
 ifluatex none
 ifxetex none
 knuth-lib none
+l3kernel none
+l3packages none
 latex none
 latex-fonts none
 latexconfig none
@@ -68,10 +84,13 @@ revtex4 none
 ruhyphen none
 texlive.infra updir
 textcase none
+tipa none
+titlesec none
 tools none
 ukrhyph none
 url none
 xetex-def none
+xunicode none
 zapfding none
 EOF
 
