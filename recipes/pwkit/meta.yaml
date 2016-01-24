@@ -37,6 +37,7 @@ requirements:
 
   run:
     - numpy
+    - pathlib # [py2k]
     - python
     - six
 
