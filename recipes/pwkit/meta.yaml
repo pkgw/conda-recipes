@@ -1,4 +1,4 @@
-# Copyright 2014-2015 Peter Williams and collaborators.
+# Copyright 2014-2016 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 # Shortcut to get new MD5 sum:
@@ -7,14 +7,15 @@
 
 package:
   name: pwkit
-  version: "0.6.0"
+  version: "0.7"
 
 source:
-  fn: pwkit-0.6.0.tar.gz
-  url: https://pypi.python.org/packages/source/p/pwkit/pwkit-0.6.0.tar.gz
-  md5: 89a9baf719be284a7169cec952e3451a
+  fn: pwkit-0.7.tar.gz
+  url: https://pypi.python.org/packages/source/p/pwkit/pwkit-0.7.tar.gz
+  md5: f12b2081dea3e4392aedb64e7363d980
 
 build:
+  number: 0
   entry_points:
     - astrotool = pwkit.cli.astrotool:commandline
     - casatask = pwkit.environments.casa.tasks:commandline
@@ -23,9 +24,6 @@ build:
     - pkcasascript = pwkit.environments.casa.scripting:commandline
     - pkenvtool = pwkit.environments:commandline
     - wrapout = pwkit.cli.wrapout:commandline
-
-  # build number if rebuilding same version:
-  # number: 1
 
 requirements:
   build:
@@ -44,15 +42,6 @@ requirements:
 test:
   imports:
     - pwkit
-
-  #commands:
-    # (commands)
-
-  # You can also put a file called run_test.py in the recipe that will be run
-  # at test time.
-
-  #requires:
-    #- nose # e.g.
 
 about:
   home: https://github.com/pkgw/pwkit/
