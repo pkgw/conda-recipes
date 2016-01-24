@@ -1,14 +1,18 @@
 # Copyright 2016 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
+# NOTE: the build recipe is currently BROKEN in standalone Docker builders
+# since the packaging script doesn't copy the mktexlsr.pl script into the work
+# directory.
+
 package:
   name: texlive-selected
-  version: "20160121"
+  version: "20160124"
 
 source:
-  fn: texlive-selected-20160121.tar.bz2
-  url: http://newton.cx/~peter/files/texlive-selected-20160121.tar.bz2
-  sha256: b3b54ec4d0019f3896334d73d667955aff0d4c4df57d002b995b047c6f3c83bb
+  fn: texlive-selected-20160124.tar.bz2
+  url: http://newton.cx/~peter/files/texlive-selected-20160124.tar.bz2
+  sha256: b2a31c285ea358f4dc87a6e72618b07daa12cfc1a62d3b5522b4ad5b51e52e6d
 
 build:
   number: 0
