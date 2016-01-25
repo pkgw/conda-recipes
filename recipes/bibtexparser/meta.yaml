@@ -1,0 +1,36 @@
+# Copyright 2016 Peter Williams and collaborators.
+# This file is licensed under a 3-clause BSD license; see LICENSE.txt.
+
+# For some reason this package's setup.py only installs the package as an .egg
+# file with a .pth. I find this setup kind of annoying, but whatever.
+
+package:
+  name: bibtexparser
+  version: "0.6.1"
+
+source:
+  fn: bibtexparser-0.6.1.tar.gz
+  url: https://source.sciunto.org/bibtexparser/bibtexparser-0.6.1.tar.gz
+  sha256: e6967c94248ced3426bc66ce3b15be816a673580d79050182f2ce51df8463446
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - pyparsing
+    - python
+    - setuptools
+
+  run:
+    - pyparsing
+    - python
+
+test:
+  imports:
+    - bibtexparser
+
+about:
+  home: https://bibtexparser.readthedocs.org/
+  license: LGPLv3 or BSD
+  summary: A module for parsing BibTeX files.
