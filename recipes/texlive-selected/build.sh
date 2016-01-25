@@ -17,3 +17,16 @@ cd $dist
 mktexlsr
 fmtutil-sys --all
 mktexlsr
+
+# Tell fontconfig about our fonts
+mkdir -p $PREFIX/etc/fonts/conf.d
+conffile=$PREFIX/etc/fonts/conf.d/15-texlive-fonts.conf
+cat <<'EOF' >$conffile
+<?xml version="1.0"?>
+<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+<fontconfig>
+<!-- Font directories provided by the Anaconda TeXLive package -->
+EOF
+find $dist/texmf-dist -name '*.otf' |xargs -n1 dirname |sort |uniq \
+    |awk '{print "<dir>" $1 "</dir>"}' >>$conffile
+echo '</fontconfig>'>>$conffile

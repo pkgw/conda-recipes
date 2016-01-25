@@ -7,12 +7,12 @@
 
 package:
   name: texlive-selected
-  version: "20160124"
+  version: "20160125"
 
 source:
-  fn: texlive-selected-20160124.tar.bz2
-  url: http://newton.cx/~peter/files/texlive-selected-20160124.tar.bz2
-  sha256: b2a31c285ea358f4dc87a6e72618b07daa12cfc1a62d3b5522b4ad5b51e52e6d
+  fn: texlive-selected-20160125.tar.bz2
+  url: http://newton.cx/~peter/files/texlive-selected-20160125.tar.bz2
+  sha256: f88d7ee056edca7aa59b672b7ee742784a941f69746e26909bf917e953efe5e8
 
 build:
   number: 0

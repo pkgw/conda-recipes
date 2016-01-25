@@ -22,6 +22,8 @@ Where the recommended version is of the form YYYYMMDD, e.g., 20160121"
 fi
 
 tarbase="texlive-selected-$1"
+#urlbase="http://mirrors.ctan.org/systems/texlive/tlnet/archive"
+urlbase="http://mirrors.concertpass.com/tex-archive/systems/texlive/tlnet/archive/"
 
 work="$(mktemp -d)"
 origpwd="$(pwd)"
@@ -31,7 +33,7 @@ cd src
 
 while read pkg options ; do
     echo $pkg
-    wget -q http://mirrors.ctan.org/systems/texlive/tlnet/archive/$pkg.tar.xz
+    wget -q $urlbase/$pkg.tar.xz
     ###echo "$sha1 $(basename $pkg)" |sha1sum --check || exit 1
 
     case ",$options," in
@@ -82,6 +84,8 @@ plain none
 revtex none
 revtex4 none
 ruhyphen none
+tex-gyre none
+tex-gyre-math none
 texlive.infra updir
 textcase none
 tipa none
