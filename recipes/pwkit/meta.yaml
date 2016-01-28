@@ -7,12 +7,12 @@
 
 package:
   name: pwkit
-  version: "0.7"
+  version: "0.8"
 
 source:
-  fn: pwkit-0.7.tar.gz
-  url: https://pypi.python.org/packages/source/p/pwkit/pwkit-0.7.tar.gz
-  md5: f12b2081dea3e4392aedb64e7363d980
+  fn: pwkit-0.8.tar.gz
+  url: https://pypi.python.org/packages/source/p/pwkit/pwkit-0.8.tar.gz
+  md5: 69d44d87e96d9ef2431a1f46b6d8dee3
 
 build:
   number: 0
