@@ -42,7 +42,7 @@ from the directory containing this file, the recommended command to build a
 new version of the image is:
 
 ```
-sudo docker build -t conda-py2-builder:$(date +%Y%m%d) dockerfiles/conda-py2-builder
+sudo docker build -t conda-py2-builder:latest dockerfiles/conda-py2-builder
 ```
 
 The meat of the action is the
@@ -54,8 +54,8 @@ there. Their framework is very unclear to me, and it looks like it may be
 evolving very quickly, but you do something like this:
 
 ```
-sudo docker tag conda-py2-builder:$(date +%Y%m%d) docker.io/pkgw/conda-py2-builder:$(date +%Y%m%d)
-sudo docker tag -f conda-py2-builder:$(date +%Y%m%d) docker.io/pkgw/conda-py2-builder:latest
+sudo docker tag conda-py2-builder:latest docker.io/pkgw/conda-py2-builder:$(date +%Y%m%d)
+sudo docker tag -f conda-py2-builder:latest docker.io/pkgw/conda-py2-builder:latest
 sudo docker push docker.io/pkgw/conda-py2-builder:$(date +%Y%m%d)
 sudo docker push docker.io/pkgw/conda-py2-builder:latest
 ```
@@ -85,7 +85,7 @@ the build succeeds, a new Conda package should have landed inside the
 out of the directory containing this file, this can be done with:
 
 ```
-sudo docker run -v $(pwd):/work --rm pkgw/conda-py2-builder build <package>
+sudo docker run -v $(pwd):/work --rm conda-py2-builder build <package>
 ```
 
 Of course `<package>` should be replaced with the name of a recipe inside the
@@ -110,12 +110,12 @@ Once again we assume that you’re working from the directory containing this
 file. First, create a container:
 
 ```
-sudo docker create -itv $(pwd):/work --name py2builder pkgw/conda-py2-builder bash
+sudo docker create -itv $(pwd):/work --name py2builder conda-py2-builder bash
 ```
 
 I find the semantics of `docker create` a bit weird; basically we are saying
 that Docker should go and set everything up as if we were going to run `docker
-run -itv $(pwd):work pkgw/conda-py2-builder bash`, except:
+run -itv $(pwd):work conda-py2-builder bash`, except:
 
 1. The command is not actually run, and
 2. A persistent duplicate image is created, rather than a one-off.
