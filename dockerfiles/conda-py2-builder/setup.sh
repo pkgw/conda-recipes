@@ -4,8 +4,6 @@
 #
 # Set up an image that's ready to build Conda packages repeatably.
 
-ANACONDA_ORG_USER=pkgw
-
 set -e -x
 
 # Centos 5 yum silliness
@@ -84,9 +82,8 @@ pip
 setuptools
 ")
 
-# Other personalized Conda setup
+# Miscellaneous Conda config
 conda config --add envs_dirs /conda/envs
-conda config --add channels http://conda.anaconda.org/$ANACONDA_ORG_USER/channel/main
 mkdir /conda/conda-bld
 (cd /conda/conda-bld && ln -s /work/linux-64 linux-64)
 
