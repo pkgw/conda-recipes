@@ -22,8 +22,8 @@ Where the recommended version is of the form YYYYMMDD, e.g., 20160121"
 fi
 
 tarbase="texlive-selected-$1"
-#urlbase="http://mirrors.ctan.org/systems/texlive/tlnet/archive"
-urlbase="http://mirrors.concertpass.com/tex-archive/systems/texlive/tlnet/archive/"
+urlbase="http://mirrors.ctan.org/systems/texlive/tlnet/archive"
+#urlbase="http://mirrors.concertpass.com/tex-archive/systems/texlive/tlnet/archive/"
 
 work="$(mktemp -d)"
 origpwd="$(pwd)"
@@ -58,6 +58,7 @@ etex none
 etex-pkg none
 etoolbox none
 euenc none
+filehook none
 fontspec none
 geometry none
 graphics none
@@ -77,6 +78,7 @@ latex-fonts none
 latexconfig none
 lm none
 microtype none
+ms none
 natbib none
 oberdiek none
 pdftex updir
@@ -91,7 +93,9 @@ textcase none
 tipa none
 titlesec none
 tools none
+ucharcat none
 ukrhyph none
+unicode-math none
 url none
 xetex-def none
 xunicode none
