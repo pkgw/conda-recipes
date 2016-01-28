@@ -30,7 +30,7 @@ conda install -c pkgw pwkit
 
 As part of this work I’ve also developed a [prebuilt Docker image] that can be
 used to repeatably build binary `linux-64` packages. For OS X, I use [Vagrant]
-to make `osx-64` packages repeatably. My [notes for developers](dev.md) may be
+to make `osx-64` packages repeatably. My [notes for developers](DEV.md) may be
 valuable if you’re interesting in making Conda packages containing compiled
 code for Linux and/or Mac OS X machines.
 
@@ -61,7 +61,7 @@ repeatable, headless build environment for the OS X package builds.
 
 [Docker]: https://www.docker.com/
 
-* [Notes for developers](dev.md)
+* [Notes for developers](DEV.md)
 * [The order in which everything needs to be built](ordered.md)
 
 
