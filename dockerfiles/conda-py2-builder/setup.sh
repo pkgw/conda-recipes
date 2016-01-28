@@ -78,7 +78,6 @@ conda update --all
 
 # Conda dev packages
 conda install -y $(echo "
-anaconda-client
 conda-build
 jinja2
 pip
@@ -90,3 +89,7 @@ conda config --add envs_dirs /conda/envs
 conda config --add channels http://conda.anaconda.org/$ANACONDA_ORG_USER/channel/main
 mkdir /conda/conda-bld
 (cd /conda/conda-bld && ln -s /work/linux-64 linux-64)
+
+# Docker infrastructure cleanup
+chmod +x /entrypoint.sh
+rm /setup.sh # self-destruct!
