@@ -18,10 +18,51 @@
        aipsPath = extAipsPath;
      }
 -    // Set the path to home if not defined in any way.
-+    // conda-build hack: default is known
++    // conda-build hack: default is known; hack to fix zero-pad issues on OSX
      if (aipsPath.empty()) {
 -      setAipsPath(uhome);
-+      setAipsPath(String (CONDA_CASA_ROOT));
++      setAipsPath(String(String(CONDA_CASA_ROOT).chars()));
        aipsPath = extAipsPath;
      }
      Int n = aipsPath.freq(' ') + aipsPath.freq('	') + 4;
+--- casacore/casa/System/Aipsrc.cc.orig	2016-02-02 22:06:41.314849499 +0000
++++ casacore/casa/System/Aipsrc.cc	2016-02-02 22:08:02.513055617 +0000
+@@ -422,7 +422,7 @@
+     if (find(x, String("user.aipsdir"), String("/aips++"))) {
+       home = x;
+     } else {
+-      home = uhome + x;
++      home = String(String(CONDA_CASA_ROOT).chars());
+     }
+   }
+ }
+--- casacore/measures/Measures/MeasIERS.cc.orig	2016-02-03 00:54:50.374156532 +0000
++++ casacore/measures/Measures/MeasIERS.cc	2016-02-03 00:55:11.282213763 +0000
+@@ -436,7 +436,8 @@
+ 		  found = True;
+ 		  break;
+ 		}
+-		Path cdatapath(String(CASADATA));
++		// Conda NUL-padding workaround:
++		Path cdatapath(String(String(CASADATA).chars()));
+ 		ldir = cdatapath.absoluteName() + path[i];
+ 		searched.resize(searched.nelements() + 1, True);
+ 		searched[searched.nelements() - 1] = ldir;
+--- casacore/measures/Measures/MeasTable.cc.orig	2016-02-03 00:54:45.140142204 +0000
++++ casacore/measures/Measures/MeasTable.cc	2016-02-03 00:55:49.337317933 +0000
+@@ -2997,12 +2997,13 @@
+ 	isValid = Table::isReadable(absPathName);
+       }
+       if(!isValid){
+-	Path lPath(String(CASADATA) + "/" + antRespPath);
++	// Conda NUL-padding workaround:
++	Path lPath(String(String(CASADATA).chars()) + "/" + antRespPath);
+ 	absPathName = lPath.absoluteName();
+ 	isValid = Table::isReadable(absPathName);
+       }
+       if(!isValid){
+-	Path lPath(String(CASADATA)+ "/share/casacore/data/" + antRespPath);
++	Path lPath(String(String(CASADATA).chars()) + "/share/casacore/data/" + antRespPath);
+ 	absPathName = lPath.absoluteName();
+ 	isValid = Table::isReadable(absPathName);
+       }
