@@ -1,5 +1,5 @@
 #! /bin/bash
-# Copyright 2015 Peter Williams and collaborators.
+# Copyright 2015-2016 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 [ "$NJOBS" = '<UNDEFINED>' ] && NJOBS=1
@@ -43,6 +43,7 @@ else
     # Fun times.
 
     cmake_args+=(
+	-DBLAS_atlas_LIBRARY="$PREFIX/lib/libcblas.a;$PREFIX/lib/libatlas.a"
 	-DCMAKE_C_COMPILER=/usr/bin/gcc
 	-DCMAKE_CXX_COMPILER=/opt/rh/devtoolset-2/root/usr/bin/g++
 	-DCMAKE_Fortran_COMPILER=/usr/bin/gfortran
