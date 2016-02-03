@@ -11,14 +11,14 @@ source:
   sha256: ed9bcd7bdce899c3c27c16a8c5c3017c4f09e1d7fd097038351b72497e9d4669
 
 build:
-  number: 0
+  number: 1
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
 
 requirements:
   build:
-    - cairo
+    - cairo #[not osx]
     - freetype
     - gmp
     - icu
@@ -28,7 +28,7 @@ requirements:
     - pixman
     - zlib
   run:
-    - cairo
+    - cairo #[not osx]
     - freetype
     - gmp
     - icu

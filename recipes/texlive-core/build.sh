@@ -35,6 +35,8 @@ configure_args=(
     --enable-texlive
     --enable-dvipdfm-x
     # support libraries:
+    --x-includes=$PREFIX/include
+    --x-libraries=$PREFIX/lib
     --without-system-harfbuzz # we've packaged this, but can't use it without native graphite2
     --with-system-icu
     --with-system-mpfr
@@ -43,7 +45,6 @@ configure_args=(
     --with-system-gmp
     --with-gmp-includes=$PREFIX/include
     --with-gmp-libdir=$PREFIX/lib
-    --with-system-cairo
     --with-system-pixman
     --with-system-freetype2
     --without-system-graphite2
@@ -57,9 +58,12 @@ configure_args=(
 if [ -n "$OSX_ARCH" ] ; then
     export MACOSX_DEPLOYMENT_TARGET=10.6
     sysroot=/
-    # TODO: test!
-    configures_args+=(
+    configure_args+=(
 	--with-sysroot=$sysroot
+    )
+else
+    configure_args+=(
+        --with-system-cairo
     )
 fi
 
@@ -78,8 +82,8 @@ sed \
     <tmp.cnf >texk/kpathsea/texmf.cnf
 rm -f tmp.cnf
 
-mkdir build
-cd build
+mkdir conda
+cd conda
 ../configure "${configure_args[@]}"
 make -j$NJOBS
 make install
