@@ -95,8 +95,10 @@ titlesec none
 tools none
 ucharcat none
 ukrhyph none
+unicode-data none
 unicode-math none
 url none
+xetex updir
 xetex-def none
 xunicode none
 zapfding none
