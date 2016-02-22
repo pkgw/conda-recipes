@@ -98,6 +98,7 @@ ukrhyph none
 unicode-data none
 unicode-math none
 url none
+xcolor none
 xetex updir
 xetex-def none
 xunicode none
