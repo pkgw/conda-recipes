@@ -62,6 +62,7 @@ filehook none
 fontspec none
 geometry none
 graphics none
+helvetic none
 hyperref none
 hyph-utf8 none
 hyphen-ancientgreek none
@@ -76,6 +77,7 @@ l3packages none
 latex none
 latex-fonts none
 latexconfig none
+lineno none
 lm none
 microtype none
 ms none
@@ -95,6 +97,7 @@ titlesec none
 tools none
 ucharcat none
 ukrhyph none
+ulem none
 unicode-data none
 unicode-math none
 url none
