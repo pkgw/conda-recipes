@@ -7,12 +7,12 @@
 
 package:
   name: omegaplot
-  version: "0.6.0"
+  version: "0.7"
 
 source:
-  fn: omegaplot-0.6.0.tar.gz
-  url: https://pypi.python.org/packages/source/o/omegaplot/omegaplot-0.6.0.tar.gz
-  md5: 35c77a252ce90aaaed688cf833890b99
+  fn: omegaplot-0.7.tar.gz
+  url: https://pypi.python.org/packages/source/o/omegaplot/omegaplot-0.7.tar.gz
+  md5: c2b62b4d8838340121710a3dbe077c2c
 
 build:
   number: 0
@@ -22,6 +22,7 @@ build:
 
 requirements:
   build:
+    - nomkl
     - numpy
     - py2cairo # [py2k]
     - py3cairo # [py3k]
