@@ -16,7 +16,7 @@ bash        -- Run a bash shell
 build <pkg> -- Build the package described in /work/recipes/<pkg>
 update      -- Run 'conda update --all'
 
-E.g., use 'sudo docker run -it buildercontainer bash' to launch an interactive
+E.g., use 'docker run -it buildercontainer bash' to launch an interactive
 shell within a long-running container.
 "
     exit 1

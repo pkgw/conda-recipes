@@ -16,13 +16,13 @@ something like the following in the directory containing this file:
 
 ```
 $ TAG=$(date +%Y%m%d)
-$ sudo docker build --rm -t jupyter-py2-astrostack:$TAG .
+$ docker build --rm -t jupyter-py2-astrostack:$TAG .
 ```
 
 Then to start a trial instance:
 
 ```
-$ sudo docker run --rm -p 8888:80 jupyter-py2-astrostack:$TAG
+$ docker run --rm -p 8888:80 jupyter-py2-astrostack:$TAG
 ```
 
 You should then have access to a containerized Jupyter Notebook running on
@@ -33,15 +33,15 @@ can shut down the server by Control-C’ing it.
 To run a persistant instance that runs in the background, do:
 
 ```
-$ CONTAINERID=$(sudo docker create -p 8888:80 jupyter-py2-astrostack:$TAG)
-$ sudo docker start $CONTAINERID
+$ CONTAINERID=$(docker create -p 8888:80 jupyter-py2-astrostack:$TAG)
+$ docker start $CONTAINERID
 ```
 
 And then to shut it down and delete it:
 
 ```
-$ sudo docker stop $CONTAINERID
-$ sudo docker rm $CONTAINERID
+$ docker stop $CONTAINERID
+$ docker rm $CONTAINERID
 ```
 
 
@@ -63,15 +63,15 @@ infrastructure **very** quickly and instructions like these go out of date
 correspondingly quickly.
 
 You need a Google Cloud project that’s got the Compute Engine enabled, which
-means you need to enable billing. You also need to make sure that `root` is
-logged in to you GCloud setup since `gcloud` needs to sub-invoke `docker`
-which needs to be root. Then there are other bits to set up that aren’t
+means you need to enable billing. (If you run `docker` as root, you also need
+to make sure that `root` is logged in to you GCloud setup since `gcloud` needs
+to sub-invoke `docker`) Then there are other bits to set up that aren’t
 documented well. In my local environment:
 
 ```
 $ export PROJECT_ID=gcloud-docker-testbed
-$ sudo /a/google-cloud-sdk/bin/gcloud auth login
-$ sudo /a/google-cloud-sdk/bin/gcloud config set project $PROJECT_ID
+$ /a/google-cloud-sdk/bin/gcloud auth login
+$ /a/google-cloud-sdk/bin/gcloud config set project $PROJECT_ID
 $ gcloud config set project $PROJECT_ID
 $ gcloud config set compute/zone us-central1-a
 ```
@@ -84,8 +84,8 @@ Repository.
 
 ```
 $ export IMAGENAME=jupyter-py2-astrostack
-$ sudo docker build -t gcr.io/$PROJECT_ID/$IMAGENAME .
-$ sudo /a/google-cloud-sdk/bin/gcloud docker push gcr.io/$PROJECT_ID/$IMAGENAME
+$ docker build -t gcr.io/$PROJECT_ID/$IMAGENAME .
+$ /a/google-cloud-sdk/bin/gcloud docker push gcr.io/$PROJECT_ID/$IMAGENAME
 ```
 
 Then deployment onto the Compute Engine:

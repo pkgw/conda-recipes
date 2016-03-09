@@ -42,7 +42,7 @@ from the directory containing this file, the recommended command to build a
 new version of the image is:
 
 ```
-sudo docker build -t conda-py2-builder:latest dockerfiles/conda-py2-builder
+docker build -t conda-py2-builder:latest dockerfiles/conda-py2-builder
 ```
 
 The meat of the action is the
@@ -54,10 +54,10 @@ there. Their framework is very unclear to me, and it looks like it may be
 evolving very quickly, but you do something like this:
 
 ```
-sudo docker tag conda-py2-builder:latest docker.io/pkgw/conda-py2-builder:$(date +%Y%m%d)
-sudo docker tag -f conda-py2-builder:latest docker.io/pkgw/conda-py2-builder:latest
-sudo docker push docker.io/pkgw/conda-py2-builder:$(date +%Y%m%d)
-sudo docker push docker.io/pkgw/conda-py2-builder:latest
+docker tag conda-py2-builder:latest docker.io/pkgw/conda-py2-builder:$(date +%Y%m%d)
+docker tag -f conda-py2-builder:latest docker.io/pkgw/conda-py2-builder:latest
+docker push docker.io/pkgw/conda-py2-builder:$(date +%Y%m%d)
+docker push docker.io/pkgw/conda-py2-builder:latest
 ```
 
 It would then appear [here](https://hub.docker.com/r/pkgw/conda-py2-builder/).
@@ -85,7 +85,7 @@ the build succeeds, a new Conda package should have landed inside the
 out of the directory containing this file, this can be done with:
 
 ```
-sudo docker run -v $(pwd):/work --rm conda-py2-builder build <package>
+docker run -v $(pwd):/work --rm conda-py2-builder build <package>
 ```
 
 Of course `<package>` should be replaced with the name of a recipe inside the
@@ -110,7 +110,7 @@ Once again we assume that you’re working from the directory containing this
 file. First, create a container:
 
 ```
-sudo docker create -itv $(pwd):/work --name py2builder conda-py2-builder bash
+docker create -itv $(pwd):/work --name py2builder conda-py2-builder bash
 ```
 
 I find the semantics of `docker create` a bit weird; basically we are saying
@@ -123,7 +123,7 @@ run -itv $(pwd):work conda-py2-builder bash`, except:
 To do anything in the container, we then need to start it up:
 
 ```
-sudo docker start py2builder
+docker start py2builder
 ```
 
 This launches the container, which in this case has `bash` for PID 1. The
@@ -134,7 +134,7 @@ this, so exiting the shell will cause the container to shut down. Instead, to
 get an interactive shell you should use `docker exec`:
 
 ```
-sudo docker exec -it py2builder /bin/bash
+docker exec -it py2builder /bin/bash
 ```
 
 The container will keep on running along merrily after you exit this shell.
@@ -142,7 +142,7 @@ However, if you all you’re doing is trying to build packages, there’s no nee
 for an interactive shell. You can just run commands like:
 
 ```
-sudo docker exec py2builder /entrypoint.sh build ninja
+docker exec py2builder /entrypoint.sh build ninja
 ```
 
 This will run the entrypoint script as in the one-off case, but now the
@@ -153,7 +153,7 @@ script.
 If you want to explicitly shut down a container, unsurprisingly the command is:
 
 ```
-sudo docker stop py2builder
+docker stop py2builder
 ```
 
 

@@ -1,7 +1,7 @@
 # Copyright 2015 Peter Williams
 # Licensed under the MIT License.
 #
-# Build with something like "sudo docker build --rm -t jupyter-py2-astrostack:$(date +%Y%m%d) ."
+# Build with something like "docker build --rm -t jupyter-py2-astrostack:$(date +%Y%m%d) ."
 
 FROM centos:7
 MAINTAINER Peter Williams <peter@newton.cx>
