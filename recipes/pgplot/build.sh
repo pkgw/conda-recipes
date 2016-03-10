@@ -13,6 +13,9 @@ if [ -n "$OSX_ARCH" ] ; then
 else
     subtype=gfortran_gcc
     shlib=so
+
+    # Get newer compilers that use libgfortran.so.3:
+    export PATH=/opt/rh/devtoolset-2/root/usr/bin:$PATH
 fi
 
 ./makemake . linux $subtype

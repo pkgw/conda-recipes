@@ -20,7 +20,7 @@ source:
     - osx.patch #[osx]
 
 build:
-  number: 5
+  number: 6
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
@@ -32,6 +32,7 @@ requirements:
     - tk
     - zlib
   run:
+    - libgfortran 3.0
     - libpng
     - modern-xorg-stack
     - tk
