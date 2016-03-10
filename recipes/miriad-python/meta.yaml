@@ -1,0 +1,33 @@
+# Copyright 2016 Peter Williams and collaborators.
+# This file is licensed under a 3-clause BSD license; see LICENSE.txt.
+
+package:
+  name: miriad-python
+  version: 1.2.4
+
+source:
+  fn: miriad-python-1.2.4.tar.gz
+  url: https://www.cfa.harvard.edu/~pwilliam/miriad-python/miriad-python-1.2.4.tar.gz
+  sha256: 58ac813053e231f9f3c5cd193edaf4a6c27d98dc9e08b83754b48cf79fade91a
+
+build:
+  number: 1
+  detect_binary_files_with_prefix: true
+  script_env:
+    - NJOBS
+
+requirements:
+  build:
+    - miriad
+    - nomkl # speeds build by avoiding big download
+    - numpy
+    - python
+  run:
+    - miriad
+    - numpy
+    - python
+
+about:
+  home: https://www.cfa.harvard.edu/~pwilliam/miriad-python/
+  license: GPL-2+
+  summary: Python bindings for the MIRIAD interferometry package
