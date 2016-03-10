@@ -35,6 +35,9 @@ if [ -n "$OSX_ARCH" ] ; then
 
     cp -a code/RPFITS.h code/rpfits.inc $PREFIX/include
 else
+    # Get newer compilers that use libgfortran.so.3:
+    export PATH=/opt/rh/devtoolset-2/root/usr/bin:$PATH
+
     cd linux64
     make install \
 	 PREFIX=$PREFIX \
