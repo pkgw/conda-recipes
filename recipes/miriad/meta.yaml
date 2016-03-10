@@ -1,0 +1,36 @@
+# Copyright 2016 Peter Williams and collaborators.
+# This file is licensed under a 3-clause BSD license; see LICENSE.txt.
+
+package:
+  name: miriad
+  version: 4.3.8.20160310
+
+source:
+  fn: miriad-noborrow-4.3.8.20160310.tar.gz
+  url: http://newton.cx/~peter/files/miriad-noborrow-4.3.8.20160310.tar.gz
+  sha1: 44b3d7b7d1a263db4f84f9b6523a0f1cad7d6dc3
+
+build:
+  number: 0
+  detect_binary_files_with_prefix: true
+  script_env:
+    - NJOBS
+
+requirements:
+  build:
+    - modern-xorg-stack
+    - pgplot
+    - readline
+    - rpfits
+    - wcslib 5.12
+  run:
+    - modern-xorg-stack
+    - pgplot
+    - readline
+    - rpfits
+    - wcslib 5.12
+
+about:
+  home: http://carma.astro.umd.edu/miriad/
+  license: GPL-2+
+  summary: The Multichannel Imaging, Reconstruction, Analysis and Display package.
