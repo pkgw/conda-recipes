@@ -2,7 +2,7 @@
 # Copyright 2014-2016 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
-[ "$NJOBS" = '<UNDEFINED>' ] && NJOBS=1
+[ "$NJOBS" = '<UNDEFINED>' -o -z "$NJOBS" ] && NJOBS=1
 set -e
 
 if [ -n "$OSX_ARCH" ] ; then

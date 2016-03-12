@@ -5,7 +5,7 @@
 # Build a bunch of X.org packages at once. The list of packages below should
 # be kept synchronized with make-tarball.sh.
 
-[ "$NJOBS" = '<UNDEFINED>' ] && NJOBS=1
+[ "$NJOBS" = '<UNDEFINED>' -o -z "$NJOBS" ] && NJOBS=1
 set -e -x
 
 export PKG_CONFIG_LIBDIR=$PREFIX/lib/pkgconfig:$PREFIX/share/pkgconfig

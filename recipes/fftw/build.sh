@@ -3,7 +3,7 @@
 # "inspired by build script for Arch Linux fftw pacakge:
 # https://projects.archlinux.org/svntogit/packages.git/tree/trunk/PKGBUILD?h=packages/fftw"
 
-[ "$NJOBS" = '<UNDEFINED>' ] && NJOBS=1
+[ "$NJOBS" = '<UNDEFINED>' -o -z "$NJOBS" ] && NJOBS=1
 set -e
 
 configure="./configure --prefix=$PREFIX --enable-shared --enable-threads --disable-fortran"

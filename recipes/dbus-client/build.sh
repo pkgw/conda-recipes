@@ -5,7 +5,7 @@
 # We disable systemd since otherwise the installation tries to write to
 # /usr/lib/... even though we've specified --prefix.
 
-[ "$NJOBS" = '<UNDEFINED>' ] && NJOBS=1
+[ "$NJOBS" = '<UNDEFINED>' -o -z "$NJOBS" ] && NJOBS=1
 set -e
 
 if [ -n "$OSX_ARCH" ] ; then

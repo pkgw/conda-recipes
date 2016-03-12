@@ -26,7 +26,7 @@
 # that seems potentially confusing for anything else that checks out
 # QT_NO_DBUS.
 
-[ "$NJOBS" = '<UNDEFINED>' ] && NJOBS=1
+[ "$NJOBS" = '<UNDEFINED>' -o -z "$NJOBS" ] && NJOBS=1
 set -e
 
 if [ `uname` != Darwin ]; then
