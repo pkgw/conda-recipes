@@ -1,4 +1,4 @@
-# Copyright 2014-2015 Peter Williams and collaborators.
+# Copyright 2014-2016 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 # Unfortunately, we are limited in which Gtk+ versions we can support because
@@ -15,9 +15,10 @@ source:
   sha256: 3ac87659112ced9e5ee5bd55d055faa881aafd040f26ca40b0d8ba0fa6509c83
   patches:
     - m_pi.patch
+    - no-module-warning.patch
 
 build:
-  number: 0
+  number: 1
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
@@ -31,7 +32,7 @@ requirements:
     - glib
     - gobject-introspection
     - modern-xorg-stack #[not osx]
-    - pango
+    - pango 1.38.1 # make sure to get my pango with GI info, not stock Conda's
     - python
   run:
     - at-spi2-atk
@@ -40,7 +41,7 @@ requirements:
     - glib
     - gobject-introspection
     - modern-xorg-stack #[not osx]
-    - pango
+    - pango 1.38.1 # make sure to get my pango with GI info, not stock Conda's
 
 about:
   home: http://www.gtk.org/
