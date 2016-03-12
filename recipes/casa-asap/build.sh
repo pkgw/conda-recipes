@@ -47,16 +47,18 @@ if [ -n "$OSX_ARCH" ] ; then
 	-DPYTHON_INCLUDE_DIRS="$PREFIX/include/python2.7;$PREFIX/lib/python2.7/site-packages/numpy/core/include"
     )
 else
+    toolroot=/opt/rh/devtoolset-2/root
+
     cmake_args+=(
 	-DALMA_LIB_PATH=$PREFIX/lib/libalma.so
-	-DBLAS_LIBRARIES=$PREFIX/lib/libatlas.a
-	-DCMAKE_C_COMPILER=/usr/bin/gcc
-	-DCMAKE_CXX_COMPILER=/opt/rh/devtoolset-2/root/usr/bin/g++
+	-DBLAS_LIBRARIES=$PREFIX/lib/libopenblas.so
+	-DCMAKE_C_COMPILER=$toolroot/usr/bin/gcc
+	-DCMAKE_CXX_COMPILER=$toolroot/usr/bin/g++
 	-DCMAKE_EXE_LINKER_FLAGS=-Wl,-rpath-link,$PREFIX/lib
-	-DCMAKE_Fortran_COMPILER=/usr/bin/gfortran
+	-DCMAKE_Fortran_COMPILER=$toolroot/usr/bin/gfortran
 	-DCMAKE_MODULE_LINKER_FLAGS=-Wl,-rpath-link,$PREFIX/lib
 	-DCMAKE_SHARED_LINKER_FLAGS=-Wl,-rpath-link,$PREFIX/lib
-	-DLAPACK_LIBRARIES=$PREFIX/lib/libatlas.a
+	-DLAPACK_LIBRARIES=$PREFIX/lib/libopenblas.so
 	-DPGPLOT_LIBRARIES="$PREFIX/lib/libpgplot.so;$PREFIX/lib/libcpgplot.a"
     )
 fi

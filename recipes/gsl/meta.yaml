@@ -18,7 +18,6 @@ build:
 
 requirements:
   build:
-    # atlas, not on osx?
 
 about:
   home: http://www.gnu.org/software/gsl/gsl.html

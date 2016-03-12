@@ -23,6 +23,8 @@ cmake_args=(
     -DCONDA_CASA_ROOT=$PREFIX/lib/casa
 )
 
+#cmake_args+=(--debug-trycompile --debug-output)
+
 if [ -n "$OSX_ARCH" ] ; then
     # Need to require 10.7 because of the C++11 features.
     export MACOSX_DEPLOYMENT_TARGET=10.7
@@ -38,15 +40,15 @@ else
     # Downstream elements of the C++ code require C++11 to compile, and for
     # binary compatibility we need to compile casacore with C++11 as well. We
     # can do this even on a CentOS 5 machine thanks to the Red Hat
-    # "devtoolset" package. However, we still need to compile with stock
-    # gfortran, to maintain binary compatibility with the Conda FORTRAN stack.
-    # Fun times.
+    # "devtoolset" package. Newer condas also provide the libgfortran.so.3
+    # required by the matching gfortran compiler.
+    toolroot=/opt/rh/devtoolset-2/root
 
     cmake_args+=(
-	-DBLAS_atlas_LIBRARY="$PREFIX/lib/libcblas.a;$PREFIX/lib/libatlas.a"
-	-DCMAKE_C_COMPILER=/usr/bin/gcc
-	-DCMAKE_CXX_COMPILER=/opt/rh/devtoolset-2/root/usr/bin/g++
-	-DCMAKE_Fortran_COMPILER=/usr/bin/gfortran
+	-DBLAS_LIBRARIES="$PREFIX/lib/libopenblas.so"
+	-DCMAKE_C_COMPILER=$toolroot/usr/bin/gcc
+	-DCMAKE_CXX_COMPILER=$toolroot/usr/bin/g++
+	-DCMAKE_Fortran_COMPILER=$toolroot/usr/bin/gfortran
     )
 fi
 

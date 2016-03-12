@@ -46,14 +46,17 @@ if [ -n "$OSX_ARCH" ] ; then
 	-DREADLINE_ROOT_DIR=$PREFIX
     )
 else
+    toolroot=/opt/rh/devtoolset-2/root
+
     cmake_args+=(
-	-DBLAS_LIBRARIES="$PREFIX/lib/libcblas.a;$PREFIX/lib/libatlas.a"
-	-DCMAKE_C_COMPILER=/usr/bin/gcc
-	-DCMAKE_CXX_COMPILER=/opt/rh/devtoolset-2/root/usr/bin/g++
+	-DBLAS_LIBRARIES="$PREFIX/lib/libopenblas.so"
+	-DCMAKE_C_COMPILER=$toolroot/usr/bin/gcc
+	-DCMAKE_CXX_COMPILER=$toolroot/usr/bin/g++
 	-DCMAKE_EXE_LINKER_FLAGS=-Wl,-rpath-link,$PREFIX/lib
-	-DCMAKE_Fortran_COMPILER=/usr/bin/gfortran
+	-DCMAKE_Fortran_COMPILER=$toolroot/usr/bin/gfortran
 	-DCMAKE_MODULE_LINKER_FLAGS=-Wl,-rpath-link,$PREFIX/lib
 	-DCMAKE_SHARED_LINKER_FLAGS=-Wl,-rpath-link,$PREFIX/lib
+	-DLAPACK_LIBRARIES="$PREFIX/lib/libopenblas.so"
 	-DPGPLOT_LIBRARIES="$PREFIX/lib/libpgplot.so;$PREFIX/lib/libcpgplot.a"
     )
 fi

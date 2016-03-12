@@ -24,14 +24,14 @@ requirements:
   build:
     - casa-tools
     - cmake
-    - libgfortran 3.0
+    - libgfortran 3.0 #[linux]
     - nomkl # speed by avoiding big download
     - python
     - rpfits
     - swig
   run:
     - casa-tools
-    - libgfortran 3.0
+    - libgfortran 3.0 #[linux]
     - python
 
 about:

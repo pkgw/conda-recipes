@@ -25,16 +25,15 @@ build:
 
 requirements:
   build:
-    - atlas #[not osx]
     - boost 1.57.0 # fixed version is hack for icu issue seen in casa-tools
     - cfitsio
     - cmake
     - fftw
     - hdf5 >=1.8.15.1
-    - libgfortran 3.0
+    - libgfortran 3.0 #[linux]
     - nomkl # speeds up by avoiding big download
     - numpy
-    - openblas
+    - openblas #[not osx]
     - python >=2.7,<3
     - readline
     - wcslib
@@ -43,9 +42,9 @@ requirements:
     - cfitsio
     - fftw
     - hdf5 >=1.8.15.1
-    - libgfortran 3.0
+    - libgfortran 3.0 #[linux]
     - numpy
-    - openblas
+    - openblas #[not osx]
     - python >=2.7,<3
     - readline
     - wcslib

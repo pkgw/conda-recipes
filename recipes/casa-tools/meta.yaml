@@ -26,7 +26,6 @@ build:
 
 requirements:
   build:
-    - atlas #[not osx]
     - boost 1.57.0 # version fix is temp hack for unavailable ICU 56
     - casa-nrao-casacore
     - cmake
@@ -34,11 +33,12 @@ requirements:
     - dbus-client
     - fftw
     - gsl
-    - libgfortran 3.0
+    - libgfortran 3.0 #[linux]
     - libsakura
     - libxml2
     - libxslt
     - nomkl # speeds by avoiding big download
+    - openblas #[not osx]
     - pgplot
     - readline
     - rpfits
@@ -53,10 +53,11 @@ requirements:
     - dbus-client
     - fftw
     - gsl
-    - libgfortran 3.0
+    - libgfortran 3.0 #[linux]
     - libsakura
     - libxml2
     - libxslt
+    - openblas #[not osx]
     - pgplot
     - readline
     - qt

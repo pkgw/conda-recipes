@@ -24,16 +24,16 @@ build:
 
 requirements:
   build:
-    - atlas #[not osx]
     - boost 1.57.0 # version fix is temp hack for unavailable ICU 56
     - casa-nrao-casacore
     - casa-tools
     - cfitsio
     - cmake
-    - libgfortran 3.0
+    - libgfortran 3.0 #[linux]
     - libxml2
     - nomkl
     - numpy
+    - openblas #[not osx]
     - pgplot
     - python
     - rpfits
@@ -43,9 +43,10 @@ requirements:
     - casa-nrao-casacore
     - casa-tools
     - cfitsio
-    - libgfortran 3.0
+    - libgfortran 3.0 #[linux]
     - libxml2
     - numpy
+    - openblas #[not osx]
     - pgplot
     - python
     - wcslib
