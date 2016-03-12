@@ -21,7 +21,7 @@
 +RANLIB="ranlib"
 +SHARED_LIB="libpgplot.so"
 +SHARED_LD="gcc -shared -o $SHARED_LIB"
-+SHARED_LIB_LIBS="-L$PREFIX/lib -lpng"
++SHARED_LIB_LIBS="-L$PREFIX/lib -lpng -lgfortran"
 +MCOMPL=""
 +MFLAGC=""
 +SYSDIR="$SYSDIR"
