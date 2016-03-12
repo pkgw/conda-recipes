@@ -15,13 +15,14 @@ source:
   md5: a2f3f07ff89a3916a7eeaf3c9462a529
 
 build:
-  number: 0
+  number: 1
   detect_binary_files_with_prefix: true
+  script_env:
+    - NJOBS
 
 requirements:
   build:
-    - atlas
-    - boost
+    - boost 1.57.0 # version fix is temp hack for unavailable ICU 56
     - casa-nrao-casacore
     - cfitsio
     - cmake
@@ -29,13 +30,15 @@ requirements:
     - gsl
     - hdf5
     - libxml2
+    - openblas
   run:
-    - boost
+    - boost 1.57.0 # version fix is temp hack for unavailable ICU 56
     - casa-nrao-casacore
     - fftw
     - gsl
     - hdf5
     - libxml2
+    - openblas
 
 about:
   home: http://aoflagger.sourceforge.net/
