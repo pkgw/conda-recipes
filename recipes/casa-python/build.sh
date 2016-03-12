@@ -1,8 +1,11 @@
 #! /bin/bash
-# Copyright 2015 Peter Williams and collaborators.
+# Copyright 2015-2016 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
-[ "$NJOBS" = '<UNDEFINED>' ] && NJOBS=1
+# Java must be installed to build this package! Lame but not too hard to deal
+# with.
+
+[ "$NJOBS" = '<UNDEFINED>' -o -z "$NJOBS" ] && NJOBS=1
 set -e
 
 cmake_args=(
@@ -10,11 +13,12 @@ cmake_args=(
     -DCMAKE_COLOR_MAKEFILE=OFF
     -DCMAKE_INSTALL_PREFIX=$PREFIX
     -DCMAKE_STATIC_LINKER_FLAGS=-L$PREFIX/lib
+    -DCXX11=ON
     -DPGPLOT_INCLUDE_DIRS=$PREFIX/include/pgplot
     -DQWT_INCLUDE_DIRS=$PREFIX/include/qwt5
 )
 
-#cmake_args+=(--debug-trycompile --debug-output)
+#cmake_args+=(--debug-trycompile --debug-output --trace)
 
 if [ -n "$OSX_ARCH" ] ; then
     # Need to require 10.7 because of the C++11 features.
@@ -42,12 +46,11 @@ if [ -n "$OSX_ARCH" ] ; then
 	-DCMAKE_Fortran_COMPILER=/usr/local/bin/gfortran-4.2
 	-DCMAKE_OSX_DEPLOYMENT_TARGET=$MACOSX_DEPLOYMENT_TARGET
 	-DCMAKE_OSX_SYSROOT=/
-	-DCXX11=ON
 	-DEXTRA_CXX_FLAGS="-arch $OSX_ARCH -stdlib=libc++ -std=c++11"
 	-DPGPLOT_LIBRARIES="$PREFIX/lib/libpgplot.dylib;$PREFIX/lib/libcpgplot.a"
     )
 else
-    cmake_args=(
+    cmake_args+=(
 	-DBLAS_LIBRARIES="$PREFIX/lib/libcblas.a;$PREFIX/lib/libatlas.a"
 	-DCMAKE_C_COMPILER=/usr/bin/gcc
 	-DCMAKE_CXX_COMPILER=/opt/rh/devtoolset-2/root/usr/bin/g++

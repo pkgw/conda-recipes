@@ -6,11 +6,11 @@
 
 package:
   name: casa-tools
-  version: "4.5"
+  version: "4.5.2"
 
 source:
   svn_url: https://svn.cv.nrao.edu/svn/casa/branches/release-4_5/
-  svn_rev: 35147
+  svn_rev: 36115
   svn_ignore_externals: yes
   patches:
     - so-versioning.patch
@@ -19,7 +19,7 @@ source:
     - mydbus.patch #[osx]
 
 build:
-  number: 1
+  number: 0
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
@@ -27,16 +27,18 @@ build:
 requirements:
   build:
     - atlas #[not osx]
-    - boost
+    - boost 1.57.0 # version fix is temp hack for unavailable ICU 56
     - casa-nrao-casacore
     - cmake
     - dbus-cxx
     - dbus-client
     - fftw
     - gsl
+    - libgfortran 3.0
     - libsakura
     - libxml2
     - libxslt
+    - nomkl # speeds by avoiding big download
     - pgplot
     - readline
     - rpfits
@@ -45,12 +47,13 @@ requirements:
     - qwt5
     - xerces-c28
   run:
-    - boost
+    - boost 1.57.0 # version fix is temp hack for unavailable ICU 56
     - casa-nrao-casacore
     - dbus-cxx
     - dbus-client
     - fftw
     - gsl
+    - libgfortran 3.0
     - libsakura
     - libxml2
     - libxslt

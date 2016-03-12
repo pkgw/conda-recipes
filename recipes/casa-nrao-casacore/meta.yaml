@@ -5,41 +5,45 @@
 
 package:
   name: casa-nrao-casacore
-  version: "4.5"
+  version: "4.5.2"
 
 source:
   # FIXME: this server currently (2015/12) has a bad SSL certificate, breaking
   # the checkout! It can be worked around if you manually approve the cert.
   svn_url: https://svn.cv.nrao.edu/svn/casa/branches/release-4_5/
-  svn_rev: 35147
+  svn_rev: 36115
   svn_ignore_externals: yes
   patches:
     - so-versioning.patch
     - default-root.patch
 
 build:
-  number: 2
+  number: 0
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
 
 requirements:
   build:
-    - boost
+    - atlas #[not osx]
+    - boost 1.57.0 # fixed version is hack for icu issue seen in casa-tools
     - cfitsio
     - cmake
     - fftw
     - hdf5 >=1.8.15.1
+    - libgfortran 3.0
+    - nomkl # speeds up by avoiding big download
     - numpy
     - openblas
     - python >=2.7,<3
     - readline
     - wcslib
   run:
-    - boost
+    - boost 1.57.0 # fixed version is hack for icu issue seen in casa-tools
     - cfitsio
     - fftw
     - hdf5 >=1.8.15.1
+    - libgfortran 3.0
     - numpy
     - openblas
     - python >=2.7,<3

@@ -1,8 +1,8 @@
 #! /bin/bash
-# Copyright 2015 Peter Williams and collaborators.
+# Copyright 2015-2016 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
-[ "$NJOBS" = '<UNDEFINED>' ] && NJOBS=1
+[ "$NJOBS" = '<UNDEFINED>' -o -z "$NJOBS" ] && NJOBS=1
 set -e
 
 cmake_args=(
@@ -12,7 +12,10 @@ cmake_args=(
     -DCMAKE_COLOR_MAKEFILE=OFF
     -DCMAKE_INSTALL_PREFIX=$PREFIX
     -DCMAKE_STATIC_LINKER_FLAGS=-L$PREFIX/lib
+    -DCXX11=ON
     -DPGPLOT_INCLUDE_DIRS=$PREFIX/include/pgplot
+    # Make sure to get Conda versions of libraries:
+    -DLIBXML2_ROOT_DIR=$PREFIX
 )
 
 if [ -n "$OSX_ARCH" ] ; then
@@ -38,13 +41,10 @@ if [ -n "$OSX_ARCH" ] ; then
 	-DCMAKE_Fortran_COMPILER=/usr/local/bin/gfortran-4.2
 	-DCMAKE_OSX_DEPLOYMENT_TARGET=$MACOSX_DEPLOYMENT_TARGET
 	-DCMAKE_OSX_SYSROOT=/
-	-DCXX11=ON
 	-DCXX_FLAGS_TAIL_END="-stdlib=libc++"
 	-DFORTRAN_LIBRARIES="-lm" # pacify the Fortran checks
 	-DPGPLOT_LIBRARIES="$PREFIX/lib/libpgplot.dylib;$PREFIX/lib/libcpgplot.a"
 	-DPYTHON_INCLUDE_DIRS="$PREFIX/include/python2.7;$PREFIX/lib/python2.7/site-packages/numpy/core/include"
-	# Make sure to get Conda versions of libraries:
-	-DLIBXML2_ROOT_DIR=$PREFIX
     )
 else
     cmake_args+=(

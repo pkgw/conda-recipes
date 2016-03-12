@@ -6,11 +6,11 @@
 
 package:
   name: casa-asap
-  version: "4.5"
+  version: "4.5.2"
 
 source:
   svn_url: https://svn.cv.nrao.edu/svn/casa/branches/release-4_5/
-  svn_rev: 35147
+  svn_rev: 36115
   svn_ignore_externals: yes
   patches:
     - cmake-fixes.patch
@@ -25,22 +25,25 @@ build:
 requirements:
   build:
     - atlas #[not osx]
-    - boost
+    - boost 1.57.0 # version fix is temp hack for unavailable ICU 56
     - casa-nrao-casacore
     - casa-tools
     - cfitsio
     - cmake
+    - libgfortran 3.0
     - libxml2
+    - nomkl
     - numpy
     - pgplot
     - python
     - rpfits
     - wcslib
   run:
-    - boost
+    - boost 1.57.0 # version fix is temp hack for unavailable ICU 56
     - casa-nrao-casacore
     - casa-tools
     - cfitsio
+    - libgfortran 3.0
     - libxml2
     - numpy
     - pgplot
