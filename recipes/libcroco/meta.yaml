@@ -1,0 +1,30 @@
+# Copyright 2016 Peter Williams and collaborators.
+# This file is licensed under a 3-clause BSD license; see LICENSE.txt.
+
+package:
+  name: libcroco
+  version: 0.6.11
+
+source:
+  fn: libcroco-0.6.11.tar.xz
+  url: http://ftp.gnome.org/pub/gnome/sources/libcroco/0.6/libcroco-0.6.11.tar.xz
+  sha256: 132b528a948586b0dfa05d7e9e059901bca5a3be675b6071a90a90b81ae5a056
+
+build:
+  number: 0
+  detect_binary_files_with_prefix: true
+  script_env:
+    - NJOBS
+
+requirements:
+  build:
+    - glib
+    - libxml2
+  run:
+    - glib
+    - libxml2
+
+about:
+  home: http://www.linuxfromscratch.org/blfs/view/svn/general/libcroco.html
+  license: LGPL
+  summary: a standalone CSS2 parsing and manipulation library

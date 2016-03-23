@@ -14,6 +14,7 @@ The GTK+ 3 Stack
 
 1. `cairo-gobject`
 1. `gobject-introspection`
+1. `libcroco`
 1. `atk`
 1. `at-spi2-core`
 1. `at-spi2-atk`
