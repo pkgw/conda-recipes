@@ -1,0 +1,40 @@
+# Copyright 2016 Peter Williams and collaborators.
+# This file is licensed under a 3-clause BSD license; see LICENSE.txt.
+
+# gtk3 is an optional dependency but only is needed to provide a viewer
+# program, so it shouldn't be included.
+
+package:
+  name: librsvg
+  version: 2.40.13
+
+source:
+  fn: librsvg-2.40.13.tar.xz
+  url: http://ftp.gnome.org/pub/gnome/sources/librsvg/2.40/librsvg-2.40.13.tar.xz
+  sha256: 4d6ea93ec05f5dabe7262d711d246a0a99b2311e215360dd3dcabd6afe3b9804
+
+build:
+  number: 0
+  detect_binary_files_with_prefix: true
+  script_env:
+    - NJOBS
+
+requirements:
+  build:
+    - cairo
+    - gdk-pixbuf
+    - glib
+    - libcroco
+    - pango 1.38.1 # make sure to get my pango with GI info, not stock Conda's
+    - python
+  run:
+    - cairo
+    - gdk-pixbuf
+    - glib
+    - libcroco
+    - pango 1.38.1 # make sure to get my pango with GI info, not stock Conda's
+
+about:
+  home: https://wiki.gnome.org/Projects/LibRsvg
+  license: LGPL
+  summary: a library to render SVG files using Cairo

@@ -21,6 +21,7 @@ The GTK+ 3 Stack
 1. `gdk-pixbuf`
 1. `harfbuzz`
 1. `pango`
+1. `librsvg`
 1. `gtk3`
 1. `py3cairo` — Python 3 only
 1. `pygobject3`
