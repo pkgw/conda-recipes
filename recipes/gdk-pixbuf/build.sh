@@ -13,7 +13,13 @@ $PREFIX/bin/.modern-xorg-stack-post-link.sh
 export PKG_CONFIG_LIBDIR="$PREFIX/lib/pkgconfig:$PREFIX/share/pkgconfig"
 
 # need this to link everything:
-export CPPFLAGS=-I$PREFIX/include LDFLAGS=-L$PREFIX/lib
+export CPPFLAGS=-I$PREFIX/include
+export LDFLAGS=-L$PREFIX/lib
+
+configure_args=(
+    --prefix=$PREFIX
+    --with-x11
+)
 
 if [ -n "$OSX_ARCH" ] ; then
     # rpath setting is often needed to run compiled autoconf test programs:
@@ -35,9 +41,9 @@ if [ -n "$OSX_ARCH" ] ; then
     done
 else
     # also for X11:
-    export LDFLAGS="-Wl,-rpath-link,$PREFIX/lib"
+    export LDFLAGS="$LDFLAGS -Wl,-rpath-link,$PREFIX/lib"
 fi
 
-./configure --prefix=$PREFIX --with-x11 || { cat config.log ; exit 1 ; }
+./configure "${configure_args[@]}" || { cat config.log ; exit 1 ; }
 make -j$NJOBS
 make install
