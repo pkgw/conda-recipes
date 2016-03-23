@@ -25,4 +25,5 @@ make -j$NJOBS
 make install
 
 cd $PREFIX
+find . '(' -name '*.la' -o -name '*.a' ')' -delete
 rm -rf share/bash-completion share/gdb share/gtk-doc share/systemtap
