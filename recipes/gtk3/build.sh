@@ -41,6 +41,7 @@ make -j$NJOBS
 make install
 
 cd $PREFIX
+find . '(' -name '*.la' -o -name '*.a' ')' -delete
 rm -rf $(echo "
 share/applications
 share/gtk-doc
