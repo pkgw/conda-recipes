@@ -1,5 +1,5 @@
 #! /bin/bash
-# Copyright 2014-2015 Peter Williams and collaborators.
+# Copyright 2014-2016 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 [ "$NJOBS" = '<UNDEFINED>' -o -z "$NJOBS" ] && NJOBS=1
@@ -30,6 +30,11 @@ if [ -n "$OSX_ARCH" ] ; then
 	iname=$(otool -D $lpath |sed -e '2!d')
 	install_name_tool -id @rpath/$iname $lpath
     done
+else
+    # harfbuzz's configure script gets C++ compiler flags from Conda's ICU
+    # package, which adds a '--std=c++0x' that is not understood by the stock
+    # CentOS 5 g++. So we need to use the fancy modern compilers:
+    export PATH=/opt/rh/devtoolset-2/root/usr/bin:$PATH
 fi
 
 ./configure "${configure_args[@]}" || { cat config.log ; exit 1 ; }
@@ -37,4 +42,5 @@ make -j$NJOBS
 make install
 
 cd $PREFIX
+find . '(' -name '*.la' -o -name '*.a' ')' -delete
 rm -rf share/gtk-doc
