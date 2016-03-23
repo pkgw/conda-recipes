@@ -28,6 +28,7 @@ man
 man-pages
 ncurses-devel
 patch
+perl-XML-Parser
 pkgconfig
 strace
 subversion

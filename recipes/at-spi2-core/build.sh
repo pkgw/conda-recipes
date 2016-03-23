@@ -32,5 +32,5 @@ make -j$NJOBS
 make install
 
 cd $PREFIX
+find . '(' -name '*.la' -o -name '*.a' ')' -delete
 rm -rf etc/xdg share/gtk-doc
-
