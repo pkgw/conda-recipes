@@ -1,0 +1,28 @@
+# Copyright 2016 Peter Williams and collaborators.
+# This file is licensed under a 3-clause BSD license; see LICENSE.txt.
+
+package:
+  name: adwaita-icon-theme
+  version: "3.20"
+
+source:
+  fn: adwaita-icon-theme-3.20.tar.xz
+  url: http://ftp.gnome.org/pub/gnome/sources/adwaita-icon-theme/3.20/adwaita-icon-theme-3.20.tar.xz
+  sha256: 7a0a887349f340dd644032f89d81264b694c4b006bd51af1c2c368d431e7ae35
+
+build:
+  number: 0
+  detect_binary_files_with_prefix: true
+  script_env:
+    - NJOBS
+
+requirements:
+  build:
+    - gtk3
+    - librsvg # for SVG loading
+  run:
+
+about:
+  home: http://www.gtk.org/
+  license: LGPL
+  summary: graphics resources for the Adwaita Gtk+ theme
