@@ -1,5 +1,5 @@
 #! /bin/bash
-# Copyright 2014-2015 Peter Williams and collaborators.
+# Copyright 2014-2016 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 # This script builds a mega-tarball of all the sources of the X11 libraries we
@@ -36,6 +36,7 @@ e6d5dab6828dfd296e564518d2ed0a349a25a714  lib/libSM-1.2.2.tar.bz2
 d9512d6869e022d4e9c9d33f6d6199eda4ad096b  lib/libXau-1.0.8.tar.bz2
 15f891fb88aae966b3064dcc1510790a0ebc75a0  lib/libXaw-1.0.13.tar.bz2
 0b1db72e9d5be0edae57cda213860c0289fac12f  lib/libXaw3d-1.6.2.tar.bz2
+89870756758439f9216ddf5f2d3dca56570fc6b7  lib/libXcursor-1.1.14.tar.bz2
 3c09eabb0617c275b5ab09fae021d279a4832cac  lib/libXdmcp-1.1.2.tar.bz2
 43abab84101159563e68d9923353cc0b3af44f07  lib/libXext-1.3.3.tar.bz2
 e14fa072bd70b30eef47391cac637bdb4de9e8a3  lib/libXfixes-5.0.1.tar.bz2
@@ -55,6 +56,7 @@ b8d736342dcb73b71584d99a1cb9806d93c25ff8  proto/xextproto-7.3.0.tar.bz2
 d62c43e1b3619ab85732e0113eaa2104920730ac  proto/xproto-7.0.28.tar.bz2
 03018e2fb9d7df4fec1623cedb1c090bc224f971  util/gccmakedep-1.0.3.tar.bz2
 52e236776133f217d438622034b8603d201a6ec5  util/imake-1.0.7.tar.bz2
+00cfc636694000112924198e6b9e4d72f1601338  util/util-macros-1.19.0.tar.bz2
 9b6ed71c74a83181a47eb180787e9ab9a5efdfa2  util/xorg-cf-files-1.0.6.tar.bz2
 7fc486ad0ec54938f8b781cc374218f50eac8b99  xcb/libpthread-stubs-0.3.tar.bz2
 28e47aa699d2c2cffed31d1aa2473a9fefe77f17  xcb/libxcb-1.11.1.tar.bz2

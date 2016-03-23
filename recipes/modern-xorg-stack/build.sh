@@ -1,5 +1,5 @@
 #! /bin/bash
-# Copyright 2015 Peter Williams and collaborators.
+# Copyright 2015-2016 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 # Build a bunch of X.org packages at once. The list of packages below should
@@ -23,6 +23,7 @@ cp xcb-proto-*/missing xextproto-*/
 
 # I'm not sure why, but `-e` mode doesn't cause us to exit when the inner
 # pipelines fail, even though they exit with error codes.
+(cd util-macros-* && ./configure --prefix=$PREFIX && make -j$NJOBS install) || exit $?
 (cd xproto-* && ./configure --prefix=$PREFIX && make -j$NJOBS install) || exit $?
 (cd xcb-proto-* && ./configure --prefix=$PREFIX && make -j$NJOBS install) || exit $?
 (cd xextproto-* && ./configure --prefix=$PREFIX --disable-specs && make -j$NJOBS install) || exit $?
@@ -44,6 +45,7 @@ cp xcb-proto-*/missing xextproto-*/
 (cd libXi-* && ./configure --prefix=$PREFIX && make -j$NJOBS && make install) || exit $?
 (cd libXtst-* && ./configure --prefix=$PREFIX && make -j$NJOBS && make install) || exit $?
 (cd libXrender-* && ./configure --prefix=$PREFIX && make -j$NJOBS && make install) || exit $?
+(cd libXcursor-* && ./configure --prefix=$PREFIX && make -j$NJOBS && make install) || exit $?
 (cd libXt-* && ./configure --prefix=$PREFIX && make -j$NJOBS && make install) || exit $?
 (cd libXmu-* && ./configure --prefix=$PREFIX && make -j$NJOBS && make install) || exit $?
 (cd libXpm-* && ./configure --prefix=$PREFIX && make -j$NJOBS && make install) || exit $?
