@@ -16,11 +16,12 @@ source:
   url: http://ftp.gnome.org/pub/gnome/sources/glib/2.46/glib-2.46.2.tar.xz
   sha256: 5031722e37036719c1a09163cc6cf7c326e4c4f1f1e074b433c156862bd733db
   patches:
+    - system-data-dirs.patch
     - no-cocoa-notification.patch #[osx]
     - find-libintl.h.patch #[osx]
 
 build:
-  number: 3
+  number: 4
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
