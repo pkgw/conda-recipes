@@ -34,6 +34,10 @@ if [ -n "$OSX_ARCH" ] ; then
 	iname=$(otool -D $lpath |sed -e '2!d')
 	install_name_tool -id @rpath/$iname $lpath
     done
+else
+    # I get a double-free crash in gtk/gtkcairoblur.c if I compile with the
+    # stock compilers, and it goes away if I use the updated ones!
+    export PATH=/opt/rh/devtoolset-2/root/usr/bin:$PATH
 fi
 
 ./configure "${configure_args[@]}" || { cat config.log ; exit 1 ; }

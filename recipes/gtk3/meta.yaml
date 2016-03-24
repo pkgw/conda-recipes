@@ -18,7 +18,7 @@ source:
     - no-module-warning.patch
 
 build:
-  number: 2
+  number: 3
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
