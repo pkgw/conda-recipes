@@ -36,33 +36,27 @@
      }
    }
  }
---- casacore/measures/Measures/MeasIERS.cc.orig	2016-02-03 00:54:50.374156532 +0000
-+++ casacore/measures/Measures/MeasIERS.cc	2016-02-03 00:55:11.282213763 +0000
-@@ -436,7 +436,8 @@
- 		  found = True;
- 		  break;
- 		}
--		Path cdatapath(String(CASADATA));
-+		// Conda NUL-padding workaround:
-+		Path cdatapath(String(String(CASADATA).chars()));
- 		ldir = cdatapath.absoluteName() + path[i];
- 		searched.resize(searched.nelements() + 1, True);
- 		searched[searched.nelements() - 1] = ldir;
---- casacore/measures/Measures/MeasTable.cc.orig	2016-02-03 00:54:45.140142204 +0000
-+++ casacore/measures/Measures/MeasTable.cc	2016-02-03 00:55:49.337317933 +0000
-@@ -2997,12 +2997,13 @@
+--- casacore/measures/Measures/MeasIERS.cc.orig	2016-04-11 21:49:32.215695000 +0000
++++ casacore/measures/Measures/MeasIERS.cc	2016-04-11 21:56:01.060660664 +0000
+@@ -422,7 +422,8 @@
+           }
+         }
+         if (!found) {
+-          String casadata=String(CASADATA);
++	  // Conda NUL-padding workaround:                                                                        
++          String casadata=String(String(CASADATA).chars());
+           casadata.gsub("%CASAROOT%", Aipsrc::aipsRoot());
+           casadata.gsub("%CASAHOME%", Aipsrc::aipsHome());
+           Path cdatapath(casadata);
+--- casacore/measures/Measures/MeasTable.cc.orig	2016-04-11 21:49:32.231695000 +0000
++++ casacore/measures/Measures/MeasTable.cc	2016-04-11 21:54:36.895451727 +0000
+@@ -2988,7 +2988,8 @@
  	isValid = Table::isReadable(absPathName);
        }
        if(!isValid){
--	Path lPath(String(CASADATA) + "/" + antRespPath);
-+	// Conda NUL-padding workaround:
-+	Path lPath(String(String(CASADATA).chars()) + "/" + antRespPath);
- 	absPathName = lPath.absoluteName();
- 	isValid = Table::isReadable(absPathName);
-       }
-       if(!isValid){
--	Path lPath(String(CASADATA)+ "/share/casacore/data/" + antRespPath);
-+	Path lPath(String(String(CASADATA).chars()) + "/share/casacore/data/" + antRespPath);
- 	absPathName = lPath.absoluteName();
- 	isValid = Table::isReadable(absPathName);
-       }
+-        String casadata=String(CASADATA);
++	// Conda NUL-padding workaround:                                                                        
++        String casadata=String(String(CASADATA).chars());
+         casadata.gsub("%CASAROOT%", Aipsrc::aipsRoot());
+         casadata.gsub("%CASAHOME%", Aipsrc::aipsHome());
+         Path lPath(casadata + "/" + antRespPath);

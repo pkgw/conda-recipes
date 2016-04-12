@@ -6,10 +6,12 @@
 set -e
 
 cmake_args=(
+    -DBUILD_DOC=OFF
     -DCMAKE_BUILD_TYPE=Release
     -DCMAKE_COLOR_MAKEFILE=OFF
     -DCMAKE_INSTALL_PREFIX=$PREFIX
     -DCMAKE_MODULE_PATH=../cmake-modules
+    -DGTEST_INCLUDE_DIRS=$PREFIX/include
 )
 
 if [ -n "$OSX_ARCH" ] ; then

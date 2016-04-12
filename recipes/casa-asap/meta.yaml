@@ -6,14 +6,14 @@
 
 package:
   name: casa-asap
-  version: "4.5.2"
+  version: "4.6.0"
 
 source:
-  svn_url: https://svn.cv.nrao.edu/svn/casa/branches/release-4_5/
-  svn_rev: 36115
+  svn_url: https://svn.cv.nrao.edu/svn/casa/branches/release-4_6/
+  svn_rev: 36590
   svn_ignore_externals: yes
   patches:
-    - cmake-fixes.patch
+    - so-versioning.patch
     - wcslib-version.patch
 
 build:

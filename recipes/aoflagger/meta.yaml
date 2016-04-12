@@ -15,7 +15,7 @@ source:
   md5: a2f3f07ff89a3916a7eeaf3c9462a529
 
 build:
-  number: 1
+  number: 2
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
