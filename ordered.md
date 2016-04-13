@@ -4,6 +4,7 @@ Core Packages
 Required by both GTK+ 3 and CASA.
 
 1. `gettext` — OS X only
+1. `libffi32`
 1. `glib`
 1. `modern-xorg-stack`
 1. `dbus-client`
@@ -47,6 +48,7 @@ The CASA Stack
 1. `casa-tools`
 1. `casa-asap`
 1. `casa-python`
+1. `aoflagger`
 
 
 The PyRAF Stack
@@ -67,8 +69,7 @@ Everything Else
 1. `path-and-address`
 1. `grip`
 1. `astropy-helpers`
-1. `astroquery` — only builds on Python 2 at the moment
+1. `astroquery`
 1. `omegaplot`
 1. `pwkit`
-1. `aoflagger`
 1. `ds9`

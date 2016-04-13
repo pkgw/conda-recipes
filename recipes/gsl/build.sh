@@ -16,3 +16,6 @@ fi
 ./configure --prefix=$PREFIX || { cat config.log ; exit 1 ; }
 make -j$NJOBS
 make install
+
+cd $PREFIX
+find . '(' -name '*.la' -o -name '*.a' ')' -delete

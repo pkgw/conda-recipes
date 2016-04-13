@@ -10,6 +10,7 @@ export PKG_CONFIG_LIBDIR="$PREFIX/lib/pkgconfig:$PREFIX/share/pkgconfig"
 
 configure_args=(
     --prefix=$PREFIX
+    --disable-Bsymbolic
 )
 
 if [ -n "$OSX_ARCH" ] ; then
@@ -18,10 +19,9 @@ if [ -n "$OSX_ARCH" ] ; then
     sdk=/
     export CFLAGS="$CFLAGS -isysroot $sdk"
     export LDFLAGS="$LDFLAGS -Wl,-syslibroot,$sdk -Wl,-rpath,$PREFIX/lib"
-else
-    configure_args+=(
-	--disable-Bsymbolic
-    )
+
+    # Needed to work around busted libxml2.la file in v. 2.9.2-0:
+    rm -f $PREFIX/lib/*.la
 fi
 
 ./configure "${configure_args[@]}" #|| { cat config.log ; exit 1 ; }

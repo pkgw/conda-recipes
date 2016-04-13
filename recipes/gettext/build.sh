@@ -1,5 +1,5 @@
 #! /bin/bash
-# Copyright 2015 Peter Williams and collaborators.
+# Copyright 2015-2016 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 [ "$NJOBS" = '<UNDEFINED>' -o -z "$NJOBS" ] && NJOBS=1
@@ -20,7 +20,5 @@ make -j$NJOBS
 make install
 
 cd $PREFIX
+find . '(' -name '*.la' -o -name '*.a' ')' -delete
 rm -rf share/doc share/emacs share/info share/man
-
-
-

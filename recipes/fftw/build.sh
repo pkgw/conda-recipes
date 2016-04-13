@@ -31,3 +31,6 @@ make -j$NJOBS
 make install
 
 # I ignore the tests.
+
+cd $PREFIX
+find . '(' -name '*.la' -o -name '*.a' ')' -delete
