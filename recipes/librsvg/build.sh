@@ -10,6 +10,7 @@ export PKG_CONFIG_LIBDIR="$PREFIX/lib/pkgconfig:$PREFIX/share/pkgconfig"
 
 configure_args=(
     --prefix=$PREFIX
+    --disable-Bsymbolic
 )
 
 if [ -n "$OSX_ARCH" ] ; then
@@ -22,7 +23,7 @@ if [ -n "$OSX_ARCH" ] ; then
     # Ugh. install_name fixup currently needed; have to copy since
     # install_name_tool patches in place and the files are hardlinked out of
     # the pkgs tree!
-    for lib in png16; do
+    for lib in png16 xml2; do
 	lpath=$PREFIX/lib/lib${lib}.dylib
 	mv $lpath $lpath.tmp
 	cp $lpath.tmp $lpath
@@ -30,10 +31,9 @@ if [ -n "$OSX_ARCH" ] ; then
 	iname=$(otool -D $lpath |sed -e '2!d')
 	install_name_tool -id @rpath/$iname $lpath
     done
-else
-    configure_args+=(
-	--disable-Bsymbolic
-    )
+
+    # Needed to work around busted libxml2.la file in v. 2.9.2-0:
+    rm -f $PREFIX/lib/*.la
 fi
 
 ./configure "${configure_args[@]}" #|| { cat config.log ; exit 1 ; }

@@ -21,17 +21,19 @@ build:
 
 requirements:
   build:
-    - cairo
+    - cairo-gobject
     - gdk-pixbuf
     - glib
     - libcroco
+    - libxml2
     - pango 1.38.1 # make sure to get my pango with GI info, not stock Conda's
     - python
   run:
-    - cairo
+    - cairo-gobject
     - gdk-pixbuf
     - glib
     - libcroco
+    - libxml2
     - pango 1.38.1 # make sure to get my pango with GI info, not stock Conda's
 
 about:
