@@ -13,9 +13,10 @@ source:
   svn_ignore_externals: yes
   patches:
     - so-versioning.patch
+    - casadef.patch
 
 build:
-  number: 0
+  number: 1
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
@@ -33,6 +34,7 @@ requirements:
     - casa-tools
     - libgfortran 3.0 #[linux]
     - python
+    - rpfits
 
 about:
   home: http://casa.nrao.edu/

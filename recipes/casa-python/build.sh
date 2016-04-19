@@ -81,10 +81,13 @@ cd $PREFIX
 rm -rf xml
 rm bin/{buildmytasks,casa,casapy,xmlgenpy} lib/saxon*.jar
 
+# consistent include directories:
+mv include/casa/* include/casacode/
+rmdir include/casa
+
 mkdir -p $SP_DIR
 casapydir=$(echo python/2.*)
-for stem in __casac__ casac.py TablePlotTkAgg.py ; do
+for stem in __casac__ casac.py casadef.py TablePlotTkAgg.py ; do
     mv $casapydir/$stem $SP_DIR/
 done
-sed -e "s|$casapydir|lib/casa/tasks|g" $casapydir/casadef.py >$SP_DIR/casadef.py
 rm -rf python # note! not lib/python ...
