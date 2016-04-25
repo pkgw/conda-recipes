@@ -89,7 +89,8 @@ make -j$NJOBS
 make install
 
 cd $PREFIX
-ln -s xetex bin/xelatex # helpful; XeTeX looks at argv[0]
+ln -s pdftex bin/pdflatex # helpful; these look at argv[0]
+ln -s xetex bin/xelatex
 
 rm -f lib/*.a lib/*.la
 rm -rf share/texlive/info
