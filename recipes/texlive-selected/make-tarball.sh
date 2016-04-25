@@ -23,7 +23,7 @@ fi
 
 tarbase="texlive-selected-$1"
 urlbase="http://mirrors.ctan.org/systems/texlive/tlnet/archive"
-#urlbase="http://mirrors.concertpass.com/tex-archive/systems/texlive/tlnet/archive/"
+#urlbase="http://mirrors.acm.jhu.edu/ctan/systems/texlive/tlnet/archive"
 
 work="$(mktemp -d)"
 origpwd="$(pwd)"
@@ -36,19 +36,39 @@ while read pkg options ; do
     wget -q $urlbase/$pkg.tar.xz
     ###echo "$sha1 $(basename $pkg)" |sha1sum --check || exit 1
 
-    case ",$options," in
-	*,updir,*) dir=../unpacked src=../src ;;
-	*) dir=../unpacked/texmf-dist src=../../src ;;
-    esac
+    dir=../unpacked/texmf-dist
+    src=../../src
+    filter="*"
 
-    (cd $dir && tar xJf $src/$pkg.tar.xz)
+    for option in $(echo $options |sed -e 's/,/ /g') ; do
+	case $option in
+	    updir)
+		dir=../unpacked
+		src=../src ;;
+	    kpathsea)
+		# This package includes some .tcx files that are wanted by
+		# fmtutil, but also includes various web2c/ configuration
+		# files that are provided by our texlive-core package, and the
+		# versions in the tarball are Not What We Want. So with this
+		# quasi-hack we extract only the desired files.
+		filter='*.tcx' ;;
+	    none)
+		;;
+	    *)
+		echo unhandled option $option ; exit 1 ;;
+	esac
+    done
+
+    (cd $dir && tar xJf $src/$pkg.tar.xz "$filter")
 done <<EOF
 adjustbox none
 amsfonts none
 amsmath none
+booktabs none
 caption none
 cm none
 cm-super none
+collectbox none
 dblfloatfix none
 dehyph-exptl none
 ec none
@@ -59,6 +79,8 @@ etex none
 etex-pkg none
 etoolbox none
 euenc none
+eurosym none
+fancyvrb none
 filehook none
 fontspec none
 geometry none
@@ -73,6 +95,7 @@ hyphen-greek none
 ifluatex none
 ifxetex none
 knuth-lib none
+kpathsea updir,kpathsea
 l3kernel none
 l3packages none
 latex none
@@ -85,6 +108,7 @@ ms none
 natbib none
 oberdiek none
 pdftex updir
+pdftex-def none
 plain none
 revtex none
 revtex4 none
@@ -97,6 +121,7 @@ tipa none
 titlesec none
 tools none
 ucharcat none
+ucs none
 ukrhyph none
 ulem none
 unicode-data none
@@ -105,6 +130,7 @@ url none
 xcolor none
 xetex updir
 xetex-def none
+xkeyval none
 xunicode none
 zapfding none
 EOF

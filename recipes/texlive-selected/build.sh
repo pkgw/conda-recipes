@@ -13,6 +13,9 @@ cp -a . $dist
 cp $RECIPE_DIR/mktexlsr.pl $dist/texmf-dist/scripts/texlive/
 chmod +x $dist/texmf-dist/scripts/texlive/mktexlsr.pl
 
+# We create these files here, but we also need to rerun fmtutil in a post-link
+# script since some of the .fmt files embed absolute paths in a way that can't
+# be safely patched up with Conda's standard methods.
 cd $dist
 mktexlsr
 fmtutil-sys --all
