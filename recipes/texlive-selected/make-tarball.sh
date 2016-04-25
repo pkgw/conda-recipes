@@ -43,6 +43,7 @@ while read pkg options ; do
 
     (cd $dir && tar xJf $src/$pkg.tar.xz)
 done <<EOF
+adjustbox none
 amsfonts none
 amsmath none
 caption none
