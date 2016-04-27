@@ -8,7 +8,18 @@ set -e
 if [ -n "$OSX_ARCH" ] ; then
     export MACOSX_DEPLOYMENT_TARGET=10.6
     platform=macintel
-    # surely more to do ...
+
+    # Ugh. install_name fixup currently needed; have to copy since
+    # install_name_tool patches in place and the files are hardlinked out of
+    # the pkgs tree!
+    for lib in crypto curl ssl z; do
+        lpath=$PREFIX/lib/lib${lib}.dylib
+        mv $lpath $lpath.tmp
+        cp $lpath.tmp $lpath
+        rm -f $lpath.tmp
+        iname=$(otool -D $lpath |sed -e '2!d')
+        install_name_tool -id $PREFIX/lib/$iname $lpath
+    done
 else
     platform=linux64
 fi
@@ -18,10 +29,9 @@ ln -s $(pwd) $PREFIX/lib/iraf
 iraf=$PREFIX/lib/iraf
 cd $iraf
 
-# build system is too crappy to disable features that should be optional, so
-# just ignore errors and hope that most stuff worked out.
+# Here we go ...
 export EXTRA_LDFLAGS="-L$PREFIX/lib $(curl-config --libs) -Wl,-rpath,$PREFIX/lib"
-(bash build.sh $platform $PREFIX/lib/iraf 2>&1 |tee -i LOG) || true
+bash build.sh $platform $PREFIX/lib/iraf $PREFIX 2>&1 |tee -i LOG
 
 # Remove the symlink and actually install
 rm $iraf
