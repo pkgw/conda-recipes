@@ -80,6 +80,7 @@ etex-pkg none
 etoolbox none
 euenc none
 eurosym none
+fancyhdr none
 fancyvrb none
 filehook none
 fontspec none
@@ -98,6 +99,7 @@ knuth-lib none
 kpathsea updir,kpathsea
 l3kernel none
 l3packages none
+lastpage none
 latex none
 latex-fonts none
 latexconfig none
