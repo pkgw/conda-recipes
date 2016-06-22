@@ -3,12 +3,12 @@
 
 package:
   name: texlive-selected
-  version: "20160531"
+  version: "20160622"
 
 source:
-  fn: texlive-selected-20160531.tar.bz2
-  url: http://newton.cx/~peter/files/texlive-selected-20160531.tar.bz2
-  sha256: 1c03961b490352123163dfe9aeac416c594508f912eeef11de8a1c3fa8c3b51b
+  fn: texlive-selected-20160622.tar.bz2
+  url: http://newton.cx/~peter/files/texlive-selected-20160622.tar.bz2
+  sha256: a2c1d4aaa4754b151974e2593fd9027d468d58a3cea0b7eaffbcfc01080b8b1a
 
 build:
   number: 0
