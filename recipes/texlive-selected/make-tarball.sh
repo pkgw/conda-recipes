@@ -69,6 +69,7 @@ caption none
 cm none
 cm-super none
 collectbox none
+courier none
 dblfloatfix none
 dehyph-exptl none
 ec none
@@ -86,6 +87,7 @@ filehook none
 fontspec none
 geometry none
 graphics none
+graphics-cfg none
 helvetic none
 hyperref none
 hyph-utf8 none
@@ -176,6 +178,7 @@ tex-gyre-math none
 tex-ini-files none
 texlive.infra updir
 textcase none
+times none
 tipa none
 titlesec none
 tools none

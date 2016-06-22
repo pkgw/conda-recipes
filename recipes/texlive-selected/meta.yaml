@@ -8,10 +8,10 @@ package:
 source:
   fn: texlive-selected-20160622.tar.bz2
   url: http://newton.cx/~peter/files/texlive-selected-20160622.tar.bz2
-  sha256: a2c1d4aaa4754b151974e2593fd9027d468d58a3cea0b7eaffbcfc01080b8b1a
+  sha256: 26584b43a40327fe43480762afb147349436739813d3d7c777a8dabf142eaa14
 
 build:
-  number: 0
+  number: 1
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
