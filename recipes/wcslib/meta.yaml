@@ -11,7 +11,7 @@ source:
   sha256: 50ff182920541bea156e7f53588cdfba1754b1bdcd0bc64a136a5d124af98de4
 
 build:
-  number: 1
+  number: 2
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
@@ -22,7 +22,7 @@ requirements:
     - pgplot
   run:
     - cfitsio
-    - libgfortran 3.0
+    - libgfortran 3.0.0
     - pgplot
 
 about:
