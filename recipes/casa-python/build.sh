@@ -15,6 +15,8 @@ cmake_args=(
     -DCMAKE_STATIC_LINKER_FLAGS=-L$PREFIX/lib
     -DCXX11=ON
     -DPGPLOT_INCLUDE_DIRS=$PREFIX/include/pgplot
+    -DQT_DBUSXML2CPP_EXECUTABLE=$PREFIX/bin/qdbusxml2cpp-qt4
+    -DQT_RCC_EXECUTABLE=$PREFIX/bin/rcc-qt4
     -DQWT_INCLUDE_DIRS=$PREFIX/include/qwt5
 )
 

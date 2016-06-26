@@ -16,7 +16,7 @@ source:
     - casadef.patch
 
 build:
-  number: 1
+  number: 2
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
@@ -25,14 +25,14 @@ requirements:
   build:
     - casa-tools
     - cmake
-    - libgfortran 3.0 #[linux]
+    - libgfortran 3.0.0 #[linux]
     - nomkl # speed by avoiding big download
     - python
     - rpfits
     - swig
   run:
     - casa-tools
-    - libgfortran 3.0 #[linux]
+    - libgfortran 3.0.0 #[linux]
     - python
     - rpfits
 
