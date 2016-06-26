@@ -22,6 +22,7 @@ gcc
 gcc-c++
 gcc-gfortran
 gettext-devel
+java
 libstdc++-devel
 make
 man
