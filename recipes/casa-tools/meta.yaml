@@ -19,7 +19,7 @@ source:
     - mydbus.patch #[osx]
 
 build:
-  number: 1
+  number: 2
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
@@ -33,7 +33,7 @@ requirements:
     - dbus-client
     - fftw
     - gsl
-    - libgfortran 3.0 #[linux]
+    - libgfortran 3.0.0 #[linux]
     - libsakura 2.0.0
     - libxml2
     - libxslt
@@ -53,8 +53,8 @@ requirements:
     - dbus-client
     - fftw
     - gsl
-    - libgfortran 3.0 #[linux]
-    - libsakura
+    - libgfortran 3.0.0 #[linux]
+    - libsakura 2.0.0
     - libxml2
     - libxslt
     - openblas #[not osx]

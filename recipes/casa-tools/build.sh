@@ -1,5 +1,5 @@
 #! /bin/bash
-# Copyright 2015 Peter Williams and collaborators.
+# Copyright 2015-2016 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 [ "$NJOBS" = '<UNDEFINED>' -o -z "$NJOBS" ] && NJOBS=1
@@ -10,6 +10,8 @@ cmake_args=(
     -DCMAKE_COLOR_MAKEFILE=OFF
     -DCMAKE_INSTALL_PREFIX=$PREFIX
     -DPGPLOT_INCLUDE_DIRS=$PREFIX/include/pgplot
+    -DQT_DBUSXML2CPP_EXECUTABLE=$PREFIX/bin/qdbusxml2cpp-qt4
+    -DQT_RCC_EXECUTABLE=$PREFIX/bin/rcc-qt4
     -DQWT_INCLUDE_DIRS=$PREFIX/include/qwt5
 )
 
