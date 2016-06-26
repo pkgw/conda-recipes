@@ -11,14 +11,14 @@ source:
   md5: 197407a6b463e8d8f40040075a3983a3
 
 build:
-  number: 4
+  number: 5
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
 
 requirements:
   run:
-    - libgfortran 3.0 #[linux]
+    - libgfortran 3.0.0 #[linux]
 
 about:
   home: http://www.atnf.csiro.au/computing/software/rpfits.html
