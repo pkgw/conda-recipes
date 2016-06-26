@@ -18,7 +18,7 @@ source:
     - default-root.patch
 
 build:
-  number: 0
+  number: 1
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
@@ -30,7 +30,7 @@ requirements:
     - cmake
     - fftw
     - hdf5 >=1.8.15.1
-    - libgfortran 3.0 #[linux]
+    # - libgfortran 3.0.0 #[linux] XXX: causes spurious-seeming dep conflict error
     - nomkl # speeds up by avoiding big download
     - numpy
     - openblas #[not osx]
@@ -42,7 +42,7 @@ requirements:
     - cfitsio
     - fftw
     - hdf5 >=1.8.15.1
-    - libgfortran 3.0 #[linux]
+    - libgfortran 3.0.0 #[linux]
     - numpy
     - openblas #[not osx]
     - python >=2.7,<3
