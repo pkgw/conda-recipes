@@ -1,4 +1,4 @@
-# Copyright 2015 Peter Williams and collaborators.
+# Copyright 2015-2016 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 #
 # NOTE: if updating major or minor version, update `cmake-fixes.patch`.
@@ -17,7 +17,7 @@ source:
     - wcslib-version.patch
 
 build:
-  number: 1
+  number: 2
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
@@ -29,7 +29,7 @@ requirements:
     - casa-tools
     - cfitsio
     - cmake
-    - libgfortran 3.0 #[linux]
+    - libgfortran 3.0.0 #[linux]
     - libxml2
     - nomkl
     - numpy
@@ -43,7 +43,7 @@ requirements:
     - casa-nrao-casacore
     - casa-tools
     - cfitsio
-    - libgfortran 3.0 #[linux]
+    - libgfortran 3.0.0 #[linux]
     - libxml2
     - numpy
     - openblas #[not osx]
