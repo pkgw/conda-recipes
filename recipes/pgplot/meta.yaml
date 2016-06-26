@@ -1,4 +1,4 @@
-# Copyright 2015 Peter Williams and collaborators.
+# Copyright 2015-2016 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 package:
@@ -20,7 +20,7 @@ source:
     - osx.patch #[osx]
 
 build:
-  number: 7
+  number: 8
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
@@ -32,7 +32,7 @@ requirements:
     - tk
     - zlib
   run:
-    - libgfortran 3.0
+    - libgfortran 3.0.0
     - libpng
     - modern-xorg-stack
     - tk
