@@ -1,0 +1,11 @@
+--- code/CMakeLists.txt.orig	2016-06-27 03:01:50.070818588 +0000
++++ code/CMakeLists.txt	2016-06-27 03:03:11.988041919 +0000
+@@ -1124,7 +1124,7 @@
+ casa_find( READLINE 
+   VERSION 4.3
+   INCLUDES readline/readline.h #depends on <cstdio> to compile
+-  LIBS readline ncurses
++  LIBS readline ncursesw
+   PREFIX_HINTS ${READLINE_ROOT_DIR}
+   CPP_VERSION "RL_VERSION_MAJOR << '.' << RL_VERSION_MINOR"
+   RUN_VERSION rl_library_version

@@ -17,6 +17,7 @@ source:
     - casaroot.patch
     - no-java.patch
     - mydbus.patch #[osx]
+    - ncursesw.patch
 
 build:
   number: 2
@@ -37,6 +38,7 @@ requirements:
     - libsakura 2.0.0
     - libxml2
     - libxslt
+    - ncurses 5.9
     - nomkl # speeds by avoiding big download
     - openblas #[not osx]
     - pgplot
@@ -57,6 +59,7 @@ requirements:
     - libsakura 2.0.0
     - libxml2
     - libxslt
+    - ncurses 5.9
     - openblas #[not osx]
     - pgplot
     - readline

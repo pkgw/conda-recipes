@@ -14,6 +14,7 @@ source:
   patches:
     - so-versioning.patch
     - casadef.patch
+    - ncursesw.patch
 
 build:
   number: 2
@@ -26,6 +27,7 @@ requirements:
     - casa-tools
     - cmake
     - libgfortran 3.0.0 #[linux]
+    - ncurses 5.9
     - nomkl # speed by avoiding big download
     - python
     - rpfits
@@ -33,6 +35,7 @@ requirements:
   run:
     - casa-tools
     - libgfortran 3.0.0 #[linux]
+    - ncurses 5.9
     - python
     - rpfits
 

@@ -16,6 +16,7 @@ source:
   patches:
     - so-versioning.patch
     - default-root.patch
+    - ncursesw.patch
 
 build:
   number: 1
@@ -31,6 +32,7 @@ requirements:
     - fftw
     - hdf5 >=1.8.15.1
     # - libgfortran 3.0.0 #[linux] XXX: causes spurious-seeming dep conflict error
+    - ncurses 5.9
     - nomkl # speeds up by avoiding big download
     - numpy
     - openblas #[not osx]
@@ -43,6 +45,7 @@ requirements:
     - fftw
     - hdf5 >=1.8.15.1
     - libgfortran 3.0.0 #[linux]
+    - ncurses 5.9
     - numpy
     - openblas #[not osx]
     - python >=2.7,<3
