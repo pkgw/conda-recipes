@@ -1,18 +1,18 @@
 # Copyright 2014-2016 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
-# Shortcut to get new MD5 sum:
+# Shortcut to get new MD5 sum and URL:
 #
-#   curl -s https://pypi.python.org/pypi/pwkit/ |grep md5= |grep -v linux |sed -e 's/.*md5=//'
+#   curl -s https://pypi.python.org/pypi/pwkit/ |grep md5= |grep -v linux
 
 package:
   name: pwkit
-  version: "0.8.3"
+  version: "0.8.4"
 
 source:
-  fn: pwkit-0.8.3.tar.gz
-  url: https://pypi.python.org/packages/52/6e/3df3935ddbdd17b3c000e885b00d322b7e374c45309e10d87b6cc4703c80/pwkit-0.8.3.tar.gz
-  md5: 84a0540e709c801f0123dd422bfb52c3
+  fn: pwkit-0.8.4.tar.gz
+  url: https://pypi.python.org/packages/8d/6e/eff751fcf3361191ac9b70b83791c933bf44c0bac3a0cc7d8bbd0ca02951/pwkit-0.8.4.99.tar.gz
+  md5: 611ab2460cb23f1b54f28ed19f1d8689
 
 build:
   number: 0
@@ -46,4 +46,4 @@ test:
 about:
   home: https://github.com/pkgw/pwkit/
   license: MIT License
-  summary: Miscellaneous scientific and astronomical tools
+  summary: Miscellaneous scientific and astronomical tools.
