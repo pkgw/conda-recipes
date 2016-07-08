@@ -10,6 +10,8 @@
 # https://docs.vagrantup.com/v2/boxes/base.html . The current folder is shared
 # as /vagrant/ on the VM.
 
+ENV['VAGRANT_DEFAULT_PROVIDER'] = 'virtualbox'
+
 Vagrant.configure(2) do |config|
   config.vm.box = "pkgw-yosemite-dev"
   config.vm.provision :shell, path: "vagrant/bootstrap.sh"

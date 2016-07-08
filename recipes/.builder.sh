@@ -20,7 +20,7 @@ if [ -z "$1" ] ; then
 fi
 
 recipedir="$1"
-work=$(mktemp -d)
+work=$(mktemp -d condabuilder.XXXXXX)
 
 if [ -f $recipedir/.excludes ] ; then
     arg="-X $recipedir/.excludes"

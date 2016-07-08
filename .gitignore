@@ -1,2 +1,3 @@
 /.vagrant
 /recipes/*/linux-64.log
+/recipes/*/osx-64.log
