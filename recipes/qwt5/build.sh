@@ -27,7 +27,8 @@ else
     spec=linux-g++
 fi
 
-qmake -spec $spec qwt.pro
+(cd $PREFIX/bin && ln -s moc-qt4 moc && ln -s rcc-qt4 rcc)
+qmake-qt4 -spec $spec qwt.pro
 make -j$NJOBS
 make install
 
