@@ -1,18 +1,18 @@
-# Copyright 2014-2015 Peter Williams and collaborators.
+# Copyright 2014-2016 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
-# Shortcut to get new MD5 sum:
+# Shortcut to get new filename and MD5 sum:
 #
-#   curl -s https://pypi.python.org/pypi/omegaplot/ |grep md5= |grep -v linux |sed -e 's/.*md5=//'
+#   curl -s https://pypi.python.org/pypi/omegaplot/ |grep md5= |grep -v linux
 
 package:
   name: omegaplot
-  version: "0.7"
+  version: "0.7.1"
 
 source:
-  fn: omegaplot-0.7.tar.gz
-  url: https://pypi.python.org/packages/source/o/omegaplot/omegaplot-0.7.tar.gz
-  md5: c2b62b4d8838340121710a3dbe077c2c
+  fn: omegaplot-0.7.1.tar.gz
+  url: https://pypi.python.org/packages/93/71/27a7a6097b43586c44f8d3d869f76e8ba8245ce2f730c3594023865efd5f/omegaplot-0.7.1.tar.gz
+  md5: 275f4ff352dfbb7d58e461f9a3802767
 
 build:
   number: 0
