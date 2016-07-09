@@ -17,6 +17,10 @@ vagrant up >/dev/null
 while [ $# -gt 0 ] ; do
     pkg="$1"
     shift
+    if [ ! -d "$recipe_topdir/recipes/$pkg" ] ; then
+	echo >&2 "error: no such package $pkg"
+	exit 1
+    fi
 
     log="$recipe_topdir/recipes/$pkg/osx-64.log"
     echo "Building with logs to $log ..."
