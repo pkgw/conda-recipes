@@ -22,7 +22,7 @@ requirements:
     - pgplot
   run:
     - cfitsio
-    - libgfortran 3.0.0
+    - libgfortran 3.0.0 #[linux]
     - pgplot
 
 about:
