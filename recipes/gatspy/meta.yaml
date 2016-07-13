@@ -1,0 +1,43 @@
+# Copyright 2016 Peter Williams and collaborators.
+# This file is licensed under a 3-clause BSD license; see LICENSE.txt.
+
+# Shortcut to get new filename and MD5 sum:
+#
+#   curl -s https://pypi.python.org/pypi/gatspy/ |grep md5= |grep -v linux
+
+package:
+  name: gatspy
+  version: "0.3"
+
+source:
+  fn: gatspy-0.3.tar.gz
+  url: https://pypi.python.org/packages/b0/fa/a075f6cd3f40255a883e8a966df17322825f6b86cb4907edce06098aa566/gatspy-0.3.tar.gz
+  md5: e75cc200229be28da805c80d554578e5
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - nomkl
+    - numpy
+    - python
+    - scipy
+  run:
+    - numpy
+    - python
+    - scipy
+
+test:
+  requires:
+    - nose
+  imports:
+    - gatspy
+# The nosetests require astroML, which isn't currently packaged.
+##  commands:
+##    - nosetests gatspy
+
+about:
+  home: http://www.astroml.org/gatspy/
+  license: BSD 3-clause
+  summary: General tools for Astronomical Time Series in Python
