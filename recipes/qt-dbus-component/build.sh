@@ -1,5 +1,5 @@
 #!/ bin/bash
-# Copyright 2015 Peter Williams and collaborators.
+# Copyright 2015-2016 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 # As mentioned in meta.yaml, this package aims to provide the QtDBus subsystem
@@ -43,7 +43,7 @@ fi
 
 work=$(pwd)
 cd $PREFIX
-rm -rf imports include/Qt* include/phonon \
+rm -rf imports include/qt4/Qt* include/phonon \
    lib/libphonon.* lib/pkgconfig/Qt* mkspecs plugins
 
 # Step 2: build a version that includes QtDBus and as few other bits as we can
@@ -56,7 +56,8 @@ unset CFLAGS CXXFLAGS LDFLAGS
 
 chmod +x configure
 ./configure \
-    -release -fast -prefix $PREFIX -platform macx-g++ \
+    -release -fast -prefix $PREFIX -headerdir $PREFIX/include/qt4 \
+    -platform macx-g++ \
     -no-qt3support -nomake examples -nomake demos -nomake docs \
     -opensource -verbose -openssl -no-framework -system-libpng \
     -L $PREFIX/lib -I $PREFIX/include \
@@ -65,7 +66,6 @@ chmod +x configure
     -no-svg -no-webkit -no-javascript-jit -no-script -no-gui \
     -no-scripttools -no-declarative -no-declarative-debug \
     -no-opengl -nomake translations -dbus -arch $OSX_ARCH -sdk $sdk
-
 make -j$NJOBS
 make install
 
@@ -80,12 +80,12 @@ rm -rf mkspecs phrasebooks plugins q3porting.xml
 cd $PREFIX/bin
 for f in * ; do
     case "$f" in
-	*dbus*) ;;
+	qdbus*) mv "$f" "$f"-qt4 ;;
 	*) rm -rf "$f" ;;
     esac
 done
 
-cd $PREFIX/include
+cd $PREFIX/include/qt4
 for f in * ; do
     case "$f" in
 	*DBus*) ;;
@@ -94,7 +94,7 @@ for f in * ; do
     esac
 done
 
-cd $PREFIX/include/Qt
+cd $PREFIX/include/qt4/Qt
 for f in * ; do
     case "$f" in
 	*DBus*) ;;
