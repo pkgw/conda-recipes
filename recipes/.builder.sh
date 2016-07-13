@@ -27,6 +27,6 @@ if [ -f $recipedir/.excludes ] ; then
 fi
 
 tar c -C $recipedir -X $(pwd)/.global_excludes $arg . |tar x -C "$work"
-conda update --all
+conda update -y --all
 NJOBS=2 conda build "$work"
 rm -rf "$work"
