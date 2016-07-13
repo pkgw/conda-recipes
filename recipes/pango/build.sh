@@ -14,18 +14,6 @@ if [ -n "$OSX_ARCH" ] ; then
     sdk=/
     export CFLAGS="$CFLAGS -isysroot $sdk"
     export LDFLAGS="$LDFLAGS -Wl,-syslibroot,$sdk -Wl,-rpath,$PREFIX/lib"
-
-    # Ugh. install_name fixup currently needed; have to copy since
-    # install_name_tool patches in place and the files are hardlinked out of
-    # the pkgs tree!
-    for lib in freetype png16; do
-	lpath=$PREFIX/lib/lib${lib}.dylib
-	mv $lpath $lpath.tmp
-	cp $lpath.tmp $lpath
-	rm -f $lpath.tmp
-	iname=$(otool -D $lpath |sed -e '2!d')
-	install_name_tool -id @rpath/$iname $lpath
-    done
 fi
 
 ./configure --prefix=$PREFIX --with-included-modules=yes || { cat config.log ; exit 1 ; }

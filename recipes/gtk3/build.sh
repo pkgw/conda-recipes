@@ -22,18 +22,6 @@ if [ -n "$OSX_ARCH" ] ; then
 
     # The X11 backend requires fontconfig, which we don't have on OS X.
     configure_args+=(--disable-x11-backend --enable-quartz-backend)
-
-    # Ugh. install_name fixup currently needed; have to copy since
-    # install_name_tool patches in place and the files are hardlinked out of
-    # the pkgs tree!
-    for lib in freetype png16; do
-	lpath=$PREFIX/lib/lib${lib}.dylib
-	mv $lpath $lpath.tmp
-	cp $lpath.tmp $lpath
-	rm -f $lpath.tmp
-	iname=$(otool -D $lpath |sed -e '2!d')
-	install_name_tool -id @rpath/$iname $lpath
-    done
 else
     # I get a double-free crash in gtk/gtkcairoblur.c if I compile with the
     # stock compilers, and it goes away if I use the updated ones!

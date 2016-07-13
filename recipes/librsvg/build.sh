@@ -23,7 +23,7 @@ if [ -n "$OSX_ARCH" ] ; then
     # Ugh. install_name fixup currently needed; have to copy since
     # install_name_tool patches in place and the files are hardlinked out of
     # the pkgs tree!
-    for lib in png16 xml2; do
+    for lib in xml2; do
 	lpath=$PREFIX/lib/lib${lib}.dylib
 	mv $lpath $lpath.tmp
 	cp $lpath.tmp $lpath
