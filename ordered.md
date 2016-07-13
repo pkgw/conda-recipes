@@ -13,6 +13,7 @@ Required by both GTK+ 3 and CASA.
 The GTK+ 3 Stack
 ================
 
+1. `pixman` — OS X only, I think?
 1. `cairo-gobject`
 1. `gobject-introspection`
 1. `libcroco`
@@ -25,8 +26,9 @@ The GTK+ 3 Stack
 1. `librsvg`
 1. `gtk3`
 1. `adwaita-icon-theme`
-1. `py3cairo` — Python 3 only
-1. `pygobject3`
+1. `py2cairo` — OS X and Python 2 only; superseded by `pycairo`?
+1. `py3cairo` — Python 3 only; superseded by `pycairo`?
+1. `pygobject3` — note: "3" means GLib 3, not Python 3.
 
 
 The CASA Stack
@@ -35,6 +37,7 @@ The CASA Stack
 1. `expat`
 1. `xerces-c28`
 1. `dbus-cxx`
+1. `qt-dbus-component` — OS X only
 1. `fftw`
 1. `eigen`
 1. `cfitsio`
@@ -62,15 +65,27 @@ The PyRAF Stack
 1. `pyraf`
 
 
-Everything Else
-===============
+Miscellanous Compiled
+=====================
+
+1. `ninja`
+1. `grip`
+1. `ds9`
+1. `miriad`
+1. `texlive-core`
+1. `texlive-selected`
+
+
+Miscellaneous Python modules
+============================
 
 1. `pathlib`
-1. `ninja`
 1. `path-and-address`
-1. `grip`
 1. `astropy-helpers`
 1. `astroquery`
 1. `omegaplot`
+1. `bibtexparser`
 1. `pwkit`
-1. `ds9`
+1. `gatspy`
+1. `miriad-python`
+1. `pytoml`
