@@ -6,13 +6,36 @@
 # Conda doesn't let us define a package with multiple source tarballs, and I
 # don't want to ship a separate package for all of these stupid dependencies.
 #
-# If a certain file (say "expl3.sty") is needed, a convenient way to guess
-# which TeXLive package includes it is to consult the output of an rpmfind
-# query:
+# If a certain file (say "expl3.sty") is needed, there are several ways to figure out
+# which TexLive package might contain it.
 #
-#  https://www.rpmfind.net/linux/rpm2html/search.php?query=tex%28expl3.sty%29
+# 1. Query on rpmfind.net:
 #
-# (the percent escaped characters are parentheses)
+#   https://www.rpmfind.net/linux/rpm2html/search.php?query=tex%28expl3.sty%29
+#
+# (the percent escaped characters are parentheses) However, this falls down
+# with recent changes made in TexLive.
+#
+# 2. Create a local install of TeXLive, and use its tool. After installation, run something
+# like:
+#
+#   $ tlmgr search --global --file expl3.sty
+#
+# This is definitely the best option since it stays up-to-date.
+#
+# 3. In the nuclear option, you can navigate the official SVN tree of
+# everything here:
+#
+#   https://www.tug.org/svn/texlive/trunk/Master/
+#
+# If you can find the needed file in there, the commit messages sometimes
+# indicate which tarballed package it goes into. The partitioning of files
+# into TeXLive packages is defined in the configuration files here:
+#
+#   https://www.tug.org/svn/texlive/trunk/Master/tlpkg/tlpsrc/
+#
+# These also have the files such as "collections-basic.tlpsrc" that define the
+# fundamental set of packages for a TeXLive distribution.
 
 if [ -z "$1" ] ; then
     echo >&2 "usage: $0 <version>
