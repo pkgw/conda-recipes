@@ -18,8 +18,6 @@ chmod +x $dist/texmf-dist/scripts/texlive/mktexlsr.pl
 # be safely patched up with Conda's standard methods.
 cd $dist
 mktexlsr
-fmtutil-sys --all
-mktexlsr
 
 # Tell fontconfig about our fonts
 mkdir -p $PREFIX/etc/fonts/conf.d
