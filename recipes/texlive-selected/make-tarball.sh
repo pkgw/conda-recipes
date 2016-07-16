@@ -233,7 +233,7 @@ zapfding none
 EOF
 
 cd ../unpacked
-rm -rf texmf-dist/fonts/source readme-html.dir readme-txt.dir
+rm -rf readme-html.dir readme-txt.dir
 rm -f index.html README README.usergroups
 tar cjf ../"$tarbase".tar.bz2 *
 

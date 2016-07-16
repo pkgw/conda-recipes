@@ -3,15 +3,15 @@
 
 package:
   name: texlive-selected
-  version: "20160622"
+  version: "20160715"
 
 source:
-  fn: texlive-selected-20160622.tar.bz2
-  url: http://newton.cx/~peter/files/texlive-selected-20160622.tar.bz2
-  sha256: 26584b43a40327fe43480762afb147349436739813d3d7c777a8dabf142eaa14
+  fn: texlive-selected-20160715.tar.bz2
+  url: http://newton.cx/~peter/files/texlive-selected-20160715.tar.bz2
+  sha256: ce36ccb6e6c5e65047e3b7cb56c0730e7cddb9905d65ebacc23684f1976daf13
 
 build:
-  number: 1
+  number: 0
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
