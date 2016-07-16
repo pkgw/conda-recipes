@@ -27,11 +27,12 @@ configure_args=(
     --disable-uptex
     --enable-pdftex
     --enable-xetex
-    --disable-mf
+    --enable-mf
     --disable-pmp
     --disable-upmp
     --enable-web-progs # includes bibtex
     # other packages:
+    --enable-gsftopk
     --enable-texlive
     --enable-dvipdfm-x
     # support libraries:
