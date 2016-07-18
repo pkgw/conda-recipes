@@ -7,12 +7,12 @@
 
 package:
   name: omegaplot
-  version: "0.7.1"
+  version: "0.7.2"
 
 source:
-  fn: omegaplot-0.7.1.tar.gz
-  url: https://pypi.python.org/packages/93/71/27a7a6097b43586c44f8d3d869f76e8ba8245ce2f730c3594023865efd5f/omegaplot-0.7.1.tar.gz
-  md5: 275f4ff352dfbb7d58e461f9a3802767
+  fn: omegaplot-0.7.2.tar.gz
+  url: https://pypi.python.org/packages/51/d3/f69c1ed1f022094280b00d0c71042a136b97bf431ba2112377e9f44ae40b/omegaplot-0.7.2.tar.gz
+  md5: 6f87d5cd48cadab8f79fade34280e7fa
 
 build:
   number: 0
