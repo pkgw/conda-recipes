@@ -3,11 +3,11 @@
 
 package:
   name: casa-data
-  version: r10774
+  version: r10892
 
 source:
   svn_url: https://svn.cv.nrao.edu/svn/casa-data/distro/
-  svn_rev: 10774
+  svn_rev: 10892
   svn_ignore_externals: yes
 
 build:
@@ -15,6 +15,7 @@ build:
 
 requirements:
   build:
+    - python # needed for conda-build "compiling .pyc files" step
 
 about:
   home: http://casa.nrao.edu/
