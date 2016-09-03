@@ -1,0 +1,41 @@
+# Copyright 2016 Peter Williams and collaborators.
+# This file is licensed under a 3-clause BSD license; see LICENSE.txt.
+
+package:
+  name: symphony
+  version: "0.1"
+
+source:
+  fn: v0.1.tar.gz
+  url: https://github.com/pkgw/symphony/archive/v0.1.tar.gz
+  sha1: 20787e16cfb8d5667add5ea452be1cab4942fba6
+
+build:
+  number: 0
+  detect_binary_files_with_prefix: true
+  script_env:
+    - NJOBS
+
+requirements:
+  build:
+    - cmake
+    - cython
+    - gsl
+    - nomkl
+    - numpy
+    - openblas #[not osx]
+    - python
+  run:
+    - gsl
+    - numpy
+    - openblas #[not osx]
+    - python
+
+test:
+  imports:
+    - symphonyPy
+
+about:
+  home: https://github.com/AFD-Illinois/symphony
+  license: unspecified
+  summary: Fully-polarized synchrotron emissivities and absorptivities.
