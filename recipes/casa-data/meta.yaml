@@ -1,13 +1,16 @@
-# Copyright 2015 Peter Williams and collaborators.
+# Copyright 2015-2016 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
+#
+# To see what the latest version is, just visit the svn_url listed below and
+# see what the server reports.
 
 package:
   name: casa-data
-  version: r10892
+  version: r10915
 
 source:
   svn_url: https://svn.cv.nrao.edu/svn/casa-data/distro/
-  svn_rev: 10892
+  svn_rev: 10915
   svn_ignore_externals: yes
 
 build:
