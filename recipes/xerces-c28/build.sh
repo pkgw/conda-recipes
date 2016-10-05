@@ -22,3 +22,6 @@ cd src/xercesc
 bash ./runConfigure -p$platform -cgcc -xg++ -minmem -nsocket -tnative -rpthread -b64 -P$PREFIX
 make # note: build is not parallel-compatible
 make install
+
+cd $PREFIX
+find . '(' -name '*.la' -o -name '*.a' ')' -delete
