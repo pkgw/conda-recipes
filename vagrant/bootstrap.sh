@@ -4,17 +4,14 @@
 #
 # Set up a Mac OS X machine to build Conda packages reliably. Note that this
 # "bootstrap" script is run as root. The base VM image already has the Xcode
-# command line tools installed such that just running "gcc" works.
+# command line tools installed such that just running "gcc" works, and
+# Homebrew as well.
 
 set -e -x
 cd /Users/vagrant
 vrun="sudo -iu vagrant"
 
-# Homebrew. Java is annoying, but needed for casa-python.
-
-curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install >brew.rb
-echo |$vrun ruby brew.rb
-rm -f brew.rb
+# Homebrew additions. Java is annoying, but needed for casa-python.
 
 $vrun brew install $(echo "
 Caskroom/cask/java
