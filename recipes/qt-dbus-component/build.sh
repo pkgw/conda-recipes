@@ -43,7 +43,7 @@ fi
 
 work=$(pwd)
 cd $PREFIX
-rm -rf imports include/qt4/Qt* include/phonon \
+rm -rf imports include/qt/Qt* include/phonon \
    lib/libphonon.* lib/pkgconfig/Qt* mkspecs plugins
 
 # Step 2: build a version that includes QtDBus and as few other bits as we can
@@ -56,7 +56,7 @@ unset CFLAGS CXXFLAGS LDFLAGS
 
 chmod +x configure
 ./configure \
-    -release -fast -prefix $PREFIX -headerdir $PREFIX/include/qt4 \
+    -release -fast -prefix $PREFIX -headerdir $PREFIX/include/qt \
     -platform macx-g++ \
     -no-qt3support -nomake examples -nomake demos -nomake docs \
     -opensource -verbose -openssl -no-framework -system-libpng \
@@ -75,17 +75,18 @@ make install
 # this part so let's just delete stuff.
 
 cd $PREFIX
+find . '(' -name '*.la' -o -name '*.a' ')' -delete
 rm -rf mkspecs phrasebooks plugins q3porting.xml
 
 cd $PREFIX/bin
 for f in * ; do
     case "$f" in
-	qdbus*) mv "$f" "$f"-qt4 ;;
+	qdbus*) ;;
 	*) rm -rf "$f" ;;
     esac
 done
 
-cd $PREFIX/include/qt4
+cd $PREFIX/include/qt
 for f in * ; do
     case "$f" in
 	*DBus*) ;;
@@ -94,7 +95,7 @@ for f in * ; do
     esac
 done
 
-cd $PREFIX/include/qt4/Qt
+cd $PREFIX/include/qt/Qt
 for f in * ; do
     case "$f" in
 	*DBus*) ;;

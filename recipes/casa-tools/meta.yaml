@@ -20,7 +20,7 @@ source:
     - ncursesw.patch
 
 build:
-  number: 2
+  number: 3
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
@@ -44,8 +44,8 @@ requirements:
     - pgplot
     - readline
     - rpfits
-    - qt
-    - qt-dbus-component #[osx]
+    - qt 4.8.7
+    - qt-dbus-component 4.8.7 #[osx]
     - qwt5
     - xerces-c28
   run:
@@ -64,8 +64,8 @@ requirements:
     - pgplot
     - readline
     - rpfits
-    - qt
-    - qt-dbus-component #[osx]
+    - qt 4.8.7
+    - qt-dbus-component 4.8.7 #[osx]
     - qwt5
     - xerces-c28
 

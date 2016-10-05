@@ -18,9 +18,10 @@ source:
   patches:
     - acceptance.patch
     - qmake-arch.patch #[osx]
+    - long-paths.patch
 
 build:
-  number: 2
+  number: 4
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
@@ -29,14 +30,14 @@ requirements:
   build:
     - dbus-cxx
     - openssl
-    - libpng      1.6*
-    - qt
+    - libpng    1.6*
+    - qt        4.8.7
 
   run:
     - dbus-cxx
     - openssl
-    - libpng      1.6*
-    - qt
+    - libpng    1.6*
+    - qt        4.8.7
 
 about:
     home: http://qt-project.org

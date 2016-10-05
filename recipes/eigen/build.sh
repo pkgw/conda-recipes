@@ -23,3 +23,6 @@ mkdir build
 cd build
 cmake "${cmake_args[@]}" ..
 make install
+
+cd $PREFIX
+find . '(' -name '*.la' -o -name '*.a' ')' -delete

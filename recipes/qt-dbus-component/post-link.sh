@@ -7,6 +7,6 @@
 set -e
 cd $PREFIX
 sed -i .pre-dbus -Ee 's@#define QT_NO_DBUS@//QTDBC:#define QT_NO_DBUS@' \
-     include/qt4/Qt/qfeatures.h include/qt4/QtCore/qfeatures.h
+     include/qt/Qt/qfeatures.h include/qt/QtCore/qfeatures.h
 sed -i .pre-dbus -Ee 's@# (undef|define) QT_NO_DBUS@//QTDBC:# \1 QT_NO_DBUS@' \
-     include/qt4/Qt/qconfig.h include/qt4/QtCore/qconfig.h
+     include/qt/Qt/qconfig.h include/qt/QtCore/qconfig.h

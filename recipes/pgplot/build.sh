@@ -29,3 +29,5 @@ cp -a pgxwin_server $PREFIX/bin/
 cp -a libcpgplot.a libpgplot.a libpgplot.$shlib libtkpgplot.a $PREFIX/lib/
 cp -a grfont.dat rgb.txt $PREFIX/share/pgplot/
 cp -a cpgplot.h grpckg1.inc pgplot.inc tkpgplot.h $PREFIX/include/pgplot/
+
+# NOTE: do not delete .a files! They're what we provide!

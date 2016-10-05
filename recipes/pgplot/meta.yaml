@@ -6,10 +6,8 @@ package:
   version: "5.2.2"
 
 source:
-  # Conda's FTP downloader doesn't do anonymous authentication right,
-  # apparently.
   fn: pgplot5.2.tar.gz
-  url: ftp://anonymous:condabuilder%40@gmail.com@ftp.astro.caltech.edu/pub/pgplot/pgplot5.2.tar.gz
+  url: http://fossies.org/unix/misc/old/pgplot5.2.tar.gz
   md5: e8a6e8d0d5ef9d1709dfb567724525ae
   patches:
     - drivers.patch
@@ -20,7 +18,7 @@ source:
     - osx.patch #[osx]
 
 build:
-  number: 8
+  number: 9
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
