@@ -1,4 +1,4 @@
-# Copyright 2014-2015 Peter Williams and collaborators.
+# Copyright 2014-2016 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 # Glib's GIO notification subsystem recently got a piece that causes it to
@@ -21,7 +21,7 @@ source:
     - find-libintl.h.patch #[osx]
 
 build:
-  number: 4
+  number: 5
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS

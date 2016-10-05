@@ -1,10 +1,9 @@
-# Copyright 2015 Peter Williams and collaborators.
+# Copyright 2015-2016 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
-# This is an updated version of libffi; Conda includes 3.0.13, whereas we're
-# 3.2.x. On Linux, we remove a busted .la file and provide pkg-config info. On
-# OS X, we provide a significant version upgrade that includes new features
-# needed by recent GNOME-stack programs.
+# This is an alternate version of "libffi", needed on both OS X and Linux.
+# Anaconda's Linux package includes a busted .la file and no pkg-config file.
+# OS X includes a very old version of libffi.
 
 package:
   name: libffi32
@@ -18,7 +17,7 @@ source:
     - rename-lib.patch
 
 build:
-  number: 0
+  number: 1
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
