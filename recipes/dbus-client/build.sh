@@ -1,5 +1,5 @@
 #! /bin/bash
-# Copyright 2014-2015 Peter Williams and collaborators.
+# Copyright 2014-2016 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 # We disable systemd since otherwise the installation tries to write to
@@ -20,6 +20,7 @@ make -j$NJOBS
 make install
 
 cd $PREFIX
+find . '(' -name '*.la' -o -name '*.a' ')' -delete
 rm -rf etc libexec share
 rm $(echo "
 bin/dbus-cleanup-sockets
