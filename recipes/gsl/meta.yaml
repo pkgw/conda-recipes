@@ -3,15 +3,15 @@
 
 package:
   name: gsl
-  version: "1.16"
+  version: "2.2.1"
 
 source:
-  fn: gsl-1.16.tar.gz
-  url: http://ftpmirror.gnu.org/gsl/gsl-1.16.tar.gz
-  md5: e49a664db13d81c968415cd53f62bc8b
+  fn: gsl-2.2.1.tar.gz
+  url: http://ftpmirror.gnu.org/gsl/gsl-2.2.1.tar.gz
+  md5: 3d90650b7cfe0a6f4b29c2d7b0f86458
 
 build:
-  number: 4
+  number: 0
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
