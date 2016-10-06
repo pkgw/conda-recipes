@@ -4,6 +4,7 @@
 
 [ "$NJOBS" = '<UNDEFINED>' -o -z "$NJOBS" ] && NJOBS=1
 set -e
+test $(echo "$PREFIX" |wc -c) -gt 200 # check that we're getting long paths
 
 # don't get locally installed pkg-config entries:
 export PKG_CONFIG_LIBDIR="$PREFIX/lib/pkgconfig:$PREFIX/share/pkgconfig"

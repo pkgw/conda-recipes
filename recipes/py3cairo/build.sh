@@ -3,6 +3,7 @@
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 set -e
+test $(echo "$PREFIX" |wc -c) -gt 200 # check that we're getting long paths
 ./waf --help >/dev/null # trigger unpacking of waflib directory
 rdir=$(cd $RECIPE_DIR && pwd)
 (cd .waf* && patch -p1 -i $rdir/60_python-config-without-interpreter.patch)

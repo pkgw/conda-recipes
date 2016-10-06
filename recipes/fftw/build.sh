@@ -5,6 +5,7 @@
 
 [ "$NJOBS" = '<UNDEFINED>' -o -z "$NJOBS" ] && NJOBS=1
 set -e
+test $(echo "$PREFIX" |wc -c) -gt 200 # check that we're getting long paths
 
 configure="./configure --prefix=$PREFIX --enable-shared --enable-threads --disable-fortran"
 

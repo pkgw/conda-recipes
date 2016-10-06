@@ -6,7 +6,8 @@
 # be kept synchronized with make-tarball.sh.
 
 [ "$NJOBS" = '<UNDEFINED>' -o -z "$NJOBS" ] && NJOBS=1
-set -e -x
+set -e
+test $(echo "$PREFIX" |wc -c) -gt 200 # check that we're getting long paths
 
 export PKG_CONFIG_LIBDIR=$PREFIX/lib/pkgconfig:$PREFIX/share/pkgconfig
 

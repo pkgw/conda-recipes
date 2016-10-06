@@ -4,6 +4,7 @@
 
 [ "$NJOBS" = '<UNDEFINED>' -o -z "$NJOBS" ] && NJOBS=1
 set -e
+test $(echo "$PREFIX" |wc -c) -gt 200 # check that we're getting long paths
 
 # Ugh, gross. Here tk gets installed after modern-xorg-stack and so overwrites
 # our non-broken X11 headers. So we manually rerun the header fixup script:
