@@ -1,4 +1,4 @@
-# Copyright 2015 Peter Williams and collaborators.
+# Copyright 2015-2016 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 package:
@@ -18,9 +18,9 @@ build:
 
 requirements:
   build:
-    - qt        4.8.7
+    - qt4dbus 4.8.*
   run:
-    - qt        4.8.7
+    - qt4dbus 4.8.*
 
 about:
   home: http://qwt.sourceforge.net/

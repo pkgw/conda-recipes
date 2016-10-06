@@ -5,6 +5,8 @@
 [ "$NJOBS" = '<UNDEFINED>' -o -z "$NJOBS" ] && NJOBS=1
 set -e
 
+export PATH="$PREFIX/lib/qt4/bin:$PATH"
+
 cat <<EOF >>qwtconfig.pri
 target.path = $PREFIX/lib
 headers.path = $PREFIX/include/qwt\$\$VER_MAJ
@@ -21,13 +23,13 @@ QMAKE_MACOSX_DEPLOYMENT_TARGET=$MACOSX_DEPLOYMENT_TARGET
 QMAKE_MAC_SDK = $sdk
 QMAKE_CXXFLAGS += -stdlib=libc++
 EOF
-else
     mv qwtconfig.pri tmp2
     cat tmp1 tmp2 >qwtconfig.pri
+else
     spec=linux-g++
 fi
 
-qmake -spec $spec qwt.pro
+qmake -spec $PREFIX/share/qt4/mkspecs/$spec qwt.pro
 make -j$NJOBS
 make install
 
