@@ -4,6 +4,7 @@
 
 [ "$NJOBS" = '<UNDEFINED>' -o -z "$NJOBS" ] && NJOBS=1
 set -e
+test $(echo "$PREFIX" |wc -c) -gt 200 # check that we're getting long paths
 
 if [ -z "$OSX_ARCH" ] ; then
     echo only build me on os x
@@ -20,3 +21,6 @@ export LDFLAGS="$LDFLAGS -Wl,-syslibroot,$sdk"
     --disable-static
 make -j$NJOBS
 make install
+
+cd $PREFIX
+find . '(' -name '*.la' -o -name '*.a' ')' -delete
