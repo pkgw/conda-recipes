@@ -1,0 +1,69 @@
+# Copyright 2016 Peter Williams and collaborators.
+# This file is licensed under a 3-clause BSD license; see LICENSE.txt.
+
+# Anaconda has moved on to Qt5, but CASA requires Qt4. We can't just rely on
+# the existing Anaconda Qt4 package, though, because since it was last built
+# the conda build system was changed to use longer paths, so we can't build
+# new packages that depend on the old version. Fun times. We also include
+# DBus support on OS X, which is not included in the stock version, likely
+# because dbus-cxx is totally busted.
+#
+# el-capitan.patch is from
+# https://github.com/Homebrew/homebrew-core/blob/master/Formula/qt.rb
+
+package:
+  name: qt4dbus
+  version: 4.8.7
+
+source:
+  fn: qt-everywhere-opensource-src-4.8.7.tar.gz
+  url: http://download.qt-project.org/official_releases/qt/4.8/4.8.7/qt-everywhere-opensource-src-4.8.7.tar.gz
+  md5: d990ee66bf7ab0c785589776f35ba6ad
+  patches:
+    - acceptance.patch
+    - qmake-arch.patch #[osx]
+    - long-paths.patch
+    - el-capitan.patch #[osx]
+    
+build:
+  number: 0
+  detect_binary_files_with_prefix: true
+  script_env:
+    - NJOBS
+
+requirements:
+  build:
+    - dbus-cxx
+    - freetype 2.5.* #[linux]
+    - fontconfig 2.11.* #[linux]
+    - freeglut #[linux]
+    - jpeg 8*
+    - libpng >=1.6.21,<1.7
+    - libtiff 4.0.*
+    - libxml2 2.9.*
+    - libuuid #[linux]
+    - modern-xorg-stack
+    - openssl 1.0.*
+    - python
+    - zlib 1.2.*
+
+  run:
+    - dbus-cxx
+    - freetype 2.5.* #[linux]
+    - fontconfig 2.11.* #[linux]
+    - freeglut #[linux]
+    - jpeg 8*
+    - libpng >=1.6.21,<1.7
+    - libtiff 4.0.*
+    - libxml2 2.9.*
+    - libuuid #[linux]
+    - modern-xorg-stack
+    - openssl 1.0.*
+    - pango #[linux]
+    - python
+    - zlib 1.2.*
+
+about:
+    home: http://qt-project.org
+    license: LGPL
+    summary: the Qt4 framework, with DBus support
