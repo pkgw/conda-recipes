@@ -13,7 +13,7 @@ Required by both GTK+ 3 and CASA.
 The GTK+ 3 Stack
 ================
 
-1. `pixman` — OS X only, I think?
+1. `pixman` — OS X only
 1. `cairo-gobject`
 1. `gobject-introspection`
 1. `libcroco`

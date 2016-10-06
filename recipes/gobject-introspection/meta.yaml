@@ -9,9 +9,11 @@ source:
   fn: gobject-introspection-1.46.0.tar.xz
   url: http://ftp.gnome.org/pub/gnome/sources/gobject-introspection/1.46/gobject-introspection-1.46.0.tar.xz
   sha256: 6658bd3c2b8813eb3e2511ee153238d09ace9d309e4574af27443d87423e4233
+  patches:
+    - hugepaths.patch
 
 build:
-  number: 1
+  number: 2
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
