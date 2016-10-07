@@ -4,18 +4,23 @@
 
 [ "$NJOBS" = '<UNDEFINED>' -o -z "$NJOBS" ] && NJOBS=1
 set -e
+test $(echo "$PREFIX" |wc -c) -gt 200 # check that we're getting long paths
+
+export PATH="$PREFIX/lib/qt4/bin:$PATH"
 
 cmake_args=(
     -DCMAKE_BUILD_TYPE=Release
     -DCMAKE_COLOR_MAKEFILE=OFF
     -DCMAKE_INSTALL_PREFIX=$PREFIX
     -DPGPLOT_INCLUDE_DIRS=$PREFIX/include/pgplot
-    -DQT_DBUSXML2CPP_EXECUTABLE=$PREFIX/bin/qdbusxml2cpp-qt4
-    -DQT_RCC_EXECUTABLE=$PREFIX/bin/rcc-qt4
+    -DQT_DBUSXML2CPP_EXECUTABLE=$PREFIX/lib/qt4/bin/qdbusxml2cpp
+    -DQT_LIBRARY_DIR=$PREFIX/lib/qt4
+    -DQT_MKSPECS_DIR=$PREFIX/share/qt4/mkspecs
+    -DQT_RCC_EXECUTABLE=$PREFIX/lib/qt4/bin/rcc
     -DQWT_INCLUDE_DIRS=$PREFIX/include/qwt5
 )
 
-#cmake_args+=(--debug-trycompile --debug-output)
+cmake_args+=(--debug-trycompile --debug-output)
 
 if [ -n "$OSX_ARCH" ] ; then
     # Need to require 10.7 because of the C++11 features.

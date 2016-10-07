@@ -4,6 +4,7 @@
 
 [ "$NJOBS" = '<UNDEFINED>' -o -z "$NJOBS" ] && NJOBS=1
 set -e
+test $(echo "$PREFIX" |wc -c) -gt 200 # check that we're getting long paths
 
 # We do fancy things with Bash arrays because we need to pass command-line
 # options that contain internal spaces, and with pure string expansions

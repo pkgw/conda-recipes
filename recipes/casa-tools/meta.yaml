@@ -16,11 +16,11 @@ source:
     - so-versioning.patch
     - casaroot.patch
     - no-java.patch
-    - mydbus.patch #[osx]
+    - mydbus.patch
     - ncursesw.patch
 
 build:
-  number: 3
+  number: 4
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
@@ -44,8 +44,7 @@ requirements:
     - pgplot
     - readline
     - rpfits
-    - qt 4.8.7
-    - qt-dbus-component 4.8.7 #[osx]
+    - qt4dbus 4.8.*
     - qwt5
     - xerces-c28
   run:
@@ -64,8 +63,7 @@ requirements:
     - pgplot
     - readline
     - rpfits
-    - qt 4.8.7
-    - qt-dbus-component 4.8.7 #[osx]
+    - qt4dbus 4.8.*
     - qwt5
     - xerces-c28
 
