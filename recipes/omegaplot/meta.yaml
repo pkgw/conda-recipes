@@ -15,7 +15,7 @@ source:
   md5: 6f87d5cd48cadab8f79fade34280e7fa
 
 build:
-  number: 0
+  number: 1
   entry_points:
     - omegafig = oputil.omegafig:cmdline
     - omegamap = oputil.omegamap:cmdline

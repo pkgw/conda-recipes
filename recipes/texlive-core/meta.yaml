@@ -11,7 +11,7 @@ source:
   sha256: d36181579a24802b27a55b331f765184ad4ded107c3b2f90c0ce2350d3202eba
 
 build:
-  number: 2
+  number: 3
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS

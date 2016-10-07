@@ -15,7 +15,7 @@ source:
   md5: 611ab2460cb23f1b54f28ed19f1d8689
 
 build:
-  number: 0
+  number: 1
   entry_points:
     - astrotool = pwkit.cli.astrotool:commandline
     - casatask = pwkit.environments.casa.tasks:commandline

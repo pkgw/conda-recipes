@@ -11,7 +11,7 @@ source:
   sha1: 20787e16cfb8d5667add5ea452be1cab4942fba6
 
 build:
-  number: 0
+  number: 1
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
