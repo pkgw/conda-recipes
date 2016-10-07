@@ -4,6 +4,7 @@
 
 [ "$NJOBS" = '<UNDEFINED>' -o -z "$NJOBS" ] && NJOBS=1
 set -e
+test $(echo "$PREFIX" |wc -c) -gt 200 # check that we're getting long paths
 
 configure_args=(
     -prefix $PREFIX
@@ -55,7 +56,8 @@ make -j$NJOBS
 make install
 
 cd $PREFIX
-find . '(' -name '*.la' -o -name '*.a' ')' -delete
+# NOTE: do not delete *.a since we need libQtUiTools.a
+find . -name '*.la' -delete
 
 cat <<EOF >lib/qt4/bin/qt.conf
 [Paths]
