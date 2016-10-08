@@ -24,6 +24,6 @@ export EXTRA_CONFIGURE_ARGS="\
 --with-xslt-config=$PREFIX/bin/xslt-config
 "
 PATH="$(pwd):$PATH" $platdir/configure
-make -j$NJOBS
+make # parallel builds do not work
 mkdir -p $PREFIX/bin
 cp -a bin/ds9 $PREFIX/bin/

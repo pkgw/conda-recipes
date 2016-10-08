@@ -3,17 +3,17 @@
 
 package:
   name: ds9
-  version: "7.4"
+  version: "7.4.1"
 
 source:
-  fn: ds9.7.4.tar.gz
-  url: http://ds9.si.edu/download/source/ds9.7.4.tar.gz
-  sha256: e91a3aa1d8e4f5b85df0a09400b29043e2412a14c76e6712fde5942dc554433f
+  fn: ds9.7.4.1.tar.gz
+  url: http://ds9.si.edu/download/source/ds9.7.4.1.tar.gz
+  sha256: 52ed71c1bb2174e0b2e4e5145135ac3d21d8f9e82d529c4577fcbc6034f49173
   patches:
     - extra-configure-args.patch
 
 build:
-  number: 1
+  number: 0
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
