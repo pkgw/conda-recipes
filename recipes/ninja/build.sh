@@ -17,5 +17,5 @@ fi
 
 ./configure.py --bootstrap
 
-mkdir $PREFIX/bin
+mkdir -p $PREFIX/bin
 cp -p ninja $PREFIX/bin/ninja
