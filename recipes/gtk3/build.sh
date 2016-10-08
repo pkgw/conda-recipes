@@ -22,7 +22,11 @@ if [ -n "$OSX_ARCH" ] ; then
     export LDFLAGS="$LDFLAGS -Wl,-syslibroot,$sdk -Wl,-rpath,$PREFIX/lib"
 
     # The X11 backend requires fontconfig, which we don't have on OS X.
-    configure_args+=(--disable-x11-backend --enable-quartz-backend)
+    configure_args+=(
+	--disable-x11-backend
+	--enable-quartz-backend
+	--disable-cups
+    )
 else
     # I get a double-free crash in gtk/gtkcairoblur.c if I compile with the
     # stock compilers, and it goes away if I use the updated ones!
