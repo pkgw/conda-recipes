@@ -10,7 +10,7 @@ source:
 build:
   entry_points:
     - grip = grip.command:main
-  number: 0
+  number: 1
 
 requirements:
   build:
