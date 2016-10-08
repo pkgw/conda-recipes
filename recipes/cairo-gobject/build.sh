@@ -38,8 +38,7 @@ rm -rf share
 if [ -z "$OSX_ARCH" ] ; then
     # If we're not providing the full Cairo stack, delete all of the redundant
     # stuff. Alternatively, I could add "cairo" as a build dep and ask the
-    # Conda file-finder to effectively do this work for me -- cf. the
-    # qt-dbus-component package.
+    # Conda file-finder to effectively do this work for me.
 
     rm -rf bin lib/cairo
 

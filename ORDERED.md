@@ -37,7 +37,7 @@ The CASA Stack
 1. `expat`
 1. `xerces-c28`
 1. `dbus-cxx`
-1. `qt-dbus-component` — OS X only
+1. `qt4dbus`
 1. `fftw`
 1. `eigen`
 1. `cfitsio`
