@@ -34,11 +34,6 @@ make
 # "Installation". XXX: shlibs should have real version information, etc!
 
 mkdir -p $PREFIX/lib $PREFIX/include/symphony $SP_DIR
-
-for l in libsymphony.so integrator/libintegrator.so kappa/libkappa.so maxwell_juettner/libmaxwell_juettner.so power_law/libpower_law.so ; do
-    cp -a $l $PREFIX/lib/
-done
-
+cp -a libsymphony.so $PREFIX/lib/
 cp -a symphonyPy.so $SP_DIR/
-
 find . -name '*.h' |xargs tar c |(cd $PREFIX/include/symphony && tar x)
