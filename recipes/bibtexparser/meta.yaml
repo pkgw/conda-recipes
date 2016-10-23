@@ -6,12 +6,12 @@
 
 package:
   name: bibtexparser
-  version: "0.6.1"
+  version: "0.6.2"
 
 source:
-  fn: bibtexparser-0.6.1.tar.gz
-  url: https://source.sciunto.org/bibtexparser/bibtexparser-0.6.1.tar.gz
-  sha256: e6967c94248ced3426bc66ce3b15be816a673580d79050182f2ce51df8463446
+  fn: bibtexparser-0.6.2.tar.gz
+  url: https://pypi.python.org/packages/7c/29/cf7341bb488577cd593d07d658cc0b8228e60caf9c5d709fddb1e1892ce2/bibtexparser-0.6.2.tar.gz
+  md5: b173b4d1d770dcac929dca2c19ed3f2a
 
 build:
   number: 0
