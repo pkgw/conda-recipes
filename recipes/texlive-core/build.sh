@@ -91,7 +91,8 @@ make -j$NJOBS
 make install
 
 cd $PREFIX
-ln -s pdftex bin/pdflatex # helpful; these look at argv[0]
+ln -s tex bin/latex # helpful; these look at argv[0]
+ln -s pdftex bin/pdflatex
 ln -s xetex bin/xelatex
 
 rm -f lib/*.a lib/*.la
