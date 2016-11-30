@@ -1,5 +1,5 @@
 #! /bin/bash
-# Copyright 2015 Peter Williams and collaborators.
+# Copyright 2015-2016 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 [ "$NJOBS" = '<UNDEFINED>' -o -z "$NJOBS" ] && NJOBS=1
@@ -10,6 +10,7 @@ cmake_args=(
     -DCMAKE_BUILD_TYPE=Release
     -DCMAKE_COLOR_MAKEFILE=OFF
     -DCMAKE_INSTALL_PREFIX=$PREFIX
+    -DPORTABLE=ON
 )
 
 #cmake_args+=(--debug-trycompile --debug-output)
@@ -50,3 +51,7 @@ make -j$NJOBS VERBOSE=1
 make install
 
 cd $PREFIX
+find -name '*.a' -delete
+
+# Remove GUI stuff that we don't provide:
+rm -rf share/applications share/icons
