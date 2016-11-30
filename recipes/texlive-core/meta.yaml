@@ -3,15 +3,15 @@
 
 package:
   name: texlive-core
-  version: "20160520"
+  version: "20160523b"
 
 source:
-  fn: texlive-20160520-source.tar.xz
-  url: http://mirrors.ctan.org/systems/texlive/Source/texlive-20160520-source.tar.xz
-  sha256: d36181579a24802b27a55b331f765184ad4ded107c3b2f90c0ce2350d3202eba
+  fn: texlive-20160523b-source.tar.xz
+  url: http://mirrors.ctan.org/systems/texlive/Source/texlive-20160523b-source.tar.xz
+  sha256: a8b32ca47f0a403661a09e202f4567a995beb718c18d8f81ca6d76daa1da21ed
 
 build:
-  number: 4
+  number: 0
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
