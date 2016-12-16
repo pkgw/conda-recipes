@@ -7,8 +7,8 @@
 
 set -e
 
-img_name=conda-py2-builder:latest
-cont_name=py2-builder
+img_name=forge-py2-builder
+cont_name=forge2builder
 recipe_topdir=$(cd $(dirname $0) && pwd)
 
 # Make sure container is up and running
