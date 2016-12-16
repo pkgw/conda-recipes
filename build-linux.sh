@@ -21,7 +21,7 @@ set -e
 if [ $ec -eq 1 ] ; then
     # Most likely, the container doesn't exist at all.
     echo "Starting container ..."
-    docker run -d -it -v "$recipe_topdir":/work --name $cont_name $img_name bash
+    docker run -d -it -v "$recipe_topdir":/work:rw,Z --name $cont_name $img_name bash
     is_running=true
 fi
 
