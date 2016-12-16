@@ -20,7 +20,7 @@ cmake_args=(
     -DQWT_INCLUDE_DIRS=$PREFIX/include/qwt5
 )
 
-cmake_args+=(--debug-trycompile --debug-output)
+#cmake_args+=(--debug-trycompile --debug-output)
 
 if [ -n "$OSX_ARCH" ] ; then
     # Need to require 10.7 because of the C++11 features.
