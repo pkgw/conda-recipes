@@ -16,5 +16,4 @@ CASA+pwkit
 1. `casa-tools`
 1. `casa-asap`
 1. `casa-python`
-1. `pathlib`
 1. `pwkit`
