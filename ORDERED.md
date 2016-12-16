@@ -9,6 +9,7 @@ CASA+pwkit
 1. `wcslib`
 1. `rpfits`
 1. `qwt5`
+1. `xerces-c28` — temp while the conda-forge version spins up
 1. `libsakura`
 1. `casa-data`
 1. `casa-nrao-casacore`
