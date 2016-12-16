@@ -27,7 +27,7 @@ requirements:
     - casa-tools
     - cmake
     - libgfortran 3.0.0 #[linux]
-    - ncurses 5.9
+    - ncurses
     - nomkl # speed by avoiding big download
     - python
     - rpfits
@@ -35,7 +35,7 @@ requirements:
   run:
     - casa-tools
     - libgfortran 3.0.0 #[linux]
-    - ncurses 5.9
+    - ncurses
     - python
     - rpfits
 
