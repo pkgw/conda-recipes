@@ -24,7 +24,7 @@ build:
 
 requirements:
   build:
-    - boost 1.57.0 # version fix is temp hack for unavailable ICU 56
+    - boost
     - casa-nrao-casacore
     - casa-tools
     - cfitsio
@@ -39,7 +39,7 @@ requirements:
     - rpfits
     - wcslib
   run:
-    - boost 1.57.0 # version fix is temp hack for unavailable ICU 56
+    - boost
     - casa-nrao-casacore
     - casa-tools
     - cfitsio
