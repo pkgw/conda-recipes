@@ -3,7 +3,7 @@
 #
 # See ./build.sh for a simple build recipe.
 
-FROM centos:5
+FROM centos:6
 MAINTAINER Peter Williams <peter@newton.cx>
 
 VOLUME /work

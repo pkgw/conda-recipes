@@ -16,6 +16,7 @@ bison
 bzip2
 curl
 emacs-nox
+epel-release
 file
 flex
 gcc
@@ -41,6 +42,11 @@ xz
 zip
 ")
 
+# Can now install git because we got epel-release
+yum install -y $(echo "
+git
+")
+
 # Devtools
 wget http://people.centos.org/tru/devtools-2/devtools-2.repo -O /etc/yum.repos.d/devtools-2.repo
 yum install -y $(echo "
@@ -51,20 +57,8 @@ devtoolset-2-gcc-c++
 devtoolset-2-gcc-gfortran
 ")
 
-# We use RPMForge to get git
-wget http://packages.sw.be/rpmforge-release/rpmforge-release-0.5.3-1.el5.rf.x86_64.rpm
-rpm --import http://apt.sw.be/RPM-GPG-KEY.dag.txt
-rpm -K rpmforge-release-0.5.3-1.el5.rf.x86_64.rpm
-rpm -i rpmforge-release-0.5.3-1.el5.rf.x86_64.rpm
-yum update -y # get miscellaneous overrides
-yum install -y $(echo "
-git
-")
-rm -f rpmforge-release-0.5.3-1.el5.rf.x86_64.rpm
-
-# Miniconda
-# XXX: a Python 3 version would be different!
-wget https://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O miniconda.sh
+# Python 2 Miniconda
+wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh
 bash miniconda.sh -b -p /conda
 cat >~/.bashrc <<'EOF'
 # .bashrc
@@ -74,7 +68,10 @@ export PATH="/conda/bin:$PATH"
 EOF
 source ~/.bashrc
 rm miniconda.sh
-conda update --all
+
+# Enable Conda Forge
+conda config --add channels conda-forge
+conda update --all -y
 
 # Conda dev packages
 conda install -y $(echo "

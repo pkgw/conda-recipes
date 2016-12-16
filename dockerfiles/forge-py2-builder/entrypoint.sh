@@ -3,7 +3,7 @@
 # Licensed under the MIT License.
 #
 # This is the "entrypoint" script for the Conda build image. When a user runs
-# "docker run conda-py2-builder build casa-tools", we are invoked with $1=build
+# "docker run forge-py2-builder build casa-tools", we are invoked with $1=build
 # and $2=casa-tools.
 
 set -e
