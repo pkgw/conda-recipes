@@ -1,11 +1,11 @@
 #! /usr/bin/env bash
-# Copyright 2015 Peter Williams.
+# Copyright 2015-2016 Peter Williams.
 # Licensed under the MIT License.
 #
-# Set up a Mac OS X machine to build Conda packages reliably. Note that this
-# "bootstrap" script is run as root. The base VM image already has the Xcode
-# command line tools installed such that just running "gcc" works, and
-# Homebrew as well.
+# Set up a Mac OS X machine to build Conda+Conda-forge packages reliably. Note
+# that this "bootstrap" script is run as root. The base VM image already has
+# the Xcode command line tools installed such that just running "gcc" works,
+# and Homebrew as well.
 
 set -e -x
 cd /Users/vagrant
@@ -27,7 +27,7 @@ xz
 mkdir -p /conda
 chown vagrant /conda
 
-curl -s https://repo.continuum.io/miniconda/Miniconda-latest-MacOSX-x86_64.sh >miniconda.sh
+curl -s https://repo.continuum.io/miniconda/Miniconda2-latest-MacOSX-x86_64.sh >miniconda.sh
 $vrun bash miniconda.sh -f -b -p /conda
 cat >/Users/vagrant/.bash_profile <<'EOF'
 # .bash_profile
@@ -41,8 +41,12 @@ PS1='\h \A \W \$ '
 EOF
 chown vagrant /Users/vagrant/.bash*
 rm miniconda.sh
-$vrun conda update --all
 
+# Conda-Forge!
+$vrun conda config --add channels conda-forge
+$vrun conda update --all -y
+
+# Conda dev packages
 $vrun conda install -y $(echo "
 conda-build
 jinja2
