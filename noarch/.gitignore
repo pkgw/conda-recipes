@@ -1,0 +1,4 @@
+.index.json
+*.tar.bz2
+repodata.json
+repodata.json.bz2
