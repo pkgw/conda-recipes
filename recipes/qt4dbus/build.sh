@@ -22,6 +22,7 @@ configure_args=(
     -release
     -fast
     -no-qt3support
+    -no-script
     -nomake examples
     -nomake demos
     -nomake docs
