@@ -26,13 +26,12 @@ build:
 
 requirements:
   build:
-    - boost 1.57.0 # fixed version is hack for icu issue seen in casa-tools
+    - boost
     - cfitsio
     - cmake
     - fftw
     - hdf5 >=1.8.15.1
-    # - libgfortran 3.0.0 #[linux] XXX: causes spurious-seeming dep conflict error
-    - ncurses 5.9
+    - ncurses
     - nomkl # speeds up by avoiding big download
     - numpy
     - openblas #[not osx]
@@ -40,12 +39,12 @@ requirements:
     - readline
     - wcslib
   run:
-    - boost 1.57.0 # fixed version is hack for icu issue seen in casa-tools
+    - boost
     - cfitsio
     - fftw
     - hdf5 >=1.8.15.1
     - libgfortran 3.0.0 #[linux]
-    - ncurses 5.9
+    - ncurses
     - numpy
     - openblas #[not osx]
     - python >=2.7,<3
