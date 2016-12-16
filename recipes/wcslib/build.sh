@@ -29,6 +29,7 @@ fi
 
 ./configure "${configure_args[@]}" || { cat config.log ; exit 1 ; }
 make # note: Makefile is not parallel-safe
+mkdir -p $PREFIX/share/man/man1
 make install
 
 cd $PREFIX
