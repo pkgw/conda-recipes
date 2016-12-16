@@ -32,12 +32,3 @@
  ! ZEDRIV 0 /ZETA      Zeta 8 Digital Plotter
  !
  ! The following drivers can only be used in PGPLOT installations on MS-DOS
-@@ -107,7 +107,7 @@
- ! before the PGPLOT library. This treatment means that only Tcl/Tk
- ! applications have to be linked with the Tcl and Tk libraries.
- !
--! TKDRIV 0 /XTK       X-window Tcl/Tk programs with pgplot widgets.     C
-+  TKDRIV 0 /XTK       X-window Tcl/Tk programs with pgplot widgets.     C
- !
- ! The following driver is included solely for use by the aips++ team.
- !

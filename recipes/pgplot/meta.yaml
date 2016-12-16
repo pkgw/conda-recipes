@@ -27,13 +27,11 @@ requirements:
   build:
     - libpng
     - modern-xorg-stack
-    - tk
     - zlib
   run:
     - libgfortran 3.0.0 #[linux]
     - libpng
     - modern-xorg-stack
-    - tk
     - zlib
 
 about:

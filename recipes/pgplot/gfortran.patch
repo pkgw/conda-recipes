@@ -16,8 +16,8 @@
 +LIBS="-L$PREFIX/lib -lX11"
 +MOTIF_LIBS="-lXm -lXt $LIBS"
 +ATHENA_LIBS="-lXaw -lXt -lXmu -lXext $LIBS"
-+TK_INCL=$(pkg-config --cflags tk)
-+TK_LIBS="$(pkg-config --libs tk) -lX11"
++TK_INCL=
++TK_LIBS=
 +RANLIB="ranlib"
 +SHARED_LIB="libpgplot.so"
 +SHARED_LD="gcc -shared -o $SHARED_LIB"
