@@ -34,7 +34,7 @@ requirements:
     - ncurses
     - nomkl # speeds up by avoiding big download
     - numpy
-    - openblas #[not osx]
+    - openblas
     - python >=2.7,<3
     - readline
     - wcslib
@@ -46,7 +46,7 @@ requirements:
     - libgfortran 3.0.0 #[linux]
     - ncurses
     - numpy
-    - openblas #[not osx]
+    - openblas
     - python >=2.7,<3
     - readline
     - wcslib
