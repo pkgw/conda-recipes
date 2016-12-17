@@ -6,7 +6,7 @@
 
 set -e -x
 
-# Centos 5 yum silliness
+# Centos 5 yum silliness (XXX: we're now on CentOS 6 but this shouldn't hurt)
 echo 'exclude=*.i386 *.i586 *.i686' >>/etc/yum.conf
 yum update -y
 
