@@ -3,14 +3,18 @@
 #
 # To see what the latest version is, just visit the svn_url listed below and
 # see what the server reports.
+#
+# Note that this package should be "noarch", but Conda's tools kind of
+# insanely require that noarch packages be Python-based:
+# `assert 'py_' in m.dist()`
 
 package:
   name: casa-data
-  version: r10915
+  version: r10954
 
 source:
   svn_url: https://svn.cv.nrao.edu/svn/casa-data/distro/
-  svn_rev: 10915
+  svn_rev: 10954
   svn_ignore_externals: yes
 
 build:
