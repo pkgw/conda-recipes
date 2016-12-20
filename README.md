@@ -7,25 +7,28 @@ This repository contains the tools I use to build various packages in the
 [Conda] package manager used by the [Anaconda] Python distribution. Most of
 them build up to providing support for the [Gtk+ 3] graphical toolkit and the
 [CASA] radio interferometry package. Builds are provided on 64-bit Linux and
-OS X.
+OS X. **My packages are layered on top of those provided by the [conda-forge]
+project, so you must add `conda-forge` as a channel in your Conda
+configuration!**
 
 [Conda]: http://conda.pydata.org/
 [Anaconda]: http://docs.continuum.io/anaconda/index
 [Gtk+ 3]: http://www.gtk.org/
 [CASA]: http://casa.nrao.edu/
+[conda-forge]: http://conda-forge.github.io/
 
 I upload built packages to [my personal anaconda.org channel]. You can
 configure your [Anaconda] installation to fetch packages from it with:
 
 ```
-conda config --add channels http://conda.anaconda.org/pkgw/channel/main
+conda config --add channels pkgw-forge
 ```
 
 To directly install the package `pwkit` (for example) without altering your
 configuration, use:
 
 ```
-conda install -c pkgw pwkit
+conda install -c pkgw-forge pwkit
 ```
 
 As part of this work I’ve also developed a [prebuilt Docker image] that can be
@@ -34,8 +37,8 @@ to make `osx-64` packages repeatably. My [notes for developers](DEV.md) may be
 valuable if you’re interesting in making Conda packages containing compiled
 code for Linux and/or Mac OS X machines.
 
-[my personal anaconda.org channel]: https://anaconda.org/pkgw/
-[prebuilt Docker image]: https://hub.docker.com/r/pkgw/conda-py2-builder/
+[my personal anaconda.org channel]: https://anaconda.org/pkgw-forge/
+[prebuilt Docker image]: https://hub.docker.com/r/pkgw/forge-py2-builder/
 [Vagrant]: https://www.vagrantup.com/
 
 
