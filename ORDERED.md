@@ -19,8 +19,7 @@ The GTK+ 3 Stack
 1. `librsvg`
 1. `gtk3`
 1. `adwaita-icon-theme`
-1. `py2cairo` — OS X and Python 2 only; superseded by `pycairo`?
-1. `py3cairo` — Python 3 only; superseded by `pycairo`?
+1. `py[2,3]cairo` — c-f build needed for GObject? TBD.
 1. `pygobject3` — note: "3" means GLib 3, not Python 3.
 
 
@@ -28,8 +27,8 @@ The CASA Stack
 ==============
 
 1. `dbus-cxx` — soon to be officialized
-1. `qt4dbus`
-1. `cfitsio`
+1. `qt4dbus` — working on it, but reqs dbus-c++ and X11
+1. `cfitsio` — soon to be officialized
 1. `pgplot`
 1. `wcslib`
 1. `rpfits`
