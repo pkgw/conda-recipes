@@ -9,7 +9,6 @@ Required by both GTK+ 3 and CASA.
 The GTK+ 3 Stack
 ================
 
-1. `cairo-gobject` — soon to be officialized
 1. `gobject-introspection`
 1. `libcroco`
 1. `atk`
@@ -28,7 +27,6 @@ The CASA Stack
 
 1. `dbus-cxx` — soon to be officialized
 1. `qt4dbus` — working on it, but reqs dbus-c++ and X11
-1. `cfitsio` — soon to be officialized
 1. `pgplot`
 1. `wcslib`
 1. `rpfits`
