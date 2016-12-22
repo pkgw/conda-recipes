@@ -26,7 +26,7 @@ The CASA Stack
 ==============
 
 1. `dbus-cxx` — soon to be officialized
-1. `qt4dbus` — working on it, but reqs dbus-c++ and X11
+1. `qt4` — working on it, but reqs dbus-c++ and X11
 1. `pgplot`
 1. `wcslib`
 1. `rpfits`

@@ -44,7 +44,7 @@ requirements:
     - pgplot
     - readline
     - rpfits
-    - qt4dbus 4.8.*
+    - qt4 4.8.*
     - qwt5
     - xerces-c28
   run:
@@ -63,7 +63,7 @@ requirements:
     - pgplot
     - readline
     - rpfits
-    - qt4dbus 4.8.*
+    - qt4 4.8.*
     - qwt5
     - xerces-c28
 
