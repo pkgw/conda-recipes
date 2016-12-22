@@ -20,6 +20,8 @@ if [ -z "$1" ] ; then
 fi
 
 recipedir="$1"
+
+rm -rf /conda/conda-bld/condabuilder.*
 work=$(mktemp -d condabuilder.XXXXXX)
 
 if [ -f $recipedir/.excludes ] ; then
