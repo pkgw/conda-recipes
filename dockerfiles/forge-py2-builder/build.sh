@@ -3,5 +3,5 @@
 # Licensed under the MIT License.
 
 set -e
-docker build -t forge-py3-builder .
+docker build -t forge-py2-builder .
 
