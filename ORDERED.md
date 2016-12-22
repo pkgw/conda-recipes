@@ -25,10 +25,9 @@ The GTK+ 3 Stack
 The CASA Stack
 ==============
 
-1. `dbus-cxx` — soon to be officialized
-1. `qt4` — working on it, but reqs dbus-c++ and X11
-1. `pgplot`
-1. `wcslib`
+1. `qt4` — working on it, but reqs X11
+1. `pgplot` — needs X11
+1. `wcslib` — wants pgplot
 1. `rpfits`
 1. `qwt5`
 1. `libsakura`
