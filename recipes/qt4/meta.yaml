@@ -11,6 +11,13 @@
 # el-capitan.patch is from
 # https://github.com/Homebrew/homebrew-core/blob/master/Formula/qt.rb
 
+# c-f freetype: 2.7 --- no unusual deps
+# c-f fontconfig: 2.12.1 --- freetype~2.6
+# c-f freeglut: 3.0.0 --- no deps
+# c-f glib: 2.51.0 --- no unusual deps
+# c-f pango: 1.40.3 --- cairo~1.14 fontconfig~2.12 freetype~2.5 glib~2.50 harfbuzz~0.9
+# ===> need fontconfig and pango updates/rebuilds
+
 package:
   name: qt4
   version: 4.8.7
