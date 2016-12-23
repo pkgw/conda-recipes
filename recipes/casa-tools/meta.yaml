@@ -4,6 +4,8 @@
 # NOTE: if updating major or minor version, update `so-versioning.patch`.
 # Build on CentOS 5.
 
+# XXX VERSION PINS REMOVED FOR conda-forge FOR NOW
+
 package:
   name: casa-tools
   version: "4.6.0"
@@ -28,7 +30,7 @@ build:
 requirements:
   build:
     - boost
-    - casa-nrao-casacore
+    - casa-casacore 2.1.*
     - cmake
     - dbus-cxx
     - dbus
@@ -49,7 +51,7 @@ requirements:
     - xerces-c28
   run:
     - boost
-    - casa-nrao-casacore
+    - casa-casacore 2.1.*
     - dbus-cxx
     - dbus
     - fftw
