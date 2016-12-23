@@ -36,31 +36,25 @@
      }
    }
  }
---- measures/Measures/MeasIERS.cc.orig	2015-04-10 10:36:56.000000000 +0000
-+++ measures/Measures/MeasIERS.cc	2016-12-22 21:26:04.081459190 +0000
-@@ -436,7 +436,7 @@
- 		  found = True;
- 		  break;
- 		}
--		Path cdatapath(String(CASADATA));
-+		Path cdatapath(String(String(CASADATA).chars()));
- 		ldir = cdatapath.absoluteName() + path[i];
- 		searched.resize(searched.nelements() + 1, True);
- 		searched[searched.nelements() - 1] = ldir;
---- measures/Measures/MeasTable.cc.orig	2015-04-10 10:36:56.000000000 +0000
-+++ measures/Measures/MeasTable.cc	2016-12-22 21:26:48.507138096 +0000
-@@ -2997,12 +2997,12 @@
+--- measures/Measures/MeasIERS.cc.orig	2016-03-18 09:59:56.000000000 +0000
++++ measures/Measures/MeasIERS.cc	2016-12-23 01:25:41.829232320 +0000
+@@ -422,7 +422,7 @@
+           }
+         }
+         if (!found) {
+-          String casadata=String(CASADATA);
++          String casadata=String(String(CASADATA).chars());
+           casadata.gsub("%CASAROOT%", Aipsrc::aipsRoot());
+           casadata.gsub("%CASAHOME%", Aipsrc::aipsHome());
+           Path cdatapath(casadata);
+--- measures/Measures/MeasTable.cc.orig	2016-03-18 09:59:56.000000000 +0000
++++ measures/Measures/MeasTable.cc	2016-12-23 01:25:34.077273382 +0000
+@@ -2988,7 +2988,7 @@
  	isValid = Table::isReadable(absPathName);
        }
        if(!isValid){
--	Path lPath(String(CASADATA) + "/" + antRespPath);
-+	Path lPath(String(String(CASADATA).chars()) + "/" + antRespPath);
- 	absPathName = lPath.absoluteName();
- 	isValid = Table::isReadable(absPathName);
-       }
-       if(!isValid){
--	Path lPath(String(CASADATA)+ "/share/casacore/data/" + antRespPath);
-+	Path lPath(String(String(CASADATA).chars())+ "/share/casacore/data/" + antRespPath);
- 	absPathName = lPath.absoluteName();
- 	isValid = Table::isReadable(absPathName);
-       }
+-        String casadata=String(CASADATA);
++        String casadata=String(String(CASADATA).chars());
+         casadata.gsub("%CASAROOT%", Aipsrc::aipsRoot());
+         casadata.gsub("%CASAHOME%", Aipsrc::aipsHome());
+         Path lPath(casadata + "/" + antRespPath);
