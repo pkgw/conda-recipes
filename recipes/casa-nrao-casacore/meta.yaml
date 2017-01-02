@@ -19,14 +19,13 @@ source:
     - ncursesw.patch
 
 build:
-  number: 2
+  number: 3
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
 
 requirements:
   build:
-    - boost
     - cfitsio
     - cmake
     - fftw
@@ -35,11 +34,9 @@ requirements:
     - nomkl # speeds up by avoiding big download
     - numpy
     - openblas
-    - python >=2.7,<3
     - readline
     - wcslib
   run:
-    - boost
     - cfitsio
     - fftw
     - hdf5 >=1.8.15.1
@@ -47,7 +44,6 @@ requirements:
     - ncurses
     - numpy
     - openblas
-    - python >=2.7,<3
     - readline
     - wcslib
 

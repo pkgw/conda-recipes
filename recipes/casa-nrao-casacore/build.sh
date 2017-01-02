@@ -11,7 +11,7 @@ test $(echo "$PREFIX" |wc -c) -gt 200 # check that we're getting long paths
 # there's no way to avoid them getting split up.
 
 cmake_args=(
-    -DBUILD_PYTHON=ON
+    -DBUILD_PYTHON=OFF
     -DBUILD_TESTING=OFF
     -DCMAKE_BUILD_TYPE=Release
     -DCMAKE_COLOR_MAKEFILE=OFF
