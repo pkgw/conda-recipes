@@ -3,7 +3,7 @@ Core Packages
 
 Required by both GTK+ 3 and CASA.
 
-1. `modern-xorg-stack`
+1. `modern-xorg-stack` — conda-forge possibilities brought up; discussion pending
 
 
 The GTK+ 3 Stack
@@ -25,7 +25,7 @@ The GTK+ 3 Stack
 The CASA Stack
 ==============
 
-1. `qt4` — working on it, but reqs X11
+1. `qt4dbus` — working on it, but reqs X11
 1. `pgplot` — needs X11
 1. `wcslib` — wants pgplot
 1. `rpfits`

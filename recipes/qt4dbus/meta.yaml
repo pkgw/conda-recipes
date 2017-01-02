@@ -19,7 +19,7 @@
 # ===> need fontconfig and pango updates/rebuilds
 
 package:
-  name: qt4
+  name: qt4dbus
   version: 4.8.7
 
 source:
