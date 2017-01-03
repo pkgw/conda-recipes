@@ -1,4 +1,4 @@
-# Copyright 2015-2016 Peter Williams and collaborators.
+# Copyright 2015-2017 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 #
 # NOTE: if updating major or minor version, update `so-versioning.patch`.
@@ -19,7 +19,7 @@ source:
     - ncursesw.patch
 
 build:
-  number: 3
+  number: 4
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
@@ -28,24 +28,24 @@ requirements:
   build:
     - cfitsio
     - cmake
-    - fftw
+    - fftw 3.3.*
     - hdf5 >=1.8.15.1
-    - ncurses
+    - ncurses 5.9
     - nomkl # speeds up by avoiding big download
     - numpy
-    - openblas
-    - readline
-    - wcslib
+    - openblas 0.2.*
+    - readline 6.*
+    - wcslib 5.12
   run:
     - cfitsio
-    - fftw
+    - fftw 3.3.*
     - hdf5 >=1.8.15.1
     - libgfortran 3.0.0 #[linux]
-    - ncurses
+    - ncurses 5.9
     - numpy
-    - openblas
-    - readline
-    - wcslib
+    - openblas 0.2.*
+    - readline 6.*
+    - wcslib 5.12
 
 about:
   home: http://casa.nrao.edu/
