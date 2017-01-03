@@ -34,7 +34,6 @@ The CASA Stack
 1. `casa-data`
 1. `casa-nrao-casacore`
 1. `casa-tools`
-1. `casa-asap`
 1. `casa-python`
 1. `aoflagger`
 
