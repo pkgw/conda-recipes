@@ -1,4 +1,4 @@
-# Copyright 2015 Peter Williams and collaborators.
+# Copyright 2015-2017 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 #
 # NOTE: if updating major or minor version, update `so-versioning.patch`.
@@ -17,27 +17,27 @@ source:
     - ncursesw.patch
 
 build:
-  number: 3
+  number: 4
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
 
 requirements:
   build:
-    - casa-tools
+    - casa-tools 4.6.*
     - cmake
-    - libgfortran 3.0.0 #[linux]
-    - ncurses
+    - libgfortran  # [linux]
+    - ncurses 5.9
     - nomkl # speed by avoiding big download
     - python
-    - rpfits
+    - rpfits 2.*
     - swig
   run:
-    - casa-tools
-    - libgfortran 3.0.0 #[linux]
-    - ncurses
+    - casa-tools 4.6.*
+    - libgfortran  # [linux]
+    - ncurses 5.9
     - python
-    - rpfits
+    - rpfits 2.*
 
 about:
   home: http://casa.nrao.edu/

@@ -1,5 +1,5 @@
 #! /bin/bash
-# Copyright 2015-2016 Peter Williams and collaborators.
+# Copyright 2015-2017 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 # Java must be installed to build this package! Lame but not too hard to deal
@@ -8,6 +8,10 @@
 [ "$NJOBS" = '<UNDEFINED>' -o -z "$NJOBS" ] && NJOBS=1
 set -e
 test $(echo "$PREFIX" |wc -c) -gt 200 # check that we're getting long paths
+
+# ??? on my builder, this is currently set to python3.5 even though everything
+# else is configured for Python 2.7? And this didn't used to happen. Sigh.
+export SP_DIR=$($PYTHON -c 'import site; print site.getsitepackages()[0]')
 
 export PATH="$PREFIX/lib/qt4/bin:$PATH"
 
