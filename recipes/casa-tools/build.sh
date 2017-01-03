@@ -9,7 +9,11 @@ test $(echo "$PREFIX" |wc -c) -gt 200 # check that we're getting long paths
 export PATH="$PREFIX/lib/qt4/bin:$PATH"
 
 (cd $PREFIX/include && ln -s xercesc28 xercesc) || exit 1
-(cd $PREFIX/lib && ln -s libxerces-c.so.28.0 libxerces-c.so) || exit 1 # XXX: dylib on OSX
+if [ -n "$OSX_ARCH" ] ; then
+    (cd $PREFIX/lib && ln -s libxerces-c.28.0.dylib libxerces-c.dylib) || exit 1
+else
+    (cd $PREFIX/lib && ln -s libxerces-c.so.28.0 libxerces-c.so) || exit 1
+fi
 
 cmake_args=(
     -DCMAKE_BUILD_TYPE=Release
