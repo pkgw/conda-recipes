@@ -22,7 +22,7 @@ while [ $# -gt 0 ] ; do
 	exit 1
     fi
 
-    log="$recipe_topdir/recipes/$pkg/osx-64.log"
+    log="$recipe_topdir/recipes/$pkg/osx-64-py2.log"
     echo "Building with logs to $log ..."
     set +e
     stdbuf -oL -eL vagrant ssh -c "cd /vagrant/recipes/ && ./.builder.sh /vagrant/recipes/$pkg" >"$log" 2>&1
@@ -34,4 +34,4 @@ while [ $# -gt 0 ] ; do
     [ "$ec" -ne 0 ] && exit $ec
 done
 
-echo "IF UPLOADING, USE conda-forge LABEL!"
+echo "IF UPLOADING, USE pkgw-forge USER!"
