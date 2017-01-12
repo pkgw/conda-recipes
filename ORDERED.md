@@ -28,7 +28,6 @@ The CASA Stack
 1. `qt4dbus` — working on it, but reqs X11
 1. `pgplot` — needs X11
 1. `wcslib` — wants pgplot
-1. `rpfits` — blocked on conda-build 2.0 for FTP URLs ($&!#!) and figuring out Fortran situation
 1. `qwt5`
 1. `libsakura`
 1. `casa-data`
