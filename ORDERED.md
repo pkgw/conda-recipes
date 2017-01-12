@@ -3,7 +3,7 @@ Core Packages
 
 Required by both GTK+ 3 and CASA.
 
-1. `modern-xorg-stack` — conda-forge possibilities brought up; discussion pending
+1. `modern-xorg-stack` — Not planning to emulate on conda-forge.
 
 
 The GTK+ 3 Stack
@@ -26,8 +26,8 @@ The CASA Stack
 ==============
 
 1. `qt4dbus` — working on it, but reqs X11
-1. `pgplot` — needs X11
-1. `wcslib` — wants pgplot
+1. `pgplot` — in prep on conda-forge staged-recipes
+1. `wcslib` — in prep on conda-forge staged-recipes
 1. `qwt5`
 1. `libsakura`
 1. `casa-data`
@@ -50,7 +50,6 @@ The PyRAF Stack
 Miscellanous Compiled
 =====================
 
-1. `grip`
 1. `ds9`
 1. `miriad`
 1. `texlive-selected`
@@ -60,6 +59,7 @@ Miscellaneous Python modules
 ============================
 
 1. `path-and-address`
+1. `grip`
 1. `astropy-helpers`
 1. `astroquery`
 1. `omegaplot`
