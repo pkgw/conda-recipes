@@ -19,7 +19,7 @@
 # ===> need fontconfig and pango updates/rebuilds
 
 package:
-  name: qt4dbus
+  name: qt4
   version: 4.8.7
 
 source:
@@ -28,9 +28,9 @@ source:
   md5: d990ee66bf7ab0c785589776f35ba6ad
   patches:
     - acceptance.patch
-    - qmake-arch.patch #[osx]
+    - qmake-arch.patch  # [osx]
     - long-paths.patch
-    - el-capitan.patch #[osx]
+    - el-capitan.patch  # [osx]
 
 build:
   number: 0
@@ -48,7 +48,7 @@ requirements:
     - libpng 1.6.*
     - libtiff 4.0.*
     - libxml2 2.9.*
-    - libuuid 1.0.* # [linux]
+    - libuuid 1.0.*  # [linux]
     - modern-xorg-stack
     - openssl 1.0.*
     - pango 1.40.*  # [linux]
