@@ -3,7 +3,7 @@ Core Packages
 
 Required by both GTK+ 3 and CASA.
 
-1. `modern-xorg-stack` — Not planning to emulate on conda-forge.
+1. `modern-xorg-stack` — Slowly being supplanted by real conda-forge packages.
 
 
 The GTK+ 3 Stack
