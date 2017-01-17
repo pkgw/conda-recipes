@@ -20,7 +20,7 @@ build:
 
 requirements:
   build:
-    - cairo
+    - cairo 1.14.*
     - gettext  # [osx]
     - glib 2.51.*
     - libffi 3.2.*

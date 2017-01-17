@@ -11,19 +11,19 @@ source:
   sha256: ce6c48d77bf951083029d5a396dd552d836fff3c1715d3a7022e917e46d0c92b
 
 build:
-  number: 3
+  number: 0
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
 
 requirements:
   build:
-    - glib
-    - gobject-introspection
+    - glib 2.51.*
+    - gobject-introspection 1.51.*
     - python
   run:
-    - glib
-    - gobject-introspection
+    - glib 2.51.*
+    - gobject-introspection 1.51.*
 
 about:
   home: http://www.gtk.org/

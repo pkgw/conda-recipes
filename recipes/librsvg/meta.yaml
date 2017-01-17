@@ -14,27 +14,27 @@ source:
   sha256: 4d6ea93ec05f5dabe7262d711d246a0a99b2311e215360dd3dcabd6afe3b9804
 
 build:
-  number: 1
+  number: 0
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
 
 requirements:
   build:
-    - cairo-gobject
-    - gdk-pixbuf
-    - glib
-    - libcroco
-    - libxml2
-    - pango 1.38.1 # make sure to get my pango with GI info, not stock Conda's
+    - cairo 1.14.*
+    - gdk-pixbuf 2.32.*
+    - glib 2.51.*
+    - libcroco 0.6.*
+    - libxml2 2.9.*
+    - pango 1.40.*
     - python
   run:
-    - cairo-gobject
-    - gdk-pixbuf
-    - glib
-    - libcroco
-    - libxml2
-    - pango 1.38.1 # make sure to get my pango with GI info, not stock Conda's
+    - cairo 1.14.*
+    - gdk-pixbuf 2.32.*
+    - glib 2.51.*
+    - libcroco 0.6.*
+    - libxml2 2.9.*
+    - pango 1.40.*
 
 about:
   home: https://wiki.gnome.org/Projects/LibRsvg

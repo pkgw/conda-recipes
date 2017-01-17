@@ -11,18 +11,18 @@ source:
   sha256: 132b528a948586b0dfa05d7e9e059901bca5a3be675b6071a90a90b81ae5a056
 
 build:
-  number: 1
+  number: 0
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
 
 requirements:
   build:
-    - glib
-    - libxml2
+    - glib 2.51.*
+    - libxml2 2.9.*
   run:
-    - glib
-    - libxml2
+    - glib 2.51.*
+    - libxml2 2.9.*
 
 about:
   home: http://www.linuxfromscratch.org/blfs/view/svn/general/libcroco.html
