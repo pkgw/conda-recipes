@@ -9,7 +9,7 @@ Required by both GTK+ 3 and CASA.
 The GTK+ 3 Stack
 ================
 
-1. `gobject-introspection`
+1. `gobject-introspection` — in prep on conda-forge staged-recipes
 1. `libcroco`
 1. `atk`
 1. `at-spi2-core`
@@ -18,7 +18,7 @@ The GTK+ 3 Stack
 1. `librsvg`
 1. `gtk3`
 1. `adwaita-icon-theme`
-1. `py[2,3]cairo` — c-f build needed for GObject? TBD.
+1. `pycairo` — c-f build of Cairo needed for GObject.
 1. `pygobject3` — note: "3" means GLib 3, not Python 3.
 
 
