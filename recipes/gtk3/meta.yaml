@@ -18,30 +18,30 @@ source:
     - no-module-warning.patch
 
 build:
-  number: 4
+  number: 0
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
 
 requirements:
   build:
-    - at-spi2-atk
-    - atk
-    - cairo-gobject
-    - gdk-pixbuf
-    - glib
-    - gobject-introspection
-    - modern-xorg-stack #[not osx]
-    - pango 1.38.1 # make sure to get my pango with GI info, not stock Conda's
+    - at-spi2-atk 2.18.*
+    - atk 2.18.*
+    - cairo 1.14.*
+    - gdk-pixbuf 2.32.*
+    - glib 2.51.*
+    - gobject-introspection 1.51.*
+    - modern-xorg-stack  # [not osx]
+    - pango 1.40.*
     - python
   run:
-    - at-spi2-atk
-    - atk
-    - gdk-pixbuf
-    - glib
-    - gobject-introspection
-    - modern-xorg-stack #[not osx]
-    - pango 1.38.1 # make sure to get my pango with GI info, not stock Conda's
+    - at-spi2-atk 2.18.*
+    - atk 2.18.*
+    - gdk-pixbuf 2.32.*
+    - glib 2.51.*
+    - gobject-introspection 1.51.*
+    - modern-xorg-stack  # [not osx]
+    - pango 1.40.*
 
 about:
   home: http://www.gtk.org/
