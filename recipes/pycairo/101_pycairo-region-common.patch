@@ -705,54 +705,6 @@ Applied-Upstream: http://cgit.freedesktop.org/pycairo/commit/?id=75e82a1b3f495a3
 +  0,					/* tp_alloc */
 +  (newfunc)region_new,      		/* tp_new */
 +};
---- src/pycairo.h.orig
-+++ src/pycairo.h
-@@ -67,6 +67,16 @@ typedef struct {
- 
- typedef struct {
-   PyObject_HEAD
-+  cairo_rectangle_int_t rectangle_int;
-+} PycairoRectangleInt;
-+
-+typedef struct {
-+  PyObject_HEAD
-+  cairo_region_t *region;
-+} PycairoRegion;
-+
-+typedef struct {
-+  PyObject_HEAD
-   cairo_scaled_font_t *scaled_font;
- } PycairoScaledFont;
- 
-@@ -129,6 +139,14 @@ typedef struct {
- 
-   /* misc functions */
-   int (*Check_Status)(cairo_status_t status);
-+
-+  PyTypeObject *RectangleInt_Type;
-+  PyObject *(*RectangleInt_FromRectangleInt)(
-+      const cairo_rectangle_int_t *rectangle_int);
-+
-+  PyTypeObject *Region_Type;
-+  PyObject *(*Region_FromRegion)(const cairo_region_t *region);
-+
- } Pycairo_CAPI_t;
- 
- 
-@@ -156,6 +174,13 @@ typedef struct {
- #define PycairoRadialGradient_Type  *(Pycairo_CAPI->RadialGradient_Type)
- #define PycairoPattern_FromPattern   (Pycairo_CAPI->Pattern_FromPattern)
- 
-+#define PycairoRectangleInt_Type    *(Pycairo_CAPI->RectangleInt_Type)
-+#define PycairoRectangleInt_FromRectangleInt  \
-+                                  (Pycairo_CAPI->RectangleInt_FromRectangleInt)
-+
-+#define PycairoRegion_Type          *(Pycairo_CAPI->Region_Type)
-+#define PycairoRegion_FromRegion     (Pycairo_CAPI->Region_FromRegion)
-+
- #define PycairoScaledFont_Type      *(Pycairo_CAPI->ScaledFont_Type)
- #define PycairoScaledFont_FromScaledFont \
-                                      (Pycairo_CAPI->ScaledFont_FromScaledFont)
 --- src/cairomodule.c.orig
 +++ src/cairomodule.c
 @@ -141,6 +141,12 @@ static Pycairo_CAPI_t CAPI = {
