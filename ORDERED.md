@@ -9,7 +9,6 @@ Required by both GTK+ 3 and CASA.
 The GTK+ 3 Stack
 ================
 
-1. `gobject-introspection` — in prep on conda-forge staged-recipes
 1. `libcroco`
 1. `atk`
 1. `at-spi2-core`
