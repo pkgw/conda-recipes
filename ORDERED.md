@@ -25,7 +25,6 @@ The CASA Stack
 ==============
 
 1. `pgplot` — in prep on conda-forge staged-recipes
-1. `wcslib` — in prep on conda-forge staged-recipes
 1. `qt4`
 1. `qwt5`
 1. `libsakura`
