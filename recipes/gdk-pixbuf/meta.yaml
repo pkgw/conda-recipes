@@ -1,4 +1,4 @@
-# Copyright 2014-2015 Peter Williams and collaborators.
+# Copyright 2014-2017 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 package:
@@ -11,7 +11,7 @@ source:
   sha256: d3ab06fc123b13effed4c27c77cebdfad2173ff20628d82c397b7660ae926145
 
 build:
-  number: 0
+  number: 1
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
@@ -23,8 +23,9 @@ requirements:
     - jpeg 9*
     - libpng >=1.6.28,<1.7
     - libtiff 4.0.*
-    - modern-xorg-stack
     - python # needed for g-ir-scanner
+    - xorg-libx11 1.6.*
+    - xorg-xproto
     - zlib 1.2.*
   run:
     - glib 2.51.*
@@ -32,7 +33,7 @@ requirements:
     - jpeg 9*
     - libpng >=1.6.28,<1.7
     - libtiff 4.0.*
-    - modern-xorg-stack
+    - xorg-libx11 1.6.*
     - zlib 1.2.*
 
 about:
