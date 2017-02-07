@@ -16,15 +16,15 @@ source:
     # Note that there are other patches that are applied through build.sh
     # since the waf-based build system is SUPER ANNOYING.
     #
-    # This patch does not actually work! I'm having trouble figuring out
-    # why and there's only so much time I want to spend on this right now.
-    - 101_pycairo-region-common.patch  # [py2k]
+    # The "region" patch does not actually work! I'm having trouble figuring
+    # out why and there's only so much time I want to spend on this right now.
+    - 101_pycairo-region-common.patch
     - 101_pycairo-region-py2k.patch  # [py2k]
     - 101_pycairo-region-py3k.patch  # [not py2k]
     - 102_initfix.patch  # [py2k]
 
 build:
-  number: 0
+  number: 1
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
@@ -32,13 +32,21 @@ build:
 requirements:
   build:
     - cairo 1.14.*
-    - modern-xorg-stack
     - python
+    - xorg-libx11 1.6.*
+    - xorg-xproto
   run:
     - cairo 1.14.*
     - python
 
+test:
+  imports:
+    - cairo
+  commands:
+    - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
+    - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
+
 about:
   home: http://cairographics.org/pycairo/
   license: LGPL 2.1, MPL 1.1
-  summary: Python 2.X bindings for the Cairo graphics library
+  summary: 'Python bindings for the Cairo graphics library.'

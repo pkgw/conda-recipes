@@ -57,7 +57,7 @@ Applied-Upstream: http://cgit.freedesktop.org/pycairo/commit/?id=75e82a1b3f495a3
 +******
 +Region
 +******
-+Region — Representing a pixel-aligned area
++Region - Representing a pixel-aligned area
 +
 +.. currentmodule:: cairo
 +
@@ -109,7 +109,7 @@ Applied-Upstream: http://cgit.freedesktop.org/pycairo/commit/?id=75e82a1b3f495a3
 @@ -0,0 +1,598 @@
 +/* -*- mode: C; c-basic-offset: 2 -*-
 + *
-+ * Copyright © 2005,2010 Steve Chaplin
++ * Copyright (C) 2005,2010 Steve Chaplin
 + *
 + * This file is part of pycairo.
 + *
