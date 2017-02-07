@@ -1,11 +1,3 @@
-Core Packages
-=============
-
-Required by both GTK+ 3 and CASA.
-
-1. `modern-xorg-stack` — Slowly being supplanted by real conda-forge packages.
-
-
 The GTK+ 3 Stack
 ================
 
@@ -24,7 +16,6 @@ The GTK+ 3 Stack
 The CASA Stack
 ==============
 
-1. `pgplot` — in prep on conda-forge staged-recipes
 1. `qt4`
 1. `qwt5`
 1. `libsakura`
