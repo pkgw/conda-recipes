@@ -1,4 +1,4 @@
-# Copyright 2016 Peter Williams and collaborators.
+# Copyright 2016-2017 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 # Anaconda has moved on to Qt5, but CASA requires Qt4. We can't just rely on
@@ -10,13 +10,6 @@
 #
 # el-capitan.patch is from
 # https://github.com/Homebrew/homebrew-core/blob/master/Formula/qt.rb
-
-# c-f freetype: 2.7 --- no unusual deps
-# c-f fontconfig: 2.12.1 --- freetype~2.6
-# c-f freeglut: 3.0.0 --- no deps
-# c-f glib: 2.51.0 --- no unusual deps
-# c-f pango: 1.40.3 --- cairo~1.14 fontconfig~2.12 freetype~2.5 glib~2.50 harfbuzz~0.9
-# ===> need fontconfig and pango updates/rebuilds
 
 package:
   name: qt4
@@ -33,7 +26,7 @@ source:
     - el-capitan.patch  # [osx]
 
 build:
-  number: 0
+  number: 1
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
@@ -41,37 +34,41 @@ build:
 requirements:
   build:
     - dbus-cxx 0.9.*
-    - freetype 2.5.*  # [linux]
     - fontconfig 2.12.*  # [linux]
     - freeglut 3.0.*  # [linux]
+    - freetype 2.7|2.7.*  # [linux]
     - jpeg 9*
-    - libpng 1.6.*
+    - libpng >=1.6.28,<1.7
     - libtiff 4.0.*
     - libxml2 2.9.*
     - libuuid 1.0.*  # [linux]
-    - modern-xorg-stack
     - openssl 1.0.*
     - pango 1.40.*  # [linux]
     - python
+    - xorg-libx11 1.6.*
+    - xorg-libxext 1.3.*
+    - xorg-xextproto
+    - xorg-xproto
     - zlib 1.2.*
 
   run:
     - dbus-cxx 0.9.*
-    - freetype 2.5.*  # [linux]
     - fontconfig 2.12.*  # [linux]
     - freeglut 3.0.*  # [linux]
+    - freetype 2.7|2.7.*  # [linux]
     - jpeg 9*
-    - libpng 1.6.*
+    - libpng >=1.6.28,<1.7
     - libtiff 4.0.*
     - libxml2 2.9.*
     - libuuid 1.0.*  # [linux]
-    - modern-xorg-stack
     - openssl 1.0.*
     - pango 1.40.*  # [linux]
     - python
+    - xorg-libx11 1.6.*
+    - xorg-libxext 1.3.*
     - zlib 1.2.*
 
 about:
     home: http://qt-project.org
     license: LGPL
-    summary: the Qt4 framework, with DBus support
+    summary: 'Version 4 of the Qt framework, modified to be parallel-installable with Qt5.'
