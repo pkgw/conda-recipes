@@ -11,24 +11,25 @@ source:
   sha1: 44b3d7b7d1a263db4f84f9b6523a0f1cad7d6dc3
 
 build:
-  number: 1
+  number: pre2
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
 
 requirements:
   build:
-    - modern-xorg-stack
     - pgplot
     - readline
     - rpfits
     - wcslib 5.12
+    - xorg-libx11 1.6.*
+    - xproto
   run:
-    - modern-xorg-stack
     - pgplot
     - readline
     - rpfits
     - wcslib 5.12
+    - xorg-libx11 1.6.*
 
 about:
   home: http://carma.astro.umd.edu/miriad/
