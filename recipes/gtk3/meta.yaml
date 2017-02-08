@@ -17,7 +17,7 @@ source:
     - no-module-warning.patch
 
 build:
-  number: 0
+  number: 1
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
@@ -30,17 +30,24 @@ requirements:
     - gdk-pixbuf 2.32.*
     - glib 2.51.*
     - gobject-introspection 1.51.*
-    - modern-xorg-stack  # [not osx]
     - pango 1.40.*
     - python
+    - xorg-libice 1.0.*  # [not osx]
+    - xorg-libsm 1.2.*  # [not osx]
+    - xorg-libx11 1.6.*  # [not osx]
+    - xorg-libxrender 0.9.*  # [not osx]
+    - xorg-xproto  # [not osx]
   run:
     - at-spi2-atk 2.18.*
     - atk 2.18.*
     - gdk-pixbuf 2.32.*
     - glib 2.51.*
     - gobject-introspection 1.51.*
-    - modern-xorg-stack  # [not osx]
     - pango 1.40.*
+    - xorg-libice 1.0.*  # [not osx]
+    - xorg-libsm 1.2.*  # [not osx]
+    - xorg-libx11 1.6.*  # [not osx]
+    - xorg-libxrender 0.9.*  # [not osx]
 
 about:
   home: http://www.gtk.org/
