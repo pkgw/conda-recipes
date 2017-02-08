@@ -1,4 +1,4 @@
-# Copyright 2014-2015 Peter Williams and collaborators.
+# Copyright 2014-2017 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 package:
@@ -13,7 +13,7 @@ source:
     - no-intltool.patch
 
 build:
-  number: 0
+  number: 1
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
@@ -23,13 +23,20 @@ requirements:
     - dbus 1.10.*
     - glib 2.51.*
     - gobject-introspection 1.51.*
-    - modern-xorg-stack
     - python
+    - xorg-inputproto
+    - xorg-kbproto
+    - xorg-libx11 1.6.*
+    - xorg-libxi 1.7.*
+    - xorg-libxtst 1.2.*
+    - xorg-xproto
   run:
     - dbus 1.10.*
     - glib 2.51.*
     - gobject-introspection 1.51.*
-    - modern-xorg-stack
+    - xorg-libx11 1.6.*
+    - xorg-libxi 1.7.*
+    - xorg-libxtst 1.2.*
 
 about:
   home: http://www.gtk.org/

@@ -6,10 +6,6 @@
 set -e
 test $(echo "$PREFIX" |wc -c) -gt 200 # check that we're getting long paths
 
-# Ugh, gross. Here tk gets installed after modern-xorg-stack and so overwrites
-# our non-broken X11 headers. So we manually rerun the header fixup script:
-$PREFIX/bin/.modern-xorg-stack-post-link.sh
-
 # don't get locally installed pkg-config entries:
 export PKG_CONFIG_LIBDIR="$PREFIX/lib/pkgconfig:$PREFIX/share/pkgconfig"
 
@@ -25,7 +21,7 @@ if [ -n "$OSX_ARCH" ] ; then
     export LDFLAGS="$LDFLAGS -Wl,-syslibroot,$sdk -Wl,-rpath,$PREFIX/lib"
 else
     # also for X11:
-    export LDFLAGS="-Wl,-rpath-link,$PREFIX/lib"
+    export LDFLAGS="$LDFLAGS -Wl,-rpath-link,$PREFIX/lib"
 fi
 
 ./configure --prefix=$PREFIX --disable-gtk-doc || { cat config.log ; exit 1 ; }
