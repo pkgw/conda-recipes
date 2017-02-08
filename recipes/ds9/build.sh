@@ -1,5 +1,5 @@
 #! /bin/bash
-# Copyright 2016 Peter Williams and collaborators.
+# Copyright 2016-2017 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 [ "$NJOBS" = '<UNDEFINED>' -o -z "$NJOBS" ] && NJOBS=1
@@ -16,7 +16,6 @@ fi
 # libxml2 include in CFLAGS is a hack for tksao submodule
 export CFLAGS="-I$PREFIX/include -I$PREFIX/include/libxml2"
 export LDFLAGS="-L$PREFIX/lib -Wl,-rpath,$PREFIX/lib"
-export LIBS="-L$PREFIX/lib -Wl,-rpath,$PREFIX/lib"
 export EXTRA_CONFIGURE_ARGS="\
 --x-includes=$PREFIX/include \
 --x-libraries=$PREFIX/lib \
