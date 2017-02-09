@@ -28,6 +28,7 @@ libstdc++-devel
 make
 man
 man-pages
+ncompress
 ncurses-devel
 patch
 perl-XML-Parser
