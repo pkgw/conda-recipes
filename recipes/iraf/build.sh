@@ -4,6 +4,7 @@
 
 [ "$NJOBS" = '<UNDEFINED>' -o -z "$NJOBS" ] && NJOBS=1
 set -e
+set -o pipefail # we have that key "|tee" command ...
 test $(echo "$PREFIX" |wc -c) -gt 200 # check that we're getting long paths
 
 if [ -n "$OSX_ARCH" ] ; then
