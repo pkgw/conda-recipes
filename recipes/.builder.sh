@@ -14,12 +14,23 @@
 
 set -e
 
+case "$1" in
+    --python=*)
+        build_args="$build_args $1"
+        shift
+        ;;
+esac
+
 if [ -z "$1" ] ; then
     echo 1>&2 "error: must specify the recipe directory to build"
     exit 1
 fi
 
 recipedir="$1"
+if [ ! -d "$recipedir" ] ; then
+    echo 1>&2 "error: \"$recipedir\" is not a directory"
+    exit 1
+fi
 
 rm -rf /conda/conda-bld/condabuilder.*
 work=$(mktemp -d condabuilder.XXXXXX)
@@ -31,5 +42,5 @@ fi
 tar c -C $recipedir -X $(pwd)/.global_excludes $arg . |tar x -C "$work"
 conda clean --lock || true
 conda update -y --all
-NJOBS=2 conda build "$work"
+NJOBS=2 conda build $build_args "$work"
 rm -rf "$work"

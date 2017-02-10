@@ -9,7 +9,7 @@
 set -e
 
 recipe_topdir=$(cd $(dirname $0) && pwd)
-builder_args="--python=2.7"
+builder_args="--python=3.5"
 
 # Make sure container is up and running
 
@@ -25,7 +25,7 @@ while [ $# -gt 0 ] ; do
 	exit 1
     fi
 
-    log="$recipe_topdir/recipes/$pkg/osx-64-py2.log"
+    log="$recipe_topdir/recipes/$pkg/osx-64-py3.log"
     echo "Building with logs to $log ..."
     set +e
     stdbuf -oL -eL vagrant ssh -c "cd /vagrant/recipes/ && ./.builder.sh $builder_args /vagrant/recipes/$pkg" >"$log" 2>&1
