@@ -19,33 +19,33 @@ source:
     - ncursesw.patch
 
 build:
-  number: 4
+  number: 5
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
 
 requirements:
   build:
-    - cfitsio
+    - cfitsio 3.410
     - cmake
     - fftw 3.3.*
-    - hdf5 >=1.8.15.1
-    - ncurses 5.9
+    - hdf5 1.8.17|1.8.17.*
+    - ncurses 5.9*
     - nomkl # speeds up by avoiding big download
     - numpy
-    - openblas 0.2.*
-    - readline 6.*
-    - wcslib 5.12
+    - openblas 0.2.19|0.2.19.*
+    - readline 6.2*
+    - wcslib 5.15
   run:
-    - cfitsio
+    - cfitsio 3.410
     - fftw 3.3.*
-    - hdf5 >=1.8.15.1
+    - hdf5 1.8.17|1.8.17.*
     - libgfortran 3.0.0 #[linux]
-    - ncurses 5.9
+    - ncurses 5.9*
     - numpy
-    - openblas 0.2.*
-    - readline 6.*
-    - wcslib 5.12
+    - openblas 0.2.19|0.2.19.*
+    - readline 6.2*
+    - wcslib 5.15
 
 about:
   home: http://casa.nrao.edu/
