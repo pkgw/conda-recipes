@@ -17,7 +17,7 @@ source:
     - ncursesw.patch
 
 build:
-  number: 4
+  number: 6
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
@@ -32,12 +32,14 @@ requirements:
     - python
     - rpfits 2.*
     - swig
+    - wcslib 5.16
   run:
     - casa-tools 4.6.*
     - libgfortran  # [linux]
     - ncurses 5.9
     - python
     - rpfits 2.*
+    - wcslib 5.16
 
 about:
   home: http://casa.nrao.edu/
