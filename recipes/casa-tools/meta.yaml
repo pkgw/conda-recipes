@@ -1,4 +1,4 @@
-# Copyright 2015 Peter Williams and collaborators.
+# Copyright 2015-2017 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 #
 # NOTE: if updating major or minor version, update `so-versioning.patch`.
@@ -20,7 +20,7 @@ source:
     - ncursesw.patch
 
 build:
-  number: 5
+  number: 6
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
@@ -38,7 +38,7 @@ requirements:
     - libsakura 2.0.0
     - libxml2 2.9.*
     - libxslt 1.1.*
-    - ncurses 5.9
+    - ncurses 5.9*
     - nomkl # speeds by avoiding big download
     - openblas 0.2.*
     - pgplot 5.2.*
@@ -58,7 +58,7 @@ requirements:
     - libsakura 2.0.0
     - libxml2 2.9.*
     - libxslt 1.1.*
-    - ncurses 5.9
+    - ncurses 5.9*
     - openblas 0.2.*
     - pgplot 5.2.*
     - readline 6.*
