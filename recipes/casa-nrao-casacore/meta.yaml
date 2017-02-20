@@ -19,7 +19,7 @@ source:
     - ncursesw.patch
 
 build:
-  number: 5
+  number: 6
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
@@ -35,7 +35,7 @@ requirements:
     - numpy
     - openblas 0.2.19|0.2.19.*
     - readline 6.2*
-    - wcslib 5.15
+    - wcslib 5.16
   run:
     - cfitsio 3.410
     - fftw 3.3.*
@@ -45,7 +45,7 @@ requirements:
     - numpy
     - openblas 0.2.19|0.2.19.*
     - readline 6.2*
-    - wcslib 5.15
+    - wcslib 5.16
 
 about:
   home: http://casa.nrao.edu/
