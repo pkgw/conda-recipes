@@ -18,9 +18,7 @@ The CASA Stack
 
 1. `qt4`
 1. `qwt5`
-1. `libsakura`
 1. `casa-data`
-1. `casa-nrao-casacore`
 1. `casa-tools`
 1. `casa-python`
 1. `aoflagger`
