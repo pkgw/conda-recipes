@@ -1,4 +1,4 @@
-# Copyright 2014-2016 Peter Williams and collaborators.
+# Copyright 2014-2017 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 # Shortcut to get new filename and MD5 sum:
@@ -15,7 +15,7 @@ source:
   md5: 6f87d5cd48cadab8f79fade34280e7fa
 
 build:
-  number: 1
+  number: 2
   entry_points:
     - omegafig = oputil.omegafig:cmdline
     - omegamap = oputil.omegamap:cmdline
@@ -24,15 +24,13 @@ requirements:
   build:
     - nomkl
     - numpy
-    - py2cairo # [py2k]
-    - py3cairo # [py3k]
+    - pycairo
     - python
     - setuptools
     - six
   run:
     - numpy
-    - py2cairo # [py2k]
-    - py3cairo # [py3k]
+    - pycairo
     - python
     - six
 
