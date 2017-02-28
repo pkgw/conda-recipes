@@ -1,0 +1,11 @@
+--- configure	2016-12-30 05:10:44.679478579 +0100
++++ configure_	2016-12-30 05:28:17.666790245 +0100
+@@ -7734,7 +7734,7 @@
+     *-g++*)
+ 	# Check gcc's version
+ 	case "$(${QMAKE_CONF_COMPILER} -dumpversion)" in
+-	    5*|4*|3.4*)
++	    6*|5*|4*|3.4*)
+ 		;;
+             3.3*)
+                 canBuildWebKit="no"
