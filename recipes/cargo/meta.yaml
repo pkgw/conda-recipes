@@ -1,0 +1,54 @@
+# This *could* potentially go in conda-forge since we don't actually use
+# rust-toolchain to build cargo, due to bootstrapping problems. But anything
+# that uses cargo is also going to need rust-toolchain, which currently can't
+# go in conda-forge, so there's very little point to suubmitting it.
+
+{% set name = "cargo" %}
+{% set version = "0.16.0" %}
+{% set sha256 = "5f7a7669daea152e84bbf9e6d4ee0ccc6c8e49dd0042f546ba80629bbc0191a4" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  fn: {{ version }}.tar.gz
+  url: https://github.com/rust-lang/{{ name }}/archive/{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  detect_binary_files_with_prefix: true
+
+# current libssh2 has busted pkg-config file that breaks OSX build.
+
+requirements:
+  build:
+    - cmake
+    - curl
+    - libiconv 1.*  # [osx]
+    - libssh2 1.8.*  # [not osx]
+    - openssl 1.0.*
+    - zlib 1.2.*
+  run:
+    - curl
+    - libiconv 1.*  # [osx]
+    - libssh2 1.8.*  # [not osx]
+    - openssl 1.0.*
+    - zlib 1.2.*
+
+test:
+  commands:
+    - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
+    - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
+
+about:
+  home: https://www.crates.io/
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE-MIT
+  summary: 'The Rust package manager.'
+
+extra:
+  recipe-maintainers:
+    - pkgw

@@ -24,6 +24,13 @@ The CASA Stack
 1. `aoflagger`
 
 
+Rust stack
+==========
+
+1. `rust-toolchain`
+1. `cargo`
+
+
 The PyRAF Stack
 ===============
 

@@ -1,3 +1,7 @@
+# This can't go in conda-forge since it takes too long to build on the CI
+# machines. That could be worked around but I'm really not eager to undertake
+# that.
+
 {% set name = "rust-toolchain" %}
 {% set version = "1.15.1" %}
 {% set sha256 = "2e7daad418a830b45b977cd7ecf181b65f30f73df63ff36e124ea5fe5d1af327" %}
