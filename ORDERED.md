@@ -29,6 +29,7 @@ Rust stack
 
 1. `rust-toolchain`
 1. `cargo`
+1. `tectonic`
 
 
 The PyRAF Stack
@@ -61,4 +62,3 @@ Miscellaneous Python modules
 1. `pwkit`
 1. `gatspy`
 1. `miriad-python`
-
