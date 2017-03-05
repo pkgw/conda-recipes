@@ -1,6 +1,6 @@
 {% set name = "tectonic" %}
-{% set version = "0.1.0" %}
-{% set sha256 = "ea0f925ea211426bbbe4631d16f4fd1e3fd7fb293cacf809a5dde0065a7a64a0" %}
+{% set version = "0.1.1" %}
+{% set sha256 = "9c1164121ecd5e19fade90ecdd4971df3bcfd62907ba40abed6a3759c70cb42d" %}
 
 package:
   name: {{ name|lower }}
@@ -10,8 +10,6 @@ source:
   fn: download.tar.gz
   url: https://crates.io/api/v1/crates/{{ name }}/{{ version }}/download
   sha256: {{ sha256 }}
-  patches:
-    - byte.patch
 
 build:
   number: 0
