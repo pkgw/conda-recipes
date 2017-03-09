@@ -17,6 +17,8 @@ source:
   fn: {{ name }}-{{ version }}.tar.bz2
   url: http://downloads.sourceforge.net/project/{{ name }}/{{ name }}-{{ version }}/{{ name }}-{{ version }}.tar.bz2
   sha256: {{ sha256 }}
+  patches:
+    - mac-cxx.patch
 
 build:
   number: 1

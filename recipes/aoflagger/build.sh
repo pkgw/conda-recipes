@@ -49,7 +49,7 @@ make -j$NJOBS VERBOSE=1
 make install
 
 cd $PREFIX
-find -name '*.a' -delete
+find . -name '*.a' -delete
 
 # Remove GUI stuff that we don't provide:
 rm -rf share/applications share/icons
