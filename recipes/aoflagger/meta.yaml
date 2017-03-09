@@ -1,18 +1,22 @@
-# Copyright 2015-2016 Peter Williams and collaborators.
+# Copyright 2015-2017 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 # We don't provide the rfigui right now. It needs Gtk-- > 3.0, so it wouldn't
 # be a huge amount of work to make that work since we have the Gtk+ 3 stack.
 # We'd need libsigc++, glibmm, and gtkmm.
 
+{% set name = "aoflagger" %}
+{% set version = "2.9.0" %}
+{% set sha256 = "753c8d3690c2b397f574c716b16b1794742c5a220b30d631734a4f94f333ebab" %}
+
 package:
-  name: aoflagger
-  version: "2.8.0"
+  name: {{ name | lower }}
+  version: {{ version }}
 
 source:
-  fn: aoflagger-2.8.0.tar.bz2
-  url: http://downloads.sourceforge.net/project/aoflagger/aoflagger-2.8.0/aoflagger-2.8.0.tar.bz2
-  md5: bea0a4c88c6980585f0ea571aa10e130
+  fn: {{ name }}-{{ version }}.tar.bz2
+  url: http://downloads.sourceforge.net/project/{{ name }}/{{ name }}-{{ version }}/{{ name }}-{{ version }}.tar.bz2
+  sha256: {{ sha256 }}
 
 build:
   number: 1
@@ -22,23 +26,26 @@ build:
 
 requirements:
   build:
-    - boost 1.57.0 # version fix is temp hack for unavailable ICU 56
-    - casa-nrao-casacore
-    - cfitsio
     - cmake
-    - fftw
-    - gsl
-    - hdf5
-    - libxml2
-    - openblas
+    - boost 1.63.*
+#    - casacore 2.2.*
+    - casa-nrao-casacore 4.6.*
+    - cfitsio 3.410
+    - fftw 3.3.*
+    - gsl 2.2.*
+    - hdf5 1.8.17|1.8.17.*
+    - libxml2 2.9.*
+    - openblas 0.2.19|0.2.19.*
   run:
-    - boost 1.57.0 # version fix is temp hack for unavailable ICU 56
-    - casa-nrao-casacore
-    - fftw
-    - gsl
-    - hdf5
-    - libxml2
-    - openblas
+    - boost 1.63.*
+#    - casacore 2.2.*
+    - casa-nrao-casacore 4.6.*
+    - cfitsio 3.410
+    - fftw 3.3.*
+    - gsl 2.2.*
+    - hdf5 1.8.17|1.8.17.*
+    - libxml2 2.9.*
+    - openblas 0.2.19|0.2.19.*
 
 about:
   home: http://aoflagger.sourceforge.net/

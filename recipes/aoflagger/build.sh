@@ -19,8 +19,6 @@ if [ -n "$OSX_ARCH" ] ; then
     # Need to require 10.7 because of the C++11 features.
     export MACOSX_DEPLOYMENT_TARGET=10.7
 
-    # TODO: any install_name fixes needed?
-
     cmake_args+=(
 	-Darch=darwin64
 	-Darchflag=x86_64
