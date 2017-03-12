@@ -1,6 +1,6 @@
 {% set name = "tectonic" %}
-{% set version = "0.1.1" %}
-{% set sha256 = "9c1164121ecd5e19fade90ecdd4971df3bcfd62907ba40abed6a3759c70cb42d" %}
+{% set version = "0.1.2" %}
+{% set sha256 = "efe7e8179d14792db715e02239e783cbbe9981874e0971ed3e527bb37ea143ae" %}
 
 package:
   name: {{ name|lower }}
@@ -41,6 +41,7 @@ test:
   commands:
     - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
     - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
+    - tectonic --help
 
 about:
   home: https://github.com/pkgw/tectonic/
