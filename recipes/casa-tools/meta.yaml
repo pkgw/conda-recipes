@@ -4,42 +4,47 @@
 # NOTE: if updating major or minor version, update `so-versioning.patch`.
 # Build on CentOS 5.
 
+{% set name = "casa-tools" %}
+{% set version = "4.7.2" %}
+# 4.7.2 = svn rev 39762 = 93abe33d9564301cd1c2bfae5db378f0a5a9c295 on radio-astro git mirror
+
 package:
-  name: casa-tools
-  version: "4.6.0"
+  name: {{ name }}
+  version: {{ version }}
 
 source:
-  svn_url: https://svn.cv.nrao.edu/svn/casa/branches/release-4_6/
-  svn_rev: 36590
-  svn_ignore_externals: yes
+  git_url: https://github.com/radio-astro/casa.git
+  git_rev: 93abe33d9564301cd1c2bfae5db378f0a5a9c295
   patches:
     - so-versioning.patch
     - casaroot.patch
     - no-java.patch
     - mydbus.patch
     - ncursesw.patch
+    - backport-ImageOpener.patch
+    - cmake37.patch
 
 build:
-  number: 6
+  number: 0
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
 
 requirements:
   build:
-    - boost 1.63.0
-    - casa-nrao-casacore 4.6.*
     - cmake
+    - gcc  # [osx]
+    - toolchain
+    - boost 1.63.0
+    - casacore 2.2.*
     - dbus-cxx 0.9.*
     - dbus 1.10.*
     - fftw 3.3.*
     - gsl 2.2.*
-    - libgfortran 3.0.0  # [linux]
-    - libsakura 2.0.0
+    - libsakura 3.0.*
     - libxml2 2.9.*
     - libxslt 1.1.*
     - ncurses 5.9*
-    - nomkl # speeds by avoiding big download
     - openblas 0.2.*
     - pgplot 5.2.*
     - readline 6.*
@@ -48,14 +53,14 @@ requirements:
     - qwt5 5.2.*
     - xerces-c28
   run:
+    - libgfortran  # [unix]
     - boost 1.63.0
-    - casa-nrao-casacore 4.6.*
+    - casacore 2.2.*
     - dbus-cxx 0.9.*
     - dbus 1.10.*
     - fftw 3.3.*
     - gsl 2.2.*
-    - libgfortran 3.0.0  # [linux]
-    - libsakura 2.0.0
+    - libsakura 3.0.*
     - libxml2 2.9.*
     - libxslt 1.1.*
     - ncurses 5.9*

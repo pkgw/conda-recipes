@@ -7,11 +7,12 @@ package:
 
 source:
   # Release:
-  git_url: https://github.com/pkgw/iraf.git
-  git_rev: 1dace4f0408ac98b1186684b8d3353f67ea2be49
+  ## git_url: https://github.com/pkgw/iraf.git
+  ## git_rev: cb835247ada85481e8dcca02b411217c3ea3adf4
   # Development:
-  ## git_url: file:///work/repos/iraf
-  ## git_rev: more-build-fixes
+  #git_url: file:///work/repos/iraf
+  git_url: file:///home/peter/sw/conda/conda-recipes/repos/iraf
+  git_rev: more-build-fixes
 
 build:
   number: 0
