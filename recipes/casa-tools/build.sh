@@ -27,22 +27,19 @@ cmake_args=(
     -DQWT_INCLUDE_DIRS=$PREFIX/include/qwt5
 )
 
-cmake_args+=(--debug-trycompile --debug-output)
+#cmake_args+=(--debug-trycompile --debug-output)
 
 if [ $(uname) = Darwin ] ; then
-    # Need to require 10.7 because of the C++11 features.
-    export MACOSX_DEPLOYMENT_TARGET=10.7
-
-    export LDFLAGS="$LDFLAGS -L$PREFIX/lib -Wl,-rpath,$PREFIX/lib"
-    linkflags="$LDFLAGS"
+    # Fun fact: if you add a "-L$PREFIX/lib" argument here, the -L and the -Wl
+    # arguments *disappear* from the link.txt files generated from CMake. If
+    # you *don't* put in a -L argument, one appears. CMake, you so crazy!
+    linkflags="-Wl,-rpath,$PREFIX/lib $LDFLAGS"
 
     cmake_args+=(
 	-Darch=darwin64
 	-Darchflag=x86_64
 	-DCMAKE_CXX_FLAGS="-arch $OSX_ARCH -stdlib=libc++ -std=c++11"
 	-DCMAKE_Fortran_COMPILER=gfortran
-	-DCMAKE_OSX_DEPLOYMENT_TARGET=$MACOSX_DEPLOYMENT_TARGET
-	-DCMAKE_OSX_SYSROOT=/
 	-DPGPLOT_LIBRARIES="$PREFIX/lib/libpgplot.dylib;$PREFIX/lib/libcpgplot.a"
 	# Make sure to get Conda versions of libraries:
 	-DLIBXML2_ROOT_DIR=$PREFIX
@@ -79,6 +76,9 @@ make -j$NJOBS VERBOSE=1
 cd $PREFIX
 rm -f casainit.* lib/casa/casainit.* makedefs
 rm -f bin/t* bin/qwtplottertest # tests
+
+# if we keep the compat symlinks, conda thinks we installed these files:
+rm -f lib/libxerces-c$SHLIB_EXT include/xercesc
 
 # casabrowser as installed is a broken + pointless wrapper script around
 # qcasabrowser. Shockingly, all other binaries appear to be usable as
