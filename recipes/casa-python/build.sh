@@ -13,7 +13,23 @@ test $(echo "$PREFIX" |wc -c) -gt 200 # check that we're getting long paths
 # else is configured for Python 2.7? And this didn't used to happen. Sigh.
 export SP_DIR=$($PYTHON -c 'import site; print site.getsitepackages()[0]')
 
-export PATH="$PREFIX/lib/qt4/bin:$PATH"
+export PATH="$PREFIX/qt4/bin:$PATH"
+
+# Pre-build setup
+
+pushd $PREFIX
+ln -s xercesc28 include/xercesc
+
+if [ $(uname) = Darwin ] ; then
+    src=libxerces-c.28.0.dylib
+else
+    src=libxerces-c.so.28.0
+fi
+
+ln -s $src lib/libxerces-c$SHLIB_EXT
+popd
+
+# Ready to configure and make
 
 cmake_args=(
     -DCMAKE_BUILD_TYPE=Release
@@ -22,47 +38,52 @@ cmake_args=(
     -DCMAKE_STATIC_LINKER_FLAGS=-L$PREFIX/lib
     -DCXX11=ON
     -DPGPLOT_INCLUDE_DIRS=$PREFIX/include/pgplot
-    -DQT_DBUSXML2CPP_EXECUTABLE=$PREFIX/lib/qt4/bin/qdbusxml2cpp
-    -DQT_LIBRARY_DIR=$PREFIX/lib/qt4
-    -DQT_MKSPECS_DIR=$PREFIX/share/qt4/mkspecs
-    -DQT_RCC_EXECUTABLE=$PREFIX/lib/qt4/bin/rcc
+    -DQT_DBUSXML2CPP_EXECUTABLE=$PREFIX/qt4/bin/qdbusxml2cpp
+    -DQT_LIBRARY_DIR=$PREFIX/qt4/lib
+    -DQT_MKSPECS_DIR=$PREFIX/qt4/mkspecs
+    -DQT_RCC_EXECUTABLE=$PREFIX/qt4/bin/rcc
     -DQWT_INCLUDE_DIRS=$PREFIX/include/qwt5
 )
 
 #cmake_args+=(--debug-trycompile --debug-output --trace)
 
-if [ -n "$OSX_ARCH" ] ; then
-    # Need to require 10.7 because of the C++11 features.
-    export MACOSX_DEPLOYMENT_TARGET=10.7
-
-    # This is needed to get our EXTRA_CXX_FLAGS to take effect. I like how
-    # every CASA package handles C++ flags differently.
-    unset CXXFLAGS CFLAGS
+if [ $(uname) = Darwin ] ; then
+    # Fun fact: if you add a "-L$PREFIX/lib" argument here, the -L and the -Wl
+    # arguments *disappear* from the link.txt files generated from CMake. If
+    # you *don't* put in a -L argument, one appears. CMake, you so crazy!
+    linkflags="-Wl,-rpath,$PREFIX/lib $LDFLAGS"
 
     cmake_args+=(
 	-Darch=darwin64
 	-Darchflag=x86_64
-	-DCMAKE_Fortran_COMPILER=/usr/local/bin/gfortran-4.2
-	-DCMAKE_OSX_DEPLOYMENT_TARGET=$MACOSX_DEPLOYMENT_TARGET
-	-DCMAKE_OSX_SYSROOT=/
-	-DEXTRA_CXX_FLAGS="-arch $OSX_ARCH -stdlib=libc++ -std=c++11"
+	-DCMAKE_Fortran_COMPILER=gfortran
+	-DEXTRA_CXX_FLAGS="$CXXFLAGS -stdlib=libc++ -std=c++11"
 	-DPGPLOT_LIBRARIES="$PREFIX/lib/libpgplot.dylib;$PREFIX/lib/libcpgplot.a"
     )
 else
     toolroot=/opt/rh/devtoolset-2/root
+    linkflags=-Wl,-rpath-link,$PREFIX/lib
 
     cmake_args+=(
 	-DBLAS_LIBRARIES="$PREFIX/lib/libopenblas.so"
 	-DCMAKE_C_COMPILER=$toolroot/usr/bin/gcc
 	-DCMAKE_CXX_COMPILER=$toolroot/usr/bin/g++
-	-DCMAKE_EXE_LINKER_FLAGS=-Wl,-rpath-link,$PREFIX/lib
 	-DCMAKE_Fortran_COMPILER=$toolroot/usr/bin/gfortran
-	-DCMAKE_MODULE_LINKER_FLAGS=-Wl,-rpath-link,$PREFIX/lib
-	-DCMAKE_SHARED_LINKER_FLAGS=-Wl,-rpath-link,$PREFIX/lib
+	-DEXTRA_CXX_FLAGS="$CXXFLAGS"
 	-DLAPACK_LIBRARIES="$PREFIX/lib/libopenblas.so"
 	-DPGPLOT_LIBRARIES="$PREFIX/lib/libpgplot.so;$PREFIX/lib/libcpgplot.a"
     )
 fi
+
+cmake_args+=(
+    -DCMAKE_EXE_LINKER_FLAGS="$linkflags"
+    -DCMAKE_MODULE_LINKER_FLAGS="$linkflags"
+    -DCMAKE_SHARED_LINKER_FLAGS="$linkflags"
+)
+
+# The CXXFLAGS unset is needed to get EXTRA_CXX_FLAGS to take effect. I like
+# how every CASA package handles C++ flags differently.
+unset CXXFLAGS CFLAGS LDFLAGS LINKFLAGS
 
 cd gcwrap
 mkdir build
@@ -76,9 +97,12 @@ make -j$NJOBS VERBOSE=1
 # the plotting stuff doesn't get hooked up and our matplotlib version is
 # different (I think).
 
-cd $PREFIX
+pushd $PREFIX
 rm -rf xml
 rm bin/{buildmytasks,casa,casapy,xmlgenpy} lib/saxon*.jar
+
+# if we keep the compat symlinks, conda thinks we installed these files:
+rm -f lib/libxerces-c$SHLIB_EXT include/xercesc
 
 # consistent include directories:
 mv include/casa/* include/casacode/
@@ -90,3 +114,5 @@ for stem in __casac__ casac.py casadef.py TablePlotTkAgg.py ; do
     mv $casapydir/$stem $SP_DIR/
 done
 rm -rf python # note! not lib/python ...
+
+popd

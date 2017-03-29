@@ -3,40 +3,45 @@
 #
 # NOTE: if updating major or minor version, update `so-versioning.patch`.
 
+{% set name = "casa-python" %}
+{% set version = "4.7.2" %}
+# 4.7.2 = svn rev 39762 = 93abe33d9564301cd1c2bfae5db378f0a5a9c295 on radio-astro git mirror
+
 package:
-  name: casa-python
-  version: "4.6.0"
+  name: {{ name }}
+  version: {{ version }}
 
 source:
-  svn_url: https://svn.cv.nrao.edu/svn/casa/branches/release-4_6/
-  svn_rev: 36590
-  svn_ignore_externals: yes
+  git_url: https://github.com/radio-astro/casa.git
+  git_rev: 93abe33d9564301cd1c2bfae5db378f0a5a9c295
   patches:
     - so-versioning.patch
     - casadef.patch
     - ncursesw.patch
 
 build:
-  number: 6
+  number: 0
   detect_binary_files_with_prefix: true
+  skip: true  # [win]
   script_env:
     - NJOBS
 
 requirements:
   build:
-    - casa-tools 4.6.*
     - cmake
-    - libgfortran  # [linux]
-    - ncurses 5.9
-    - nomkl # speed by avoiding big download
+    - gcc  # [osx]
+    - swig
+    - toolchain
+    - casa-tools 4.7.*
+    - numpy 1.12.*
     - python
     - rpfits 2.*
-    - swig
     - wcslib 5.16
   run:
-    - casa-tools 4.6.*
-    - libgfortran  # [linux]
-    - ncurses 5.9
+    - libgfortran  # [unix]
+    - casa-tools 4.7.*
+    - ncurses 5.9*
+    - numpy 1.12.*
     - python
     - rpfits 2.*
     - wcslib 5.16
@@ -45,3 +50,14 @@ about:
   home: http://casa.nrao.edu/
   license: GPL version 2
   summary: Python interfaces to the CASA tools
+
+tests:
+  commands:
+    - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
+    - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
+  imports:
+    - casac
+
+extra:
+  recipe-maintainers:
+    - pkgw
