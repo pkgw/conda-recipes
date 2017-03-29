@@ -2,7 +2,6 @@
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 #
 # NOTE: if updating major or minor version, update `so-versioning.patch`.
-# Build on CentOS 5.
 
 {% set name = "casa-tools" %}
 {% set version = "4.7.2" %}
@@ -27,6 +26,7 @@ source:
 build:
   number: 0
   detect_binary_files_with_prefix: true
+  skip: true  # [win]
   script_env:
     - NJOBS
 
@@ -72,7 +72,16 @@ requirements:
     - qwt5 5.2.*
     - xerces-c28
 
+tests:
+  commands:
+    - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
+    - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
+
 about:
   home: http://casa.nrao.edu/
   license: GPLv2
   summary: scientific tool implementations for CASA
+
+extra:
+  recipe-maintainers:
+    - pkgw

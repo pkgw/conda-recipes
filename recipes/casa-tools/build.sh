@@ -8,12 +8,21 @@ test $(echo "$PREFIX" |wc -c) -gt 200 # check that we're getting long paths
 
 export PATH="$PREFIX/qt4/bin:$PATH"
 
-(cd $PREFIX/include && ln -s xercesc28 xercesc) || exit 1
-if [ -n "$OSX_ARCH" ] ; then
-    (cd $PREFIX/lib && ln -s libxerces-c.28.0.dylib libxerces-c.dylib) || exit 1
+# Pre-build setup
+
+pushd $PREFIX
+ln -s xercesc28 include/xercesc
+
+if [ $(uname) = Darwin ] ; then
+    src=libxerces-c.28.0.dylib
 else
-    (cd $PREFIX/lib && ln -s libxerces-c.so.28.0 libxerces-c.so) || exit 1
+    src=libxerces-c.so.28.0
 fi
+
+ln -s $src lib/libxerces-c$SHLIB_EXT
+popd
+
+# Ready to configure and make
 
 cmake_args=(
     -DCMAKE_BUILD_TYPE=Release
@@ -73,7 +82,9 @@ cd build
 cmake "${cmake_args[@]}" ..
 make -j$NJOBS VERBOSE=1
 
-cd $PREFIX
+# Post-install tidying
+
+pushd $PREFIX
 rm -f casainit.* lib/casa/casainit.* makedefs
 rm -f bin/t* bin/qwtplottertest # tests
 
@@ -86,6 +97,8 @@ rm -f lib/libxerces-c$SHLIB_EXT include/xercesc
 rm -f bin/casabrowser
 ln -s qcasabrowser bin/casabrowser
 
-if [ -n "$OSX_ARCH" ] ; then
+if [ $(uname) = Darwin ] ; then
     rm -rf apps
 fi
+
+popd
