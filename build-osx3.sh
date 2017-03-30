@@ -9,7 +9,7 @@
 set -e
 
 recipe_topdir=$(cd $(dirname $0) && pwd)
-builder_args="--python=3.5"
+builder_args="--python=3.6"
 
 # Make sure container is up and running
 
