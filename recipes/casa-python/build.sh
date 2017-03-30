@@ -92,12 +92,29 @@ rm -f lib/libxerces-c$SHLIB_EXT include/xercesc
 mv include/casa/* include/casacode/
 rmdir include/casa
 
+# CASA's task code is essentially impossible to use outside of the casapy
+# environment, but it's nice to distribute the Python files for reference. So
+# we install them into $PREFIX/share, where they're available but hopefully
+# less confusing to the user.
+#
+# A task "foo" results in files named "foo.py", "task_foo.py", "foo_cli.py",
+# and "foo_pg.py". Of these, only "task_foo.py" is of any interest.
+
+pushd share/casa-python/tasks
+
+for f in task_*.py ; do
+    b=$(echo $f |sed -e 's/task_//' -e 's/\.py//')
+    rm -f $b.py
+done
+
+rm -f *_pg.py
+rm -f *_cli.py
+chmod -x *.py
+
 # CASA's bizarre plotting code automatically imports TablePlotTkAgg (from
 # C++!) even without the casapy frontend.
 
-pushd lib/python*/site-packages
-mv casa_tasks/TablePlotTkAgg.* .
-touch casa_tasks/__init__.py
-popd
+mv TablePlotTkAgg.* TablePlotQt4Agg.* ../../../lib/python*/site-packages/
 
+popd
 popd
