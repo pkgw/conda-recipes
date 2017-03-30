@@ -59,7 +59,7 @@ if [ $(uname) = Darwin ] ; then
     )
 else
     toolroot=/opt/rh/devtoolset-2/root
-    export LDFLAGS="-Wl,-rpath-link,$PREFIX/lib -L$PREFIX/lib $LDFLAGS"
+    export LDFLAGS="-Wl,-rpath-link,$PREFIX/lib $LDFLAGS"
 
     cmake_args+=(
 	-DBLAS_LIBRARIES="$PREFIX/lib/libopenblas.so"

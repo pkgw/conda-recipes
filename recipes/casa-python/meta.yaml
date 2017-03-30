@@ -11,6 +11,7 @@ package:
   version: {{ version }}
 
 source:
+  #git_url: file:///{vagrant,work}/repos/casa
   git_url: https://github.com/pkgw/casa.git
   git_rev: casa3k-4.7
 
