@@ -10,15 +10,20 @@ test $(echo "$PREFIX" |wc -c) -gt 200 # check that we're getting long paths
 export PKG_CONFIG_LIBDIR="$PREFIX/lib/pkgconfig:$PREFIX/share/pkgconfig"
 
 if [ -n "$OSX_ARCH" ] ; then
-    # rpath setting is often needed to run compiled autoconf test programs:
-    export MACOSX_DEPLOYMENT_TARGET=10.6
     sdk=/
     export CFLAGS="$CFLAGS -isysroot $sdk"
-    export LDFLAGS="$LDFLAGS -Wl,-syslibroot,$sdk -Wl,-rpath,$PREFIX/lib"
+    export LDFLAGS="$LDFLAGS -Wl,-syslibroot,$sdk -Wl,-rpath,$PREFIX/lib -L$PREFIX/lib"
 fi
 
-./configure --prefix=$PREFIX || { cat config.log ; exit 1 ; }
-make -j$NJOBS
+# The configure script uses the python-config script to get link info,
+# but it heuristics fail when we're on Python 3 because of how it tries
+# to find the script's name. This fixes the problem.
+if [ $PY3K -eq 1 ] ; then
+    export PYTHON=python3
+fi
+
+./configure --prefix=$PREFIX --enable-compile-warnings=minimum || { cat config.log ; exit 1 ; }
+make -j$NJOBS V=1
 make install
 
 cd $PREFIX
