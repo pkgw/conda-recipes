@@ -4,15 +4,15 @@
 # go in conda-forge, so there's very little point to suubmitting it.
 
 {% set name = "cargo" %}
-{% set version = "0.16.0" %}
-{% set sha256 = "5f7a7669daea152e84bbf9e6d4ee0ccc6c8e49dd0042f546ba80629bbc0191a4" %}
+{% set version = "0.17.0" %}
+{% set sha256 = "fc689ca7a09f1e6a1c31e69f0e2616a93576a68e0e1d7f0ae4c0d3301ff21ff8" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  fn: {{ version }}.tar.gz
+  fn: {{ name }}-{{ version }}.tar.gz
   url: https://github.com/rust-lang/{{ name }}/archive/{{ version }}.tar.gz
   sha256: {{ sha256 }}
 
