@@ -9,28 +9,10 @@ test $(echo "$PREFIX" |wc -c) -gt 200 # check that we're getting long paths
 # don't get locally installed pkg-config entries:
 export PKG_CONFIG_LIBDIR="$PREFIX/lib/pkgconfig:$PREFIX/share/pkgconfig"
 
-if [ -n "$OSX_ARCH" ] ; then
-    # For reasons that completely escape me, if we run "waf configure" with
-    # LDFLAGS etc. set, the compile flags returned by Python on OS X include
-    # various -isysroot flags pointing to SDKs that we don't have. If they're
-    # unset, some code kicks in that strips out these bad flags (cf.
-    # _osx_support.py in the Python tree). So let's unset them.
-    export MACOSX_DEPLOYMENT_TARGET=10.6
-    sdk=/
-    unset CFLAGS CXXFLAGS LDFLAGS
+if [ $(uname) = Darwin ] ; then
+    # This needs to be kept the same as what was used to build Cairo, which is
+    # apparently this:
+    export MACOSX_DEPLOYMENT_TARGET=10.9
 fi
 
-./waf --help >/dev/null # trigger unpacking of waflib directory
-rdir=$(cd $RECIPE_DIR && pwd)
-(cd .waf* && patch -p1 -i $rdir/60_python-config-without-interpreter.patch)
-# This patch breaks the build on 3.x on OSX. Not clear why it was put in
-# so let's just ditch it.
-#(cd .waf* && patch -p1 -i $rdir/70_dont-link-libpython.patch)
-(cd .waf* && patch -p1 -i $rdir/80_fix-pickle.patch)
-(cd .waf* && patch -p1 -i $rdir/81_pickling-again.patch)
-./waf configure --prefix=$PREFIX
-./waf build
-./waf install
-
-cd $PREFIX
-# touchups?
+python setup.py install
