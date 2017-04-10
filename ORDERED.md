@@ -55,8 +55,6 @@ Miscellaneous Python modules
 
 1. `path-and-address`
 1. `grip`
-1. `astropy-helpers`
-1. `astroquery`
 1. `omegaplot`
 1. `bibtexparser`
 1. `pwkit`
