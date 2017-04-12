@@ -1,0 +1,45 @@
+{% set name = "wcstools" %}
+{% set version = "3.9.4" %}
+{% set sha256 = "92aceebb7c4409706bd1d30abe020ab0516a2bf507719e60aede6498ce5e4b7d" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  fn: {{ name }}-{{ version }}.tar.gz
+  url: http://tdc-www.harvard.edu/software/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  detect_binary_files_with_prefix: true
+  script_env:
+    - NJOBS
+
+requirements:
+  build:
+    - toolchain
+  run:
+
+about:
+  home: http://tdc-www.harvard.edu/wcstools/
+  license: GPLv2+
+  summary: 'Tools to work with the FITS World Coordinate System.'
+  description: |
+    Astronomers often need to relate positions on an image of the sky to
+    positions on the real sky to identify catalogued objects in images, tell
+    other people where to look to find an identified object, or to compute
+    motions of planets, satellites, asteroids, or comets. WCSTools is a
+    package of programs and a library of utility subroutines for setting and
+    using the world coordinate systems (WCS) in the headers of the most common
+    astronomical image formats, FITS and IRAF .imh, to relate image pixels to
+    sky coordinates. This software is all written in very portable C, so it
+    should compile and run on any computer with a C compiler.
+
+    WCSTools should not be confused with "wcslib", another piece of software
+    that has similar functionality.
+
+extra:
+  recipe-maintainers:
+    - pkgw

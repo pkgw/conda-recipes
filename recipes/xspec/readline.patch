@@ -1,0 +1,11 @@
+--- tcltk/BUILD_DIR/hd_config_info.orig	2017-04-11 17:31:36.457557048 -0400
++++ tcltk/BUILD_DIR/hd_config_info	2017-04-11 17:32:05.763732994 -0400
+@@ -92,7 +92,7 @@
+ fi
+ TCLREADLINE_DIR=$HD_SRC/tclreadline
+ 
+-tclreadline_CONFIGURE_CMD="cd $TCLREADLINE_DIR; ./configure --enable-shared=\$h_shared --prefix=\$exec_prefix --exec-prefix=\$exec_prefix --with-tcl=\$TCL_DIR --with-tcl-includes=\$TCL_DIR/../generic --with-readline-includes=\$READLINE_DIR --with-readline-library=\$READLINE_DIR --x-libraries=\$x_libraries --x-includes=\$x_includes"
++tclreadline_CONFIGURE_CMD="cd $TCLREADLINE_DIR; ./configure --enable-shared=\$h_shared --prefix=\$exec_prefix --exec-prefix=\$exec_prefix --with-tcl=\$TCL_DIR --with-tcl-includes=\$TCL_DIR/../generic --with-readline-includes=\$PREFIX/include/readline --with-readline-library=\$PREFIX/lib --x-libraries=\$x_libraries --x-includes=\$x_includes"
+ 
+ XPA=xpa
+ TCLXPA=tclxpa

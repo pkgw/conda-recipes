@@ -1,0 +1,66 @@
+{% set name = "sherpa" %}
+{% set version = "4.9.0" %}
+{% set sha256 = "f99d6a3e3cfebe03e1c6efb4f9d08337ee1915324036b1a206ee0d9d3d31d9c7" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  fn: {{ name }}-{{ version }}.tar.gz
+  url: https://github.com/sherpa/{{ name }}/archive/{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  detect_binary_files_with_prefix: true
+  skip: true  # [win]
+  script_env:
+    - NJOBS
+
+requirements:
+    build:
+      - setuptools
+      - toolchain
+      - cfitsio 3.*
+      - fftw 3.3.*
+      - libgfortran
+      - numpy >1.11
+      - python
+      - six
+      - xspec 12.9.*
+      - wcstools 3.9.*
+    run:
+      - cfitsio 3.*
+      - fftw 3.3.*
+      - libgfortran
+      - numpy >1.11
+      - python x.x
+      - six
+      - xspec 12.9.*
+      - wcstools 3.9.*
+
+test:
+  imports:
+    - group
+    - sherpa
+    - sherpa.astro.utils._wcs
+    - sherpa.astro.xspec._xspec
+    - sherpa.optmethods._minpack
+    - stk
+  commands:
+    - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
+    - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
+
+about:
+  home: http://cxc.cfa.harvard.edu/sherpa/
+  license: GPLv3
+  summary: 'A system for modeling and fitting data, especially astronomical X-ray observations.'
+  description: |
+    Sherpa is the CIAO modeling and fitting application. It enables the user
+    to construct complex models from simple definitions and fit those models
+    to data, using a variety of statistics and optimization methods.
+
+extra:
+  recipe-maintainers:
+    - pkgw

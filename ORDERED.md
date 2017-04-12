@@ -42,6 +42,14 @@ The PyRAF Stack
 1. `pyraf`
 
 
+The Sherpa stack
+================
+
+1. `wcstools`
+1. `xspec`
+1. `sherpa`
+
+
 Miscellanous Compiled
 =====================
 

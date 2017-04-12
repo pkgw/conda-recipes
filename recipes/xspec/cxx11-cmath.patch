@@ -1,0 +1,111 @@
+--- Xspec/src/XSFit/FitMethod/LevMarq/LevMarq.cxx.orig	2017-04-11 17:46:34.754950186 -0400
++++ Xspec/src/XSFit/FitMethod/LevMarq/LevMarq.cxx	2017-04-11 17:46:57.527086903 -0400
+@@ -63,7 +63,7 @@
+   using namespace XSContainer;
+ 
+   double oldFtstat = fit->statManager()->totalStatistic();
+-  if (isnan(oldFtstat))
++  if (::isnan(oldFtstat))
+   {
+      throw YellowAlert("Unable to fit when starting with fit statistic = NaN\n");
+   }
+@@ -446,7 +446,7 @@
+             // strange errors it could conceivably throw again even after
+             // the savedParVals are reinserted, which would trigger a
+             // RedAlert.  
+-            if (isnan(m_fitStatistic))
++            if (::isnan(m_fitStatistic))
+             {
+                string err("A fit statistic = NaN was encountered, possibly from ");
+                err += "model calculation error.  Fit unable to continue\n";
+--- Xspec/src/XSFit/StatMethod/Cstat/CstatVariants.cxx.orig	2017-04-11 17:54:03.661376251 -0400
++++ Xspec/src/XSFit/StatMethod/Cstat/CstatVariants.cxx	2017-04-11 17:54:33.816533161 -0400
+@@ -33,7 +33,7 @@
+     stat += tsi*yi;
+     if ( si > 0 ) stat += si*(std::log(si)-std::log(tsi*yi)-1);
+ 
+-    if ( isnan(stat) && !isnan(yi) ) return i;
++    if ( ::isnan(stat) && !::isnan(yi) ) return i;
+ 
+   }
+   return -1;
+@@ -361,7 +361,7 @@
+     stat += tsi*yi;
+     if ( si > 0 ) stat += si*(std::log(si)-std::log(tsi*yi)-1);
+ 
+-    if ( isnan(stat) && !isnan(yi) ) return i;
++    if ( ::isnan(stat) && !::isnan(yi) ) return i;
+ 
+   }
+   return -1;
+@@ -418,7 +418,7 @@
+ 	stat += tsi*(yi+fi) - si*std::log(tsi*yi+tsi*fi)
+ 	  + 0.5*(bi-tbi*fi)*(bi-tbi*fi)/bierr - si*(1-std::log(si)); 
+ 
+-	if (isnan(stat) && !isnan(yi) && !isinf(yi)) return i;
++	if (::isnan(stat) && !::isnan(yi) && !::isinf(yi)) return i;
+       }
+ 
+     }
+@@ -504,8 +504,8 @@
+ 	diff2[i] = -si*h/(yi+f) + si*(1+g)*(1+g)/((yi+f)*(yi+f)) 
+ 	  + tbi*tbi*g*g/bierr - (bi-tbi*f)*tbi*h/bierr + tsi*h;
+ 
+-	if ( isnan(diff1[i]) && !isnan(yi) && !isinf(yi) ) return i;
+-	if ( isnan(diff2[i]) && !isnan(yi) && !isinf(yi) ) return i;
++	if ( ::isnan(diff1[i]) && !::isnan(yi) && !::isinf(yi) ) return i;
++	if ( ::isnan(diff2[i]) && !::isnan(yi) && !::isinf(yi) ) return i;
+ 
+       }
+ 
+@@ -547,7 +547,7 @@
+     stat += tsi*yi;
+     if ( si > 0 ) stat += si*(std::log(si)-std::log(tsi*yi)-1);
+ 
+-    if ( isnan(stat) && !isnan(yi) ) return i;
++    if ( ::isnan(stat) && !::isnan(yi) ) return i;
+   }
+   return -1;
+ 
+@@ -657,7 +657,7 @@
+     stat += tsi*yi;
+     if ( si > 0 ) stat += si*(std::log(si)-std::log(tsi*yi)-1);
+ 
+-    if ( isnan(stat) && !isnan(yi) ) return i;
++    if ( ::isnan(stat) && !::isnan(yi) ) return i;
+ 
+   }
+   return -1;
+--- Xspec/src/XSFit/FitMethod/Minuit/Minuit.cxx.orig	2017-04-11 17:55:37.109862503 -0400
++++ Xspec/src/XSFit/FitMethod/Minuit/Minuit.cxx	2017-04-11 17:55:48.088919631 -0400
+@@ -60,7 +60,7 @@
+   
+   StatManager* stats = fit->statManager();
+ 
+-  if (isnan(stats->totalStatistic())) {
++  if (::isnan(stats->totalStatistic())) {
+     throw YellowAlert("Unable to fit when starting with fit statistic = NaN\n");
+   }
+ 
+--- Xspec/src/XSFit/StatMethod/Cstat/Cstat.h.orig	2017-04-11 18:05:57.632091829 -0400
++++ Xspec/src/XSFit/StatMethod/Cstat/Cstat.h	2017-04-11 18:06:19.281206242 -0400
+@@ -148,7 +148,7 @@
+ 
+     if (!background) {
+       int ifail = T::specificPerform(S,ts,model,number(),stat);
+-      if ( isnan(stat) && ifail >= 0 && !isnan(model[ifail]) ) {
++      if ( ::isnan(stat) && ifail >= 0 && !::isnan(model[ifail]) ) {
+ 	tcout << "NaN detected when calculating statistic for bin " 
+ 	      << ifail << " of spectrum " << spectrum->spectrumNumber() 
+ 	      << std::endl;
+@@ -177,8 +177,8 @@
+       }
+ 
+       int ifail = T::specificPerformB(S,B,Berr,ts,tb,model,number(),stat);
+-      if ( isnan(stat) && ifail >= 0 && 
+-	   !isnan(model[ifail]) && !isinf(model[ifail]) ) {
++      if ( ::isnan(stat) && ifail >= 0 && 
++	   !::isnan(model[ifail]) && !::isinf(model[ifail]) ) {
+ 	tcout << "NaN detected when calculating statistic for bin " 
+ 	      << ifail << " of spectrum " << spectrum->spectrumNumber() 
+ 	      << std::endl;

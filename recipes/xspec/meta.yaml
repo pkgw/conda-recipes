@@ -1,0 +1,49 @@
+{% set name = "xspec" %}
+{% set xspec_version = "12.9.1" %}
+{% set heasoft_version = "6.21" %}
+{% set sha256 = "d02499d4486b10bac0e55c2f603a6d270bc7563e84cfac5de7402e450277e9a2" %}
+
+package:
+  name: {{ name }}
+  version: {{ xspec_version }}
+
+source:
+  fn: heasoft-{{ heasoft_version }}src_no_xspec_modeldata.tar.gz
+  url: http://heasarc.gsfc.nasa.gov/FTP/software/lheasoft/release/heasoft-{{ heasoft_version }}src_no_xspec_modeldata.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - readline.patch
+    - cxx11-cmath.patch
+
+build:
+  number: 0
+  detect_binary_files_with_prefix: true
+  skip: true  # [win]
+  script_env:
+    - NJOBS
+
+requirements:
+    build:
+      - toolchain
+      - patchelf
+      - cfitsio 3.*
+      - libgfortran
+      - readline
+      - pthread-stubs
+      - xorg-libx11 1.6.*
+      - xorg-libxt 1.1.*
+    run:
+      - cfitsio 3.*
+      - libgfortran
+      - readline
+      - xorg-libx11 1.6.*
+      - xorg-libxt 1.1.*
+
+about:
+  home: https://heasarc.gsfc.nasa.gov/xanadu/xspec/
+  license: unspecified
+  summary: 'An X-ray spectral fitting package'
+
+extra:
+  recipe-maintainers:
+    - pkgw
