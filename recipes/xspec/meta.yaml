@@ -22,6 +22,10 @@ build:
   script_env:
     - NJOBS
 
+# XSpec's build system needs a lot of random crap, but with the fairly
+# restricted subset of files that we actually distribute, only a some of the
+# build-time requirements are actually needed at runtime.
+
 requirements:
     build:
       - toolchain
@@ -35,14 +39,20 @@ requirements:
     run:
       - cfitsio 3.*
       - libgfortran
-      - readline
-      - xorg-libx11 1.6.*
-      - xorg-libxt 1.1.*
 
 about:
   home: https://heasarc.gsfc.nasa.gov/xanadu/xspec/
   license: unspecified
   summary: 'An X-ray spectral fitting package'
+  description: |
+    XSpec is a software package for modeling and fitting the astronomical X-ray spectra.
+
+    Many XSpec models rely on a large collection of model data files that are
+    not provided with this package. These can be obtained from a full HEASoft
+    installation or by downloading a "models-only" data distribution provided
+    by the HEASoft team. XSpec models that need to use these data files will
+    use the environment variable `HEASOFT` to search for them, looking in the
+    directories `$HEASOFT/../spectral`, `$HEASOFT/spectral`, and `.`.
 
 extra:
   recipe-maintainers:

@@ -24,7 +24,6 @@ wcs-libraries=wcstools
 [xspec_config]
 with-xspec=True
 xspec_lib_dirs=$PREFIX/lib
-xspec_libraries=XSFunctions XSModel XSUtil XS wcs_xspec
 cfitsio_lib_dirs=$PREFIX/lib
 ccfits_lib_dirs=$PREFIX/lib
 ccfits_libraries=CCfits_2.5
@@ -44,7 +43,7 @@ rm -f cxcregion.h dmstack.h grplib.h region_priv.h regpar.h stack.h
 popd
 
 pushd lib
-for stem in grp region stk wcs-4.20 ; do
+for stem in grp region stk ; do
     rm -f lib$stem$SHLIB_EXT* lib$stem.a
 done
 popd

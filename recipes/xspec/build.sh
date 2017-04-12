@@ -28,6 +28,23 @@ make
 make install
 
 # Whee, what a gnarly install.
+#
+# ## Skipped libraries:
+#
+# XSPlot - because it needs pgplot
+# XSMinuit - because it needs minuit
+# XSUser - because it needs Tcl
+#
+# ## Shipped libraries:
+#
+# wcs_xspec needs: nothing unusual
+# CCfits needs: cfitsio
+# XSUtil needs: nothing unusual
+# XS potentially needs: m, gfortran, readline
+# XSModel needs: XSUtil, CCfits
+# XSFit needs: XSModel, XSUtil
+# XSFunctions needs: XSModel XSUtil wcs_xspec CCfits cfitsio gfortran m(via libXS)
+# xsmix needs: XSFunctions XSModel XSUtil CCfits
 
 cd $PREFIX
 mkdir -p include share/xspec
@@ -47,6 +64,7 @@ pushd lib
 mv libCCfits_*$SHLIB_EXT ../../lib/
 mv libwcs-*$SHLIB_EXT ../../lib/libwcs_xspec$SHLIB_EXT
 patchelf --set-soname libwcs_xspec$SHLIB_EXT ../../lib/libwcs_xspec$SHLIB_EXT
+rm -f libXSPlot* libXSMinuit* libXSUser*
 mv libXS*$SHLIB_EXT libxs*$SHLIB_EXT libXS.a ../../lib/
 popd
 
