@@ -1,0 +1,33 @@
+--- src/lib/datamodel/Makevars.ascdm.in.orig	2017-04-14 11:06:13.805592811 -0400
++++ src/lib/datamodel/Makevars.ascdm.in	2017-04-14 11:06:22.348639415 -0400
+@@ -54,7 +54,7 @@
+ #    DM_WCSLIB:  Local choice of WCSDIR from Makefile.packages
+ 
+ WCSDMINCLUDES   = -I$(WCS_INC)
+-WCSDMLIBS       = -L$(WCS_LIB) -lwcs
++WCSDMLIBS       = -L$(WCS_LIB) -lwcstools
+ 
+ # Region library
+ 
+--- src/lib/transform/src/Makefile.orig	2017-04-14 11:06:32.777696306 -0400
++++ src/lib/transform/src/Makefile	2017-04-14 11:06:39.350732163 -0400
+@@ -75,7 +75,7 @@
+ 	$(RANLIB) $@
+ 
+ libtransform.$(SO):  $(OBJS)
+-	$(LINKCPP.SO) $(LCCFLAG) -o  $@ $(OBJS) $(CXC_MATHLIBS) -L$(WCS_LIB) -lwcs
++	$(LINKCPP.SO) $(LCCFLAG) -o  $@ $(OBJS) $(CXC_MATHLIBS) -L$(WCS_LIB) -lwcstools
+ 
+ install:
+ 	$(SETUP_PY) install --install-lib=$(PYTHON_DIR)/$(PYMOD)
+--- src/Makefile.master.in.orig	2017-04-14 11:23:13.326172046 -0400
++++ src/Makefile.master.in	2017-04-14 11:23:34.302287244 -0400
+@@ -167,7 +167,7 @@
+ # WCSLIB
+ WCSDIR = $(DSOTS)
+ WCS_LIB = $(WCSDIR)/lib
+-WCS_INC = $(WCSDIR)/include
++WCS_INC = $(WCSDIR)/include/wcstools
+ 
+ # Xspec
+ XSPEC12 = $(DSOTS)

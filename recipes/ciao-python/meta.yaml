@@ -1,0 +1,58 @@
+{% set name = "ciao-python" %}
+{% set version = "4.9" %}
+{% set sha256 = "5f11dbe53ae54ee641f4256e2d1269b98070375f4e90c3161aea6096b018311a" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  fn: ciao-{{ version }}-src-core.tar.gz
+  url: ftp://cxc.harvard.edu/pub/ciao{{ version }}/all/ciao-{{ version }}-src-core.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - py36.patch
+    - wcstools.patch
+    - ots.patch
+
+build:
+  number: 0
+  detect_binary_files_with_prefix: true
+  skip: true  # [win]
+  script_env:
+    - NJOBS
+
+requirements:
+    build:
+      - setuptools
+      - toolchain
+      - bison
+      - flex
+      - cfitsio 3.*
+      - numpy
+      - python
+      - wcstools 3.9.*
+      - xerces-c
+    run:
+      - cfitsio 3.*
+      - numpy
+      - python x.x
+      - wcstools 3.9.*
+
+test:
+  imports:
+    - pycrates
+  commands:
+    - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
+    - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
+
+about:
+  home: http://cxc.cfa.harvard.edu/sherpa/
+  license: GPLv3
+  summary: 'A system for reading X-ray Data Model data.'
+  description: |
+    Not to be confused with the "pycrates" package on PyPI and GitHub.
+
+extra:
+  recipe-maintainers:
+    - pkgw

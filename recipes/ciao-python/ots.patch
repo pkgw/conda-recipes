@@ -1,0 +1,14 @@
+--- configure.orig	2017-04-14 10:30:50.783073809 -0400
++++ configure	2017-04-14 11:29:51.215357201 -0400
+@@ -10689,9 +10718,9 @@
+ fi
+ if test -f src/libdev/grplib/configure
+ then
+-  GROUP_CFLAGS="-I$install_top/include -I$install_top/ots/lib/python${pyver}/site-packages/numpy/core/include -I$install_top/ots/include/python${pyver} -L$install_top/lib -lerr"
++  GROUP_CFLAGS="-I$install_top/include -I$install_top/lib/python${pyver}/site-packages/numpy/core/include -I$install_top/include/python${pyver} -L$install_top/lib -lerr"
+ 
+-  export GROUP_CFLAGS="-I$install_top/include -I$install_top/ots/lib/python${pyver}/site-packages/numpy/core/include -I$install_top/ots/include/python${pyver} -L$install_top/lib -lerr"
++  export GROUP_CFLAGS="-I$install_top/include -I$install_top/lib/python${pyver}/site-packages/numpy/core/include -I$install_top/include/python${pyver} -L$install_top/lib -lerr"
+   { $as_echo "$as_me:${as_lineno-$LINENO}: result: Found src/libdev/grplib/configure" >&5
+ $as_echo "Found src/libdev/grplib/configure" >&6; }
+   subdirs="$subdirs src/libdev/grplib"
