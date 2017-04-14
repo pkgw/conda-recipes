@@ -1,0 +1,28 @@
+--- sherpa/astro/io/__init__.py.orig	2017-04-14 12:03:21.538329535 -0400
++++ sherpa/astro/io/__init__.py	2017-04-14 12:05:04.889890190 -0400
+@@ -43,16 +43,16 @@
+ 
+ import importlib
+ 
+-config = ConfigParser()
+-config.read(get_config())
+-io_opt = config.get('options', 'io_pkg')
+-io_opt = str(io_opt).strip().lower()
+-
+-if io_opt.startswith('pycrates') or io_opt.startswith('crates'):
++try:
++    import pycrates
+     io_opt = 'crates_backend'
+-
+-elif io_opt.startswith('pyfits'):
+-    io_opt = 'pyfits_backend'
++except ImportError:
++    try:
++        import astropy.io.fits
++        io_opt = 'pyfits_backend'
++    except ImportError:
++        import pyfits
++        io_opt = 'pyfits_backend'
+ 
+ try:
+     importlib.import_module('.' + io_opt, package='sherpa.astro.io')
