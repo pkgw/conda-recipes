@@ -9,7 +9,6 @@ The GTK+ 3 Stack
 1. `librsvg`
 1. `gtk3`
 1. `adwaita-icon-theme`
-1. `pycairo`
 1. `pygobject3` — note: "3" means GLib 3, not Python 3.
 
 
