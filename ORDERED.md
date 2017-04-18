@@ -54,7 +54,6 @@ Miscellanous Compiled
 
 1. `ds9`
 1. `miriad`
-1. `texlive-selected`
 
 
 Miscellaneous Python modules
