@@ -24,7 +24,7 @@ source:
     - cmake37.patch
 
 build:
-  number: 0
+  number: 1
   detect_binary_files_with_prefix: true
   skip: true  # [win]
   script_env:
@@ -35,7 +35,7 @@ requirements:
     - cmake
     - gcc  # [osx]
     - toolchain
-    - boost 1.63.0
+    - boost 1.63.* # 1.64 has a bug that prevents us from compiling: https://svn.boost.org/trac/boost/ticket/12516
     - casacore 2.2.*
     - dbus-cxx 0.9.*
     - dbus 1.10.*
@@ -45,16 +45,16 @@ requirements:
     - libxml2 2.9.*
     - libxslt 1.1.*
     - ncurses 5.9*
-    - openblas 0.2.*
+    - openblas 0.2.19|0.2.19.*
     - pgplot 5.2.*
-    - readline 6.*
+    - readline 6.2*
     - rpfits 2.*
     - qt4 4.8.*
     - qwt5 5.2.*
     - xerces-c28
   run:
     - libgfortran  # [unix]
-    - boost 1.63.0
+    - boost 1.63.*
     - casacore 2.2.*
     - dbus-cxx 0.9.*
     - dbus 1.10.*
@@ -64,9 +64,9 @@ requirements:
     - libxml2 2.9.*
     - libxslt 1.1.*
     - ncurses 5.9*
-    - openblas 0.2.*
+    - openblas 0.2.19|0.2.19.*
     - pgplot 5.2.*
-    - readline 6.*
+    - readline 6.2*
     - rpfits 2.*
     - qt4 4.8.*
     - qwt5 5.2.*
