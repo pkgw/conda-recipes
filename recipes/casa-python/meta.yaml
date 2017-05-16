@@ -5,7 +5,7 @@
 
 {% set name = "casa-python" %}
 {% set version = "4.7.2" %}
-{% set build = "3" %}
+{% set build = "4" %}
 
 package:
   name: {{ name }}
