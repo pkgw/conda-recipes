@@ -3,8 +3,8 @@
 # that.
 
 {% set name = "rust-toolchain" %}
-{% set version = "1.16.0" %}
-{% set sha256 = "f966b31eb1cd9bd2df817c391a338eeb5b9253ae0a19bf8a11960c560f96e8b4" %}
+{% set version = "1.17.0" %}
+{% set sha256 = "4baba3895b75f2492df6ce5a28a916307ecd1c088dc1fd02dbfa8a8e86174f87" %}
 
 package:
   name: {{ name|lower }}

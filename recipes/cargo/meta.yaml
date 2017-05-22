@@ -4,8 +4,8 @@
 # go in conda-forge, so there's very little point to suubmitting it.
 
 {% set name = "cargo" %}
-{% set version = "0.17.0" %}
-{% set sha256 = "fc689ca7a09f1e6a1c31e69f0e2616a93576a68e0e1d7f0ae4c0d3301ff21ff8" %}
+{% set version = "0.18.0" %}
+{% set sha256 = "19b5c142c194fc2f940d93b4679850980ed077db0ff7c558122c7ef865e24983" %}
 
 package:
   name: {{ name|lower }}
