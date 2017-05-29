@@ -13,7 +13,7 @@ else
     )
 fi
 
-cargo build --release --lib
+cargo build --release --lib --verbose
 cargo rustc --bin tectonic --release -- "${rustc_args[@]}"
 cargo install --bin tectonic --root $PREFIX
 rm -f $PREFIX/.crates.toml

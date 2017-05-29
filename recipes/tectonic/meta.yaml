@@ -1,6 +1,6 @@
 {% set name = "tectonic" %}
-{% set version = "0.1.4" %}
-{% set sha256 = "4efbed9ddc2d8b1b97d8f25e3080220a20d792764e8bcd9f959e68373f757126" %}
+{% set version = "0.1.5" %}
+{% set sha256 = "9680a2d989ee5014769936e6d566caa232c874e8ad566ffa2f419cb309871051" %}
 
 package:
   name: {{ name|lower }}
@@ -25,7 +25,7 @@ requirements:
     - harfbuzz 1.4.*  # note: conda-forge pins 1.3, but we need 1.4
     - icu 58.*
     - libpng >=1.6.28,<1.7
-    - poppler 0.52.*
+    - openssl 1.0.*
     - zlib 1.2.*
   run:
     - fontconfig 2.12.*  # [not osx]
@@ -34,7 +34,7 @@ requirements:
     - harfbuzz 1.4.*
     - icu 58.*
     - libpng >=1.6.28,<1.7
-    - poppler 0.52.*
+    - openssl 1.0.*
     - zlib 1.2.*
 
 test:
