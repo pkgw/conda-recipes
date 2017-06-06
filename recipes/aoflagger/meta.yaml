@@ -21,7 +21,7 @@ source:
     - mac-cxx.patch
 
 build:
-  number: 2
+  number: 3
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
@@ -34,7 +34,7 @@ requirements:
     - cfitsio 3.410
     - fftw 3.3.*
     - gsl 2.2.*
-    - hdf5 1.8.17|1.8.17.*
+    - hdf5 1.8.18|1.8.18.*
     - libxml2 2.9.*
     - openblas 0.2.19|0.2.19.*
   run:
@@ -43,7 +43,7 @@ requirements:
     - cfitsio 3.410
     - fftw 3.3.*
     - gsl 2.2.*
-    - hdf5 1.8.17|1.8.17.*
+    - hdf5 1.8.18|1.8.18.*
     - libxml2 2.9.*
     - openblas 0.2.19|0.2.19.*
 
