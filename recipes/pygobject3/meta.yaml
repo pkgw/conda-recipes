@@ -13,7 +13,7 @@ source:
     - testhelper-linkage.patch
 
 build:
-  number: 1
+  number: 2
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
@@ -24,14 +24,14 @@ requirements:
     - glib 2.51.*
     - gobject-introspection 1.51.*
     - libffi 3.2.*
-    - pycairo 1.11.*
+    - pycairo 1.13.*
     - python
   run:
     - cairo 1.14.*
     - glib 2.51.*
     - gobject-introspection 1.51.*
     - libffi 3.2.*
-    - pycairo 1.11.*
+    - pycairo 1.13.*
     - python
 
 about:
