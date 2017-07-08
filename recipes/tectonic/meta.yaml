@@ -1,6 +1,6 @@
 {% set name = "tectonic" %}
-{% set version = "0.1.5" %}
-{% set sha256 = "9680a2d989ee5014769936e6d566caa232c874e8ad566ffa2f419cb309871051" %}
+{% set version = "0.1.6" %}
+{% set sha256 = "2d46ebb9dc11e4f92784ff0f1400c927bf19a686dfa438e95520b22b9c1cec40" %}
 
 package:
   name: {{ name|lower }}

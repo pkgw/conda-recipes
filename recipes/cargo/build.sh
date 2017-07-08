@@ -16,7 +16,7 @@ else
     exit 1
 fi
 
-version="1.16.0"
+version="1.18.0"
 url="https://static.rust-lang.org/dist/rust-${version}-${triple}.tar.gz"
 curl -ssL "$url" |tar xz
 pushd rust-${version}-${triple}
