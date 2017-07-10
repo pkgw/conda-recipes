@@ -16,7 +16,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1
   detect_binary_files_with_prefix: true
   features:
     - vc9  # [win and py27]
@@ -28,6 +28,7 @@ requirements:
     - bison
     - cmake
     - flex
+    - ninja
     - python >=2.7,<3
     - toolchain
     - m2w64-toolchain  # [win]
