@@ -2,10 +2,11 @@
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 #
 # NOTE: if updating major or minor version, update `so-versioning.patch`.
+# If updating *any* version, a new tag must be pushed to GitHub!
 
 {% set name = "casa-python" %}
 {% set version = "4.7.2" %}
-{% set build = "4" %}
+{% set build = "5" %}
 
 package:
   name: {{ name }}
@@ -31,7 +32,7 @@ requirements:
     - swig
     - toolchain
     - casa-tools 4.7.*
-    - numpy 1.12.*
+    - numpy 1.13.*
     - python
     - rpfits 2.*
     - wcslib 5.16
@@ -39,7 +40,7 @@ requirements:
     - libgfortran  # [unix]
     - casa-tools 4.7.*
     - ncurses 5.9*
-    - numpy 1.12.*
+    - numpy 1.13.*
     - python
     - rpfits 2.*
     - wcslib 5.16
