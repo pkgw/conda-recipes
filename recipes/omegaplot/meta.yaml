@@ -5,17 +5,22 @@
 #
 #   curl -s https://pypi.python.org/pypi/omegaplot/ |grep md5= |grep -v linux
 
+{% set name = "omegaplot" %}
+{% set version = "0.7.3" %}
+{% set md5 = "ad8f8a947209a5921beaa006449d7a08" %}
+
 package:
-  name: omegaplot
-  version: "0.7.2"
+  name: {{ name }}
+  version: {{ version }}
 
 source:
-  fn: omegaplot-0.7.2.tar.gz
-  url: https://pypi.python.org/packages/51/d3/f69c1ed1f022094280b00d0c71042a136b97bf431ba2112377e9f44ae40b/omegaplot-0.7.2.tar.gz
-  md5: 6f87d5cd48cadab8f79fade34280e7fa
+  fn: {{ name }}-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  md5: {{ md5 }}
 
 build:
-  number: 2
+  number: 0
+  script: python setup.py install --single-version-externally-managed --record=files.txt
   entry_points:
     - omegafig = oputil.omegafig:cmdline
     - omegamap = oputil.omegamap:cmdline
