@@ -1,31 +1,37 @@
-# Copyright 2016 Peter Williams and collaborators.
+# Copyright 2016-2017 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
+{% set name = "aipy" %}
+{% set version = "2.1.4" %}
+{% set sha256 = "f86b4bea0938a500f491bbcd71cc35f4baf5e01aabbd08b0b3355a879a70e385" %}
+
 package:
-  name: aipy
-  version: "2.1.1"
+  name: {{ name }}
+  version: "{{ version }}"
 
 source:
-  fn: v2.1.1.tar.gz
-  url: https://github.com/HERA-Team/aipy/archive/v2.1.1.tar.gz
-  sha256: 6c49afab713355edc227e02862aa72a13d2b0c4f2aa83da8622d19fe7b98a8dd
+  fn: {{ name }}-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
 
 build:
-  number: 1
+  number: 0
+  script: python setup.py install  # [not osx]
+  script: MACOSX_DEPLOYMENT_TARGET=10.9 python setup.py install  # [osx]
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
 
 requirements:
   build:
-    - astropy
+    - astropy >=2.0
     - ephem
     - numpy
     - python
     - setuptools
 
   run:
-    - astropy
+    - astropy >=2.0
     - ephem
     - numpy
     - python
