@@ -1,21 +1,26 @@
-# Copyright 2014-2016 Peter Williams and collaborators.
+# Copyright 2014-2017 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
-# Shortcut to get new MD5 sum and URL:
+# Shortcut to get new SHA256 digest:
 #
-#   curl -s https://pypi.python.org/pypi/pwkit/ |grep md5= |grep -v linux
+#   curl -s https://pypi.python.org/pypi/pwkit/ |grep sha256-link |tail -n1
+
+{% set name = "pwkit" %}
+{% set version = "0.8.7" %}
+{% set sha256 = "c5e336032cbd45b73331834f6af2e6f916e25c48ab4d3c767c26fc3f9362471f" %}
 
 package:
-  name: pwkit
-  version: "0.8.4"
+  name: {{ name }}
+  version: {{ version }}
 
 source:
-  fn: pwkit-0.8.4.tar.gz
-  url: https://pypi.python.org/packages/8d/6e/eff751fcf3361191ac9b70b83791c933bf44c0bac3a0cc7d8bbd0ca02951/pwkit-0.8.4.99.tar.gz
-  md5: 611ab2460cb23f1b54f28ed19f1d8689
+  fn: {{ name }}-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
 
 build:
-  number: 1
+  number: 0
+  script: python setup.py install --single-version-externally-managed --record=files.txt
   entry_points:
     - astrotool = pwkit.cli.astrotool:commandline
     - casatask = pwkit.environments.casa.tasks:commandline
