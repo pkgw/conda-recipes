@@ -1,22 +1,21 @@
 # Copyright 2015-2017 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 #
-# NOTE: if updating major or minor version, update `so-versioning.patch`.
-# If updating *any* version, a new tag must be pushed to GitHub!
+# A new tag must be pushed to GitHub for every update!
 
 {% set name = "casa-python" %}
-{% set version = "4.7.2" %}
-{% set build = "5" %}
+{% set version = "5.0.0" %}
+{% set build = "0" %}
 
 package:
   name: {{ name }}
   version: {{ version }}
 
 source:
-  #git_url: file:///{vagrant,work}/repos/casa
-  #git_rev: HEAD
-  git_url: https://github.com/pkgw/casa.git
-  git_rev: casa3k-{{ version }}_{{ build }}
+  git_url: file:///vagrant/repos/nrao-casa
+  git_rev: HEAD
+  #git_url: https://github.com/pkgw/casa.git
+  #git_rev: casa3k-{{ version }}_{{ build }}
 
 build:
   number: {{ build }}
@@ -31,14 +30,14 @@ requirements:
     - gcc  # [osx]
     - swig
     - toolchain
-    - casa-tools 4.7.*
+    - casa-tools 5.0.*
     - numpy 1.13.*
     - python
     - rpfits 2.*
     - wcslib 5.16
   run:
     - libgfortran  # [unix]
-    - casa-tools 4.7.*
+    - casa-tools 5.0.*
     - ncurses 5.9*
     - numpy 1.13.*
     - python

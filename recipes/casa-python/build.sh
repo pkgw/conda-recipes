@@ -42,6 +42,7 @@ cmake_args=(
     -DQT_MKSPECS_DIR=$PREFIX/qt4/mkspecs
     -DQT_RCC_EXECUTABLE=$PREFIX/qt4/bin/rcc
     -DQWT_INCLUDE_DIRS=$PREFIX/include/qwt5
+    -DUseCrashReporter=OFF
 )
 
 #cmake_args+=(--debug-trycompile --debug-output --trace)
@@ -83,7 +84,7 @@ make -j$NJOBS VERBOSE=1
 # Post-install tidying.
 
 pushd $PREFIX
-rm bin/{buildmytasks,casa,casapy,xmlgenpy} lib/saxon*.jar
+rm bin/{buildmytasks,casa,xmlgenpy} lib/saxon*.jar
 
 # if we keep the compat symlinks, conda thinks we installed these files:
 rm -f lib/libxerces-c$SHLIB_EXT include/xercesc

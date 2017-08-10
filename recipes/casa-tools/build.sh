@@ -34,6 +34,7 @@ cmake_args=(
     -DQT_MKSPECS_DIR=$PREFIX/qt4/mkspecs
     -DQT_RCC_EXECUTABLE=$PREFIX/qt4/bin/rcc
     -DQWT_INCLUDE_DIRS=$PREFIX/include/qwt5
+    -DUseCrashReporter=OFF
 )
 
 #cmake_args+=(--debug-trycompile --debug-output)
@@ -47,8 +48,8 @@ if [ $(uname) = Darwin ] ; then
     cmake_args+=(
 	-Darch=darwin64
 	-Darchflag=x86_64
-	-DCMAKE_CXX_FLAGS="-arch $OSX_ARCH -stdlib=libc++ -std=c++11"
 	-DCMAKE_Fortran_COMPILER=gfortran
+	-DEXTRA_CXX_FLAGS="-arch $OSX_ARCH -stdlib=libc++"
 	-DPGPLOT_LIBRARIES="$PREFIX/lib/libpgplot.dylib;$PREFIX/lib/libcpgplot.a"
 	# Make sure to get Conda versions of libraries:
 	-DLIBXML2_ROOT_DIR=$PREFIX
@@ -63,7 +64,6 @@ else
 	-DBLAS_LIBRARIES="$PREFIX/lib/libopenblas.so"
 	-DCMAKE_C_COMPILER=$toolroot/usr/bin/gcc
 	-DCMAKE_CXX_COMPILER=$toolroot/usr/bin/g++
-	-DCMAKE_CXX_FLAGS="-std=c++11"
 	-DCMAKE_Fortran_COMPILER=$toolroot/usr/bin/gfortran
 	-DLAPACK_LIBRARIES="$PREFIX/lib/libopenblas.so"
 	-DPGPLOT_LIBRARIES="$PREFIX/lib/libpgplot.so;$PREFIX/lib/libcpgplot.a"
