@@ -12,10 +12,8 @@ package:
   version: {{ version }}
 
 source:
-  git_url: file:///vagrant/repos/nrao-casa
-  git_rev: HEAD
-  #git_url: https://github.com/pkgw/casa.git
-  #git_rev: casa3k-{{ version }}_{{ build }}
+  git_url: https://github.com/pkgw/casa.git
+  git_rev: casa3k-{{ version }}_{{ build }}
 
 build:
   number: {{ build }}
@@ -29,7 +27,7 @@ requirements:
     - cmake
     - gcc  # [osx]
     - toolchain
-    - boost ###1.63.* # 1.64 has a bug that prevents us from compiling: https://svn.boost.org/trac/boost/ticket/12516
+    - boost 1.64.*
     - casacore 2.3.*
     - dbus-cxx 0.9.*
     - dbus 1.10.*
@@ -38,7 +36,7 @@ requirements:
     - libsakura 3.0.*
     - libxml2 2.9.*
     - libxslt 1.1.*
-    - ncurses 5.9*
+    - ncurses 5.9
     - openblas 0.2.19|0.2.19.*
     - pgplot 5.2.*
     - readline 6.2*
@@ -48,7 +46,7 @@ requirements:
     - xerces-c28
   run:
     - libgfortran  # [unix]
-    - boost ###1.63.*
+    - boost 1.64.*
     - casacore 2.3.*
     - dbus-cxx 0.9.*
     - dbus 1.10.*
@@ -57,7 +55,7 @@ requirements:
     - libsakura 3.0.*
     - libxml2 2.9.*
     - libxslt 1.1.*
-    - ncurses 5.9*
+    - ncurses 5.9
     - openblas 0.2.19|0.2.19.*
     - pgplot 5.2.*
     - readline 6.2*
