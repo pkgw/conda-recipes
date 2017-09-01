@@ -1,0 +1,46 @@
+{% set name = "boxfit" %}
+{% set version = "2.0" %}
+{% set sha256 = "5229fa227c2993152b7db2f5f1c709c7beb86d190247970255822ea192d3b464" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  fn: {{ name }}-{{ version }}.tar.gz
+  url: http://cosmo.nyu.edu/afterglowlibrary/boxfitdatav2/boxfitv2.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    - settings.patch
+    - makefile.patch
+
+build:
+  number: 0
+  detect_binary_files_with_prefix: true
+  script_env:
+    - NJOBS
+
+requirements:
+  build:
+    - toolchain
+    - libgfortran 3.0.0
+    - hdf5 1.8.18|1.8.18.*
+    - mpich
+  run:
+    - boxfit-data01 2.*
+    - boxfit-data02 2.*
+    - boxfit-data03 2.*
+    - boxfit-data04 2.*
+    - boxfit-data05 2.*
+    - libgfortran 3.0.0
+    - hdf5 1.8.18|1.8.18.*
+    - mpich
+
+about:
+  home: http://cosmo.nyu.edu/afterglowlibrary/boxfit2011.html
+  license: unspecified
+  summary: Code for broadband afterglow light curve data simulation
+
+extra:
+  maintainers:
+    - pkgw

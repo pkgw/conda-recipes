@@ -1,0 +1,35 @@
+# Built separately from main boxfit since we have to download everything
+# manually (gross). We use the same source file as "boxfit" since that seems
+# sensible, even though we don't actually use the source at all.
+
+{% set name = "boxfit-data" %}
+{% set seqnum = "03" %}
+{% set version = "2.0" %}
+{% set sha256 = "5229fa227c2993152b7db2f5f1c709c7beb86d190247970255822ea192d3b464" %}
+
+package:
+  name: {{ name }}{{ seqnum }}
+  version: {{ version }}
+
+source:
+  fn: boxfit-{{ version }}.tar.gz
+  url: http://cosmo.nyu.edu/afterglowlibrary/boxfitdatav2/boxfitv2.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  noarch: generic
+  number: 0
+
+requirements:
+  build:
+    - curl
+  run:
+
+about:
+  home: http://cosmo.nyu.edu/afterglowlibrary/boxfit2011.html
+  license: unspecified
+  summary: Subset {{ seqnum }} of data files for the "boxfit" afterglow modeling code.
+
+extra:
+  maintainers:
+    - pkgw

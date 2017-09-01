@@ -1,0 +1,22 @@
+--- a/settings/boxfitsettings.txt
++++ b/settings/boxfitsettings.txt
+@@ -29,13 +29,14 @@
+ 
+   ! set path to BOX files and first part of BOX file name.
+ 
+-  box_filename_base = "./boxISM/boxISM_"
+-  !box_filename_base = "./boxboostISM/boxboostISM_"
+-  !box_filename_base = "./boxwindmedboost/boxwindmedboost_"
+-  !box_filename_base = "./boxwindboost/boxwindboost_"
++  !Lab-frame ISM files don't work with this version since it's a compile-time option.
++  !box_filename_base = "./boxISM/boxISM_"
++  box_filename_base = "@datadir@/boxboostISM_"
++  !box_filename_base = "@datadir@/boxwindmedboost_"
++  !box_filename_base = "@datadir@/boxwindboost_"
+ 
+   box0 = 0  ! First included BOX number
+-  box1 = 33 ! Last Included BOX number
++  box1 = 22 ! Last Included BOX number
+ 
+   data_filename = "grb990510.txt"        ! filename broadband data file
+ 
