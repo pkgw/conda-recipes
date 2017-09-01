@@ -85,7 +85,7 @@ setuptools
 # Miscellaneous Conda config
 conda config --add envs_dirs /conda/envs
 mkdir /conda/conda-bld
-(cd /conda/conda-bld && ln -s /work/linux-64 linux-64)
+(cd /conda/conda-bld && ln -s /work/linux-64 linux-64 && ln -s /work/noarch noarch)
 
 # Docker infrastructure cleanup
 chmod +x /entrypoint.sh
