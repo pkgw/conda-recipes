@@ -1,28 +1,28 @@
 # Copyright 2015-2017 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
-#
-# To see what the latest version is, just visit the svn_url listed below and
-# see what the server reports.
-#
-# Note that this package should be "noarch", but Conda's tools kind of
-# insanely require that noarch packages be Python-based:
-# `assert 'py_' in m.dist()`
+
+# The data files are now tracked in a repo that's managed with Git LFS. The
+# best way that I've come up with to make a tractable build is to do the
+# checking out manually; I found some random empty tar file on a CDN that we
+# can use as the "source" to make 'conda-build' happy.
 
 package:
   name: casa-data
-  version: r11000
+  version: r20170909
 
 source:
-  svn_url: https://svn.cv.nrao.edu/svn/casa-data/distro/
-  svn_rev: 11000
-  svn_ignore_externals: yes
+  fn: empty-test-tarball-1.0.2.tgz
+  url: https://registry.npmjs.org/empty-test-tarball/-/empty-test-tarball-1.0.2.tgz
+  sha256: f0132c1a34408eae6353f01145220450aa8cbaaccfd99223479ef43133ea4eaf
 
 build:
+  noarch: generic
   number: 0
 
 requirements:
   build:
-    - python # needed for conda-build "compiling .pyc files" step
+    - git
+    - git-lfs
 
 about:
   home: http://casa.nrao.edu/
