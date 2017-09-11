@@ -1,0 +1,54 @@
+# Find our git repo: https://github.com/loopbio/gtk2-feedstock
+
+# Modified from a recipe by Marcin Wojdyr
+
+#
+# Work in progress; the goal would be to have all dependencies
+# (gtk2 is the banana, and client X11 libraries is the gorilla)
+# into conda-forge like recipes.
+# At the moment most dependencies are taken from either conda-forge
+# or from packages by Peter Williams:
+#   https://github.com/pkgw/conda-recipes
+#   https://anaconda.org/pkgw-forge
+# Conda-forge is slowly getting many relevant packages.
+#
+
+{% set major_version = "2.24" %}
+{% set minor_version = "31" %}
+{% set version = major_version + "." +minor_version %}
+
+package:
+  name: gtk2
+  version: {{ version }}
+
+source:
+  fn: gtk+-{{ version }}.tar.xz
+  url: http://ftp.gnome.org/pub/gnome/sources/gtk+/{{ major_version }}/gtk+-{{ version }}.tar.xz
+  sha256: 68c1922732c7efc08df4656a5366dcc3afdc8791513400dac276009b40954658
+
+build:
+  number: 1
+  skip: True  # [not linux]
+  detect_binary_files_with_prefix: True
+  track_features:
+    - gtk2
+
+requirements:
+  build:
+    - glib        # @conda-forge
+    - cairo       # @conda-forge
+    - pango       # @conda-forge
+    - atk         # @pkgw-forge
+    - gdk-pixbuf  # @pkgw-forge
+  run:
+    - glib
+    - cairo
+    - pango
+    - atk
+    - gdk-pixbuf
+
+about:
+  license: LGPL-2
+  license_file: COPYING
+  home: http://www.gtk.org
+
