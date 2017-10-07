@@ -21,14 +21,14 @@ requirements:
     - pgplot
     - readline
     - rpfits
-    - wcslib 5.12
+    - wcslib 5.16
     - xorg-libx11 1.6.*
-    - xproto
+    - xorg-xproto
   run:
     - pgplot
     - readline
     - rpfits
-    - wcslib 5.12
+    - wcslib 5.16
     - xorg-libx11 1.6.*
 
 about:

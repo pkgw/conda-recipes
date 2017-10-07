@@ -6,6 +6,9 @@
 set -e
 test $(echo "$PREFIX" |wc -c) -gt 200 # check that we're getting long paths
 
+export CFLAGS="-I$PREFIX/include"
+export LDFLAGS="-L$PREFIX/lib"
+
 if [ -n "$OSX_ARCH" ] ; then
     export MACOSX_DEPLOYMENT_TARGET=10.6
     sdk=/ # might be useful later?
@@ -16,6 +19,6 @@ else
     export PATH="/opt/rh/devtoolset-2/root/usr/bin:/opt/rh/devtoolset-2/root/bin:$PATH"
 fi
 
-./configure --prefix=$PREFIX --with-deplibs=$PREFIX --with-telescope=big1 --bindir=$PREFIX/lib/miriad || { cat config.log ; exit 1 ; }
+./configure --prefix=$PREFIX --with-deplibs=$PREFIX --with-telescope=big1 --bindir=$PREFIX/lib/miriad --x-includes=$PREFIX/include --x-libraries=$PREFIX/lib || { cat config.log ; exit 1 ; }
 make -j$NJOBS
 make install
