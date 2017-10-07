@@ -26,8 +26,8 @@ The CASA Stack
 Rust stack
 ==========
 
-1. `rust-toolchain`
-1. `cargo`
+**TODO**: Rust is actually in conda-forge.
+
 1. `tectonic`
 
 
@@ -63,6 +63,5 @@ Miscellaneous Python modules
 1. `grip`
 1. `omegaplot`
 1. `bibtexparser`
-1. `pwkit`
 1. `gatspy`
 1. `miriad-python`
