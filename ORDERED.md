@@ -23,14 +23,6 @@ The CASA Stack
 1. `aoflagger`
 
 
-Rust stack
-==========
-
-**TODO**: Rust is actually in conda-forge.
-
-1. `tectonic`
-
-
 The PyRAF Stack
 ===============
 
