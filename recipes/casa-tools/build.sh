@@ -40,9 +40,6 @@ cmake_args=(
 #cmake_args+=(--debug-trycompile --debug-output)
 
 if [ $(uname) = Darwin ] ; then
-    # Fun fact: if you add a "-L$PREFIX/lib" argument here, the -L and the -Wl
-    # arguments *disappear* from the link.txt files generated from CMake. If
-    # you *don't* put in a -L argument, one appears. CMake, you so crazy!
     linkflags="-Wl,-rpath,$PREFIX/lib $LDFLAGS"
 
     cmake_args+=(
@@ -58,7 +55,7 @@ if [ $(uname) = Darwin ] ; then
     )
 else
     toolroot=/opt/rh/devtoolset-2/root
-    linkflags=-Wl,-rpath-link,$PREFIX/lib
+    linkflags="-Wl,-rpath-link,$PREFIX/lib $LDFLAGS"
 
     cmake_args+=(
 	-DBLAS_LIBRARIES="$PREFIX/lib/libopenblas.so"
@@ -79,6 +76,8 @@ cmake_args+=(
 cd code
 mkdir build
 cd build
+# helps debugging:
+env -0 |sed -z -e 's/^/export /' -e "s/\([^=]*\)=/\1='/" -e "s/$/'/" |tr '\0' '\n' >ENVIRON.sh
 cmake "${cmake_args[@]}" ..
 make -j$NJOBS VERBOSE=1
 

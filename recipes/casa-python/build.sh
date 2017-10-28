@@ -78,6 +78,8 @@ unset CXXFLAGS CFLAGS LINKFLAGS
 cd gcwrap
 mkdir build
 cd build
+# helps debugging:
+env -0 |sed -z -e 's/^/export /' -e "s/\([^=]*\)=/\1='/" -e "s/$/'/" |tr '\0' '\n' >ENVIRON.sh
 cmake "${cmake_args[@]}" ..
 make -j$NJOBS VERBOSE=1
 
