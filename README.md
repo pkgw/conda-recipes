@@ -65,7 +65,7 @@ repeatable, headless build environment for the OS X package builds.
 [Docker]: https://www.docker.com/
 
 * [Notes for developers](DEV.md)
-* [The order in which everything needs to be built](ordered.md)
+* [The order in which everything needs to be built](ORDERED.md)
 
 
 License
