@@ -1,11 +1,9 @@
 The GTK+ 3 Stack
 ================
 
-1. `libcroco`
 1. `atk`
 1. `at-spi2-core`
 1. `at-spi2-atk`
-1. `gdk-pixbuf`
 1. `librsvg`
 1. `gtk3`
 1. `adwaita-icon-theme`
