@@ -1,13 +1,13 @@
 #! /bin/bash
-# Copyright 2014-2016 Peter Williams and collaborators.
+# Copyright 2014-2017 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 [ "$NJOBS" = '<UNDEFINED>' -o -z "$NJOBS" ] && NJOBS=1
 set -e
-test $(echo "$PREFIX" |wc -c) -gt 200 # check that we're getting long paths
 
-# don't get locally installed pkg-config entries:
-export PKG_CONFIG_LIBDIR="$PREFIX/lib/pkgconfig:$PREFIX/share/pkgconfig"
+# For now, we have to manually update the gdk-pixbuf loader list:
+eval $(grep -v : $PREFIX/lib/pkgconfig/gdk-pixbuf-2.0.pc)
+$PREFIX/bin/gdk-pixbuf-query-loaders >$gdk_pixbuf_cache_file
 
 configure_args=(--prefix=$PREFIX)
 

@@ -1,0 +1,41 @@
+# Copyright 2017 Peter Williams and collaborators.
+# This file is licensed under a 3-clause BSD license; see LICENSE.txt.
+
+{% set name = "epoxy" %}
+{% set version = "1.4.3" %}
+{% set sha256 = "0b808a06c9685a62fca34b680abb8bc7fb2fda074478e329b063c1f872b826f6" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/anholt/libepoxy/releases/download/{{ version }}/libepoxy-{{ version }}.tar.xz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  script_env:
+    - NJOBS
+
+requirements:
+  build:
+    - pkg-config
+    - pthread-stubs
+    - python
+    - xorg-util-macros
+    - xorg-xproto
+    - xorg-libx11 1.6.*
+  run:
+    - xorg-libx11 1.6.*
+
+test:
+  commands:
+    - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
+    - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
+
+about:
+  home: https://github.com/anholt/libepoxy
+  license: MIT
+  license_file: COPYING
+  summary: 'A library for handling OpenGL function pointer management for you.'

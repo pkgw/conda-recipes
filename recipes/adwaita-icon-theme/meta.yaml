@@ -1,25 +1,31 @@
-# Copyright 2016 Peter Williams and collaborators.
+# Copyright 2016-2017 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
+{% set name = "adwaita-icon-theme" %}
+{% set version = "3.26.1" %}
+{% set version_majmin = '.'.join(version.split('.', 2)[:2]) %}
+{% set sha256 = "28ba7392c7761996efd780779167ea6c940eedfb1bf37cfe9bccb7021f54d79d" %}
+
 package:
-  name: adwaita-icon-theme
-  version: "3.20"
+  name: {{ name }}
+  version: "{{ version }}"
 
 source:
-  fn: adwaita-icon-theme-3.20.tar.xz
-  url: http://ftp.gnome.org/pub/gnome/sources/adwaita-icon-theme/3.20/adwaita-icon-theme-3.20.tar.xz
-  sha256: 7a0a887349f340dd644032f89d81264b694c4b006bd51af1c2c368d431e7ae35
+  fn: {{ name }}-{{ version }}.tar.xz
+  url: http://ftp.gnome.org/pub/gnome/sources/{{ name }}/{{ version_majmin }}/{{ name }}-{{ version }}.tar.xz
+  sha256: {{ sha256 }}
 
 build:
-  number: 1
-  detect_binary_files_with_prefix: true
+  noarch: generic
+  number: 0
   script_env:
     - NJOBS
 
 requirements:
   build:
     - gtk3
-    - librsvg # for SVG loading
+    - librsvg  # for SVG loading
+    - pkg-config
   run:
 
 about:

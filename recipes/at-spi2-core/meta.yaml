@@ -1,28 +1,30 @@
 # Copyright 2014-2017 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
+{% set name = "at-spi2-core" %}
+{% set version = "2.25.92" %}
+{% set version_majmin = '.'.join(version.split('.', 2)[:2]) %}
+{% set sha256 = "be0320e0f7a40d041096c243698b2ebff2d886bfc0e4063e7928b1fc5a9079d9" %}
+
 package:
-  name: at-spi2-core
-  version: "2.18.3"
+  name: {{ name|lower }}
+  version: {{ version }}
 
 source:
-  fn: at-spi2-core-2.18.3.tar.xz
-  url: http://ftp.gnome.org/pub/gnome/sources/at-spi2-core/2.18/at-spi2-core-2.18.3.tar.xz
-  sha256: ada26add94155f97d0f601a20cb7a0e3fd3ba1588c3520b7288316494027d629
-  patches:
-    - no-intltool.patch
+  url: http://ftp.gnome.org/pub/gnome/sources/{{ name }}/{{ version_majmin }}/{{ name }}-{{ version }}.tar.xz
+  sha256: {{ sha256 }}
 
 build:
-  number: 1
-  detect_binary_files_with_prefix: true
+  number: 0
   script_env:
     - NJOBS
 
 requirements:
   build:
+    - pkg-config
     - dbus 1.10.*
-    - glib 2.51.*
-    - gobject-introspection 1.51.*
+    - glib 2.55.*
+    - gobject-introspection 1.55.*
     - python
     - xorg-inputproto
     - xorg-kbproto
@@ -32,11 +34,16 @@ requirements:
     - xorg-xproto
   run:
     - dbus 1.10.*
-    - glib 2.51.*
-    - gobject-introspection 1.51.*
+    - glib 2.55.*
+    - gobject-introspection 1.55.*
     - xorg-libx11 1.6.*
     - xorg-libxi 1.7.*
     - xorg-libxtst 1.2.*
+
+test:
+  commands:
+    - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
+    - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
 
 about:
   home: http://www.gtk.org/

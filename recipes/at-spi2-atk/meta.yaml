@@ -1,35 +1,44 @@
 # Copyright 2014-2015 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
+{% set name = "at-spi2-atk" %}
+{% set version = "2.25.3" %}
+{% set version_majmin = '.'.join(version.split('.', 2)[:2]) %}
+{% set sha256 = "b7aab1a4ee7182083fcfafb595b7b3fe4df34aa2230c775050fe6015b01f84e1" %}
+
 package:
-  name: at-spi2-atk
-  version: "2.18.1"
+  name: {{ name|lower }}
+  version: {{ version }}
 
 source:
-  fn: at-spi2-atk-2.18.1.tar.xz
-  url: http://ftp.gnome.org/pub/gnome/sources/at-spi2-atk/2.18/at-spi2-atk-2.18.1.tar.xz
-  sha256: c4b15f9386d34d464ddad5f6cc85669742c016df87141ceee93513245979c12d
+  url: http://ftp.gnome.org/pub/gnome/sources/{{ name }}/{{ version_majmin }}/{{ name }}-{{ version }}.tar.xz
+  sha256: {{ sha256 }}
 
 build:
   number: 0
-  detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
 
 requirements:
   build:
-    - at-spi2-core 2.18.*
-    - atk 2.18.*
+    - pkg-config
+    - at-spi2-core 2.25.*
+    - atk 2.25.*
     - dbus 1.10.*
-    - glib 2.51.*
-    - gobject-introspection 1.51.*
+    - glib 2.55.*
+    - gobject-introspection 1.55.*
     - python
   run:
-    - at-spi2-core 2.18.*
-    - atk 2.18.*
+    - at-spi2-core 2.25.*
+    - atk 2.25.*
     - dbus 1.10.*
-    - glib 2.51.*
-    - gobject-introspection 1.51.*
+    - glib 2.55.*
+    - gobject-introspection 1.55.*
+
+test:
+  commands:
+    - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
+    - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
 
 about:
   home: http://www.gtk.org/

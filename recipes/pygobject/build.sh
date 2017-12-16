@@ -4,15 +4,9 @@
 
 [ "$NJOBS" = '<UNDEFINED>' -o -z "$NJOBS" ] && NJOBS=1
 set -e
-test $(echo "$PREFIX" |wc -c) -gt 200 # check that we're getting long paths
-
-# don't get locally installed pkg-config entries:
-export PKG_CONFIG_LIBDIR="$PREFIX/lib/pkgconfig:$PREFIX/share/pkgconfig"
 
 if [ -n "$OSX_ARCH" ] ; then
-    sdk=/
-    export CFLAGS="$CFLAGS -isysroot $sdk"
-    export LDFLAGS="$LDFLAGS -Wl,-syslibroot,$sdk -Wl,-rpath,$PREFIX/lib -L$PREFIX/lib"
+    export LDFLAGS="$LDFLAGS -Wl,-rpath,$PREFIX/lib -L$PREFIX/lib"
 fi
 
 # The configure script uses the python-config script to get link info,

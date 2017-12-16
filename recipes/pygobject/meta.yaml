@@ -1,0 +1,42 @@
+# Copyright 2014-2017 Peter Williams and collaborators.
+# This file is licensed under a 3-clause BSD license; see LICENSE.txt.
+
+{% set name = "pygobject" %}
+{% set version = "3.27.1" %}
+{% set version_majmin = '.'.join(version.split('.', 2)[:2]) %}
+{% set sha256 = "40a62c479eed9aca6b2095b1650ab87981b7358880a0a07cacbdcbc250e155f1" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: http://ftp.gnome.org/pub/GNOME/sources/{{ name }}/{{ version_majmin }}/{{ name }}-{{ version }}.tar.xz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  script_env:
+    - NJOBS
+
+requirements:
+  build:
+    - pkg-config
+    - cairo 1.14.*
+    - glib 2.55.*
+    - gobject-introspection 1.55.*
+    - libffi 3.2.*
+    - pycairo 1.13.*
+    - python
+  run:
+    - cairo 1.14.*
+    - glib 2.55.*
+    - gobject-introspection 1.55.*
+    - libffi 3.2.*
+    - pycairo 1.13.*
+    - python
+
+about:
+  home: http://www.gtk.org/
+  license: LGPL
+  summary: Access to GObject-based libraries in Python.

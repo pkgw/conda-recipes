@@ -1,53 +1,64 @@
 # Copyright 2014-2017 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
-# NOTE: we locked on an older version of Gtk3 because of an old Cairo version
-# in Anaconda defaults. This particular limitation is no longer relevant!
+{% set name = "gtk+" %}
+{% set version = "3.22.26" %}
+{% set version_majmin = '.'.join(version.split('.', 2)[:2]) %}
+{% set sha256 = "61eef0d320e541976e2dfe445729f12b5ade53050ee9de6184235cb60cd4b967" %}
 
 package:
-  name: gtk3
-  version: "3.14.15"
+  name: gtk3  # note customization
+  version: "{{ version }}"
 
 source:
-  fn: gtk+-3.14.15.tar.xz
-  url: http://ftp.gnome.org/pub/gnome/sources/gtk+/3.14/gtk+-3.14.15.tar.xz
-  sha256: 3ac87659112ced9e5ee5bd55d055faa881aafd040f26ca40b0d8ba0fa6509c83
+  fn: {{ name }}-{{ version }}.tar.xz
+  url: http://ftp.gnome.org/pub/gnome/sources/{{ name }}/{{ version_majmin }}/{{ name }}-{{ version }}.tar.xz
+  sha256: {{ sha256 }}
   patches:
     - m_pi.patch
     - no-module-warning.patch
 
 build:
-  number: 1
-  detect_binary_files_with_prefix: true
+  number: 0
   script_env:
     - NJOBS
 
 requirements:
   build:
-    - at-spi2-atk 2.18.*
-    - atk 2.18.*
+    - pkg-config
+    - pthread-stubs
+    - xorg-xproto
+    - xorg-inputproto
+    - at-spi2-atk 2.25.*
+    - atk 2.25.*
     - cairo 1.14.*
-    - gdk-pixbuf 2.32.*
-    - glib 2.51.*
-    - gobject-introspection 1.51.*
+    - epoxy 1.4.*
+    - fontconfig 2.12.*
+    - gdk-pixbuf 2.36.*
+    - glib 2.55.*
+    - gobject-introspection 1.55.*
     - pango 1.40.*
     - python
-    - xorg-libice 1.0.*  # [not osx]
-    - xorg-libsm 1.2.*  # [not osx]
-    - xorg-libx11 1.6.*  # [not osx]
-    - xorg-libxrender 0.9.*  # [not osx]
-    - xorg-xproto  # [not osx]
+    - xorg-libice 1.0.*
+    - xorg-libsm 1.2.*
+    - xorg-libx11 1.6.*
+    - xorg-libxi 1.7.*
+    - xorg-libxrender 0.9.*
   run:
-    - at-spi2-atk 2.18.*
-    - atk 2.18.*
-    - gdk-pixbuf 2.32.*
-    - glib 2.51.*
-    - gobject-introspection 1.51.*
+    - at-spi2-atk 2.25.*
+    - atk 2.25.*
+    - cairo 1.14.*
+    - epoxy 1.4.*
+    - fontconfig 2.12.*
+    - gdk-pixbuf 2.36.*
+    - glib 2.55.*
+    - gobject-introspection 1.55.*
     - pango 1.40.*
-    - xorg-libice 1.0.*  # [not osx]
-    - xorg-libsm 1.2.*  # [not osx]
-    - xorg-libx11 1.6.*  # [not osx]
-    - xorg-libxrender 0.9.*  # [not osx]
+    - xorg-libice 1.0.*
+    - xorg-libsm 1.2.*
+    - xorg-libx11 1.6.*
+    - xorg-libxi 1.7.*
+    - xorg-libxrender 0.9.*
 
 about:
   home: http://www.gtk.org/
