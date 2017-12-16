@@ -5,7 +5,7 @@ The GTK+ 3 Stack
 1. `at-spi2-atk`
 1. `epoxy`
 1. `gtk3`
-1. `adwaita-icon-theme`
+1. `adwaita-icon-theme` — noarch
 1. `pygobject`
 
 
@@ -18,6 +18,7 @@ The CASA Stack
 1. `casa-tools`
 1. `casa-python`
 1. `aoflagger`
+1. `wsclean`
 
 
 The PyRAF Stack
@@ -36,6 +37,7 @@ The Sherpa stack
 1. `wcstools`
 1. `xspec`
 1. `sherpa`
+1. `ciao-python` — unused now?
 
 
 Miscellanous Compiled
@@ -43,6 +45,13 @@ Miscellanous Compiled
 
 1. `ds9`
 1. `miriad`
+1. `boxfit-data01` — noarch
+1. `boxfit-data02` — noarch
+1. `boxfit-data03` — noarch
+1. `boxfit-data04` — noarch
+1. `boxfit-data05` — noarch
+1. `boxfit`
+1. `symphony` — superseded by my *rimphony*
 
 
 Miscellaneous Python modules
