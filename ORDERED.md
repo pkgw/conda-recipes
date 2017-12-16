@@ -6,7 +6,6 @@ The GTK+ 3 Stack
 1. `epoxy`
 1. `gtk3`
 1. `adwaita-icon-theme` — noarch
-1. `pygobject`
 
 
 The CASA Stack
