@@ -4,7 +4,6 @@
 
 [ "$NJOBS" = '<UNDEFINED>' -o -z "$NJOBS" ] && NJOBS=1
 set -e
-test $(echo "$PREFIX" |wc -c) -gt 200 # check that we're getting long paths
 
 configure_args=(
     -prefix $PREFIX/qt4
@@ -34,13 +33,13 @@ configure_args=(
 )
 
 if [ $(uname) = Linux ] ; then
-    CFLAGS="$CFLAGS -fpermissive"
-    CXXFLAGS="$CXXFLAGS -fpermissive"
+    export CFLAGS="$CFLAGS -fpermissive"
+    export CXXFLAGS="$CXXFLAGS -fpermissive"
+    export LDFLAGS="$LDFLAGS -Wl,-rpath-link,$(pwd)/lib"
 fi
 
 if [ $(uname) = Darwin ] ; then
     export MACOSX_DEPLOYMENT_TARGET=10.6
-    sdk=/ # AFAIK we won't want to change this, but just in case
     unset CFLAGS CXXFLAGS LDFLAGS
 
     configure_args+=(
@@ -48,7 +47,6 @@ if [ $(uname) = Darwin ] ; then
 	-no-phonon # can't be built on Sierra due to QuickTime issues
 	-platform unsupported/macx-clang-libc++
 	-arch $OSX_ARCH
-	-sdk $sdk
     )
 fi
 
@@ -76,12 +74,3 @@ EOF
 
 rm -rf tests translations q3porting.xml phrasebooks
 rm -rf bin/*.app
-
-# on OSX, qmake loads the 'default' mkspec by default which is a copy of
-# 'unsupported/macx-clang-libc++'. The qmake.conf file there references
-# relative paths like '../../common/<stuff>', which are broken when the
-# source file is not in the 'unsupported' subdirectory. So we have to
-# futz the installed files.
-
-sed -e 's|\.\./\.\./common/|../common/|g' mkspecs/default/qmake.conf >tmp
-mv -f tmp mkspecs/default/qmake.conf
