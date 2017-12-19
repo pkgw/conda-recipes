@@ -21,8 +21,7 @@ source:
     - mac-cxx.patch
 
 build:
-  number: 5
-  detect_binary_files_with_prefix: true
+  number: 6
   script_env:
     - NJOBS
 
@@ -36,7 +35,7 @@ requirements:
     - gsl 2.2.*
     - hdf5 1.10.1
     - libxml2 2.9.*
-    - openblas 0.2.19|0.2.19.*
+    - openblas 0.2.20|0.2.20.*
   run:
     - boost 1.65.1
     - casacore 2.4.*
@@ -45,7 +44,7 @@ requirements:
     - gsl 2.2.*
     - hdf5 1.10.1
     - libxml2 2.9.*
-    - openblas 0.2.19|0.2.19.*
+    - openblas 0.2.20|0.2.20.*
 
 about:
   home: http://aoflagger.sourceforge.net/
