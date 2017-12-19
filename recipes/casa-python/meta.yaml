@@ -5,7 +5,7 @@
 
 {% set name = "casa-python" %}
 {% set version = "5.1.1" %}
-{% set build = "2" %}
+{% set build = "3" %}
 
 package:
   name: {{ name }}
@@ -17,7 +17,6 @@ source:
 
 build:
   number: {{ build }}
-  detect_binary_files_with_prefix: true
   skip: true  # [win]
   script_env:
     - NJOBS
@@ -32,7 +31,7 @@ requirements:
     - numpy 1.13.*
     - python
     - rpfits 2.*
-    - wcslib 5.16
+    - wcslib 5.17
   run:
     - libgfortran  # [unix]
     - casa-tools 5.1.*
@@ -40,7 +39,7 @@ requirements:
     - numpy 1.13.*
     - python
     - rpfits 2.*
-    - wcslib 5.16
+    - wcslib 5.17
 
 about:
   home: http://casa.nrao.edu/

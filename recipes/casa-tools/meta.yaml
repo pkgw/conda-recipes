@@ -5,7 +5,7 @@
 
 {% set name = "casa-tools" %}
 {% set version = "5.1.1" %}
-{% set build = "2" %}
+{% set build = "3" %}
 
 package:
   name: {{ name }}
@@ -37,9 +37,9 @@ requirements:
     - libxml2 2.9.*
     - libxslt 1.1.*
     - ncurses 5.9
-    - openblas 0.2.19|0.2.19.*
+    - openblas 0.2.20|0.2.20.*
     - pgplot 5.2.*
-    - readline 6.2*
+    - readline 7.0
     - rpfits 2.*
     - qt4 4.8.*
     - qwt5 5.2.*
@@ -56,9 +56,9 @@ requirements:
     - libxml2 2.9.*
     - libxslt 1.1.*
     - ncurses 5.9
-    - openblas 0.2.19|0.2.19.*
+    - openblas 0.2.20|0.2.20.*
     - pgplot 5.2.*
-    - readline 6.2*
+    - readline 7.0
     - rpfits 2.*
     - qt4 4.8.*
     - qwt5 5.2.*
