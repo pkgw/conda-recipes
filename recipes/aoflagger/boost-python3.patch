@@ -1,0 +1,42 @@
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -28,7 +28,7 @@
+ find_package(PNG REQUIRED)
+ #Prevent accidentally finding old BoostConfig.cmake file from casapy
+ set(Boost_NO_BOOST_CMAKE ON)
+-find_package(Boost REQUIRED COMPONENTS date_time filesystem python signals system)
++find_package(Boost REQUIRED COMPONENTS date_time filesystem python3 signals system)
+ find_library(FFTW3_LIB fftw3 REQUIRED)
+ enable_language(Fortran OPTIONAL)
+ find_package(BLAS REQUIRED)
+@@ -37,7 +37,7 @@
+   find_library(RT_LIBRARY rt)
+ #  list(APPEND LOFAR_EXTRA_LIBRARIES ${RT_LIBRARY})
+ endif(CMAKE_SYSTEM_NAME MATCHES "Linux")
+-find_package(PythonLibs 2.7 REQUIRED)
++find_package(PythonLibs 3 REQUIRED)
+ 
+ include_directories(${CASACORE_INCLUDE_DIRS})
+ include_directories(${Boost_INCLUDE_DIR})
+--- a/src/strategy/control/pythonstrategy.cpp
++++ b/src/strategy/control/pythonstrategy.cpp
+@@ -47,7 +47,7 @@
+ 	// The following statement add the curr path to the Python search path
+ 	boost::filesystem::path workingDir = boost::filesystem::current_path().normalize();
+ 	PyObject* sysPath = PySys_GetObject(const_cast<char*>("path"));
+-	PyList_Insert( sysPath, 0, PyString_FromString(workingDir.string().c_str()));
++	PyList_Insert( sysPath, 0, PyUnicode_FromString(workingDir.string().c_str()));
+ }
+ 
+ PythonStrategy::~PythonStrategy()
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -233,7 +233,7 @@
+ set(ALL_LIBRARIES
+ 	${BLAS_LIBRARIES} ${LAPACK_LIBRARIES}
+ 	${Boost_SYSTEM_LIBRARY}
+-	${Boost_FILESYSTEM_LIBRARY} ${Boost_DATE_TIME_LIBRARY} ${Boost_PYTHON_LIBRARIES} ${Boost_SIGNALS_LIBRARY}
++	${Boost_FILESYSTEM_LIBRARY} ${Boost_DATE_TIME_LIBRARY} ${Boost_PYTHON3_LIBRARIES} ${Boost_SIGNALS_LIBRARY}
+ 	${FFTW3_LIB}
+ 	${CASACORE_LIBRARIES}
+ 	${LAPACK_lapack_LIBRARY}

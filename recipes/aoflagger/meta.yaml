@@ -1,4 +1,4 @@
-# Copyright 2015-2017 Peter Williams and collaborators.
+# Copyright 2015-2018 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 # We don't provide the rfigui right now. It needs Gtk-- > 3.0, so it wouldn't
@@ -6,8 +6,8 @@
 # We'd need libsigc++, glibmm, and gtkmm.
 
 {% set name = "aoflagger" %}
-{% set version = "2.9.0" %}
-{% set sha256 = "753c8d3690c2b397f574c716b16b1794742c5a220b30d631734a4f94f333ebab" %}
+{% set version = "2.10.0" %}
+{% set sha256 = "3ec1188d37101acf2029575ebc09c50b19c158c88a12b55ac5d25a96bd8fc18d" %}
 
 package:
   name: {{ name | lower }}
@@ -15,13 +15,14 @@ package:
 
 source:
   fn: {{ name }}-{{ version }}.tar.bz2
-  url: http://downloads.sourceforge.net/project/{{ name }}/{{ name }}-{{ version }}/{{ name }}-{{ version }}.tar.bz2
+  url: http://downloads.sourceforge.net/project/{{ name }}/{{ name }}-{{ version }}/{{ name }}-{{ version }}
   sha256: {{ sha256 }}
   patches:
     - mac-cxx.patch
+    - boost-python3.patch  # [py3k]
 
 build:
-  number: 6
+  number: 0
   script_env:
     - NJOBS
 
@@ -36,6 +37,7 @@ requirements:
     - hdf5 1.10.1
     - libxml2 2.9.*
     - openblas 0.2.20|0.2.20.*
+    - python
   run:
     - boost 1.65.1
     - casacore 2.4.*
@@ -45,6 +47,12 @@ requirements:
     - hdf5 1.10.1
     - libxml2 2.9.*
     - openblas 0.2.20|0.2.20.*
+    - python
+
+tests:
+  commands:
+    - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
+    - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
 
 about:
   home: http://aoflagger.sourceforge.net/
