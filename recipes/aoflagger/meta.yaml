@@ -22,14 +22,14 @@ source:
     - boost-python3.patch  # [py3k]
 
 build:
-  number: 0
+  number: 1
   script_env:
     - NJOBS
 
 requirements:
   build:
     - cmake
-    - boost 1.65.1
+    - boost 1.66.0
     - casacore 2.4.*
     - cfitsio 3.410
     - fftw 3.3.*
@@ -39,7 +39,7 @@ requirements:
     - openblas 0.2.20|0.2.20.*
     - python
   run:
-    - boost 1.65.1
+    - boost 1.66.0
     - casacore 2.4.*
     - cfitsio 3.410
     - fftw 3.3.*

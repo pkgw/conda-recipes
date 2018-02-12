@@ -1,4 +1,4 @@
-# Copyright 2015-2017 Peter Williams and collaborators.
+# Copyright 2015-2018 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 # The data files are now tracked in a repo that's managed with Git LFS. The
@@ -8,7 +8,7 @@
 
 package:
   name: casa-data
-  version: r20171019
+  version: r20180209
 
 source:
   fn: empty-test-tarball-1.0.2.tgz
