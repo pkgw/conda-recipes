@@ -49,7 +49,7 @@ requirements:
     - openblas 0.2.20|0.2.20.*
     - python
 
-tests:
+test:
   commands:
     - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
     - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]

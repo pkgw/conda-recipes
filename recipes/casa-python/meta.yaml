@@ -50,7 +50,7 @@ about:
   license: GPL version 2
   summary: Python interfaces to the CASA tools
 
-tests:
+test:
   commands:
     - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
     - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]

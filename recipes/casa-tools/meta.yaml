@@ -64,7 +64,7 @@ requirements:
     - qwt5 5.2.*
     - xerces-c28
 
-tests:
+test:
   commands:
     - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
     - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
