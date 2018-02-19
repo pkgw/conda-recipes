@@ -1,25 +1,21 @@
-# Copyright 2014-2017 Peter Williams and collaborators.
+# Copyright 2014-2018 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
-# Shortcut to get new filename and MD5 sum:
-#
-#   curl -s https://pypi.python.org/pypi/omegaplot/ |grep md5= |grep -v linux
-
 {% set name = "omegaplot" %}
-{% set version = "0.7.3" %}
-{% set md5 = "ad8f8a947209a5921beaa006449d7a08" %}
+{% set version = "0.7.4" %}
+{% set sha256 = "9a6604f6da09fead151505c2303580e0b2b0e6a4ec627a050232c3703ce6f600" %}
 
 package:
   name: {{ name }}
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  md5: {{ md5 }}
+  sha256: {{ sha256 }}
 
 build:
   number: 0
+  noarch: python
   script: python setup.py install --single-version-externally-managed --record=files.txt
   entry_points:
     - omegafig = oputil.omegafig:cmdline
@@ -39,7 +35,12 @@ requirements:
     - python
     - six
 
+test:
+  imports:
+    - omega
+    - oputil
+
 about:
-  home: http://newton.cx/~peter/
+  home: https://newton.cx/~peter/
   license: GPL
   summary: A better-than-publication-quality plotting library based on Cairo.
