@@ -15,14 +15,15 @@ package:
 
 source:
   fn: {{ name }}-{{ version }}.tar.bz2
-  url: http://downloads.sourceforge.net/project/{{ name }}/{{ name }}-{{ version }}/{{ name }}-{{ version }}
+  url: http://downloads.sourceforge.net/project/{{ name }}/{{ name }}-{{ version }}/{{ name }}-{{ version }}.tar.bz2
   sha256: {{ sha256 }}
   patches:
     - mac-cxx.patch
     - boost-python3.patch  # [py3k]
+    - mem-210-bugfix.patch
 
 build:
-  number: 1
+  number: 2
   script_env:
     - NJOBS
 
@@ -31,7 +32,7 @@ requirements:
     - cmake
     - boost 1.66.0
     - casacore 2.4.*
-    - cfitsio 3.410
+    - cfitsio 3.*
     - fftw 3.3.*
     - gsl 2.2.*
     - hdf5 1.10.1
@@ -41,7 +42,7 @@ requirements:
   run:
     - boost 1.66.0
     - casacore 2.4.*
-    - cfitsio 3.410
+    - cfitsio 3.*
     - fftw 3.3.*
     - gsl 2.2.*
     - hdf5 1.10.1
