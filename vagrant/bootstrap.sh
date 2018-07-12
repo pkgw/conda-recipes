@@ -1,5 +1,5 @@
 #! /usr/bin/env bash
-# Copyright 2015-2016 Peter Williams.
+# Copyright 2015-2018 Peter Williams.
 # Licensed under the MIT License.
 #
 # Set up a Mac OS X machine to build Conda+Conda-forge packages reliably. Note
@@ -49,6 +49,7 @@ $vrun conda update --all -y
 # Conda dev packages
 $vrun conda install -y $(echo "
 conda-build
+conda-forge-pinning
 jinja2
 pip
 setuptools
@@ -58,4 +59,4 @@ setuptools
 
 $vrun conda config --add envs_dirs /conda/envs
 $vrun mkdir /conda/conda-bld
-(cd /conda/conda-bld && ln -s /vagrant/osx-64 osx-64)
+(cd /conda/conda-bld && ln -s /vagrant/osx-64 osx-64 && ln -s /vagrant/noarch noarch)
