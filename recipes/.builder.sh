@@ -43,5 +43,5 @@ tar c -C $recipedir -X $(pwd)/.global_excludes $arg . |tar x -C "$work"
 export PYTHONUNBUFFERED=1
 conda clean --lock || true
 conda update -y --all
-NJOBS=2 conda build $build_args "$work"
+NJOBS=2 conda build -m /conda/conda_build_config.yaml $build_args "$work"
 rm -rf "$work"

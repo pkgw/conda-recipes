@@ -1,14 +1,10 @@
 #! /bin/bash
-# Copyright 2015-2016 Peter Williams <peter@newton.cx>
+# Copyright 2015-2018 Peter Williams <peter@newton.cx>
 # Licensed under the MIT License.
 #
 # Set up an image that's ready to build Conda packages repeatably.
 
 set -e -x
-
-# Centos 5 yum silliness (XXX: we're now on CentOS 6 but this shouldn't hurt)
-echo 'exclude=*.i386 *.i586 *.i686' >>/etc/yum.conf
-yum update -y
 
 # Base packages (keep alphabetized!)
 yum install -y $(echo "
@@ -77,6 +73,7 @@ conda update --all -y
 # Conda dev packages
 conda install -y $(echo "
 conda-build
+conda-forge-pinning
 jinja2
 pip
 setuptools

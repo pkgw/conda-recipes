@@ -1,4 +1,4 @@
-# Copyright 2015-2016 Peter Williams
+# Copyright 2015-2018 Peter Williams
 # Licensed under the MIT License.
 #
 # See ./build.sh for a simple build recipe.
