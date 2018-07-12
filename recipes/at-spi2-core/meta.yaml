@@ -1,10 +1,10 @@
-# Copyright 2014-2017 Peter Williams and collaborators.
+# Copyright 2014-2018 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 {% set name = "at-spi2-core" %}
-{% set version = "2.25.92" %}
+{% set version = "2.28.0" %}
 {% set version_majmin = '.'.join(version.split('.', 2)[:2]) %}
-{% set sha256 = "be0320e0f7a40d041096c243698b2ebff2d886bfc0e4063e7928b1fc5a9079d9" %}
+{% set sha256 = "42a2487ab11ce43c288e73b2668ef8b1ab40a0e2b4f94e80fca04ad27b6f1c87" %}
 
 package:
   name: {{ name|lower }}
@@ -21,11 +21,14 @@ build:
 
 requirements:
   build:
+    - meson
     - pkg-config
-    - dbus 1.10.*
-    - glib 2.55.*
+    - pthread-stubs
+    - {{ compiler('c') }}
+  host:
+    - dbus {{ dbus }}
+    - glib {{ glib }}
     - gobject-introspection 1.55.*
-    - python
     - xorg-inputproto
     - xorg-kbproto
     - xorg-libx11 1.6.*
@@ -33,8 +36,8 @@ requirements:
     - xorg-libxtst 1.2.*
     - xorg-xproto
   run:
-    - dbus 1.10.*
-    - glib 2.55.*
+    - dbus
+    - glib
     - gobject-introspection 1.55.*
     - xorg-libx11 1.6.*
     - xorg-libxi 1.7.*

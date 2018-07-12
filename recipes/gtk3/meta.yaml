@@ -2,9 +2,9 @@
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 {% set name = "gtk+" %}
-{% set version = "3.22.26" %}
+{% set version = "3.22.30" %}
 {% set version_majmin = '.'.join(version.split('.', 2)[:2]) %}
-{% set sha256 = "61eef0d320e541976e2dfe445729f12b5ade53050ee9de6184235cb60cd4b967" %}
+{% set sha256 = "a1a4a5c12703d4e1ccda28333b87ff462741dc365131fbc94c218ae81d9a6567" %}
 
 package:
   name: gtk3  # note customization
@@ -27,33 +27,34 @@ requirements:
   build:
     - pkg-config
     - pthread-stubs
+    - python
+  host:
     - xorg-xproto
     - xorg-inputproto
-    - at-spi2-atk 2.25.*
+    - at-spi2-atk 2.26.*
     - atk 2.25.*
-    - cairo 1.14.*
-    - epoxy 1.4.*
-    - fontconfig 2.12.*
+    - cairo {{ cairo }}
+    - epoxy 1.5.*
+    - fontconfig {{ fontconfig }}
     - gdk-pixbuf 2.36.*
-    - glib 2.55.*
+    - glib {{ glib }}
     - gobject-introspection 1.55.*
-    - pango 1.40.*
-    - python
+    - pango {{ pango }}
     - xorg-libice 1.0.*
     - xorg-libsm 1.2.*
     - xorg-libx11 1.6.*
     - xorg-libxi 1.7.*
     - xorg-libxrender 0.9.*
   run:
-    - at-spi2-atk 2.25.*
+    - at-spi2-atk 2.26.*
     - atk 2.25.*
-    - cairo 1.14.*
-    - epoxy 1.4.*
-    - fontconfig 2.12.*
+    - cairo {{ cairo }}
+    - epoxy 1.5.*
+    - fontconfig {{ fontconfig }}
     - gdk-pixbuf 2.36.*
-    - glib 2.55.*
+    - glib {{ glib }}
     - gobject-introspection 1.55.*
-    - pango 1.40.*
+    - pango {{ pango }}
     - xorg-libice 1.0.*
     - xorg-libsm 1.2.*
     - xorg-libx11 1.6.*

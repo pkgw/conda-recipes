@@ -1,10 +1,10 @@
-# Copyright 2014-2015 Peter Williams and collaborators.
+# Copyright 2014-2018 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 {% set name = "at-spi2-atk" %}
-{% set version = "2.25.3" %}
+{% set version = "2.26.2" %}
 {% set version_majmin = '.'.join(version.split('.', 2)[:2]) %}
-{% set sha256 = "b7aab1a4ee7182083fcfafb595b7b3fe4df34aa2230c775050fe6015b01f84e1" %}
+{% set sha256 = "61891f0abae1689f6617a963105a3f1dcdab5970c4a36ded9c79a7a544b16a6e" %}
 
 package:
   name: {{ name|lower }}
@@ -22,17 +22,20 @@ build:
 requirements:
   build:
     - pkg-config
-    - at-spi2-core 2.25.*
-    - atk 2.25.*
-    - dbus 1.10.*
-    - glib 2.55.*
-    - gobject-introspection 1.55.*
+    - pthread-stubs
+    - {{ compiler('c') }}
     - python
-  run:
-    - at-spi2-core 2.25.*
+  host:
+    - at-spi2-core 2.28.*
     - atk 2.25.*
-    - dbus 1.10.*
-    - glib 2.55.*
+    - dbus {{ dbus }}
+    - glib {{ glib }}
+    - gobject-introspection 1.55.*
+  run:
+    - at-spi2-core 2.28.*
+    - atk 2.25.*
+    - dbus {{ dbus }}
+    - glib {{ glib }}
     - gobject-introspection 1.55.*
 
 test:

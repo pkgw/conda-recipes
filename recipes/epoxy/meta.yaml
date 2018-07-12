@@ -2,8 +2,8 @@
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 {% set name = "epoxy" %}
-{% set version = "1.4.3" %}
-{% set sha256 = "0b808a06c9685a62fca34b680abb8bc7fb2fda074478e329b063c1f872b826f6" %}
+{% set version = "1.5.2" %}
+{% set sha256 = "a9562386519eb3fd7f03209f279f697a8cba520d3c155d6e253c3e138beca7d8" %}
 
 package:
   name: {{ name|lower }}
@@ -24,6 +24,7 @@ requirements:
     - pthread-stubs
     - python
     - xorg-util-macros
+  host:
     - xorg-xproto
     - xorg-libx11 1.6.*
   run:

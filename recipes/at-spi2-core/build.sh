@@ -6,6 +6,7 @@
 set -e
 
 # needed to detect X11:
+export PKG_CONFIG_PATH="$PREFIX/lib/pkgconfig"
 export CPPFLAGS="-I$PREFIX/include"
 export LDFLAGS="-L$PREFIX/lib"
 
@@ -17,9 +18,10 @@ else
     export LDFLAGS="$LDFLAGS -Wl,-rpath-link,$PREFIX/lib"
 fi
 
-./configure --prefix=$PREFIX --disable-gtk-doc || { cat config.log ; exit 1 ; }
-make -j$NJOBS
-make install
+meson builddir --prefix=$PREFIX --libdir=$PREFIX/lib
+meson configure -D enable_docs=false builddir
+ninja -v -C builddir
+ninja -C builddir install
 
 cd $PREFIX
 find . '(' -name '*.la' -o -name '*.a' ')' -delete
