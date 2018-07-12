@@ -1,5 +1,5 @@
 #! /bin/bash
-# Copyright 2015-2016 Peter Williams <peter@newton.cx>
+# Copyright 2015-2018 Peter Williams <peter@newton.cx>
 # Licensed under the MIT License.
 
 # Just Do It script: rebuild a package or packages on Linux. We use a
@@ -7,9 +7,10 @@
 
 set -e
 
-img_name=forge-py3-builder
-cont_name=forge3builder
+img_name=forge-builder
+cont_name=forgebuilder
 recipe_topdir=$(cd $(dirname $0) && pwd)
+builder_args="--python=3.6"
 
 # Make sure container is up and running
 
@@ -44,7 +45,7 @@ while [ $# -gt 0 ] ; do
     log="$recipe_topdir/recipes/$pkg/linux-64-py3.log"
     echo "Building with logs to $log ..."
     set +e
-    stdbuf -oL -eL docker exec $cont_name /entrypoint.sh build "$pkg" >"$log" 2>&1
+    stdbuf -oL -eL docker exec $cont_name /entrypoint.sh build "$pkg" $builder_args >"$log" 2>&1
     ec=$?
     set -e
     echo "========================================"

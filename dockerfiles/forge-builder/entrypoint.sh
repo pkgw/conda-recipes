@@ -1,9 +1,9 @@
 #! /bin/bash
-# Copyright 2015-2016 Peter Williams <peter@newton.cx>
+# Copyright 2015-2018 Peter Williams <peter@newton.cx>
 # Licensed under the MIT License.
 #
 # This is the "entrypoint" script for the Conda build image. When a user runs
-# "docker run forge-py3-builder build casa-tools", we are invoked with $1=build
+# "docker run forge-builder build casa-tools", we are invoked with $1=build
 # and $2=casa-tools.
 
 set -e
@@ -35,7 +35,9 @@ fi
 
 if [ "$command" = build ] ; then
     cd /work/recipes
-    exec ./.builder.sh /work/recipes/$1
+    recipe="$1"
+    shift
+    exec ./.builder.sh "$@" /work/recipes/"$recipe"
 fi
 
 echo "Unrecognized command \"$command\"."

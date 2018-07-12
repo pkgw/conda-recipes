@@ -29,10 +29,10 @@ instance of a “Docker image”, which must itself be built! The process of
 building the Docker image involves collecting all of the development packages
 and Conda infrastructure required to run the `conda build` command.
 
-I’ve uploaded the builder image to the [Docker Hub] as
-`pkgw/conda-py2-builder`, so you ought to be able to **skip this step** —
-assuming my development environment contains everything needed to build
-whatever package you want to build.
+I’ve uploaded the builder image to the [Docker Hub] as `pkgw/forge-builder`,
+so you ought to be able to **skip this step** — assuming my development
+environment contains everything needed to build whatever package you want to
+build.
 
 [Docker Hub]: https://hub.docker.com/
 
@@ -42,11 +42,11 @@ from the directory containing this file, the recommended command to build a
 new version of the image is:
 
 ```
-docker build -t conda-py2-builder:latest dockerfiles/conda-py2-builder
+docker build -t forge-builder:latest dockerfiles/forge-builder
 ```
 
 The meat of the action is the
-[setup.sh](dockerfiles/conda-py2-builder/setup.sh) script contained in that
+[setup.sh](dockerfiles/forge-builder/setup.sh) script contained in that
 subdirectory.
 
 If you have an account on the [Docker Hub], you can also publish your image
@@ -54,13 +54,13 @@ there. Their framework is very unclear to me, and it looks like it may be
 evolving very quickly, but you do something like this:
 
 ```
-docker tag conda-py2-builder:latest docker.io/pkgw/conda-py2-builder:$(date +%Y%m%d)
-docker tag -f conda-py2-builder:latest docker.io/pkgw/conda-py2-builder:latest
-docker push docker.io/pkgw/conda-py2-builder:$(date +%Y%m%d)
-docker push docker.io/pkgw/conda-py2-builder:latest
+docker tag forge-builder:latest docker.io/pkgw/forge-builder:$(date +%Y%m%d)
+docker tag -f forge-builder:latest docker.io/pkgw/forge-builder:latest
+docker push docker.io/pkgw/forge-builder:$(date +%Y%m%d)
+docker push docker.io/pkgw/forge-builder:latest
 ```
 
-It would then appear [here](https://hub.docker.com/r/pkgw/conda-py2-builder/).
+It would then appear [here](https://hub.docker.com/r/pkgw/forge-builder/).
 Note that magic `latest` tag does not update automatically.
 
 
@@ -85,7 +85,7 @@ the build succeeds, a new Conda package should have landed inside the
 out of the directory containing this file, this can be done with:
 
 ```
-docker run -v $(pwd):/work --rm conda-py2-builder build <package>
+docker run -v $(pwd):/work --rm forge-builder build <package>
 ```
 
 Of course `<package>` should be replaced with the name of a recipe inside the
@@ -95,7 +95,7 @@ package destination directory. The `--rm` flag causes the image to be removed
 after it’s done.
 
 What’s happening under the hood here is that the
-[entrypoint.sh](dockerfiles/conda-py2-builder/entrypoint.sh) script inside the
+[entrypoint.sh](dockerfiles/forge-builder/entrypoint.sh) script inside the
 Docker image is being invoked with arguments `build` and `<package>`. This
 script then essentially does a `conda update` followed by a `conda build`.
 
@@ -110,12 +110,12 @@ Once again we assume that you’re working from the directory containing this
 file. First, create a container:
 
 ```
-docker create -itv $(pwd):/work --name py2builder conda-py2-builder bash
+docker create -itv $(pwd):/work --name condabuilder forge-builder bash
 ```
 
 I find the semantics of `docker create` a bit weird; basically we are saying
 that Docker should go and set everything up as if we were going to run `docker
-run -itv $(pwd):work conda-py2-builder bash`, except:
+run -itv $(pwd):work forge-builder bash`, except:
 
 1. The command is not actually run, and
 2. A persistent duplicate image is created, rather than a one-off.
@@ -123,7 +123,7 @@ run -itv $(pwd):work conda-py2-builder bash`, except:
 To do anything in the container, we then need to start it up:
 
 ```
-docker start py2builder
+docker start condabuilder
 ```
 
 This launches the container, which in this case has `bash` for PID 1. The
@@ -134,7 +134,7 @@ this, so exiting the shell will cause the container to shut down. Instead, to
 get an interactive shell you should use `docker exec`:
 
 ```
-docker exec -it py2builder /bin/bash
+docker exec -it condabuilder /bin/bash
 ```
 
 The container will keep on running along merrily after you exit this shell.
@@ -142,7 +142,7 @@ However, if you all you’re doing is trying to build packages, there’s no nee
 for an interactive shell. You can just run commands like:
 
 ```
-docker exec py2builder /entrypoint.sh build ninja
+docker exec condabuilder /entrypoint.sh build ninja
 ```
 
 This will run the entrypoint script as in the one-off case, but now the
@@ -153,7 +153,7 @@ script.
 If you want to explicitly shut down a container, unsurprisingly the command is:
 
 ```
-docker stop py2builder
+docker stop condabuilder
 ```
 
 

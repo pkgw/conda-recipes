@@ -38,7 +38,7 @@ valuable if you’re interesting in making Conda packages containing compiled
 code for Linux and/or Mac OS X machines.
 
 [my personal anaconda.org channel]: https://anaconda.org/pkgw-forge/
-[prebuilt Docker image]: https://hub.docker.com/r/pkgw/forge-py2-builder/
+[prebuilt Docker image]: https://hub.docker.com/r/pkgw/forge-builder/
 [Vagrant]: https://www.vagrantup.com/
 
 
