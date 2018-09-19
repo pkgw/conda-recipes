@@ -1,7 +1,10 @@
 .about.json
+.cache
 .index.json
 .paths.json
 .recipe.json
 *.tar.bz2
+index.html
 repodata.json
 repodata.json.bz2
+repodata2.json
