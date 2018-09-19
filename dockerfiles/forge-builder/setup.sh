@@ -54,36 +54,18 @@ devtoolset-2-gcc-c++
 devtoolset-2-gcc-gfortran
 ")
 
-# Python 3 Miniconda
-wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
-bash miniconda.sh -b -p /conda
-cat >~/.bashrc <<'EOF'
-# .bashrc
-alias l='ls -lart --color=auto'
-PS1='\h \A \W \$ '
-export PATH="/conda/bin:$PATH"
-EOF
-source ~/.bashrc
-rm miniconda.sh
+# Set up a user whose UID/GID match the person building the container. A
+# fancier setup would be to do this on container bootup, since different users
+# could want to use the same image.
 
-# Enable Conda Forge
-conda config --add channels conda-forge
-conda update --all -y
+groupadd -g $EXTGRPID -o conda
+useradd --shell /bin/bash -u $EXTUSERID -g conda -o -c "" -m conda
+mkdir /conda
+chown conda:conda /conda
 
-# Conda dev packages
-conda install -y $(echo "
-conda-build
-conda-forge-pinning
-jinja2
-pip
-setuptools
-")
-
-# Miscellaneous Conda config
-conda config --add envs_dirs /conda/envs
-mkdir /conda/conda-bld
-(cd /conda/conda-bld && ln -s /work/linux-64 linux-64 && ln -s /work/noarch noarch)
+# Farm out to the unprivileged script
+su -l conda -c "bash -x /setup-unpriv.sh"
 
 # Docker infrastructure cleanup
 chmod +x /entrypoint.sh
-rm /setup.sh # self-destruct!
+rm /setup.sh /setup-unpriv.sh # self-destruct!

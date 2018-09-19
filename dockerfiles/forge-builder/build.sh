@@ -3,5 +3,4 @@
 # Licensed under the MIT License.
 
 set -e
-docker build -t forge-builder .
-
+exec docker build --network=host --build-arg=EXTUSERID=$(id -u) --build-arg=EXTGRPID=$(id -g) -t forge-builder .
