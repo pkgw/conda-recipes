@@ -1,4 +1,4 @@
-# Copyright 2015-2017 Peter Williams and collaborators.
+# Copyright 2015-2018 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 package:
@@ -11,16 +11,18 @@ source:
   md5: 7d37a11d02bc7d095d0ca6427ec97b8d
 
 build:
-  number: 4
+  number: 5
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
+  run_exports:
+    - {{ pin_subpackage('qwt5', max_pin='x.x') }}
 
 requirements:
   build:
-    - qt4 4.8.*
-  run:
-    - qt4 4.8.*
+    - {{ compiler('cxx') }}
+  host:
+    - qt4
 
 about:
   home: http://qwt.sourceforge.net/

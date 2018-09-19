@@ -1,4 +1,4 @@
-# Copyright 2016-2017 Peter Williams and collaborators.
+# Copyright 2016-2018 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 # Anaconda has moved on to Qt5, but CASA requires Qt4. We can't just rely on
@@ -18,7 +18,7 @@ package:
 
 source:
   fn: qt-everywhere-opensource-src-{{ version }}.tar.gz
-  url: http://download.qt-project.org/official_releases/qt/4.8/{{ version }}/qt-everywhere-opensource-src-{{ version }}.tar.gz
+  url: https://download.qt.io/archive/qt/4.8/{{ version }}/qt-everywhere-opensource-src-{{ version }}.tar.gz
   sha256: {{ sha256 }}
   patches:
     # Make Qt accept its open source license without user interaction
@@ -50,7 +50,7 @@ source:
     - vs2015_int_fix.patch  # [win and py >= 35]
 
 build:
-  number: 3
+  number: 4
   skip: true  # [win and py>35]
   features:
     - vc9  # [win and py27]
@@ -58,58 +58,47 @@ build:
     - vc14  # [win and py>=35]
   script_env:
     - NJOBS
+  run_exports:
+    - {{ pin_subpackage('qt4', max_pin='x.x') }}
 
 requirements:
   build:
-    - dbus-cxx 0.9.*
-    - fontconfig 2.12.*  # [linux]
-    - freeglut 3.0.*  # [linux]
-    - freetype 2.8.1  # [linux]
-    - icu 58.*
     - jom  # [win]
-    - jpeg 9*
-    - libpng >=1.6.32,<1.6.35
-    - libtiff >=4.0.8,<4.0.10
-    - libxml2 2.9.*
-    - libuuid 1.0.*  # [linux]
-    - openssl 1.0.*
-    - pango 1.40.*  # [linux]
     - python
-    - toolchain
-    - xorg-libx11 1.6.*
-    - xorg-libxext 1.3.*
+    - vc 9  # [win and py27]
+    - vc 10  # [win and py34]
+    - vc 14  # [win and py>=35]
+    - {{ compiler('cxx') }}
+  host:
+    - dbus-cxx 0.9.*
+    - fontconfig  # [linux]
+    - freeglut  # [linux]
+    - freetype  # [linux]
+    - icu
+    - jpeg
+    - libpng
+    - libtiff
+    - libuuid  # [linux]
+    - libxml2
+    - openssl
+    - pango  # [linux]
+    - xorg-libx11
+    - xorg-libxext
     - xorg-xextproto
     - xorg-xproto
-    - zlib 1.2.11
-    - vc 9  # [win and py27]
-    - vc 10  # [win and py34]
-    - vc 14  # [win and py>=35]
+    - zlib
   run:
+    # these deps don't auto-add themselves (yet?)
     - dbus-cxx 0.9.*
-    - fontconfig 2.12.*  # [linux]
-    - freeglut 3.0.*  # [linux]
-    - freetype 2.8.1  # [linux]
-    - icu 58.*
-    - jpeg 9*
-    - libpng >=1.6.32,<1.6.35
-    - libtiff >=4.0.8,<4.0.10
-    - libxml2 2.9.*
-    - libuuid 1.0.*  # [linux]
-    - openssl 1.0.*
-    - pango 1.40.*  # [linux]
-    - xorg-libx11 1.6.*
-    - xorg-libxext 1.3.*
-    - zlib 1.2.11
-    - vc 9  # [win and py27]
-    - vc 10  # [win and py34]
-    - vc 14  # [win and py>=35]
+    - freeglut  # [linux]
+    - icu
+    - pango  # [linux]
+    - xorg-libx11
+    - xorg-libxext
 
 test:
   files:
     - test
-  commands:
-    - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
-    - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
 
 about:
     home: http://qt-project.org
