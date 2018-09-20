@@ -3,7 +3,7 @@
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 [ "$NJOBS" = '<UNDEFINED>' -o -z "$NJOBS" ] && NJOBS=1
-set -e
+set -ex
 test $(echo "$PREFIX" |wc -c) -gt 200 # check that we're getting long paths
 
 export PATH="$PREFIX/qt4/bin:$PATH"
@@ -84,17 +84,11 @@ make -j$NJOBS VERBOSE=1
 # Post-install tidying
 
 pushd $PREFIX
-rm -f casainit.* lib/casa/casainit.* makedefs
+rm -f casainit.* lib/casa/casainit.* makedefs VERSION
 rm -f bin/t* bin/qwtplottertest # tests
 
 # if we keep the compat symlinks, conda thinks we installed these files:
 rm -f lib/libxerces-c$SHLIB_EXT include/xercesc
-
-# casabrowser as installed is a broken + pointless wrapper script around
-# qcasabrowser. Shockingly, all other binaries appear to be usable as
-# installed.
-rm -f bin/casabrowser
-ln -s qcasabrowser bin/casabrowser
 
 if [ $(uname) = Darwin ] ; then
     rm -rf apps
