@@ -28,7 +28,7 @@ if [ -n "$OSX_ARCH" ] ; then
 	-DCMAKE_OSX_SYSROOT=/
     )
 else
-    toolroot=/opt/rh/devtoolset-2/root
+    toolroot=/opt/rh/devtoolset-3/root
 
     cmake_args+=(
 	-DCMAKE_C_COMPILER=$toolroot/usr/bin/gcc

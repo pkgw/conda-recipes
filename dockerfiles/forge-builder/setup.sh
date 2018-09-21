@@ -10,6 +10,7 @@ set -e -x
 yum install -y $(echo "
 bison
 bzip2
+centos-release-scl
 curl
 emacs-nox
 epel-release
@@ -39,19 +40,14 @@ xz
 zip
 ")
 
-# Can now install git because we got epel-release
+# Can now install git and devtools because we added extra repositories
 yum install -y $(echo "
+devtoolset-3-binutils
+devtoolset-3-elfutils
+devtoolset-3-gcc
+devtoolset-3-gcc-c++
+devtoolset-3-gcc-gfortran
 git
-")
-
-# Devtools
-wget http://people.centos.org/tru/devtools-2/devtools-2.repo -O /etc/yum.repos.d/devtools-2.repo
-yum install -y $(echo "
-devtoolset-2-binutils
-devtoolset-2-elfutils
-devtoolset-2-gcc
-devtoolset-2-gcc-c++
-devtoolset-2-gcc-gfortran
 ")
 
 # Set up a user whose UID/GID match the person building the container. A

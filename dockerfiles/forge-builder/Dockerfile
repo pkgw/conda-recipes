@@ -3,7 +3,7 @@
 #
 # See ./build.sh for a simple build recipe.
 
-FROM centos:6
+FROM centos:7
 MAINTAINER Peter Williams <peter@newton.cx>
 ARG EXTUSERID
 ARG EXTGRPID

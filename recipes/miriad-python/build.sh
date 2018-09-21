@@ -13,7 +13,7 @@ if [ -n "$OSX_ARCH" ] ; then
     export LDFLAGS="$LDFLAGS -Wl,-syslibroot,$sdk"
 else
     # get newer gfortran that can do static libgfortran
-    export PATH="/opt/rh/devtoolset-2/root/usr/bin:/opt/rh/devtoolset-2/root/bin:$PATH"
+    export PATH="/opt/rh/devtoolset-3/root/usr/bin:/opt/rh/devtoolset-3/root/bin:$PATH"
 fi
 
 export CFLAGS="$CFLAGS -I$PREFIX/include"
