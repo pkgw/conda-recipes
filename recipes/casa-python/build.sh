@@ -6,7 +6,7 @@
 # with.
 
 [ "$NJOBS" = '<UNDEFINED>' -o -z "$NJOBS" ] && NJOBS=1
-set -e
+set -ex
 test $(echo "$PREFIX" |wc -c) -gt 200 # check that we're getting long paths
 
 export PATH="$PREFIX/qt4/bin:$PATH"
@@ -33,7 +33,6 @@ cmake_args=(
     -DCMAKE_COLOR_MAKEFILE=OFF
     -DCMAKE_INSTALL_PREFIX=$PREFIX
     -DCMAKE_STATIC_LINKER_FLAGS=-L$PREFIX/lib
-    -DCXX11=ON
     -DEXTRA_CXX_FLAGS="$CXXFLAGS"
     -DPGPLOT_INCLUDE_DIRS=$PREFIX/include/pgplot
     -DPGPLOT_LIBRARIES="$PREFIX/lib/libpgplot$SHLIB_EXT;$PREFIX/lib/libcpgplot.a"
