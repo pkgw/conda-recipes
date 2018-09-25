@@ -3,8 +3,7 @@
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 [ "$NJOBS" = '<UNDEFINED>' -o -z "$NJOBS" ] && NJOBS=1
-set -e
-test $(echo "$PREFIX" |wc -c) -gt 200 # check that we're getting long paths
+set -ex
 
 cmake_args=(
     -DCMAKE_BUILD_TYPE=Release
@@ -33,9 +32,9 @@ else
     cmake_args+=(
 	-DCMAKE_C_COMPILER=$toolroot/usr/bin/gcc
 	-DCMAKE_CXX_COMPILER=$toolroot/usr/bin/g++
-	-DCMAKE_EXE_LINKER_FLAGS=-Wl,-rpath-link,$PREFIX/lib
-	-DCMAKE_MODULE_LINKER_FLAGS=-Wl,-rpath-link,$PREFIX/lib
-	-DCMAKE_SHARED_LINKER_FLAGS=-Wl,-rpath-link,$PREFIX/lib
+	-DCMAKE_EXE_LINKER_FLAGS="-L$PREFIX/lib -Wl,-rpath-link,$PREFIX/lib"
+	-DCMAKE_MODULE_LINKER_FLAGS="-L$PREFIX/lib -Wl,-rpath-link,$PREFIX/lib"
+	-DCMAKE_SHARED_LINKER_FLAGS="-L$PREFIX/lib -Wl,-rpath-link,$PREFIX/lib"
     )
 fi
 

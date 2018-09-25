@@ -6,48 +6,39 @@
 # We'd need libsigc++, glibmm, and gtkmm.
 
 {% set name = "aoflagger" %}
-{% set version = "2.10.0" %}
-{% set sha256 = "3ec1188d37101acf2029575ebc09c50b19c158c88a12b55ac5d25a96bd8fc18d" %}
+{% set version = "2.12.1" %}
+{% set compat_version = "2.12.0" %}
+{% set sha256 = "f5fe6125a2b35b625f9e3b833f487f9f03f5f21f2f094397813da07caa815de8" %}
 
 package:
   name: {{ name | lower }}
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.bz2
-  url: http://downloads.sourceforge.net/project/{{ name }}/{{ name }}-{{ version }}/{{ name }}-{{ version }}.tar.bz2
+  url: http://downloads.sourceforge.net/project/{{ name }}/{{ name }}-{{ compat_version }}/{{ name }}-{{ version }}.tar.bz2
   sha256: {{ sha256 }}
   patches:
     - mac-cxx.patch
     - boost-python3.patch  # [py3k]
-    - mem-210-bugfix.patch
 
 build:
-  number: 2
+  number: 0
   script_env:
     - NJOBS
 
 requirements:
   build:
     - cmake
-    - boost 1.66.0
+    - {{ compiler('cxx') }}
+  host:
+    - boost
     - casacore 2.4.*
     - cfitsio 3.*
     - fftw 3.3.*
-    - gsl 2.2.*
-    - hdf5 1.10.1
-    - libxml2 2.9.*
-    - openblas 0.2.20|0.2.20.*
-    - python
-  run:
-    - boost 1.66.0
-    - casacore 2.4.*
-    - cfitsio 3.*
-    - fftw 3.3.*
-    - gsl 2.2.*
-    - hdf5 1.10.1
-    - libxml2 2.9.*
-    - openblas 0.2.20|0.2.20.*
+    - gsl
+    - hdf5
+    - libxml2
+    - openblas
     - python
 
 test:

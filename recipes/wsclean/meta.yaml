@@ -2,8 +2,8 @@
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 {% set name = "wsclean" %}
-{% set version = "2.5" %}
-{% set sha256 = "d9834db9bb77d99d82b90526d6b904bfcd25db19037e24ae6c053b5b8d7ff621" %}
+{% set version = "2.6" %}
+{% set sha256 = "5352805f6c156a59f1274b33e574ec7fdfb868c932038378ec19a8fa3cd73abf" %}
 
 package:
   name: {{ name | lower }}
@@ -24,20 +24,15 @@ build:
 requirements:
   build:
     - cmake
-    - boost 1.66.0
+    - {{ compiler('cxx') }}
+  host:
+    - boost
     - casacore 2.4.*
     - fftw 3.3.*
-    - gsl 2.2.*
-  run:
-    - boost 1.66.0
-    - casacore 2.4.*
-    - fftw 3.3.*
-    - gsl 2.2.*
+    - gsl
 
 test:
   commands:
-    - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
-    - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
     - wsclean -version
 
 about:
