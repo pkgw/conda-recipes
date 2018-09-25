@@ -23,7 +23,14 @@ set -e
 if [ $ec -eq 1 ] ; then
     # Most likely, the container doesn't exist at all.
     echo "Starting container ..."
-    docker run -d -it -v "$recipe_topdir":/work:rw,Z -u $uid --net=host --name $cont_name $img_name bash
+    docker run \
+           -dit \
+           -v "$recipe_topdir":/work:rw,Z \
+           -u $uid \
+           -e NJOBS \
+           --net=host \
+           --name $cont_name \
+           $img_name bash
     is_running=true
 fi
 
@@ -46,7 +53,11 @@ while [ $# -gt 0 ] ; do
     log="$recipe_topdir/recipes/$pkg/linux-64-py2.log"
     echo "Building with logs to $log ..."
     set +e
-    stdbuf -oL -eL docker exec $cont_name /entrypoint.sh build "$pkg" $builder_args >"$log" 2>&1
+    stdbuf -oL -eL \
+           docker exec \
+           -e NJOBS \
+           $cont_name /entrypoint.sh \
+           build "$pkg" $builder_args >"$log" 2>&1
     ec=$?
     set -e
     echo "========================================"
