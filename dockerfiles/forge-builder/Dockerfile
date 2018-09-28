@@ -2,8 +2,12 @@
 # Licensed under the MIT License.
 #
 # See ./build.sh for a simple build recipe.
+#
+# Keep this at CentOS 6, since using its glibc gives use the widest possible
+# range of binary compatibility across Linux distros. Several clusters I use
+# are still using CentOS 6.
 
-FROM centos:7
+FROM centos:6
 MAINTAINER Peter Williams <peter@newton.cx>
 ARG EXTUSERID
 ARG EXTGRPID

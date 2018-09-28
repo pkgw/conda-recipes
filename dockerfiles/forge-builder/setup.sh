@@ -42,11 +42,11 @@ zip
 
 # Can now install git and devtools because we added extra repositories
 yum install -y $(echo "
-devtoolset-3-binutils
-devtoolset-3-elfutils
-devtoolset-3-gcc
-devtoolset-3-gcc-c++
-devtoolset-3-gcc-gfortran
+devtoolset-7-binutils
+devtoolset-7-elfutils
+devtoolset-7-gcc
+devtoolset-7-gcc-c++
+devtoolset-7-gcc-gfortran
 git
 ")
 
