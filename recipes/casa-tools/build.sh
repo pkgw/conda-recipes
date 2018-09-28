@@ -54,7 +54,7 @@ if [ $(uname) = Darwin ] ; then
 	-DREADLINE_ROOT_DIR=$PREFIX
     )
 else
-    toolroot=/opt/rh/devtoolset-3/root
+    toolroot=/opt/rh/devtoolset-7/root
     linkflags="-Wl,-rpath-link,$PREFIX/lib $LDFLAGS"
 
     cmake_args+=(

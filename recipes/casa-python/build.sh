@@ -58,7 +58,7 @@ if [ $(uname) = Darwin ] ; then
 	-DCMAKE_Fortran_COMPILER=gfortran
     )
 else
-    toolroot=/opt/rh/devtoolset-3/root
+    toolroot=/opt/rh/devtoolset-7/root
     export LDFLAGS="-Wl,-rpath-link,$PREFIX/lib $LDFLAGS"
 
     cmake_args+=(
