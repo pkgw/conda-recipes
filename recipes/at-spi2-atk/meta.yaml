@@ -15,9 +15,11 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1
   script_env:
     - NJOBS
+  run_exports:
+    - {{ pin_compatible('at-spi2-atk', max_pin='x') }}
 
 requirements:
   build:
@@ -26,17 +28,17 @@ requirements:
     - {{ compiler('c') }}
     - python
   host:
-    - at-spi2-core 2.28.*
-    - atk 2.25.*
-    - dbus {{ dbus }}
-    - glib {{ glib }}
-    - gobject-introspection 1.55.*
+    - at-spi2-core
+    - atk
+    - dbus
+    - glib
+    - gobject-introspection 1.*
   run:
-    - at-spi2-core 2.28.*
-    - atk 2.25.*
-    - dbus {{ dbus }}
-    - glib {{ glib }}
-    - gobject-introspection 1.55.*
+    - at-spi2-core
+    - atk
+    - dbus
+    - glib
+    - gobject-introspection 1.*
 
 test:
   commands:

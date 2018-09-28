@@ -17,9 +17,11 @@ source:
   patches:
     - m_pi.patch
     - no-module-warning.patch
+  run_exports:
+    - {{ pin_compatible('gtk3', max_pin='x') }}
 
 build:
-  number: 0
+  number: 1
   script_env:
     - NJOBS
 
@@ -28,17 +30,18 @@ requirements:
     - pkg-config
     - pthread-stubs
     - python
+    - {{ compiler('c') }}
   host:
     - xorg-xproto
     - xorg-inputproto
-    - at-spi2-atk 2.26.*
+    - at-spi2-atk
     - atk 2.25.*
-    - cairo {{ cairo }}
-    - epoxy 1.5.*
-    - fontconfig {{ fontconfig }}
+    - cairo
+    - epoxy 1.*
+    - fontconfig
     - gdk-pixbuf 2.36.*
     - glib {{ glib }}
-    - gobject-introspection 1.55.*
+    - gobject-introspection 1.*
     - pango {{ pango }}
     - xorg-libice 1.0.*
     - xorg-libsm 1.2.*
@@ -46,14 +49,10 @@ requirements:
     - xorg-libxi 1.7.*
     - xorg-libxrender 0.9.*
   run:
-    - at-spi2-atk 2.26.*
     - atk 2.25.*
-    - cairo {{ cairo }}
-    - epoxy 1.5.*
-    - fontconfig {{ fontconfig }}
     - gdk-pixbuf 2.36.*
     - glib {{ glib }}
-    - gobject-introspection 1.55.*
+    - gobject-introspection 1.*
     - pango {{ pango }}
     - xorg-libice 1.0.*
     - xorg-libsm 1.2.*

@@ -1,4 +1,4 @@
-# Copyright 2017 Peter Williams and collaborators.
+# Copyright 2018 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 {% set name = "epoxy" %}
@@ -14,9 +14,11 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1
   script_env:
     - NJOBS
+  run_exports:
+    - {{ pin_compatible('epoxy', max_pin='x.x') }}
 
 requirements:
   build:
@@ -24,6 +26,7 @@ requirements:
     - pthread-stubs
     - python
     - xorg-util-macros
+    - {{ compiler('c') }}
   host:
     - xorg-xproto
     - xorg-libx11 1.6.*

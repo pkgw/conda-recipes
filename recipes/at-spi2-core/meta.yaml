@@ -15,9 +15,11 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1
   script_env:
     - NJOBS
+  run_exports:
+    - {{ pin_compatible('at-spi2-core', max_pin='x.x') }}
 
 requirements:
   build:
@@ -26,9 +28,9 @@ requirements:
     - pthread-stubs
     - {{ compiler('c') }}
   host:
-    - dbus {{ dbus }}
-    - glib {{ glib }}
-    - gobject-introspection 1.55.*
+    - dbus
+    - glib
+    - gobject-introspection 1.*
     - xorg-inputproto
     - xorg-kbproto
     - xorg-libx11 1.6.*
@@ -38,7 +40,7 @@ requirements:
   run:
     - dbus
     - glib
-    - gobject-introspection 1.55.*
+    - gobject-introspection 1.*
     - xorg-libx11 1.6.*
     - xorg-libxi 1.7.*
     - xorg-libxtst 1.2.*
