@@ -6,7 +6,7 @@
 set -e
 
 if [ $(uname) = Linux ] ; then
-    export PATH=/opt/rh/devtoolset-3/root/usr/bin:$PATH
+    export PATH=/opt/rh/devtoolset-7/root/usr/bin:$PATH
 fi
 
 export CFLAGS="-I$PREFIX/include $CFLAGS"

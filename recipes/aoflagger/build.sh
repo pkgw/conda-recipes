@@ -27,7 +27,7 @@ if [ -n "$OSX_ARCH" ] ; then
 	-DCMAKE_OSX_SYSROOT=/
     )
 else
-    toolroot=/opt/rh/devtoolset-3/root
+    toolroot=/opt/rh/devtoolset-7/root
 
     cmake_args+=(
 	-DBLAS_LIBRARIES="$PREFIX/lib/libopenblas.so"

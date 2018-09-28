@@ -29,7 +29,7 @@ if [ -n "$OSX_ARCH" ] ; then
 else
     # I get a double-free crash in gtk/gtkcairoblur.c if I compile with the
     # stock compilers, and it goes away if I use the updated ones!
-    export PATH=/opt/rh/devtoolset-3/root/usr/bin:$PATH
+    export PATH=/opt/rh/devtoolset-7/root/usr/bin:$PATH
 fi
 
 rm -f $PREFIX/lib/*.la # deps include busted libtool files
