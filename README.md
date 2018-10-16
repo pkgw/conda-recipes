@@ -1,7 +1,9 @@
 <!--- To render this locally, use `grip --wide` on this file. -->
 
-conda-recipes
-=============
+# conda-recipes
+
+**Visit [CASA.md](./CASA.md) for instructions on installing CASA in an
+Anaconda Python environment.**
 
 This repository contains the tools I use to build various packages in the
 [Conda] package manager used by the [Anaconda] Python distribution. Most of
