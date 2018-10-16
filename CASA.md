@@ -138,3 +138,12 @@ investigate the issue and ask for help:
    edit box.
 6. Check over that you’ve filled in all of the appropriate information, and
    then hit the “Submit new issue” button.
+
+
+## Improving this Documentation
+
+You can help improve this documentation! Navigate to
+[its home on GitHub](https://github.com/pkgw/conda-recipes/blob/master/CASA.md)
+and press the pencil icon on the right side of the page (near “Raw | Blame |
+History”) to edit the file in your browser. It is styled using the popular
+[Markdown](https://guides.github.com/features/mastering-markdown/) system.
