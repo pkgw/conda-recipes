@@ -16,7 +16,7 @@ read the following carefully**.
 If you follow the instructions below you will obtain the following in your
 Anaconda environment:
 
-1. The [casacore](https://casacore.github.io/casacore/) library.
+1. The [casacore](https://casacore.github.io/casacore/) C++ library.
 2. The compiled CASA “tools” for calibration, imaging, and so on.
 3. Standard CASA helper programs like `casaplotms`, `casaviewer`, and
    `wvrgcal`.
@@ -35,10 +35,14 @@ Anaconda environment:
 You will **not** obtain the following:
 
 1. The standard interactive CASA user interface.
-2. Some of the “tasks” provided in the standard interface.
+2. Some of the “tasks” provided in the standard interface, including `clean`
+   and `tclean`.
 
 Technical limitations make it infeasible to provide the standard interface and
-certain of the tasks that are tightly coupled to its implementation.
+certain of the tasks that are tightly coupled to its implementation. You can
+see a list of the tasks that *are* available
+[here](https://pwkit.readthedocs.io/en/latest/environments/casa/tasks/#module-pwkit.environments.casa.tasks)
+(scroll down a page or so).
 
 In other words, the system provided here is aimed at Python-based *scripting*
 of CASA analysis. If you want the classic CASA interactive interface, you
@@ -118,6 +122,12 @@ installation is up-to-date by running this command:
 conda update --all
 ```
 
+Please note that updates are *usually* fine but that the testing
+infrastructure of the conda-forge system isn’t perfect, so that sometimes
+updates cause problems. It is probably wisest to avoid update right before the
+ALMA deadline, etc. If the proposed update involves downgrading a bunch of
+packages, exercise caution.
+
 
 ## Reporting Problems
 
@@ -142,8 +152,7 @@ investigate the issue and ask for help:
 
 ## Improving this Documentation
 
-You can help improve this documentation! Navigate to
-[its home on GitHub](https://github.com/pkgw/conda-recipes/blob/master/CASA.md)
-and press the pencil icon on the right side of the page (near “Raw | Blame |
-History”) to edit the file in your browser. It is styled using the popular
-[Markdown](https://guides.github.com/features/mastering-markdown/) system.
+You can help improve this documentation! In fact you can
+[edit it directly on GitHub](https://github.com/pkgw/conda-recipes/edit/master/CASA.md)
+and propose changes. This file is styled using the popular
+[Markdown](https://guides.github.com/features/mastering-markdown/) syntax.
