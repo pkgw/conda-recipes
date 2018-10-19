@@ -22,13 +22,14 @@ source:
     - boost-python3.patch  # [py3k]
 
 build:
-  number: 0
+  number: 1
   script_env:
     - NJOBS
 
 requirements:
   build:
     - cmake
+    - python
     - {{ compiler('cxx') }}
   host:
     - boost
@@ -39,7 +40,11 @@ requirements:
     - hdf5
     - libxml2
     - openblas
-    - python
+  run:
+    - boost
+    - casacore
+    - cfitsio
+    - fftw
 
 test:
   commands:
