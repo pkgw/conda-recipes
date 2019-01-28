@@ -1,5 +1,5 @@
 #! /bin/bash
-# Copyright 2015-2018 Peter Williams <peter@newton.cx>
+# Copyright 2015-2019 Peter Williams <peter@newton.cx>
 # Licensed under the MIT License.
 
 # Just Do It script: rebuild a package or packages on Linux. We use a
@@ -10,7 +10,7 @@ set -e
 img_name=forge-builder
 cont_name=forgebuilder
 recipe_topdir=$(cd $(dirname $0) && pwd)
-builder_args="--python=3.6"
+builder_args="--python=3.7"
 uid="$(id -u):$(id -g)"
 
 # Make sure container is up and running
@@ -65,5 +65,3 @@ while [ $# -gt 0 ] ; do
     echo "========================================"
     [ "$ec" -ne 0 ] && exit $ec
 done
-
-echo "IF UPLOADING, USE pkgw-forge USER!"
