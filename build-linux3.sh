@@ -23,9 +23,11 @@ set -e
 if [ $ec -eq 1 ] ; then
     # Most likely, the container doesn't exist at all.
     echo "Starting container ..."
+    mkdir -p "$recipe_topdir/artifacts"
     docker run \
            -dit \
-           -v "$recipe_topdir":/work:rw,Z \
+           -v "$recipe_topdir":/work:rw,z \
+           -v "$recipe_topdir/artifacts":/conda/conda-bld:rw,z \
            -u $uid \
            -e NJOBS \
            --net=host \
