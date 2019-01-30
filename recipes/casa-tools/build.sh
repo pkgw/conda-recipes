@@ -1,10 +1,9 @@
 #! /bin/bash
-# Copyright 2015-2017 Peter Williams and collaborators.
+# Copyright 2015-2019 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 [ "$NJOBS" = '<UNDEFINED>' -o -z "$NJOBS" ] && NJOBS=1
 set -ex
-test $(echo "$PREFIX" |wc -c) -gt 200 # check that we're getting long paths
 
 export PATH="$PREFIX/qt4/bin:$PATH"
 
@@ -54,14 +53,10 @@ if [ $(uname) = Darwin ] ; then
 	-DREADLINE_ROOT_DIR=$PREFIX
     )
 else
-    toolroot=/opt/rh/devtoolset-7/root
     linkflags="-Wl,-rpath-link,$PREFIX/lib $LDFLAGS"
 
     cmake_args+=(
 	-DBLAS_LIBRARIES="$PREFIX/lib/libopenblas.so"
-	-DCMAKE_C_COMPILER=$toolroot/usr/bin/gcc
-	-DCMAKE_CXX_COMPILER=$toolroot/usr/bin/g++
-	-DCMAKE_Fortran_COMPILER=$toolroot/usr/bin/gfortran
 	-DLAPACK_LIBRARIES="$PREFIX/lib/libopenblas.so"
 	-DPGPLOT_LIBRARIES="$PREFIX/lib/libpgplot.so;$PREFIX/lib/libcpgplot.a"
     )
