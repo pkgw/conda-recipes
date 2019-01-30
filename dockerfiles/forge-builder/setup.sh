@@ -1,10 +1,10 @@
 #! /bin/bash
-# Copyright 2015-2018 Peter Williams <peter@newton.cx>
+# Copyright 2015-2019 Peter Williams <peter@newton.cx>
 # Licensed under the MIT License.
 #
 # Set up an image that's ready to build Conda packages repeatably.
 
-set -e -x
+set -ex
 
 # Base packages (keep alphabetized!)
 yum install -y $(echo "
@@ -16,22 +16,19 @@ emacs-nox
 epel-release
 file
 flex
-gcc
-gcc-c++
-gcc-gfortran
-gettext-devel
+glibc-devel
 java
 libstdc++-devel
 make
 man
 man-pages
 ncompress
-ncurses-devel
 patch
 perl-XML-Parser
 pkgconfig
 strace
 subversion
+sudo
 tar
 tcsh
 wget
@@ -40,13 +37,8 @@ xz
 zip
 ")
 
-# Can now install git and devtools because we added extra repositories
+# Can now install git because we added extra repositories
 yum install -y $(echo "
-devtoolset-7-binutils
-devtoolset-7-elfutils
-devtoolset-7-gcc
-devtoolset-7-gcc-c++
-devtoolset-7-gcc-gfortran
 git
 ")
 
@@ -55,7 +47,7 @@ git
 # could want to use the same image.
 
 groupadd -g $EXTGRPID -o conda
-useradd --shell /bin/bash -u $EXTUSERID -g conda -o -c "" -m conda
+useradd --shell /bin/bash -u $EXTUSERID -g conda -G wheel -o -c "" -m conda
 mkdir /conda
 chown conda:conda /conda
 
