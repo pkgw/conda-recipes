@@ -3,7 +3,7 @@
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 [ "$NJOBS" = '<UNDEFINED>' -o -z "$NJOBS" ] && NJOBS=1
-set -e
+set -ex
 
 configure_args=(
     -prefix $PREFIX/qt4
@@ -35,7 +35,8 @@ configure_args=(
 if [ $(uname) = Linux ] ; then
     export CFLAGS="$CFLAGS -fpermissive"
     export CXXFLAGS="$CXXFLAGS -fpermissive"
-    export LDFLAGS="$LDFLAGS -Wl,-rpath-link,$(pwd)/lib"
+    export LDFLAGS="$LDFLAGS -Wl,-rpath-link,$(pwd)/lib -L$PREFIX/lib -Wl,-rpath-link,$PREFIX/lib"
+    export LD="$CXX" # Qt expects $LD to accept "-Wl,foo", etc.
 fi
 
 if [ $(uname) = Darwin ] ; then

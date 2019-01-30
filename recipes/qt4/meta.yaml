@@ -48,9 +48,10 @@ source:
     # found in forums, and originated at (Author appears to be Peter Zhigalov):
     # https://fami.codefreak.ru/gitlab/peter/qt4/commit/45e8f4eef3923e03c6939d0c17170980685857ef.diff
     - vs2015_int_fix.patch  # [win and py >= 35]
+    - gcc-7.patch  # [linux]
 
 build:
-  number: 4
+  number: 5
   skip: true  # [win and py>35]
   features:
     - vc9  # [win and py27]
