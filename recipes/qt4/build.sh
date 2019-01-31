@@ -1,5 +1,5 @@
 #!/ bin/bash
-# Copyright 2016-2017 Peter Williams and collaborators.
+# Copyright 2016-2019 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 [ "$NJOBS" = '<UNDEFINED>' -o -z "$NJOBS" ] && NJOBS=1
@@ -52,7 +52,6 @@ if [[ $(uname) == Linux ]] ; then
     export CFLAGS="$CFLAGS -fpermissive"
     export CXXFLAGS="$CXXFLAGS -fpermissive -Wno-expansion-to-defined -Wno-unused-local-typedefs"
     export LDFLAGS="$LDFLAGS -Wl,-rpath-link,$(pwd)/lib -L$PREFIX/lib -Wl,-rpath-link,$PREFIX/lib"
-    export LD="$CXX" # Qt expects $LD to accept "-Wl,foo", etc.
 elif [[ $(uname) == Darwin ]] ; then
     compiler_mkspec=mkspecs/common/clang.conf
     flag_mkspec=mkspecs/unsupported/macx-clang-libc++/qmake.conf
@@ -67,6 +66,8 @@ elif [[ $(uname) == Darwin ]] ; then
 	-arch $OSX_ARCH
     )
 fi
+
+export LD="$CXX" # Qt expects $LD to accept "-Wl,foo", etc.
 
 # If we don't $(basename) here, when $CC contains an absolute path it will
 # point into the *build* environment directory, which won't get replaced when

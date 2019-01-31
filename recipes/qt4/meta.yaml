@@ -49,6 +49,8 @@ source:
     # https://fami.codefreak.ru/gitlab/peter/qt4/commit/45e8f4eef3923e03c6939d0c17170980685857ef.diff
     - vs2015_int_fix.patch  # [win and py >= 35]
     - gcc-7.patch  # [linux]
+    - clang.patch  # [osx]
+    - qmake-osxapp-fix.patch  # straight-up bug!
 
 build:
   number: 5
