@@ -1,5 +1,5 @@
 #! /bin/bash
-# Copyright 2015-2017 Peter Williams and collaborators.
+# Copyright 2015-2019 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 # Java must be installed to build this package! Lame but not too hard to deal
@@ -7,7 +7,6 @@
 
 [ "$NJOBS" = '<UNDEFINED>' -o -z "$NJOBS" ] && NJOBS=1
 set -ex
-test $(echo "$PREFIX" |wc -c) -gt 200 # check that we're getting long paths
 
 export PATH="$PREFIX/qt4/bin:$PATH"
 
@@ -33,7 +32,6 @@ cmake_args=(
     -DCMAKE_COLOR_MAKEFILE=OFF
     -DCMAKE_INSTALL_PREFIX=$PREFIX
     -DCMAKE_STATIC_LINKER_FLAGS=-L$PREFIX/lib
-    -DEXTRA_CXX_FLAGS="$CXXFLAGS"
     -DPGPLOT_INCLUDE_DIRS=$PREFIX/include/pgplot
     -DPGPLOT_LIBRARIES="$PREFIX/lib/libpgplot$SHLIB_EXT;$PREFIX/lib/libcpgplot.a"
     -DQT_DBUSXML2CPP_EXECUTABLE=$PREFIX/qt4/bin/qdbusxml2cpp
@@ -58,17 +56,20 @@ if [ $(uname) = Darwin ] ; then
 	-DCMAKE_Fortran_COMPILER=gfortran
     )
 else
-    toolroot=/opt/rh/devtoolset-7/root
+    # C++17 bans dynamic exceptions, which this codebase uses, so we need to
+    # drop down to C++14
+    export CXXFLAGS="$(echo $CXXFLAGS |sed -e 's/std=c..17/std=c++14/g')"
     export LDFLAGS="-Wl,-rpath-link,$PREFIX/lib $LDFLAGS"
 
     cmake_args+=(
 	-DBLAS_LIBRARIES="$PREFIX/lib/libopenblas.so"
-	-DCMAKE_C_COMPILER=$toolroot/usr/bin/gcc
-	-DCMAKE_CXX_COMPILER=$toolroot/usr/bin/g++
-	-DCMAKE_Fortran_COMPILER=$toolroot/usr/bin/gfortran
 	-DLAPACK_LIBRARIES="$PREFIX/lib/libopenblas.so"
     )
 fi
+
+cmake_args+=(
+    -DEXTRA_CXX_FLAGS="$CXXFLAGS"
+)
 
 # The CXXFLAGS unset is needed to get EXTRA_CXX_FLAGS to take effect. I like
 # how every CASA package handles C++ flags differently.
