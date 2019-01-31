@@ -32,14 +32,31 @@ configure_args=(
     -verbose
 )
 
-if [ $(uname) = Linux ] ; then
+# (Ported from conda-forge qt[5] recipe
+#
+# Frustratingly, Qt's configure checks do not honor the standard build
+# environment variables ($CC, $*FLAGS, etc) in a very consistent way. In
+# particular, they are largely ignored during configuration. AFAICT, the best
+# way to get them to apply during both configuration and the primary build is
+# to modify the "mkspec" files used in the build. (You can pass #defines to
+# the configuration script, but you can't pass linker flags like
+# `-Wl,-rpath`.)
+#
+# Aside: our toolchain environments unfortunately mix preprocessor and
+# non-preprocessor flags in both $CFLAGS and $CPPFLAGS.
+
+if [[ $(uname) == Linux ]] ; then
+    compiler_mkspec=mkspecs/common/g++-base.conf
+    flag_mkspec=mkspecs/linux-g++/qmake.conf
+
     export CFLAGS="$CFLAGS -fpermissive"
-    export CXXFLAGS="$CXXFLAGS -fpermissive"
+    export CXXFLAGS="$CXXFLAGS -fpermissive -Wno-expansion-to-defined -Wno-unused-local-typedefs"
     export LDFLAGS="$LDFLAGS -Wl,-rpath-link,$(pwd)/lib -L$PREFIX/lib -Wl,-rpath-link,$PREFIX/lib"
     export LD="$CXX" # Qt expects $LD to accept "-Wl,foo", etc.
-fi
+elif [[ $(uname) == Darwin ]] ; then
+    compiler_mkspec=mkspecs/common/clang.conf
+    flag_mkspec=mkspecs/unsupported/macx-clang-libc++/qmake.conf
 
-if [ $(uname) = Darwin ] ; then
     export MACOSX_DEPLOYMENT_TARGET=10.6
     unset CFLAGS CXXFLAGS LDFLAGS
 
@@ -50,6 +67,25 @@ if [ $(uname) = Darwin ] ; then
 	-arch $OSX_ARCH
     )
 fi
+
+# If we don't $(basename) here, when $CC contains an absolute path it will
+# point into the *build* environment directory, which won't get replaced when
+# making the package -- breaking the mkspec for downstream consumers.
+sed -i -e "s|^QMAKE_CC.*=.*|QMAKE_CC = $(basename $CC)|" $compiler_mkspec
+sed -i -e "s|^QMAKE_CXX.*=.*|QMAKE_CXX = $(basename $CXX)|" $compiler_mkspec
+
+# The mkspecs only append to QMAKE_*FLAGS, so if we set them at the very top
+# of the main mkspec file, the settings will be honored.
+
+cp $flag_mkspec $flag_mkspec.orig
+cat <<EOF >$flag_mkspec
+QMAKE_CFLAGS = $CFLAGS $CPPFLAGS
+QMAKE_CXXFLAGS = $CXXFLAGS $CPPFLAGS
+QMAKE_LFLAGS = $LDFLAGS
+EOF
+cat $flag_mkspec.orig >>$flag_mkspec
+
+# The above were also copied from conda-forge's qt5 recipe
 
 mkdir -p $PREFIX/qt4/lib
 mkdir -p src/3rdparty/webkit/Source/lib # needed on OSX

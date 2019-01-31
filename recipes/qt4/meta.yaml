@@ -98,6 +98,9 @@ requirements:
     - xorg-libxext
 
 test:
+  requires:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
   files:
     - test
 
