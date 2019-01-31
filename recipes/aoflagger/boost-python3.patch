@@ -10,7 +10,7 @@ index 52a3f05..e070825 100644
 +find_package(PythonLibs 3 REQUIRED)
  #message(STATUS "Using python version ${PYTHON_VERSION_STRING}")
 -find_package(Boost REQUIRED COMPONENTS date_time filesystem python signals system)
-+find_package(Boost REQUIRED COMPONENTS date_time filesystem python36 signals system)
++find_package(Boost REQUIRED COMPONENTS date_time filesystem python37 signals system)
  #find_package(Boost REQUIRED COMPONENTS date_time filesystem python-py36 signals system)
  find_library(FFTW3_LIB fftw3 REQUIRED)
  enable_language(Fortran OPTIONAL)
@@ -23,7 +23,7 @@ index d6739e3..ab6ba08 100644
  	${Boost_FILESYSTEM_LIBRARY} ${Boost_DATE_TIME_LIBRARY}
  #	${Boost_PYTHON-PY36_LIBRARIES}
 -	${Boost_PYTHON_LIBRARIES}
-+	${Boost_PYTHON36_LIBRARIES}
++	${Boost_PYTHON37_LIBRARIES}
  	${Boost_SIGNALS_LIBRARY}
  	${FFTW3_LIB}
  	${CASACORE_LIBRARIES}

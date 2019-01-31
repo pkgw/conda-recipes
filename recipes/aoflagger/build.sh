@@ -27,14 +27,9 @@ if [ -n "$OSX_ARCH" ] ; then
 	-DCMAKE_OSX_SYSROOT=/
     )
 else
-    toolroot=/opt/rh/devtoolset-7/root
-
     cmake_args+=(
 	-DBLAS_LIBRARIES="$PREFIX/lib/libopenblas.so"
-	-DCMAKE_C_COMPILER=$toolroot/usr/bin/gcc
-	-DCMAKE_CXX_COMPILER=$toolroot/usr/bin/g++
 	-DCMAKE_EXE_LINKER_FLAGS="-L$PREFIX/lib -Wl,-rpath-link,$PREFIX/lib"
-	-DCMAKE_Fortran_COMPILER=$toolroot/usr/bin/gfortran
 	-DCMAKE_MODULE_LINKER_FLAGS="-L$PREFIX/lib -Wl,-rpath-link,$PREFIX/lib"
 	-DCMAKE_SHARED_LINKER_FLAGS="-L$PREFIX/lib -Wl,-rpath-link,$PREFIX/lib"
 	-DLAPACK_LIBRARIES="$PREFIX/lib/libopenblas.so"
