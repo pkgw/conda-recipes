@@ -36,5 +36,3 @@ while [ $# -gt 0 ] ; do
     echo "========================================"
     [ "$ec" -ne 0 ] && exit $ec
 done
-
-echo "IF UPLOADING, USE pkgw-forge USER!"
