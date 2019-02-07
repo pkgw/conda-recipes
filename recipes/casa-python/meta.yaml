@@ -30,16 +30,13 @@ requirements:
     - {{ compiler('cxx') }}
     - {{ compiler('fortran') }}
   host:
+    - casacore
     - casa-tools 5.4.*
     - numpy
     - python
-    - rpfits 2.*
-    - wcslib
   run:
     - {{ pin_compatible('numpy') }}
     - python
-    - rpfits 2.*
-    - {{ pin_compatible('wcslib') }}
 
 about:
   home: http://casa.nrao.edu/
