@@ -32,7 +32,7 @@ requirements:
     - python
     - {{ compiler('cxx') }}
   host:
-    - boost
+    - boost-cpp
     - casacore 2.4.*
     - cfitsio 3.*
     - fftw 3.3.*
@@ -41,9 +41,10 @@ requirements:
     - libxml2
     - openblas
   run:
-    - {{ pin_compatible('boost') }}
+    - {{ pin_compatible('boost-cpp') }}
     - {{ pin_compatible('cfitsio') }}
     - {{ pin_compatible('fftw') }}
+    - {{ pin_compatible('openblas') }}
 
 test:
   commands:

@@ -30,6 +30,7 @@ requirements:
     - {{ compiler('fortran') }}
   host:
     - boost
+    - boost-cpp
     - casacore >=2.4.2a0
     - dbus-cxx 0.9.*
     - dbus
@@ -47,7 +48,9 @@ requirements:
     - qwt5 5.2.*
     - xerces-c28
   run:
-    # Packages that don't auto-add their runtime deps
+    # Packages that don't (yet) auto-add their runtime deps
+    - {{ pin_compatible('boost') }}
+    - {{ pin_compatible('boost-cpp') }}
     - dbus-cxx 0.9.*
     - libsakura 3.0.*
     - pgplot 5.2.*
