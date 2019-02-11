@@ -16,7 +16,7 @@ source:
     - osx.patch  # [osx]
 
 build:
-  number: 0
+  number: 1
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
@@ -26,10 +26,13 @@ requirements:
     - cmake
     - {{ compiler('cxx') }}
   host:
-    - boost
+    - boost-cpp
     - casacore 2.4.*
     - fftw 3.3.*
     - gsl
+  run:
+    - {{ pin_compatible('boost-cpp') }}
+    - {{ pin_compatible('fftw') }}
 
 test:
   commands:
