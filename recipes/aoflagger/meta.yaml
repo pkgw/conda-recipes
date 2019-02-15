@@ -1,4 +1,4 @@
-# Copyright 2015-2018 Peter Williams and collaborators.
+# Copyright 2015-2019 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 # We don't provide the rfigui right now. It needs Gtk-- > 3.0, so it wouldn't
@@ -6,9 +6,9 @@
 # We'd need libsigc++, glibmm, and gtkmm.
 
 {% set name = "aoflagger" %}
-{% set version = "2.12.1" %}
-{% set compat_version = "2.12.0" %}
-{% set sha256 = "f5fe6125a2b35b625f9e3b833f487f9f03f5f21f2f094397813da07caa815de8" %}
+{% set version = "2.14.0" %}
+{% set compat_version = "2.14.0" %}
+{% set sha256 = "39137f2069d82eee1b6ed4028529f8a27657be36d17f722521ef304760018699" %}
 
 package:
   name: {{ name | lower }}
@@ -22,7 +22,7 @@ source:
     - boost-python3.patch  # [py3k]
 
 build:
-  number: 2
+  number: 0
   script_env:
     - NJOBS
 

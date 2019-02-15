@@ -21,8 +21,7 @@ if [ -n "$OSX_ARCH" ] ; then
     cmake_args+=(
 	-Darch=darwin64
 	-Darchflag=x86_64
-	-DCMAKE_CXX_FLAGS="-arch $OSX_ARCH -stdlib=libc++ -std=c++11"
-	-DCMAKE_Fortran_COMPILER=/usr/local/bin/gfortran-4.2
+	-DCMAKE_CXX_FLAGS="-arch $OSX_ARCH -stdlib=libc++"
 	-DCMAKE_OSX_DEPLOYMENT_TARGET=$MACOSX_DEPLOYMENT_TARGET
 	-DCMAKE_OSX_SYSROOT=/
     )
