@@ -22,16 +22,16 @@ source:
     - boost-python3.patch  # [py3k]
 
 build:
-  number: 0
+  number: 1
   script_env:
     - NJOBS
 
 requirements:
   build:
     - cmake
-    - python
     - {{ compiler('cxx') }}
   host:
+    - boost
     - boost-cpp
     - casacore 2.4.*
     - cfitsio 3.*
@@ -40,11 +40,14 @@ requirements:
     - hdf5
     - libxml2
     - openblas
+    - python {{ python }}
   run:
+    - {{ pin_compatible('boost') }}
     - {{ pin_compatible('boost-cpp') }}
     - {{ pin_compatible('cfitsio') }}
     - {{ pin_compatible('fftw') }}
     - {{ pin_compatible('openblas') }}
+    - python {{ python }}
 
 test:
   commands:
