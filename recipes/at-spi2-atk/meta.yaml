@@ -1,10 +1,10 @@
-# Copyright 2014-2018 Peter Williams and collaborators.
+# Copyright 2014-2019 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 {% set name = "at-spi2-atk" %}
-{% set version = "2.26.2" %}
+{% set version = "2.32.0" %}
 {% set version_majmin = '.'.join(version.split('.', 2)[:2]) %}
-{% set sha256 = "61891f0abae1689f6617a963105a3f1dcdab5970c4a36ded9c79a7a544b16a6e" %}
+{% set sha256 = "0b51e6d339fa2bcca3a3e3159ccea574c67b107f1ac8b00047fa60e34ce7a45c" %}
 
 package:
   name: {{ name|lower }}
@@ -15,7 +15,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 1
+  number: 0
   script_env:
     - NJOBS
   run_exports:
@@ -23,6 +23,7 @@ build:
 
 requirements:
   build:
+    - meson
     - pkg-config
     - pthread-stubs
     - {{ compiler('c') }}

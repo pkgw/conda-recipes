@@ -10,9 +10,10 @@ if [ -n "$OSX_ARCH" ] ; then
     export LDFLAGS="$LDFLAGS -Wl,-rpath,$PREFIX/lib"
 fi
 
-./configure --prefix=$PREFIX || { cat config.log ; exit 1 ; }
-make -j$NJOBS
-make install
+meson builddir --prefix=$PREFIX --libdir=$PREFIX/lib
+meson configure -D enable_docs=false builddir
+ninja -v -C builddir
+ninja -C builddir install
 
 cd $PREFIX
 find . '(' -name '*.la' -o -name '*.a' ')' -delete
