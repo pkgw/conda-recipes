@@ -4,6 +4,8 @@ The GTK+ 3 Stack
 1. `at-spi2-core`
 1. `at-spi2-atk`
 1. `epoxy`
+1. `wayland`
+1. `wayland-protocols` — noarch
 1. `gtk3`
 1. `adwaita-icon-theme` — noarch
 

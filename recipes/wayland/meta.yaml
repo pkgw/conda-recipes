@@ -1,0 +1,35 @@
+# Copyright 2019 Peter Williams and collaborators.
+# This file is licensed under a 3-clause BSD license; see LICENSE.txt.
+
+{% set name = "wayland" %}
+{% set version = "1.17.0" %}
+{% set sha256 = "72aa11b8ac6e22f4777302c9251e8fec7655dc22f9d94ee676c6b276f95f91a4" %}
+
+package:
+  name: "{{ name }}"
+  version: "{{ version }}"
+
+source:
+  url: https://wayland.freedesktop.org/releases/{{name}}-{{version}}.tar.xz
+  sha256: {{ sha256 }}
+  run_exports:
+    - {{ pin_compatible('wayland', max_pin='x') }}
+
+build:
+  number: 0
+  script_env:
+    - NJOBS
+
+requirements:
+  build:
+    - pkg-config
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
+    - expat
+    - libffi
+
+about:
+  home: https://github.com/wayland-project/wayland
+  license: MIT
+  summary: Base libraries for the Wayland rendering architecture

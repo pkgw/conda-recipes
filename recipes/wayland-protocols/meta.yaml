@@ -1,0 +1,29 @@
+# Copyright 2019 Peter Williams and collaborators.
+# This file is licensed under a 3-clause BSD license; see LICENSE.txt.
+
+{% set name = "wayland-protocols" %}
+{% set version = "1.17" %}
+{% set sha256 = "df1319cf9705643aea9fd16f9056f4e5b2471bd10c0cc3713d4a4cdc23d6812f" %}
+
+package:
+  name: "{{ name }}"
+  version: "{{ version }}"
+
+source:
+  url: https://wayland.freedesktop.org/releases/{{name}}-{{version}}.tar.xz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  noarch: generic
+  script_env:
+    - NJOBS
+
+requirements:
+  host:
+    - wayland
+
+about:
+  home: https://github.com/wayland-project/wayland-protocols
+  license: MIT
+  summary: Protocols for the Wayland rendering architecture
