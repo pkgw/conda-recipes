@@ -1,9 +1,9 @@
-# Copyright 2018 Peter Williams and collaborators.
+# Copyright 2018-2019 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 {% set name = "epoxy" %}
-{% set version = "1.5.2" %}
-{% set sha256 = "a9562386519eb3fd7f03209f279f697a8cba520d3c155d6e253c3e138beca7d8" %}
+{% set version = "1.5.3" %}
+{% set sha256 = "002958c5528321edd53440235d3c44e71b5b1e09b9177e8daf677450b6c4433d" %}
 
 package:
   name: {{ name|lower }}
@@ -12,9 +12,11 @@ package:
 source:
   url: https://github.com/anholt/libepoxy/releases/download/{{ version }}/libepoxy-{{ version }}.tar.xz
   sha256: {{ sha256 }}
+  patches:
+    - no-pkgconfig-gl-reqs.patch
 
 build:
-  number: 1
+  number: 0
   script_env:
     - NJOBS
   run_exports:
@@ -22,11 +24,15 @@ build:
 
 requirements:
   build:
+    - meson
+    - ninja
     - pkg-config
     - pthread-stubs
     - python
     - xorg-util-macros
     - {{ compiler('c') }}
+    - {{ cdt('mesa-libEGL-devel') }}
+    - {{ cdt('mesa-libGL-devel') }}
   host:
     - xorg-xproto
     - xorg-libx11 1.6.*
