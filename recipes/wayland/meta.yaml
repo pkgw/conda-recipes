@@ -12,13 +12,13 @@ package:
 source:
   url: https://wayland.freedesktop.org/releases/{{name}}-{{version}}.tar.xz
   sha256: {{ sha256 }}
-  run_exports:
-    - {{ pin_compatible('wayland', max_pin='x') }}
 
 build:
   number: 0
   script_env:
     - NJOBS
+  run_exports:
+    - {{ pin_compatible('wayland', max_pin='x') }}
 
 requirements:
   build:
