@@ -1,4 +1,4 @@
-# Copyright 2016-2018 Peter Williams and collaborators.
+# Copyright 2016-2019 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 # Anaconda has moved on to Qt5, but CASA requires Qt4. We can't just rely on
@@ -51,9 +51,10 @@ source:
     - gcc-7.patch  # [linux]
     - clang.patch  # [osx]
     - qmake-osxapp-fix.patch  # straight-up bug!
+    - qt4-openssl-1.1.patch
 
 build:
-  number: 5
+  number: 6
   skip: true  # [win and py>35]
   features:
     - vc9  # [win and py27]
@@ -74,28 +75,28 @@ requirements:
     - {{ compiler('cxx') }}
   host:
     - dbus-cxx 0.9.*
-    - fontconfig  # [linux]
+    - fontconfig {{ fontconfig }}  # [linux]
     - freeglut  # [linux]
-    - freetype  # [linux]
-    - icu
-    - jpeg
-    - libpng
-    - libtiff
-    - libuuid  # [linux]
-    - libxml2
-    - openssl
-    - pango  # [linux]
+    - freetype {{ freetype }}  # [linux]
+    - icu {{ icu }}
+    - jpeg {{ jpeg }}
+    - libpng {{ libpng }}
+    - libtiff {{ libtiff }}
+    - libuuid {{ libuuid }}  # [linux]
+    - libxml2 {{ libxml2 }}
+    - openssl {{ openssl }}
+    - pango {{ pango }}  # [linux]
     - xorg-libx11
     - xorg-libxext
     - xorg-xextproto
     - xorg-xproto
-    - zlib
+    - zlib {{ zlib }}
   run:
     # these deps don't auto-add themselves (yet?)
     - dbus-cxx 0.9.*
     - freeglut  # [linux]
-    - icu
-    - pango  # [linux]
+    - icu {{ icu }}
+    - pango {{ pango }}  # [linux]
     - xorg-libx11
     - xorg-libxext
 
