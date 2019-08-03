@@ -62,8 +62,8 @@ else
     export LDFLAGS="-Wl,-rpath-link,$PREFIX/lib $LDFLAGS"
 
     cmake_args+=(
-	-DBLAS_LIBRARIES="$PREFIX/lib/libopenblas.so"
-	-DLAPACK_LIBRARIES="$PREFIX/lib/libopenblas.so"
+	-DBLAS_LIBRARIES="$PREFIX/lib/libopenblas.so.0"
+	-DLAPACK_LIBRARIES="$PREFIX/lib/libopenblas.so.0"
     )
 fi
 

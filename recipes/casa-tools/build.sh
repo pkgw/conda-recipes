@@ -23,7 +23,15 @@ popd
 
 # Ready to configure and make
 
+# Conda defaults to `-std=c++17`, but we can't do that because of various
+# deprecated constructs, so strip out those flags. CASA's build system will
+# add `-std=c++11`.
+export CXXFLAGS="$(echo "$CXXFLAGS" |sed -e "s/-std=[^ ]*//")"
+export DEBUG_CXXFLAGS="$(echo "$DEBUG_CXXFLAGS" |sed -e "s/-std=[^ ]*//")"
+
 cmake_args=(
+    -DBoost_NO_BOOST_CMAKE=ON
+    -DBOOST_ROOT=$PREFIX
     -DCMAKE_BUILD_TYPE=Release
     -DCMAKE_COLOR_MAKEFILE=OFF
     -DCMAKE_INSTALL_PREFIX=$PREFIX
@@ -56,8 +64,10 @@ else
     linkflags="-Wl,-rpath-link,$PREFIX/lib $LDFLAGS"
 
     cmake_args+=(
-	-DBLAS_LIBRARIES="$PREFIX/lib/libopenblas.so"
-	-DLAPACK_LIBRARIES="$PREFIX/lib/libopenblas.so"
+	-DBLAS_LIBRARIES="$PREFIX/lib/libopenblas.so.0"
+	-DEXTRA_C_FLAGS="$CFLAGS $CPPFLAGS"
+	-DEXTRA_CXX_FLAGS="$CXXFLAGS $CPPFLAGS"
+	-DLAPACK_LIBRARIES="$PREFIX/lib/libopenblas.so.0"
 	-DPGPLOT_LIBRARIES="$PREFIX/lib/libpgplot.so;$PREFIX/lib/libcpgplot.a"
     )
 fi
@@ -72,7 +82,7 @@ cd code
 mkdir build
 cd build
 # helps debugging:
-env |sed -e 's/^/export /' -e "s/\([^=]*\)=/\1='/" -e "s/$/'/" |tr '\0' '\n' >ENVIRON.sh
+env |egrep -v '(pin_run_as_build|ignore_build_only_deps|extend_keys|zip_keys)' |sed -e 's/^/export /' -e "s/\([^=]*\)=/\1='/" -e "s/$/'/" |tr '\0' '\n' >ENVIRON.sh
 cmake "${cmake_args[@]}" ..
 make -j$NJOBS VERBOSE=1
 
