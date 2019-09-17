@@ -1,12 +1,10 @@
 # Copyright 2016-2019 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
-# Anaconda has moved on to Qt5, but CASA requires Qt4. We can't just rely on
-# the existing Anaconda Qt4 package, though, because since it was last built
-# the conda build system was changed to use longer paths, so we can't build
-# new packages that depend on the old version. Fun times. We also include
-# DBus support on OS X, which is not included in the stock version, likely
-# because dbus-cxx is totally busted.
+# Anaconda has moved on to Qt5, but CASA requires Qt4. We need to provide our
+# own version since there are so many dependencies, and we also need to
+# provide DBus support on OS X. This is not included in the stock version,
+# likely because dbus-cxx is totally busted.
 
 {% set name = "qt4" %}
 {% set version= "4.8.7" %}
@@ -54,7 +52,7 @@ source:
     - qt4-openssl-1.1.patch
 
 build:
-  number: 6
+  number: 7
   skip: true  # [win and py>35]
   features:
     - vc9  # [win and py27]
