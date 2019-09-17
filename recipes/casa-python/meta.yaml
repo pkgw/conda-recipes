@@ -5,7 +5,7 @@
 
 {% set name = "casa-python" %}
 {% set version = "5.4.1" %}
-{% set build = "2" %}
+{% set build = "4" %}
 
 package:
   name: {{ name }}
@@ -30,13 +30,24 @@ requirements:
     - {{ compiler('cxx') }}
     - {{ compiler('fortran') }}
   host:
+    # These are deps that libtools.so ends up linking with directly --
+    # casa-tools may drag in many of them, but we should explicitly
+    # name them here to avoid binary compat issues.
     - casacore
-    - casa-tools 5.4.*
+    - casa-tools 5.4
+    - dbus-cxx 0.9
+    - ncurses {{ ncurses }}
     - numpy
     - python
+    - qt4 4.8
+    - readline {{ readline }}
+    - xerces-c28
+
   run:
     - {{ pin_compatible('numpy') }}
+    - dbus-cxx 0.9
     - python
+    - xerces-c28
 
 about:
   home: http://casa.nrao.edu/
