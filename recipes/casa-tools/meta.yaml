@@ -5,7 +5,7 @@
 
 {% set name = "casa-tools" %}
 {% set version = "5.4.1" %}
-{% set build = "3" %}
+{% set build = "4" %}
 
 package:
   name: {{ name }}
