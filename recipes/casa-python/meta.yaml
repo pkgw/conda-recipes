@@ -45,9 +45,7 @@ requirements:
 
   run:
     - {{ pin_compatible('numpy') }}
-    - dbus-cxx 0.9
     - python
-    - xerces-c28
 
 about:
   home: http://casa.nrao.edu/

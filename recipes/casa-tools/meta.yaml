@@ -52,11 +52,9 @@ requirements:
     # Packages that don't (yet) auto-add their runtime deps
     - {{ pin_compatible('boost') }}
     - {{ pin_compatible('boost-cpp') }}
-    - dbus-cxx 0.9.*
     - libsakura 3.0.*
     - pgplot 5.2.*
     - rpfits 2.*
-    - xerces-c28
 
 test:
   commands:
