@@ -22,7 +22,7 @@ source:
     - boost-python3.patch  # [py3k]
 
 build:
-  number: 1
+  number: 2
   script_env:
     - NJOBS
 
@@ -31,23 +31,20 @@ requirements:
     - cmake
     - {{ compiler('cxx') }}
   host:
-    - boost
-    - boost-cpp
-    - casacore 2.4.*
-    - cfitsio 3.*
-    - fftw 3.3.*
-    - gsl
-    - hdf5
-    - libxml2
-    - openblas
-    - python {{ python }}
+    # This list based on DT_NEEDED libraries in the executable
+    - boost {{ boost }}
+    - boost-cpp {{ boost_cpp }}
+    - casacore >=2.4.2a0
+    - cfitsio {{ cfitsio }}
+    - fftw
+    - gsl {{ gsl }}
+    - hdf5 {{ hdf5 }}
+    - libpng {{ libpng }}
+    - libxml2 {{ libxml2 }}
+    - openblas {{ openblas }}
+    - python
   run:
-    - {{ pin_compatible('boost') }}
-    - {{ pin_compatible('boost-cpp') }}
-    - {{ pin_compatible('cfitsio') }}
-    - {{ pin_compatible('fftw') }}
-    - {{ pin_compatible('openblas') }}
-    - python {{ python }}
+    - python
 
 test:
   commands:

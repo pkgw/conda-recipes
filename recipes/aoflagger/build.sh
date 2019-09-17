@@ -27,11 +27,11 @@ if [ -n "$OSX_ARCH" ] ; then
     )
 else
     cmake_args+=(
-	-DBLAS_LIBRARIES="$PREFIX/lib/libopenblas.so"
+	-DBLAS_LIBRARIES="$PREFIX/lib/libopenblas.so.0"
 	-DCMAKE_EXE_LINKER_FLAGS="-L$PREFIX/lib -Wl,-rpath-link,$PREFIX/lib"
 	-DCMAKE_MODULE_LINKER_FLAGS="-L$PREFIX/lib -Wl,-rpath-link,$PREFIX/lib"
 	-DCMAKE_SHARED_LINKER_FLAGS="-L$PREFIX/lib -Wl,-rpath-link,$PREFIX/lib"
-	-DLAPACK_LIBRARIES="$PREFIX/lib/libopenblas.so"
+	-DLAPACK_LIBRARIES="$PREFIX/lib/libopenblas.so.0"
     )
 fi
 
