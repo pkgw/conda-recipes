@@ -15,7 +15,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 0
+  number: 1
   script_env:
     - NJOBS
   run_exports:
@@ -31,14 +31,11 @@ requirements:
   host:
     - at-spi2-core
     - atk
-    - dbus
-    - glib
+    - dbus {{ dbus }}
+    - glib {{ glib }}
     - gobject-introspection 1.*
   run:
-    - at-spi2-core
     - atk
-    - dbus
-    - glib
     - gobject-introspection 1.*
 
 test:
