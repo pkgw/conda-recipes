@@ -20,6 +20,7 @@ The CASA Stack
 1. `casa-python`
 1. `aoflagger`
 1. `wsclean`
+1. `rubbl-rxpackage` — actually independent of the above, but CASA-related
 
 
 The PyRAF Stack

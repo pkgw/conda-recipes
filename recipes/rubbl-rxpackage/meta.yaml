@@ -1,0 +1,42 @@
+# Copyright 2019 Peter Williams and collaborators.
+# This file is licensed under a 3-clause BSD license; see LICENSE.txt.
+
+{% set name = "rubbl-rxpackage" %}
+{% set version = "0.1.0" %}
+{% set sha256 = "b21676b20f284cd9ce604082367ba118318799560124d29b37b77608f9accca7" %}
+
+package:
+  name: {{ name | lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/pkgw/{{ name }}/archive/v{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  script_env:
+    - NJOBS
+
+requirements:
+  build:
+    - rust
+    - {{ compiler('cxx') }}
+
+test:
+  commands:
+    - rubbl-rxpackage flagts --help
+    - rubbl-rxpackage peel --help
+    - rubbl-rxpackage spwglue --help
+
+about:
+  home: https://github.com/pkgw/rubbl-rxpackage
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  summary: 'Radio astronomy reduction utilities written in Rust, using the Rubbl framework'
+  dev_url: https://github.com/pkgw/rubbl-rxpackage
+
+extra:
+  recipe-maintainers:
+    - pkgw
