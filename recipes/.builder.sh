@@ -1,5 +1,5 @@
 #! /bin/bash
-# Copyright 2015-2016 Peter Williams <peter@newton.cx>
+# Copyright 2015-2020 Peter Williams <peter@newton.cx>
 # Licensed under the MIT License.
 #
 # This script is run inside the standardized Docker container to build a Conda
@@ -41,7 +41,6 @@ fi
 
 tar c -C $recipedir -X $(pwd)/.global_excludes $arg . |tar x -C "$work"
 export PYTHONUNBUFFERED=1
-conda clean --lock || true
 conda update -y --all
 conda build -m /conda/conda_build_config.yaml $build_args "$work"
 rm -rf "$work"
