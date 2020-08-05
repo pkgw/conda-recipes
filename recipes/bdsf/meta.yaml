@@ -1,0 +1,56 @@
+# Copyright 2020 Peter Williams and collaborators.
+# This file is licensed under a 3-clause BSD license; see LICENSE.txt.
+
+{% set name = "bdsf" %}
+{% set version = "1.9.2" %}
+{% set build = "0" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+   sha256: 31d25a285c331b24abc8807dd55b61f9a932fd17ef6c4f5dc4b4f1ea469d9126
+
+build:
+  number: {{ build }}
+
+requirements:
+  build:
+    - {{ compiler('cxx') }}
+    - {{ compiler('fortran') }}
+  host:
+    - pip
+    - setuptools
+    - astropy
+    - boost {{ boost }}
+    - ipython
+    - numpy
+    - python
+    - scipy
+  run:
+    - astropy
+    - boost
+    - ipython
+    - {{ pin_compatible('numpy') }}
+    - python
+    - scipy
+
+test:
+  imports:
+    - bdsf
+    - bdsf._cbdsm
+    - bdsf.nat.natgridmodule
+  commands:
+    - echo quit |pybdsf
+
+about:
+  home: https://www.astron.nl/citt/pybdsf/
+  license: GPL-3.0
+  license_file: LICENSE
+  summary: Blob detector and source finder
+
+extra:
+  recipe-maintainers:
+    - pkgw
