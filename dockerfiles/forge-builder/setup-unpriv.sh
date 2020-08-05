@@ -39,4 +39,4 @@ conda config --add envs_dirs /conda/envs
 mkdir /conda/conda-bld
 (cd /conda/conda-bld && ln -s /work/linux-64 linux-64 && ln -s /work/noarch noarch)
 
-conda clean -tipsy
+conda clean -pity
