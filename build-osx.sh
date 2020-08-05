@@ -1,10 +1,8 @@
 #! /bin/bash
-# Copyright 2015-2017 Peter Williams <peter@newton.cx>
+# Copyright 2015-2020 Peter Williams <peter@newton.cx>
 # Licensed under the MIT License.
 
 # Just Do It script: rebuild a package or packages on OS X.
-
-# XXX: gross redundancy between the python 2 and 3 scripts.
 
 set -e
 
