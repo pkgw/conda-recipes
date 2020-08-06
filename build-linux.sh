@@ -1,5 +1,5 @@
 #! /bin/bash
-# Copyright 2015-2018 Peter Williams <peter@newton.cx>
+# Copyright 2015-2020 Peter Williams <peter@newton.cx>
 # Licensed under the MIT License.
 
 # Just Do It script: rebuild a package or packages on Linux. We use a
@@ -10,7 +10,7 @@ set -e
 img_name=forge-builder
 cont_name=forgebuilder
 recipe_topdir=$(cd $(dirname $0) && pwd)
-builder_args="--python=2.7"
+builder_args="--python=3.8"
 uid="$(id -u):$(id -g)"
 
 # Make sure container is up and running
@@ -52,7 +52,7 @@ while [ $# -gt 0 ] ; do
     fi
 
 
-    log="$recipe_topdir/recipes/$pkg/linux-64-py2.log"
+    log="$recipe_topdir/recipes/$pkg/linux-64-py3.log"
     echo "Building with logs to $log ..."
     set +e
     stdbuf -oL -eL \
