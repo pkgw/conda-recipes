@@ -46,13 +46,14 @@ source:
     # found in forums, and originated at (Author appears to be Peter Zhigalov):
     # https://fami.codefreak.ru/gitlab/peter/qt4/commit/45e8f4eef3923e03c6939d0c17170980685857ef.diff
     - vs2015_int_fix.patch  # [win and py >= 35]
-    - gcc-7.patch  # [linux]
+    - gcc-7.patch
     - clang.patch  # [osx]
+    - clang-cxx11.patch  # [osx]
     - qmake-osxapp-fix.patch  # straight-up bug!
     - qt4-openssl-1.1.patch
 
 build:
-  number: 7
+  number: 8
   skip: true  # [win and py>35]
   features:
     - vc9  # [win and py27]

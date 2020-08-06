@@ -1,5 +1,5 @@
 #!/ bin/bash
-# Copyright 2016-2019 Peter Williams and collaborators.
+# Copyright 2016-2020 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 [ "$NJOBS" = '<UNDEFINED>' -o -z "$NJOBS" ] && NJOBS=1
@@ -48,6 +48,7 @@ configure_args=(
 if [[ $(uname) == Linux ]] ; then
     compiler_mkspec=mkspecs/common/g++-base.conf
     flag_mkspec=mkspecs/linux-g++/qmake.conf
+    extra_flags=
 
     export CFLAGS="$CFLAGS -fpermissive"
     export CXXFLAGS="$CXXFLAGS -fpermissive -Wno-expansion-to-defined -Wno-unused-local-typedefs"
@@ -55,6 +56,7 @@ if [[ $(uname) == Linux ]] ; then
 elif [[ $(uname) == Darwin ]] ; then
     compiler_mkspec=mkspecs/common/clang.conf
     flag_mkspec=mkspecs/unsupported/macx-clang-libc++/qmake.conf
+    extra_flags="-Wno-c++11-narrowing"  # turns out this old code needs this (for both C and C++ compilers)
 
     export MACOSX_DEPLOYMENT_TARGET=10.6
     unset CFLAGS CXXFLAGS LDFLAGS
@@ -80,8 +82,8 @@ sed -i -e "s|^QMAKE_CXX.*=.*|QMAKE_CXX = $(basename $CXX)|" $compiler_mkspec
 
 cp $flag_mkspec $flag_mkspec.orig
 cat <<EOF >$flag_mkspec
-QMAKE_CFLAGS = $CFLAGS $CPPFLAGS
-QMAKE_CXXFLAGS = $CXXFLAGS $CPPFLAGS
+QMAKE_CFLAGS = $CFLAGS $CPPFLAGS $extra_flags
+QMAKE_CXXFLAGS = $CXXFLAGS $CPPFLAGS $extra_flags
 QMAKE_LFLAGS = $LDFLAGS
 EOF
 cat $flag_mkspec.orig >>$flag_mkspec
