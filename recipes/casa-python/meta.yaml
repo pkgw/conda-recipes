@@ -1,11 +1,11 @@
-# Copyright 2015-2019 Peter Williams and collaborators.
+# Copyright 2015-2020 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 #
 # A new tag must be pushed to GitHub for every update!
 
 {% set name = "casa-python" %}
-{% set version = "5.4.1" %}
-{% set build = "4" %}
+{% set version = "5.6.3" %}
+{% set build = "0" %}
 
 package:
   name: {{ name }}
@@ -34,7 +34,7 @@ requirements:
     # casa-tools may drag in many of them, but we should explicitly
     # name them here to avoid binary compat issues.
     - casacore
-    - casa-tools 5.4
+    - casa-tools 5.6
     - dbus-cxx 0.9
     - ncurses {{ ncurses }}
     - numpy

@@ -50,29 +50,26 @@ if [ $(uname) = Darwin ] ; then
     linkflags="-Wl,-rpath,$PREFIX/lib $LDFLAGS"
 
     cmake_args+=(
-	-Darch=darwin64
-	-Darchflag=x86_64
-	-DCMAKE_Fortran_COMPILER=gfortran
-	-DEXTRA_CXX_FLAGS="-arch $OSX_ARCH -stdlib=libc++"
-	-DPGPLOT_LIBRARIES="$PREFIX/lib/libpgplot.dylib;$PREFIX/lib/libcpgplot.a"
-	# Make sure to get Conda versions of libraries:
-	-DLIBXML2_ROOT_DIR=$PREFIX
-	-DLIBXSLT_ROOT_DIR=$PREFIX
-	-DREADLINE_ROOT_DIR=$PREFIX
+        -Darch=darwin64
+        -Darchflag=x86_64
+        -DCMAKE_Fortran_COMPILER=$FC
+        -DPGPLOT_LIBRARIES="$PREFIX/lib/libpgplot.dylib;$PREFIX/lib/libcpgplot.a"
+        # Make sure to get Conda versions of libraries:
+        -DLIBXML2_ROOT_DIR=$PREFIX
+        -DLIBXSLT_ROOT_DIR=$PREFIX
+        -DREADLINE_ROOT_DIR=$PREFIX
     )
 else
     linkflags="-Wl,-rpath-link,$PREFIX/lib $LDFLAGS"
 
     cmake_args+=(
-	-DBLAS_LIBRARIES="$PREFIX/lib/libopenblas.so.0"
-	-DEXTRA_C_FLAGS="$CFLAGS $CPPFLAGS"
-	-DEXTRA_CXX_FLAGS="$CXXFLAGS $CPPFLAGS"
-	-DLAPACK_LIBRARIES="$PREFIX/lib/libopenblas.so.0"
-	-DPGPLOT_LIBRARIES="$PREFIX/lib/libpgplot.so;$PREFIX/lib/libcpgplot.a"
+        -DPGPLOT_LIBRARIES="$PREFIX/lib/libpgplot.so;$PREFIX/lib/libcpgplot.a"
     )
 fi
 
 cmake_args+=(
+	-DEXTRA_C_FLAGS="$CFLAGS $CPPFLAGS"
+	-DEXTRA_CXX_FLAGS="$CXXFLAGS $CPPFLAGS"
     -DCMAKE_EXE_LINKER_FLAGS="$linkflags"
     -DCMAKE_MODULE_LINKER_FLAGS="$linkflags"
     -DCMAKE_SHARED_LINKER_FLAGS="$linkflags"

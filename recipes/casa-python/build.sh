@@ -1,5 +1,5 @@
 #! /bin/bash
-# Copyright 2015-2019 Peter Williams and collaborators.
+# Copyright 2015-2020 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 # Java must be installed to build this package! Lame but not too hard to deal
@@ -26,6 +26,8 @@ popd
 
 # Ready to configure and make
 
+pyvers=$(python -c 'from sys import version_info as v; print(f"{v.major}.{v.minor}")')
+
 cmake_args=(
     -DCASA_PACKAGES=$PREFIX
     -DCMAKE_BUILD_TYPE=Release
@@ -34,6 +36,7 @@ cmake_args=(
     -DCMAKE_STATIC_LINKER_FLAGS=-L$PREFIX/lib
     -DPGPLOT_INCLUDE_DIRS=$PREFIX/include/pgplot
     -DPGPLOT_LIBRARIES="$PREFIX/lib/libpgplot$SHLIB_EXT;$PREFIX/lib/libcpgplot.a"
+    -DPYTHON_LIBNAME="$pyvers"
     -DQT_DBUSXML2CPP_EXECUTABLE=$PREFIX/qt4/bin/qdbusxml2cpp
     -DQT_LIBRARY_DIR=$PREFIX/qt4/lib
     -DQT_MKSPECS_DIR=$PREFIX/qt4/mkspecs
@@ -51,24 +54,19 @@ if [ $(uname) = Darwin ] ; then
     export LDFLAGS="-Wl,-rpath,$PREFIX/lib -L$PREFIX/lib $LDFLAGS"
 
     cmake_args+=(
-	-Darch=darwin64
-	-Darchflag=x86_64
-	-DCMAKE_Fortran_COMPILER=gfortran
+        -Darch=darwin64
+        -Darchflag=x86_64
+        -DCMAKE_Fortran_COMPILER=$FC
     )
 else
     # C++17 bans dynamic exceptions, which this codebase uses, so we need to
     # drop down to C++14
     export CXXFLAGS="$(echo $CXXFLAGS |sed -e 's/std=c..17/std=c++14/g')"
     export LDFLAGS="-Wl,-rpath-link,$PREFIX/lib $LDFLAGS"
-
-    cmake_args+=(
-	-DBLAS_LIBRARIES="$PREFIX/lib/libopenblas.so.0"
-	-DLAPACK_LIBRARIES="$PREFIX/lib/libopenblas.so.0"
-    )
 fi
 
 cmake_args+=(
-    -DEXTRA_CXX_FLAGS="$CXXFLAGS"
+    -DEXTRA_CXX_FLAGS="$CPPFLAGS $CXXFLAGS"
 )
 
 # The CXXFLAGS unset is needed to get EXTRA_CXX_FLAGS to take effect. I like

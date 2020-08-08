@@ -1,11 +1,11 @@
-# Copyright 2015-2019 Peter Williams and collaborators.
+# Copyright 2015-2020 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 #
 # A new tag must be pushed to GitHub for every update!
 
 {% set name = "casa-tools" %}
-{% set version = "5.4.1" %}
-{% set build = "4" %}
+{% set version = "5.6.3" %}
+{% set build = "0" %}
 
 package:
   name: {{ name }}
@@ -31,17 +31,19 @@ requirements:
   host:
     - boost {{ boost }}
     - boost-cpp {{ boost_cpp }}
-    - casacore >=2.4.2a0
+    - casacore 3.3.*
     - cfitsio {{ cfitsio }}
     - dbus-cxx 0.9.*
     - dbus {{ dbus }}
     - fftw
     - gsl {{ gsl }}
+    - libblas {{ libblas }}
+    - libcblas {{ libcblas }}
+    - liblapack {{ liblapack }}
     - libsakura 3.0.*
     - libxml2 {{ libxml2 }}
     - libxslt
     - ncurses {{ ncurses }}
-    - openblas {{ openblas }}
     - pgplot 5.2.*
     - readline {{ readline }}
     - rpfits 2.*
