@@ -2,21 +2,22 @@
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 {% set name = "wsclean" %}
-{% set version = "2.6" %}
-{% set sha256 = "5352805f6c156a59f1274b33e574ec7fdfb868c932038378ec19a8fa3cd73abf" %}
+{% set version = "2.10.1" %}
+{% set compat_version = "2.10" %}
+{% set sha256 = "778edc1e73ce346a62063eef570054c268727a0fab47b999549d678a8b26ee1e" %}
 
 package:
   name: {{ name | lower }}
   version: {{ version }}
 
 source:
-  url: http://downloads.sourceforge.net/project/{{ name }}/{{ name }}-{{ version }}/{{ name }}-{{ version }}.tar.bz2
+  url: http://downloads.sourceforge.net/project/{{ name }}/{{ name }}-{{ compat_version }}/{{ name }}-{{ version }}.tar.bz2
   sha256: {{ sha256 }}
   patches:
     - osx.patch  # [osx]
 
 build:
-  number: 1
+  number: 0
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
@@ -26,13 +27,12 @@ requirements:
     - cmake
     - {{ compiler('cxx') }}
   host:
-    - boost-cpp
-    - casacore 2.4.*
-    - fftw 3.3.*
-    - gsl
+    - boost-cpp {{ boost }}
+    - casacore 3.3.*
+    - fftw {{ fftw }}
+    - gsl {{ gsl }}
   run:
     - {{ pin_compatible('boost-cpp') }}
-    - {{ pin_compatible('fftw') }}
 
 test:
   commands:
