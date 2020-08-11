@@ -6,23 +6,22 @@
 # We'd need libsigc++, glibmm, and gtkmm.
 
 {% set name = "aoflagger" %}
-{% set version = "2.14.0" %}
-{% set compat_version = "2.14.0" %}
-{% set sha256 = "39137f2069d82eee1b6ed4028529f8a27657be36d17f722521ef304760018699" %}
+{% set version = "2.15.0" %}
+{% set sha256 = "0d080471944fd968403b69946ccf5076d7cd9c11a4aa626bb10dc926bdd4828e" %}
 
 package:
   name: {{ name | lower }}
   version: {{ version }}
 
 source:
-  url: http://downloads.sourceforge.net/project/{{ name }}/{{ name }}-{{ compat_version }}/{{ name }}-{{ version }}.tar.bz2
+  url: https://gitlab.com/aroffringa/aoflagger/-/archive/v{{ version }}/aoflagger-v{{ version }}.tar.gz
   sha256: {{ sha256 }}
   patches:
     - mac-cxx.patch
-    - boost-python3.patch  # [py3k]
+    - boost-python3.patch
 
 build:
-  number: 2
+  number: 0
   script_env:
     - NJOBS
 
@@ -34,16 +33,21 @@ requirements:
     # This list based on DT_NEEDED libraries in the executable
     - boost {{ boost }}
     - boost-cpp {{ boost_cpp }}
-    - casacore >=2.4.2a0
+    - casacore >=3.3
     - cfitsio {{ cfitsio }}
-    - fftw
+    - fftw {{ fftw }}
     - gsl {{ gsl }}
     - hdf5 {{ hdf5 }}
+    - libblas {{ libblas }}
+    - libcblas {{ libcblas }}
+    - liblapack {{ liblapack }}
     - libpng {{ libpng }}
     - libxml2 {{ libxml2 }}
-    - openblas {{ openblas }}
+    - lua
+    - numpy
     - python
   run:
+    - {{ pin_compatible('numpy') }}
     - python
 
 test:

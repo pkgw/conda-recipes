@@ -1,5 +1,5 @@
 #! /bin/bash
-# Copyright 2015-2018 Peter Williams and collaborators.
+# Copyright 2015-2020 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 [ "$NJOBS" = '<UNDEFINED>' -o -z "$NJOBS" ] && NJOBS=1
@@ -19,19 +19,17 @@ if [ -n "$OSX_ARCH" ] ; then
     export MACOSX_DEPLOYMENT_TARGET=10.7
 
     cmake_args+=(
-	-Darch=darwin64
-	-Darchflag=x86_64
-	-DCMAKE_CXX_FLAGS="-arch $OSX_ARCH -stdlib=libc++"
-	-DCMAKE_OSX_DEPLOYMENT_TARGET=$MACOSX_DEPLOYMENT_TARGET
-	-DCMAKE_OSX_SYSROOT=/
+        -Darch=darwin64
+        -Darchflag=x86_64
+        -DCMAKE_CXX_FLAGS="-arch $OSX_ARCH -stdlib=libc++"
+        -DCMAKE_OSX_DEPLOYMENT_TARGET=$MACOSX_DEPLOYMENT_TARGET
+        -DCMAKE_OSX_SYSROOT=/
     )
 else
     cmake_args+=(
-	-DBLAS_LIBRARIES="$PREFIX/lib/libopenblas.so.0"
-	-DCMAKE_EXE_LINKER_FLAGS="-L$PREFIX/lib -Wl,-rpath-link,$PREFIX/lib"
-	-DCMAKE_MODULE_LINKER_FLAGS="-L$PREFIX/lib -Wl,-rpath-link,$PREFIX/lib"
-	-DCMAKE_SHARED_LINKER_FLAGS="-L$PREFIX/lib -Wl,-rpath-link,$PREFIX/lib"
-	-DLAPACK_LIBRARIES="$PREFIX/lib/libopenblas.so.0"
+        -DCMAKE_EXE_LINKER_FLAGS="-L$PREFIX/lib -Wl,-rpath-link,$PREFIX/lib"
+        -DCMAKE_MODULE_LINKER_FLAGS="-L$PREFIX/lib -Wl,-rpath-link,$PREFIX/lib"
+        -DCMAKE_SHARED_LINKER_FLAGS="-L$PREFIX/lib -Wl,-rpath-link,$PREFIX/lib"
     )
 fi
 
