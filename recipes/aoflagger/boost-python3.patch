@@ -7,7 +7,7 @@ index f1ea7b6..b6889cd 100644
  message(STATUS "Using python version ${PYTHON_VERSION_STRING}")
  # At least the intrusive_ref_counter needs Boost 1.55 (because the header was moved)
 -find_package(Boost 1.55.0 REQUIRED COMPONENTS date_time filesystem python3 numpy3 system)
-+find_package(Boost 1.68.0 REQUIRED COMPONENTS date_time filesystem python38 numpy38 system)
++find_package(Boost 1.68.0 REQUIRED COMPONENTS date_time filesystem python39 numpy39 system)
  find_library(FFTW3_LIB fftw3 REQUIRED)
  enable_language(Fortran OPTIONAL)
  find_package(BLAS REQUIRED)
@@ -21,8 +21,8 @@ index 4ed8a75..3ec1242 100644
  	${Boost_FILESYSTEM_LIBRARY} ${Boost_DATE_TIME_LIBRARY}
 -	${Boost_PYTHON3_LIBRARIES}
 -	${Boost_NUMPY3_LIBRARIES}
-+	${Boost_PYTHON38_LIBRARIES}
-+	${Boost_NUMPY38_LIBRARIES}
++	${Boost_PYTHON39_LIBRARIES}
++	${Boost_NUMPY39_LIBRARIES}
  	${FFTW3_LIB}
  	${CASACORE_LIBRARIES}
  	${LAPACK_lapack_LIBRARY}

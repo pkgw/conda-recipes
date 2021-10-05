@@ -1,4 +1,4 @@
-# Copyright 2015-2019 Peter Williams and collaborators.
+# Copyright 2015-2021 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 # We don't provide the rfigui right now. It needs Gtk-- > 3.0, so it wouldn't
@@ -21,7 +21,7 @@ source:
     - boost-python3.patch
 
 build:
-  number: 0
+  number: 1
   script_env:
     - NJOBS
 
@@ -33,7 +33,7 @@ requirements:
     # This list based on DT_NEEDED libraries in the executable
     - boost {{ boost }}
     - boost-cpp {{ boost_cpp }}
-    - casacore >=3.3
+    - casacore 3.3.*  # NB: casa-tools currently requires casacore 3.3 and we need to stay compatible
     - cfitsio {{ cfitsio }}
     - fftw {{ fftw }}
     - gsl {{ gsl }}

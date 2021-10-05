@@ -1,4 +1,4 @@
-# Copyright 2017-2018 Peter Williams and collaborators.
+# Copyright 2017-2021 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 {% set name = "wsclean" %}
@@ -17,7 +17,7 @@ source:
     - osx.patch  # [osx]
 
 build:
-  number: 0
+  number: 1
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
@@ -28,7 +28,7 @@ requirements:
     - {{ compiler('cxx') }}
   host:
     - boost-cpp {{ boost }}
-    - casacore 3.3.*
+    - casacore 3.3.*  # NB: casa-tools currently requires casacore 3.3 and we need to stay compatible
     - fftw {{ fftw }}
     - gsl {{ gsl }}
   run:
