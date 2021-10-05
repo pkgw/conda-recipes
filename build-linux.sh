@@ -10,7 +10,7 @@ set -e
 img_name=forge-builder
 cont_name=forgebuilder
 recipe_topdir=$(cd $(dirname $0) && pwd)
-builder_args="--python=3.8"
+builder_args=("--python=3.9.* *_cpython")
 uid="$(id -u):$(id -g)"
 
 # Make sure container is up and running
@@ -59,7 +59,7 @@ while [ $# -gt 0 ] ; do
            docker exec \
            -e NJOBS \
            $cont_name /entrypoint.sh \
-           build "$pkg" $builder_args >"$log" 2>&1
+           build "$pkg" "${builder_args[@]}" >"$log" 2>&1
     ec=$?
     set -e
     echo "========================================"

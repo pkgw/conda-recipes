@@ -16,7 +16,7 @@ set -e
 
 case "$1" in
     --python=*)
-        build_args="$build_args $1"
+        build_args+=("$1")
         shift
         ;;
 esac
@@ -42,5 +42,5 @@ fi
 tar c -C $recipedir -X $(pwd)/.global_excludes $arg . |tar x -C "$work"
 export PYTHONUNBUFFERED=1
 conda update -y --all
-conda build -m /conda/conda_build_config.yaml $build_args "$work"
+conda build -m /conda/conda_build_config.yaml "${build_args[@]}" "$work"
 rm -rf "$work"
