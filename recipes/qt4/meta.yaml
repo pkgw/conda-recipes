@@ -51,9 +51,10 @@ source:
     - clang-cxx11.patch  # [osx]
     - qmake-osxapp-fix.patch  # straight-up bug!
     - qt4-openssl-1.1.patch
+    - gcc9-qforeach.patch
 
 build:
-  number: 8
+  number: 9
   skip: true  # [win and py>35]
   features:
     - vc9  # [win and py27]
