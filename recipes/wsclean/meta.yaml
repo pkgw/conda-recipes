@@ -27,7 +27,7 @@ requirements:
     - cmake
     - {{ compiler('cxx') }}
   host:
-    - boost-cpp {{ boost }}
+    - boost-cpp {{ boost_cpp }}
     - casacore 3.3.*  # NB: casa-tools currently requires casacore 3.3 and we need to stay compatible
     - fftw {{ fftw }}
     - gsl {{ gsl }}
