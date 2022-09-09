@@ -8,23 +8,26 @@ package:
 
 source:
   fn: {{ name }}-{{ version }}.tar.gz
-  url: http://cosmo.nyu.edu/afterglowlibrary/boxfitdatav2/boxfitv2.tar.gz
+  # Currently (2022 Sep) cosmo.nyu.edu's HTTPS cert has a broken authority
+  # chain, so conda-build can't/won't download it.
+  #url: https://cosmo.nyu.edu/afterglowlibrary/boxfitdatav2/boxfitv2.tar.gz
+  url: https://newton.cx/~peter/files/boxfitv2.tar.gz
   sha256: {{ sha256 }}
   patches:
     - settings.patch
     - makefile.patch
 
 build:
-  number: 1
+  number: 2
   detect_binary_files_with_prefix: true
   script_env:
     - NJOBS
 
 requirements:
   build:
-    - toolchain
-    - libgfortran 3.0.0
-    - hdf5 1.8.18|1.8.18.*
+    - {{ compiler('cxx') }}
+  host:
+    - hdf5 1.12.1
     - mpich
   run:
     - boxfit-data01 2.*
@@ -32,12 +35,11 @@ requirements:
     - boxfit-data03 2.*
     - boxfit-data04 2.*
     - boxfit-data05 2.*
-    - libgfortran 3.0.0
-    - hdf5 1.8.18|1.8.18.*
+    - {{ pin_compatible('hdf5') }}
     - mpich
 
 about:
-  home: http://cosmo.nyu.edu/afterglowlibrary/boxfit2011.html
+  home: https://cosmo.nyu.edu/afterglowlibrary/boxfit2011.html
   license: unspecified
   summary: Code for broadband afterglow light curve data simulation
 

@@ -12,7 +12,7 @@
 # since "conda build" slurps everything in the recipe directory into the built
 # package, including tilde backup files, etc.
 
-set -e
+set -ex
 
 case "$1" in
     --python=*)
@@ -42,5 +42,25 @@ fi
 tar c -C $recipedir -X $(pwd)/.global_excludes $arg . |tar x -C "$work"
 export PYTHONUNBUFFERED=1
 conda update -y --all
+
+# We used to symlink /conda package output directories into /vagrant but
+# currently (2022 Sep) this causes a conda-build crash, so we need to explicitly
+# sync.
+if [ "$(uname)" = Darwin ] ; then
+    for a in broken noarch osx-64 ; do
+        rsync -avP /vagrant/artifacts/$a /conda/conda-bld
+        pushd /conda/conda-bld
+        conda index
+        popd
+    done
+fi
+
 conda build -m /conda/conda_build_config.yaml "${build_args[@]}" "$work"
+
+if [ "$(uname)" = Darwin ] ; then
+    for a in broken noarch osx-64 ; do
+        rsync -avP /conda/conda-bld/$a /vagrant/artifacts
+    done
+fi
+
 rm -rf "$work"
