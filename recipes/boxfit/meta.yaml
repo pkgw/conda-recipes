@@ -8,7 +8,10 @@ package:
 
 source:
   fn: {{ name }}-{{ version }}.tar.gz
-  url: https://newton.cx/~peter/files//boxfitv2.tar.gz
+  # Currently (2022 Sep) cosmo.nyu.edu's HTTPS cert has a broken authority
+  # chain, so conda-build can't/won't download it.
+  #url: https://cosmo.nyu.edu/afterglowlibrary/boxfitdatav2/boxfitv2.tar.gz
+  url: https://newton.cx/~peter/files/boxfitv2.tar.gz
   sha256: {{ sha256 }}
   patches:
     - settings.patch
