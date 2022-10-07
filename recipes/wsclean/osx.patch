@@ -1,40 +1,24 @@
---- ./matrix2x2.h.orig	2018-02-13 08:51:17.905697921 -0500
-+++ ./matrix2x2.h	2018-02-13 08:54:39.887928219 -0500
-@@ -308,7 +308,7 @@
- 	static void RotationMatrix(std::complex<T>* matrix, double alpha)
- 	{
- 		T cosAlpha, sinAlpha;
--		sincos(alpha, &sinAlpha, &cosAlpha);
-+		__sincos(alpha, &sinAlpha, &cosAlpha);
- 		matrix[0] = cosAlpha; matrix[1] = -sinAlpha;
- 		matrix[2] = sinAlpha; matrix[3] = cosAlpha;
- 	}
---- CMakeLists.txt.orig	2019-02-11 15:23:08.027618570 -0500
-+++ CMakeLists.txt	2019-02-11 15:24:10.993074887 -0500
-@@ -120,7 +120,7 @@
- set_target_properties(wsclean-lib PROPERTIES SOVERSION ${WSCLEAN_VERSION_SO})
- 
- add_library(wsclean-shared SHARED ${WSCLEANFILES})
--target_link_libraries(wsclean-shared)
-+target_link_libraries(wsclean-shared ${CASACORE_LIBRARIES} ${FFTW3_LIB} ${FFTW3_THREADS_LIB} ${Boost_DATE_TIME_LIBRARY} ${Boost_FILESYSTEM_LIBRARY} ${Boost_PROGRAM_OPTIONS_LIBRARY} ${Boost_THREAD_LIBRARY} ${Boost_SYSTEM_LIBRARY} ${CFITSIO_LIBRARY} ${GSL_LIB} ${GSL_CBLAS_LIB} ${PTHREAD_LIB} ${LBEAM_LIBS} ${IDGAPI_LIBRARIES})
- set_target_properties(wsclean-shared PROPERTIES SOVERSION ${WSCLEAN_VERSION_SO})
- 
- add_executable(wsclean wscleanmain.cpp)
-@@ -133,7 +133,6 @@
- target_link_libraries(wsuvbinning ${CASACORE_LIBRARIES} ${FFTW3_LIB} ${FFTW3_THREADS_LIB} ${Boost_FILESYSTEM_LIBRARY} ${Boost_DATE_TIME_LIBRARY} ${Boost_PROGRAM_OPTIONS_LIBRARY} ${Boost_THREAD_LIBRARY} ${Boost_SYSTEM_LIBRARY} ${CFITSIO_LIBRARY} ${GSL_LIB} ${GSL_CBLAS_LIB} ${LBEAM_LIBS} ${IDGAPI_LIBRARIES})
+diff --git a/deconvolution/peakfinder.cpp b/deconvolution/peakfinder.cpp
+index 5476c49..e4dc906 100644
+--- a/deconvolution/peakfinder.cpp
++++ b/deconvolution/peakfinder.cpp
+@@ -9,6 +9,7 @@
+ #include <immintrin.h>
+ #endif
+
++#include <algorithm>
+ #include <limits>
+
+ std::optional<float> PeakFinder::Simple(const float *image, size_t width,
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 2536355..bcbb29f 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -415,7 +415,6 @@ add_executable(
+ target_link_libraries(mscaleexample ${ALL_LIBRARIES})
  
  install(TARGETS wsclean DESTINATION bin)
 -install(TARGETS wsclean-lib DESTINATION lib)
+ install(TARGETS chgcentre DESTINATION bin)
  install(FILES interface/wscleaninterface.h DESTINATION include)
  
- # add target to generate API documentation with Doxygen
---- wsclean/lofarcentroidgridding.cpp_orig	2019-02-11 15:44:41.780826361 -0500
-+++ wsclean/lofarcentroidgridding.cpp	2019-02-11 15:44:46.782862178 -0500
-@@ -16,6 +16,7 @@
- 
- #include <casacore/measures/TableMeasures/ScalarMeasColumn.h>
- 
-+#include <array>
- #include <vector>
- 
- static casacore::Muvw calculateUVW(const casacore::MPosition &antennaPos, const casacore::MPosition &refPos, const casacore::MEpoch &time, const casacore::MDirection &direction)
