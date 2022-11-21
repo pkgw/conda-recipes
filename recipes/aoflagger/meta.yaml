@@ -1,4 +1,4 @@
-# Copyright 2015-2021 Peter Williams and collaborators.
+# Copyright 2015-2022 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 # We don't provide the rfigui right now. It needs Gtk-- > 3.0, so it wouldn't
@@ -6,34 +6,34 @@
 # We'd need libsigc++, glibmm, and gtkmm.
 
 {% set name = "aoflagger" %}
-{% set version = "2.15.0" %}
-{% set sha256 = "0d080471944fd968403b69946ccf5076d7cd9c11a4aa626bb10dc926bdd4828e" %}
+{% set version = "3.2.0" %}
+{% set fileid_for_version = "38600488" %}
+{% set sha256 = "c13542a99746e4541a54f3d05d7803934ea9580b9612242fa83df6f3a1883dec" %}
 
 package:
   name: {{ name | lower }}
   version: {{ version }}
 
 source:
-  url: https://gitlab.com/aroffringa/aoflagger/-/archive/v{{ version }}/aoflagger-v{{ version }}.tar.gz
+  url: https://gitlab.com/aroffringa/aoflagger/-/package_files/{{ fileid_for_version }}/download
+  fn: {{ name }}-{{ version }}.tar.bz2
   sha256: {{ sha256 }}
-  patches:
-    - mac-cxx.patch
-    - boost-python3.patch
 
 build:
-  number: 2
+  number: 0
   script_env:
     - NJOBS
 
 requirements:
   build:
-    - cmake
     - {{ compiler('cxx') }}
+    - cmake
+    - python
   host:
     # This list based on DT_NEEDED libraries in the executable
     - boost {{ boost }}
     - boost-cpp {{ boost_cpp }}
-    - casacore 3.3.*  # NB: casa-tools currently requires casacore 3.3 and we need to stay compatible
+    - casacore
     - cfitsio {{ cfitsio }}
     - fftw {{ fftw }}
     - gsl {{ gsl }}
@@ -50,11 +50,6 @@ requirements:
     - {{ pin_compatible('boost') }}
     - {{ pin_compatible('numpy') }}
     - python
-
-test:
-  commands:
-    - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
-    - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
 
 about:
   home: http://aoflagger.sourceforge.net/
