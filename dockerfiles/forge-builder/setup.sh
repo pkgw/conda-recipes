@@ -1,5 +1,5 @@
 #! /bin/bash
-# Copyright 2015-2019 Peter Williams <peter@newton.cx>
+# Copyright Peter Williams <peter@newton.cx>
 # Licensed under the MIT License.
 #
 # Set up an image that's ready to build Conda packages repeatably.
@@ -10,18 +10,17 @@ set -ex
 yum install -y $(echo "
 bison
 bzip2
-centos-release-scl
 curl
 emacs-nox
-epel-release
 file
 flex
+git
 glibc-devel
-java
 libstdc++-devel
 make
 man
 man-pages
+mesa-libEGL-devel
 ncompress
 patch
 perl-XML-Parser
@@ -35,11 +34,6 @@ wget
 which
 xz
 zip
-")
-
-# Can now install git because we added extra repositories
-yum install -y $(echo "
-git
 ")
 
 # Set up a user whose UID/GID match the person building the container. A

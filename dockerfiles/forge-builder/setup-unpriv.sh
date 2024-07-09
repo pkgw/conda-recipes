@@ -1,14 +1,14 @@
 #! /bin/bash
-# Copyright 2018 Peter Williams <peter@newton.cx>
+# Copyright Peter Williams <peter@newton.cx>
 # Licensed under the MIT License.
 #
 # This script is run by the main `setup.sh` as the "conda" user.
 
 set -e
 
-wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh
-bash ~/miniconda.sh -b -f -p /conda
-rm -f ~/miniconda.sh
+wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh -O ~/miniforge.sh
+bash ~/miniforge.sh -b -f -p /conda
+rm -f ~/miniforge.sh
 
 source /conda/bin/activate
 
@@ -23,7 +23,8 @@ alias l='ls -lart --color=auto'
 PS1='\h \A \W \$ '
 EOF
 
-conda config --add channels conda-forge
+conda config --set report_errors false
+
 conda update --all -y
 
 conda install -y $(echo "
@@ -33,8 +34,6 @@ jinja2
 pip
 setuptools
 ")
-
-conda config --add envs_dirs /conda/envs
 
 mkdir /conda/conda-bld
 (cd /conda/conda-bld && ln -s /work/linux-64 linux-64 && ln -s /work/noarch noarch)

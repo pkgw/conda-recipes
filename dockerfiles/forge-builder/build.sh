@@ -1,5 +1,5 @@
 #! /bin/bash
-# Copyright 2015-2019 Peter Williams
+# Copyright Peter Williams
 # Licensed under the MIT License.
 
 set -e
@@ -8,5 +8,9 @@ set -e
 # the user/group ID away from those of my user account? Mysterious but I worked
 # around by just replace $(id -u) with 1111, etc.
 
-exec docker build --network=host --build-arg=EXTUSERID=$(id -u) --build-arg=EXTGRPID=$(id -g) -t forge-builder $(dirname $0)
-
+exec docker build \
+  --ulimit nofile=8192:8192 \
+  --network=host \
+  --build-arg=EXTUSERID=$(id -u) --build-arg=EXTGRPID=$(id -g) \
+  -t forge-builder \
+  $(dirname $0)

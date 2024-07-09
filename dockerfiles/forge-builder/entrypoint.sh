@@ -1,6 +1,6 @@
 #! /bin/bash
-# Copyright 2015-2018 Peter Williams <peter@newton.cx>
-# Licensed under the MIT License.
+# Copyright Peter Williams <peter@newton.cx>
+# Licensed under the MIT License
 #
 # This is the "entrypoint" script for the Conda build image. When a user runs
 # "docker run forge-builder build casa-tools", we are invoked with $1=build
@@ -27,6 +27,10 @@ shift
 
 if [ "$command" = update ] ; then
     exec conda update --all
+fi
+
+if [ "$command" = purge ] ; then
+    exec conda build purge
 fi
 
 if [ "$command" = bash ] ; then

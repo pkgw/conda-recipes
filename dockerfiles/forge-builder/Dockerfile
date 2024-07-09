@@ -1,13 +1,9 @@
-# Copyright 2015-2021 Peter Williams
+# Copyright Peter Williams
 # Licensed under the MIT License.
 #
 # See ./build.sh for a simple build recipe.
-#
-# I had to keep this at CentOS 6 for a long time for broad glibc compatibility.
-# That's now EOL so we have to use CentOS 7 -- I hope that's OK!
 
-FROM centos:7
-MAINTAINER Peter Williams <peter@newton.cx>
+FROM rockylinux:8
 ARG EXTUSERID
 ARG EXTGRPID
 
