@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
-# Copyright 2015-2019 Peter Williams.
-# Licensed under the MIT License.
+# Copyright Peter Williams
+# Licensed under the MIT License
 #
 # Set up a Mac OS X machine to build Conda+Conda-forge packages reliably. Note
 # that this "bootstrap" script is run as root. The base VM image already has
@@ -10,27 +10,29 @@
 set -ex
 cd /Users/vagrant
 
-# Homebrew additions. Java is annoying, but needed for casa-python.
-### sudo -iu vagrant brew install $(echo "
-### Caskroom/cask/java
-### pkg-config
-### wget
-### xz
-### ")
+# MacOS boots with a read-only root filesystem. We can use the following magic
+# configuration file to create root-level symlinks that allow our setup to
+# seem to have the same layout as the Linux one, although it will only take
+# effect on the next boot. The two columns of the file must be separated by
+# tab characters.
 
-# Miniconda. Maybe we could use the same prefix as Homebrew, but seems risky.
-# And this way we have the same layout as the Linux Docker images.
-#
-# Some setup for our build system. We don't want to map conda-bld to /vagrant
-# because doing the builds over NFS would be too slow.
+tab=$'\t'
 
-rm -rf /conda # XXXXXXXXXXXXXXXXXXXXXX
+cat <<EOF >/etc/synthetic.conf
+conda${tab}private/var/conda
+vagrant${tab}private/var/vagrant
+EOF
 
-mkdir -p /conda/conda-bld
-for d in broken linux-64 noarch osx-64 src_cache ; do
-    (cd /conda/conda-bld && ln -s /vagrant/artifacts/$d)
-done
-chown -R vagrant /conda
+# I used to install some stuff with Homebrew here, but I believe it's no longer
+# needed, and my "base box" no longer preinstalls Homebrew.
+
+# Miniforge
+
+conda=/private/var/conda
+
+rm -rf $conda
+mkdir -p $conda
+chown -R vagrant $conda
 
 # Current conda ends up having permissions problems when run via `sudo`, so we
 # have to use `su`, which means that we have to write out an inner script
@@ -41,9 +43,10 @@ cat <<'EOF' >"$script"
 #! /usr/bin/env bash
 
 set -ex
+conda=/private/var/conda
 
-curl -s https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh >miniconda.sh
-bash miniconda.sh -f -b -p /conda
+curl -fsSL https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-x86_64.sh >miniforge.sh
+bash miniforge.sh -f -b -p $conda
 
 cat >~/.bash_profile <<'EOF2'
 # .bash_profile
@@ -54,18 +57,14 @@ cat >~/.bashrc <<'EOF2'
 # .bashrc
 alias l='ls -lrtAGh'
 PS1='\h \A \W \$ '
-source /conda/etc/profile.d/conda.sh
+source /private/var/conda/etc/profile.d/conda.sh
 conda activate
 EOF2
 
-rm miniconda.sh
+rm miniforge.sh
 source ~/.bashrc
 
-# Conda-Forge!
-conda config --add channels conda-forge
 conda update --all -y
-
-conda config --add envs_dirs /conda/envs
 
 # Conda dev packages
 conda install -y $(echo "

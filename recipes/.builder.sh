@@ -47,20 +47,18 @@ conda update -y --all
 # currently (2022 Sep) this causes a conda-build crash, so we need to explicitly
 # sync.
 if [ "$(uname)" = Darwin ] ; then
-    for a in broken noarch osx-64 ; do
-        rsync -avP /vagrant/artifacts/$a /conda/conda-bld
-        pushd /conda/conda-bld
-        conda index
-        popd
-    done
+    pushd /vagrant/artifacts
+    rsync -avP broken noarch osx-64 /conda/conda-bld
+    conda index /conda/conda-bld
+    popd
 fi
 
 conda build -m /conda/conda_build_config.yaml "${build_args[@]}" "$work"
 
 if [ "$(uname)" = Darwin ] ; then
-    for a in broken noarch osx-64 ; do
-        rsync -avP /conda/conda-bld/$a /vagrant/artifacts
-    done
+    pushd /conda/conda-bld
+    rsync -avP broken noarch osx-64 /vagrant/artifacts
 fi
 
 rm -rf "$work"
+exit 0
