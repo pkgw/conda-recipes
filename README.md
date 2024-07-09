@@ -44,8 +44,7 @@ code for Linux and/or Mac OS X machines.
 [Vagrant]: https://www.vagrantup.com/
 
 
-How it All Works
-===============================
+## How it All Works
 
 Many of my Conda packages involve compiled code, and a big challenge is
 building such packages in a way that’s as platform-independent as possible.
@@ -70,8 +69,20 @@ repeatable, headless build environment for the OS X package builds.
 * [The order in which everything needs to be built](ORDERED.md)
 
 
-License
-=======
+## Removed Recipes
+
+The following recipes have been removed because they've been superseded
+by conda-forge or have been unused for a long time:
+
+- boxfit
+- boxfit-data*
+- grip
+- gtk3
+- iraf
+- path-and-address
+
+
+## License
 
 The Conda recipes are licensed under a 3-clause BSD license, for compatibility
 with the main [conda-recipes] repository. See the file
@@ -81,10 +92,9 @@ MIT License.
 [conda-recipes]: https://github.com/conda/conda-recipes
 
 
-Copyright Notice For This File
-==============================
+## Copyright Notice For This File
 
-Copyright 2014–2015 Peter Williams
+Copyright Peter Williams
 
 This file is free documentation; the copyright holder gives unlimited
 permission to copy, distribute, and modify it.
