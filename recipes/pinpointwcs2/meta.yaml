@@ -1,0 +1,38 @@
+# Copyright Peter Williams and collaborators.
+# This file is licensed under a 3-clause BSD license; see LICENSE.txt.
+
+{% set name = "pinpointwcs2" %}
+{% set version = "0.9.2" %}
+{% set sha256 = "47fb3d05960a858c7b8e6df1bf4b85f327f12fe8a27d5177eb679192d775c751" %}
+
+package:
+  name: {{ name | lower }}
+  version: {{ version }}
+
+source:
+  url: https://newton.cx/~peter/files/ppwcs2.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+  script_env:
+    - NJOBS
+
+requirements:
+  build:
+    - cmake
+    - {{ compiler('cxx') }}
+  host:
+    - cfitsio
+    - eigen
+    - expat
+    - qt-main
+    - wcstools
+    - xpa
+  run:
+    {{ pin_compatible('wcstools') }}
+
+about:
+  home: https://gitlab.com/WorldWideTelescope/pinpoint-wcs2
+  license: GPL-3.0-or-later
+  summary: Compute AVM/WCS for EPO images derived from FITS data
