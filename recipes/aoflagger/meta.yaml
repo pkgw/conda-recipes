@@ -1,14 +1,12 @@
-# Copyright 2015-2022 Peter Williams and collaborators.
+# Copyright Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
-# We don't provide the rfigui right now. It needs Gtk-- > 3.0, so it wouldn't
-# be a huge amount of work to make that work since we have the Gtk+ 3 stack.
-# We'd need libsigc++, glibmm, and gtkmm.
+# NB: we're not providing `rfigui`.
 
 {% set name = "aoflagger" %}
-{% set version = "3.2.0" %}
-{% set fileid_for_version = "38600488" %}
-{% set sha256 = "c13542a99746e4541a54f3d05d7803934ea9580b9612242fa83df6f3a1883dec" %}
+{% set version = "3.4.0" %}
+{% set fileid_for_version = "96704214" %}
+{% set sha256 = "9560b7381b68f37d842599f222a8aa2a5d3d3d501d1277471e1a0ba3d7b2aeba" %}
 
 package:
   name: {{ name | lower }}
@@ -21,34 +19,33 @@ source:
 
 build:
   number: 0
-  script_env:
-    - NJOBS
 
 requirements:
   build:
-    - {{ compiler('cxx') }}
-    - cmake
+    - {{ compiler("c") }}
+    - {{ stdlib("c") }}
+    - {{ compiler("cxx") }}
+    - cmake <4
+    - ninja
     - python
   host:
-    # This list based on DT_NEEDED libraries in the executable
-    - boost {{ boost }}
-    - boost-cpp {{ boost_cpp }}
     - casacore
-    - cfitsio {{ cfitsio }}
-    - fftw {{ fftw }}
-    - gsl {{ gsl }}
-    - hdf5 {{ hdf5 }}
-    - libblas {{ libblas }}
-    - libcblas {{ libcblas }}
-    - liblapack {{ liblapack }}
-    - libpng {{ libpng }}
-    - libxml2 {{ libxml2 }}
+    - cfitsio 4.6.2  # force migration pin for correct casacore
+    - fftw
+    - gsl
+    - hdf5
+    - libblas
+    - libboost-devel 1.86  # force migration pin for correct casacore
+    - libboost-python 1.86  # force migration pin for correct casacore
+    - libcblas
+    - liblapack
+    - libpng
+    - libxml2
     - lua
-    - numpy
+    - numpy 2  # force migration pin for correct casacore
     - python
   run:
-    - {{ pin_compatible('boost') }}
-    - {{ pin_compatible('numpy') }}
+    - {{ pin_compatible("numpy") }}
     - python
 
 about:

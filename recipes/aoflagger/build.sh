@@ -2,22 +2,18 @@
 # Copyright 2015-2022 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
-[ "$NJOBS" = '<UNDEFINED>' -o -z "$NJOBS" ] && NJOBS=1
-set -ex
+set -xeuo pipefail
 
 cmake_args=(
+    -GNinja
     -DCMAKE_BUILD_TYPE=Release
-    -DCMAKE_COLOR_MAKEFILE=OFF
     -DCMAKE_INSTALL_PREFIX=$PREFIX
     -DPORTABLE=ON
 )
 
 #cmake_args+=(--debug-trycompile --debug-output)
 
-if [ -n "$OSX_ARCH" ] ; then
-    # Need to require 10.7 because of the C++11 features.
-    export MACOSX_DEPLOYMENT_TARGET=10.9
-
+if [[ $(uname) = "Darwin" ]] ; then
     cmake_args+=(
         -Darch=darwin64
         -Darchflag=x86_64
@@ -40,11 +36,9 @@ fi
 mkdir build
 cd build
 cmake "${cmake_args[@]}" ..
-make -j$NJOBS VERBOSE=1
-make install
-
-cd $PREFIX
-find . -name '*.a' -delete
+ninja -j$CPU_COUNT
+ninja install
 
 # Remove GUI stuff that we don't provide:
+cd $PREFIX
 rm -rf share/applications share/icons
