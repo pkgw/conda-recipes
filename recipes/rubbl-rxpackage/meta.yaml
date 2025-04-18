@@ -1,9 +1,9 @@
-# Copyright 2019 Peter Williams and collaborators.
+# Copyright Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 {% set name = "rubbl-rxpackage" %}
-{% set version = "0.1.0" %}
-{% set sha256 = "b21676b20f284cd9ce604082367ba118318799560124d29b37b77608f9accca7" %}
+{% set version = "0.1.6" %}
+{% set sha256 = "882527973fdd8449937838a81d3ffe2d65c392b2b1684ebe117d98578b9d4457" %}
 
 package:
   name: {{ name | lower }}
@@ -15,13 +15,13 @@ source:
 
 build:
   number: 0
-  script_env:
-    - NJOBS
 
 requirements:
   build:
-    - rust
-    - {{ compiler('cxx') }}
+    - rust <1.75
+    - {{ compiler("c") }}
+    - {{ stdlib("c") }}
+    - {{ compiler("cxx") }}
 
 test:
   commands:
