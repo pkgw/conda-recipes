@@ -3,22 +3,21 @@
 
 {% set name = "rubbl-rxpackage" %}
 {% set version = "0.1.6" %}
-{% set sha256 = "882527973fdd8449937838a81d3ffe2d65c392b2b1684ebe117d98578b9d4457" %}
 
 package:
   name: {{ name | lower }}
   version: {{ version }}
 
 source:
-  url: https://github.com/pkgw/{{ name }}/archive/v{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  url: https://github.com/pkgw/{{ name }}/archive/{{ name }}@{{ version }}.tar.gz
+  sha256: 46babb7485c6cf8fe875cdcd0fe49ddc02f28d084aba17ff9bf8141fef643079
 
 build:
   number: 0
 
 requirements:
   build:
-    - rust <1.75
+    - rust
     - {{ compiler("c") }}
     - {{ stdlib("c") }}
     - {{ compiler("cxx") }}
