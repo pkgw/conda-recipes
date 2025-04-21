@@ -1,0 +1,114 @@
+diff --git a/src/util/uvector.h b/src/util/uvector.h
+index f6ce9c5..5715cc0 100644
+--- a/src/util/uvector.h
++++ b/src/util/uvector.h
+@@ -79,7 +79,7 @@ class uvector : private Alloc
+ 	static_assert(std::is_standard_layout<Tp>(), "A uvector can only hold classes with standard layout");
+ private:
+ #if __cplusplus > 201402L
+-	typedef std::allocator_traits<allocator_type>::is_always_equal allocator_is_always_equal;
++	typedef typename std::allocator_traits<Alloc>::is_always_equal allocator_is_always_equal;
+ #else
+ 	typedef std::false_type allocator_is_always_equal;
+ #endif
+diff --git a/src/quality/histogramtablesformatter.h b/src/quality/histogramtablesformatter.h
+index 5c4e3fd..45438f0 100644
+--- a/src/quality/histogramtablesformatter.h
++++ b/src/quality/histogramtablesformatter.h
+@@ -3,6 +3,7 @@
+ 
+ #include <casacore/ms/MeasurementSets/MeasurementSet.h>
+ #include <casacore/tables/Tables/TableRecord.h>
++#include <casacore/tables/Tables/TableUtil.h>
+ 
+ #include <vector>
+ 
+@@ -123,7 +124,7 @@ class HistogramTablesFormatter {
+ 				if(_measurementSet->keywordSet().isDefined(TableName(table)))
+ 					_measurementSet->rwKeywordSet().removeField(TableName(table));
+ 				if(_measurementSet->isReadable(TableFilename(table)))
+-					casacore::Table::deleteTable(TableFilename(table));
++					casacore::TableUtil::deleteTable(TableFilename(table));
+ 			}
+ 		}
+ 		
+diff --git a/src/quality/qualitytablesformatter.h b/src/quality/qualitytablesformatter.h
+index 10d9d52..7380110 100644
+--- a/src/quality/qualitytablesformatter.h
++++ b/src/quality/qualitytablesformatter.h
+@@ -3,6 +3,7 @@
+ 
+ #include <casacore/ms/MeasurementSets/MeasurementSet.h>
+ #include <casacore/tables/Tables/TableRecord.h>
++#include <casacore/tables/Tables/TableUtil.h>
+ 
+ #define QUALITY_TABLES_VERSION      1
+ #define QUALITY_TABLES_VERSION_STR "1"
+@@ -190,7 +191,7 @@ class QualityTablesFormatter {
+ 				if(_measurementSet->keywordSet().isDefined(TableToName(table)))
+ 					_measurementSet->rwKeywordSet().removeField(TableToName(table));
+ 				if(_measurementSet->isReadable(TableToFilename(table)))
+-					casacore::Table::deleteTable(TableToFilename(table));
++					casacore::TableUtil::deleteTable(TableToFilename(table));
+ 			}
+ 		}
+ 		
+diff --git a/src/test/quality/qualitytablesformattertest.h b/src/test/quality/qualitytablesformattertest.h
+index 72cc36e..0fd4a48 100644
+--- a/src/test/quality/qualitytablesformattertest.h
++++ b/src/test/quality/qualitytablesformattertest.h
+@@ -8,6 +8,7 @@
+ #include "../../quality/statisticalvalue.h"
+ 
+ #include <casacore/tables/Tables/Table.h>
++#include <casacore/tables/Tables/TableUtil.h>
+ #include <casacore/tables/Tables/SetupNewTab.h>
+ #include <casacore/tables/Tables/ScaColDesc.h>
+ 
+@@ -37,7 +38,7 @@ class QualityTablesFormatterTest : public UnitTest {
+ 		}
+ 		void removeTable()
+ 		{
+-			casacore::Table::deleteTable("QualityTest.MS");
++			casacore::TableUtil::deleteTable("QualityTest.MS");
+ 		}
+ 		struct TestConstructor : public Asserter
+ 		{
+diff --git a/src/strategy/actions/foreachmsaction.cpp b/src/strategy/actions/foreachmsaction.cpp
+index 1f4fb66..afbaf0a 100644
+--- a/src/strategy/actions/foreachmsaction.cpp
++++ b/src/strategy/actions/foreachmsaction.cpp
+@@ -168,7 +168,7 @@ void ForEachMSAction::AddDirectory(const std::string &name)
+   boost::filesystem::directory_iterator end_it;
+ 
+   for(boost::filesystem::directory_iterator it(dir_path); it != end_it; ++it) {
+-    if( is_directory(it->status()) && extension(it->path()) == ".MS" ) {
++    if( is_directory(it->status()) && it->path().extension() == ".MS" ) {
+       _filenames.push_back( it->path().string() );
+     }
+   }
+diff --git a/src/structures/colormap.cpp b/src/structures/colormap.cpp
+index 65f9c22..1635ab3 100644
+--- a/src/structures/colormap.cpp
++++ b/src/structures/colormap.cpp
+@@ -1,5 +1,7 @@
+ #include "colormap.h"
+ 
++#include <stdexcept>
++
+ std::unique_ptr<ColorMap> ColorMap::CreateColorMap(enum ColorMap::Type colorMapType)
+ {
+ 	using CM=std::unique_ptr<ColorMap>;
+diff --git a/src/strategy/control/pythonstrategy.cpp b/src/strategy/control/pythonstrategy.cpp
+index c51d1f7..139c934 100644
+--- a/src/strategy/control/pythonstrategy.cpp
++++ b/src/strategy/control/pythonstrategy.cpp
+@@ -45,7 +45,7 @@ PythonStrategy::PythonStrategy() : _code(
+ 	Py_Initialize();
+ 
+ 	// The following statement add the curr path to the Python search path
+-	boost::filesystem::path workingDir = boost::filesystem::current_path().normalize();
++	boost::filesystem::path workingDir = boost::filesystem::current_path();
+ 	PyObject* sysPath = PySys_GetObject(const_cast<char*>("path"));
+ 	PyList_Insert( sysPath, 0, PyUnicode_FromString(workingDir.string().c_str()));
+ }

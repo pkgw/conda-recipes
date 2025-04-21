@@ -1,0 +1,28 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index f1ea7b6..3e302ba 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -31,7 +31,7 @@ find_package(PythonLibs 3 REQUIRED)
+ find_package(PythonInterp REQUIRED)
+ message(STATUS "Using python version ${PYTHON_VERSION_STRING}")
+ # At least the intrusive_ref_counter needs Boost 1.55 (because the header was moved)
+-find_package(Boost 1.55.0 REQUIRED COMPONENTS date_time filesystem python3 numpy3 system)
++find_package(Boost 1.68.0 REQUIRED COMPONENTS date_time filesystem python312 numpy312 system)
+ find_library(FFTW3_LIB fftw3 REQUIRED)
+ enable_language(Fortran OPTIONAL)
+ find_package(BLAS REQUIRED)
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 4ed8a75..9ef5b7e 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -243,8 +243,8 @@ set(ALL_LIBRARIES
+ 	${BLAS_LIBRARIES} ${LAPACK_LIBRARIES}
+ 	${Boost_SYSTEM_LIBRARY}
+ 	${Boost_FILESYSTEM_LIBRARY} ${Boost_DATE_TIME_LIBRARY}
+-	${Boost_PYTHON3_LIBRARIES}
+-	${Boost_NUMPY3_LIBRARIES}
++	${Boost_PYTHON312_LIBRARIES}
++	${Boost_NUMPY312_LIBRARIES}
+ 	${FFTW3_LIB}
+ 	${CASACORE_LIBRARIES}
+ 	${LAPACK_lapack_LIBRARY}
