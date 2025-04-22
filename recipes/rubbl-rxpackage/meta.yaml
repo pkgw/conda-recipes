@@ -2,7 +2,7 @@
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 {% set name = "rubbl-rxpackage" %}
-{% set version = "0.1.6" %}
+{% set version = "0.1.7" %}
 
 package:
   name: {{ name | lower }}
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://github.com/pkgw/{{ name }}/archive/{{ name }}@{{ version }}.tar.gz
-  sha256: 46babb7485c6cf8fe875cdcd0fe49ddc02f28d084aba17ff9bf8141fef643079
+  sha256: b7c9f7a63af2b5c3cc66ecec744571595382b7d0173468432f9dd12e401572f5
 
 build:
   number: 0
