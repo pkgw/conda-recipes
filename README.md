@@ -3,20 +3,15 @@
 # conda-recipes
 
 **Visit [CASA.md](./CASA.md) for instructions on installing CASA in an
-Anaconda Python environment.**
+Anaconda Python environment. Except, those instructions are old and out
+of date! Just use conda-forge and Pixi.**
 
-This repository contains the tools I use to build various packages in the
-[Conda] package manager used by the [Anaconda] Python distribution. Most of
-them build up to providing support for the [Gtk+ 3] graphical toolkit and the
-[CASA] radio interferometry package. Builds are provided on 64-bit Linux and
-OS X. **My packages are layered on top of those provided by the [conda-forge]
-project, so you must add `conda-forge` as a channel in your Conda
-configuration!**
+This repository contains the tools I use to build various packages for the
+[Conda] package manager. Builds are provided on 64-bit Linux and OS X. **My
+packages are layered on top of those provided by the [conda-forge] project, so
+you must add `conda-forge` as a channel in your Conda configuration!**
 
 [Conda]: http://conda.pydata.org/
-[Anaconda]: http://docs.continuum.io/anaconda/index
-[Gtk+ 3]: http://www.gtk.org/
-[CASA]: http://casa.nrao.edu/
 [conda-forge]: http://conda-forge.github.io/
 
 I upload built packages to [my personal anaconda.org channel]. You can
@@ -26,11 +21,11 @@ configure your [Anaconda] installation to fetch packages from it with:
 conda config --add channels pkgw-forge
 ```
 
-To directly install the package `pwkit` (for example) without altering your
+To directly install the package `aoflagger` (for example) without altering your
 configuration, use:
 
 ```
-conda install -c pkgw-forge pwkit
+conda install -c pkgw-forge aoflagger
 ```
 
 As part of this work I’ve also developed a [prebuilt Docker image] that can be
@@ -46,16 +41,9 @@ code for Linux and/or Mac OS X machines.
 
 ## How it All Works
 
-Many of my Conda packages involve compiled code, and a big challenge is
-building such packages in a way that’s as platform-independent as possible.
-The OS X developer tools make this fairly manageable. But Linux is harder,
-especially since Conda doesn't explicitly specify the ABIs that they target.
-However, things built on CentOS 5 are generally highly portable — but no one
-wants to run CentOS 5 as their primary OS since it’s ancient!
-
-So there are two main components to how I build my [Conda] packages. First, I
+There are two main components to how I build my [Conda] packages. First, I
 have set up a [Docker] environment that allows me to build packages repeatably
-inside a stable, containerized Centos 5 environment. Then, I’ve written the
+inside a stable, containerized Linux environment. Then, I’ve written the
 [Conda recipes](recipes) that actually define the packages that I build. I’ve
 written up notes on how the system works if you might be interested in doing
 similar things.
@@ -66,20 +54,6 @@ repeatable, headless build environment for the OS X package builds.
 [Docker]: https://www.docker.com/
 
 * [Notes for developers](DEV.md)
-* [The order in which everything needs to be built](ORDERED.md)
-
-
-## Removed Recipes
-
-The following recipes have been removed because they've been superseded
-by conda-forge or have been unused for a long time:
-
-- boxfit
-- boxfit-data*
-- grip
-- gtk3
-- iraf
-- path-and-address
 
 
 ## License
