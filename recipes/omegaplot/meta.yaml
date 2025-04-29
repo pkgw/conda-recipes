@@ -1,8 +1,8 @@
-# Copyright 2014-2018 Peter Williams and collaborators.
+# Copyright-2018 Peter Williams and collaborators.
 # This file is licensed under a 3-clause BSD license; see LICENSE.txt.
 
 {% set name = "omegaplot" %}
-{% set version = "0.7.4" %}
+{% set version = "0.8.0" %}
 {% set sha256 = "9a6604f6da09fead151505c2303580e0b2b0e6a4ec627a050232c3703ce6f600" %}
 
 package:
@@ -11,36 +11,34 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  sha256: a85510f0f0c96b84c643d3a18e135c403121c2108589c3fc0b9546e7033e9b32
 
 build:
   number: 0
   noarch: python
-  script: python setup.py install --single-version-externally-managed --record=files.txt
+  script: python setup.py install --single-version-externally-managed --root=$PREFIX
   entry_points:
     - omegafig = oputil.omegafig:cmdline
     - omegamap = oputil.omegamap:cmdline
 
 requirements:
   build:
-    - nomkl
-    - numpy
-    - pycairo
     - python
     - setuptools
-    - six
   run:
     - numpy
     - pycairo
     - python
-    - six
 
 test:
+  commands:
+    - omegafig --help
+    - omegamap --help
   imports:
     - omega
     - oputil
 
 about:
-  home: https://newton.cx/~peter/
+  home: https://github.com/pkgw/omegaplot/
   license: GPL
   summary: A better-than-publication-quality plotting library based on Cairo.

@@ -11,11 +11,13 @@ yum install -y $(echo "
 bison
 bzip2
 curl
+diffutils
 emacs-nox
 file
 flex
 git
 glibc-devel
+java-21-openjdk-headless
 libstdc++-devel
 make
 man
@@ -49,5 +51,4 @@ chown conda:conda /conda
 su -l conda -c "bash -x /setup-unpriv.sh"
 
 # Docker infrastructure cleanup
-chmod +x /entrypoint.sh
 rm /setup.sh /setup-unpriv.sh # self-destruct!

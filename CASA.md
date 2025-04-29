@@ -1,5 +1,7 @@
 # Installing CASA through conda-forge and pkgw-forge
 
+**NOTE: This is all woefully out of date! Use Pixi and conda-forge!!!**
+
 Welcome! This file attempts to document how you can install the tools from
 [CASA](https://casa.nrao.edu/) in an
 [Anaconda Python](https://www.anaconda.com/what-is-anaconda/) environment on

@@ -1,5 +1,7 @@
 <!--- To render this locally, use `grip --wide` on this file. -->
 
+**NOTE: These notes are super old, probably pointless at best, misleading at worst.**
+
 # Linux: Using the Docker images
 
 I build my Linux [Conda] packages using [Docker], to ensure a reproducible

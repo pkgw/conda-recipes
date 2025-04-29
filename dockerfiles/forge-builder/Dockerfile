@@ -8,7 +8,9 @@ ARG EXTUSERID
 ARG EXTGRPID
 
 VOLUME /work
-COPY setup.sh setup-unpriv.sh entrypoint.sh /
+COPY setup.sh setup-unpriv.sh /
 RUN ["/bin/bash", "/setup.sh"]
+COPY entrypoint.sh /
+RUN ["chmod", "+x", "/entrypoint.sh"]
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["help"]
